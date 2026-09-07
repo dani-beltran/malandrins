@@ -209,7 +209,7 @@ test('roads lead from Raval to Castor using actual on-foot movement', async ({ p
   await page.screenshot({ path: 'artifacts/gameplay.png' });
 });
 
-test('all eight tapes can be collected, including the one beside Aina', async ({ page }) => {
+test('all eight tapes can be collected, including the one beside Lucas', async ({ page }) => {
   await boot(page);
   await start(page);
   const tapes = (await diagnostics(page)).tapes;

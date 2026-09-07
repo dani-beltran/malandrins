@@ -237,17 +237,152 @@ export const characters: CharacterDefinition[] = [
     ],
   },
   {
-    id: 'aina',
-    name: 'Aina',
-    role: line('The last word', 'L’última paraula'),
+    id: 'lucas',
+    name: 'Lucas',
+    role: line('Always ready for a drive', 'Sempre a punt per a una volta'),
     coordinate: [-0.00277, 40.10231],
-    color: 0x9c6f76,
+    color: 0x637eaa,
     skin: 0xd3a283,
     hair: 0x463733,
     lines: [
       line(
-        'If anybody asks, tonight was my idea. If it goes wrong, it was Marcos’s.',
-        'Si algú pregunta, la idea d’aquesta nit ha sigut meua. Si va malament, era de Marcos.',
+        'I only went out for a short drive. Three laps of the town later, I still haven’t picked a destination.',
+        'Només havia eixit a fer una volteta. Després de tres voltes al poble, encara no he decidit on anar.',
+      ),
+    ],
+  },
+  {
+    id: 'dorin',
+    name: 'Dorin',
+    role: line('The patient problem-solver', 'El que ho resol amb paciència'),
+    coordinate: [-0.0012, 40.10118],
+    color: 0x927957,
+    skin: 0xc79673,
+    hair: 0x382f2c,
+    lines: [
+      line(
+        'Give me five minutes and a bit of wire. If it still doesn’t work, give Mihai a shout.',
+        'Dona’m cinc minuts i un tros de fil d’aram. Si encara no funciona, crida Mihai.',
+      ),
+    ],
+  },
+  {
+    id: 'susana',
+    name: 'Susana',
+    role: line('Keeps the festival on schedule', 'Controla els horaris de la festa'),
+    coordinate: [-0.00028, 40.1022],
+    color: 0xad627a,
+    skin: 0xd0a17c,
+    hair: 0x553a30,
+    lines: [
+      line(
+        'I told everyone the music starts at nine. I told Vilero eight. We might all arrive together for once.',
+        'He dit a tots que la música comença a les nou. A Vilero li he dit a les huit. Potser per una vegada arribarem tots junts.',
+      ),
+    ],
+  },
+  {
+    id: 'daniel',
+    name: 'Daniel',
+    role: line('Full of bright ideas', 'Sempre amb idees noves'),
+    coordinate: [-0.0024, 40.1038],
+    color: 0x538b91,
+    skin: 0xc59470,
+    hair: 0x302b28,
+    lines: [
+      line(
+        'We should put the whole town in a video game. Keep the hills, but give the cars better brakes.',
+        'Hauríem de posar tot el poble en un videojoc. Deixem les costeres, però posem millors frens als cotxes.',
+      ),
+    ],
+  },
+  {
+    id: 'nando',
+    name: 'Nando',
+    role: line('First on the dance floor', 'El primer a eixir a ballar'),
+    coordinate: [0.00058, 40.10257],
+    color: 0xcc9853,
+    skin: 0xbc8865,
+    hair: 0x45342a,
+    lines: [
+      line(
+        'I’m saving my energy for tonight. Sitting here doing nothing is part of the preparation.',
+        'Guarde forces per a aquesta nit. Estar ací assegut sense fer res forma part de la preparació.',
+      ),
+    ],
+  },
+  {
+    id: 'roberto',
+    name: 'Roberto',
+    role: line('Takes the scenic route', 'Sempre pel camí més bonic'),
+    coordinate: [0.00145, 40.10062],
+    color: 0x9a6856,
+    skin: 0xc39473,
+    hair: 0x605047,
+    lines: [
+      line(
+        'The best route is the one with a good view and somewhere to stop for a sandwich.',
+        'El millor camí és el que té bones vistes i un lloc on parar a menjar un entrepà.',
+      ),
+    ],
+  },
+  {
+    id: 'el-alcalde',
+    name: 'El Alcalde',
+    role: line('A speech for every occasion', 'Un discurs per a cada ocasió'),
+    coordinate: [-0.00084, 40.10145],
+    color: 0x58657d,
+    skin: 0xcf9c7a,
+    hair: 0x89847a,
+    lines: [
+      line(
+        'I’ve prepared a very short speech for the festival. Marina says I have until the first song starts.',
+        'He preparat un discurs molt curt per a la festa. Marina diu que tinc fins que comence la primera cançó.',
+      ),
+    ],
+  },
+  {
+    id: 'merxe',
+    name: 'Merxe',
+    role: line('Never forgets a face', 'No oblida mai una cara'),
+    coordinate: [-0.00174, 40.10082],
+    color: 0x9783ae,
+    skin: 0xd2a487,
+    hair: 0x674535,
+    lines: [
+      line(
+        'You’ve grown since I last saw you. Or I’ve been sitting in this chair too long. Come and tell me your news.',
+        'Has crescut des de l’última vegada que et vaig vore. O porte massa temps en aquesta cadira. Vine i conta’m com et va.',
+      ),
+    ],
+  },
+  {
+    id: 'juanito',
+    name: 'Juanito',
+    role: line('Champion of the afternoon break', 'Campió del descans de la vesprada'),
+    coordinate: [-0.00088, 40.10355],
+    color: 0x859a58,
+    skin: 0xba8665,
+    hair: 0x4c4237,
+    lines: [
+      line(
+        'Someone has to test these benches. I take my responsibilities very seriously.',
+        'Algú ha de provar aquests bancs. Em prenc les meues responsabilitats molt seriosament.',
+      ),
+    ],
+  },
+  {
+    id: 'eva',
+    name: 'Eva',
+    role: line('Captures the good moments', 'Captura els bons moments'),
+    coordinate: [0.00126, 40.10343],
+    color: 0xbf795f,
+    skin: 0xd4a585,
+    hair: 0x44312e,
+    lines: [
+      line(
+        'I’ve got two photos left on this roll. One for the festival, and one for whatever Castor does next.',
+        'Em queden dues fotos al rodet. Una per a la festa i una altra per a la pròxima ocurrència de Castor.',
       ),
     ],
   },

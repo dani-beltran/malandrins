@@ -8,7 +8,7 @@ The default game generates its own models, textures, placeholder portraits and s
 | ----------------------------- | ----------------------------------------------------------------------------------------------- |
 | `models/`                     | `player.glb`, `marcos.glb`, `raval-80.glb`, `olive-tree.glb`                                    |
 | `textures/`                   | `facade.png`, `roof.png`, `asphalt.png` (64×64)                                                 |
-| `portraits/`                  | Sixteen SVG placeholder pictures, one per character ID                                          |
+| `portraits/`                  | Twenty-five SVG placeholder pictures, one per character ID                                      |
 | `audio/`                      | `ultima-llum.wav` (original 104 BPM synth loop, approximately 9.23 seconds, mono 22,050 Hz PCM) |
 
 These are reusable exports of the same procedural asset system used by the game. The default configuration keeps using the generators, so missing exported files do not break the default game. Placeholder portraits are stylized invented faces, not pictures of real people. There are no voice recordings or external copyrighted game assets.
@@ -66,7 +66,9 @@ Available IDs:
 
 ```text
 marcos  castor  aitor  oriol  piopol  jesus  cogollo  vilero
-laila   mihai   borja  irene edu     paul   marina  aina
+laila   mihai   borja  irene edu     paul   marina  lucas
+dorin   susana  daniel nando roberto el-alcalde    merxe
+juanito eva
 ```
 
 The display name and ID are separate: a file uses `jesus`, while dialogue displays `Jesus`. No source-code changes are needed for each language because both languages share the same portrait. The exported `portraits/*.svg` files are ready-made placeholders that you can use as a starting point. To use smoother photos, remove `image-rendering: pixelated` from `.portrait-frame img` in `src/style.css`.

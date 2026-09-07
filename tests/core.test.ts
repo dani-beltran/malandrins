@@ -134,8 +134,8 @@ describe('story and localization', () => {
       const params = (s: string) => s.match(/\{\w+\}/g)?.sort() ?? [];
       expect(params(ca[key])).toEqual(params(en[key]));
     }
-    expect(characters).toHaveLength(16);
-    expect(new Set(characters.map((c) => c.id)).size).toBe(16);
+    expect(characters).toHaveLength(25);
+    expect(new Set(characters.map((c) => c.id)).size).toBe(25);
     for (const c of characters)
       for (const l of [c.role, ...c.lines]) {
         expect(l.en).toBeTruthy();

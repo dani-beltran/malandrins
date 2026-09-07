@@ -26,7 +26,7 @@ Serve `dist/` with any static HTTP host. Opening `index.html` directly with `fil
 - A continuous WebGL town based on the La Pobla Tornesa map in `src/data/laPoblaMap.ts`, with the complete road network, building footprints, waterways and land-use areas.
 - Terracotta roofs, pixel facade textures, olive trees, hills, road markings, street lamps and local signs. The geometry is deliberately low-poly, with nearest-neighbor sampling, a 640-pixel render target, restrained color quantization and dithering. A clearer 1280-pixel mode is available.
 - Five story conversations: Marcos → Castor → Laila → Marina → Marcos. Help the town prepare its festival, receive rewards and continue exploring after the story ends.
-- Sixteen named NPCs: Marcos, Castor, Aitor, Oriol, Piopol, Jesus, Cogollo, Vilero, Laila, Mihai, Borja, Irene, Edu, Paul, Marina and Aina. Everyone has a conversation and a placeholder portrait shown **to the left** of their text.
+- Twenty-five named NPCs: Marcos, Castor, Aitor, Oriol, Piopol, Jesus, Cogollo, Vilero, Laila, Mihai, Borja, Irene, Edu, Paul, Marina, Lucas, Dorin, Susana, Daniel, Nando, Roberto, El Alcalde, Merxe, Juanito and Eva. Everyone has a conversation and a placeholder portrait shown **to the left** of their text.
 - Eight collectible cassette tapes, a minimap, a larger map with contact names, objective indicators and nearby interaction prompts. Map guide lines point toward the target; they are not turn-by-turn routing.
 - English and Catalan for menus, controls, objectives, dialogue, notifications and settings. Proper names and local street names retain their original spelling.
 - An original synthesized soundtrack, **“Última llum”**, plus engine, horn and reward sounds. Audio starts after a user gesture, in line with browser autoplay behavior.
@@ -85,7 +85,7 @@ In development, `window.malandrins.inspect()` returns a read-only snapshot of ga
 
 See **[ASSETS.md](ASSETS.md)** for the exact import configuration, portrait filenames, model scale/orientation, texture formats, audio replacements and language extension instructions.
 
-The project includes **actual reusable exports** as well as the procedural generators: four GLB models, three 64×64 PNG textures, sixteen SVG placeholder portraits and a loopable WAV file. No external art or music generation service was required. These are intentionally simple prototype assets; there are no realistic portraits or professionally recorded voice tracks.
+The project includes **actual reusable exports** as well as the procedural generators: four GLB models, three 64×64 PNG textures, twenty-five SVG placeholder portraits and a loopable WAV file. No external art or music generation service was required. These are intentionally simple prototype assets; there are no realistic portraits or professionally recorded voice tracks.
 
 ## Checks
 
