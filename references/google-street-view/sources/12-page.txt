@@ -1,0 +1,54 @@
+Browser tab: 1, Title: "20 Carrer Vilafamés - Google Maps", URL: "https://www.google.com/maps/@40.1035617,-0.0026978,302a,90y,320h,90t/data=!3m7!1e1!3m5!1sOudQ6vSIevD9QiJ7ASd1MQ!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D0%26panoid%3DOudQ6vSIevD9QiJ7ASd1MQ%26yaw%3D320!7i16384!8i8192?entry=ttu&g_ep=EgoyMDI2MDkwMi4wIKXMDSoASAFQAw%3D%3D".
+1 AXWebArea 20 Carrer Vilafamés - Google Maps, URL: google.com/maps/@40.1035617,-0.0026978,302a,90y,320h,90t/data=!3m7!1e1!3m5!1sOudQ6vSIevD9QiJ7ASd1MQ!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D0%26panoid%3DOudQ6vSIevD9QiJ7ASd1MQ%26yaw%3D320!7i16384!8i8192?entry=ttu&g_ep=EgoyMDI2MDkwMi4wIKXMDSoASAFQAw%3D%3D
+	2 container Google Maps
+		3 container
+			6 container Street View
+				7 image
+			8 container
+				9 button Menu
+				10 container
+					11 text Search Google Maps
+					12 combo box (collapsed, settable) Search Google Maps, ID: ucc-1, Secondary Actions: Expand
+				13 button Search
+				14 button Directions
+			15 container
+				16 button Back
+				17 container
+					18 heading 20 Carrer Vilafamés, Value: 1
+						19 text 20 Carrer Vilafamés
+					20 heading La Pobla Tornesa, Valencian Community, Value: 2
+						21 text La Pobla Tornesa, Valencian Community
+					22 heading View Google Street View's profile Google Street View, Value: 2
+						23 link Description: View Google Street View's profile, Value: google.com/streetview
+						24 link Description: Google Street View, Value: google.com/streetview
+				25 text May 2026
+				26 button See more dates
+				27 button Show location on map
+				28 button Menu
+			29 container
+				30 button Share
+					31 text Share
+				32 button Close
+			33 container
+				34 container
+					35 button Rotate the view counterclockwise
+					36 slider Description: Reset the view, Value: 40
+					37 button Rotate the view clockwise
+				38 container
+					39 button Zoom in
+					40 button (disabled) Zoom out
+			41 container
+				42 button Show imagery
+			43 container
+				44 button (disabled) Close
+			45 container
+				46 container Interactive map
+				47 button Expand
+			48 container
+				49 text Image capture: May 2026 © 2026 Google
+				50 button Andorra
+				51 button Terms
+				52 button Privacy
+				53 link Description: Report a problem, Value: google.com/local/imagery/report/?cb_client=maps_sv.tactile&image_key=!1e2!2sOudQ6vSIevD9QiJ7ASd1MQ&hl=en&gl=ad&cbp=1%2C320%2C%2C0%2C0&has_annotation=1
+
+The focused UI element is 1 AXWebArea 20 Carrer Vilafamés - Google Maps, URL: google.com/maps/@40.1035617,-0.0026978,302a,90y,320h,90t/data=!3m7!1e1!3m5!1sOudQ6vSIevD9QiJ7ASd1MQ!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D0%26panoid%3DOudQ6vSIevD9QiJ7ASd1MQ%26yaw%3D320!7i16384!8i8192?entry=ttu&g_ep=EgoyMDI2MDkwMi4wIKXMDSoASAFQAw%3D%3D

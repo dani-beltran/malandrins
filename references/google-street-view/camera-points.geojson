@@ -1,0 +1,654 @@
+{
+  "type": "FeatureCollection",
+  "name": "La Pobla Tornesa Street View camera positions",
+  "features": [
+    {
+      "type": "Feature",
+      "id": "01",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.0010337,
+          40.1028927
+        ]
+      },
+      "properties": {
+        "image_id": "01",
+        "file": "01-north-center/01-carrer-cabanes-ne.jpg",
+        "title": "Carrer Cabanes · NE",
+        "heading_deg": 35.0,
+        "pitch_deg": 0.0,
+        "imagery_month": "2026-05",
+        "panorama_id": "k5eAJngA01_aMbzT38zFvA",
+        "road_feature_id": "roads:d3782d616045e10c",
+        "road_source_index": 38,
+        "road_name": "Carrer Cabanes",
+        "distance_to_road_m": 0.12,
+        "game_x": 9.91219,
+        "game_z": -92.93995,
+        "source_url": "https://google.com/maps/@40.1028927,-0.0010337,299a,90y,35h,90t/data=!3m7!1e1!3m5!1sk5eAJngA01_aMbzT38zFvA!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D0%26panoid%3Dk5eAJngA01_aMbzT38zFvA%26yaw%3D35!7i16384!8i8192?entry=ttu&g_ep=EgoyMDI2MDkwMi4wIKXMDSoASAFQAw%3D%3D"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "02",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.0013719,
+          40.1027363
+        ]
+      },
+      "properties": {
+        "image_id": "02",
+        "file": "01-north-center/02-placa-raval-sw.jpg",
+        "title": "Plaça del Raval · SW",
+        "heading_deg": 230.0,
+        "pitch_deg": 0.0,
+        "imagery_month": "2026-05",
+        "panorama_id": "ScuupuPxIODpJmiFlflQRA",
+        "road_feature_id": "roads:19e6b3c0ccfe547e",
+        "road_source_index": 43,
+        "road_name": "Plaça del Raval",
+        "distance_to_road_m": 0.093,
+        "game_x": -10.24597,
+        "game_z": -80.75264,
+        "source_url": "https://google.com/maps/@40.1027363,-0.0013719,299a,90y,230h,90t/data=!3m7!1e1!3m5!1sScuupuPxIODpJmiFlflQRA!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D0%26panoid%3DScuupuPxIODpJmiFlflQRA%26yaw%3D230!7i16384!8i8192?entry=ttu&g_ep=EgoyMDI2MDkwMi4wIKXMDSoASAFQAw%3D%3D"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "03",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.0013434,
+          40.1020519
+        ]
+      },
+      "properties": {
+        "image_id": "03",
+        "file": "02-historic-core/03-carrer-enmig-sse.jpg",
+        "title": "Carrer d’Enmig · SSE",
+        "heading_deg": 167.0,
+        "pitch_deg": 0.0,
+        "imagery_month": "2026-05",
+        "panorama_id": "rE5eUqwpwFybaLW0ONBCsg",
+        "road_feature_id": "roads:657b912ba9b833c6",
+        "road_source_index": 67,
+        "road_name": "carrer d'Enmig",
+        "distance_to_road_m": 0.571,
+        "game_x": -8.54725,
+        "game_z": -27.42146,
+        "source_url": "https://google.com/maps/@40.1020519,-0.0013434,300a,90y,167h,90t/data=!3m7!1e1!3m5!1srE5eUqwpwFybaLW0ONBCsg!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D0%26panoid%3DrE5eUqwpwFybaLW0ONBCsg%26yaw%3D167!7i16384!8i8192?entry=ttu&g_ep=EgoyMDI2MDkwMi4wIKXMDSoASAFQAw%3D%3D"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "04",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.0011509,
+          40.1015177
+        ]
+      },
+      "properties": {
+        "image_id": "04",
+        "file": "02-historic-core/04-barreretes-east.jpg",
+        "title": "Barreretes covered passage · E",
+        "heading_deg": 100.0,
+        "pitch_deg": 0.0,
+        "imagery_month": "2026-05",
+        "panorama_id": "DzkbhappxhYBBbe9p7s38Q",
+        "road_feature_id": "roads:657b912ba9b833c6",
+        "road_source_index": 67,
+        "road_name": "carrer d'Enmig",
+        "distance_to_road_m": 0.941,
+        "game_x": 2.92657,
+        "game_z": 14.20555,
+        "source_url": "https://google.com/maps/@40.1015177,-0.0011509,301a,90y,100h,90t/data=!3m7!1e1!3m5!1sDzkbhappxhYBBbe9p7s38Q!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D0%26panoid%3DDzkbhappxhYBBbe9p7s38Q%26yaw%3D100!7i16384!8i8192?entry=ttu&g_ep=EgoyMDI2MDkwMi4wIKXMDSoASAFQAw%3D%3D"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "05",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.0011509,
+          40.1015177
+        ]
+      },
+      "properties": {
+        "image_id": "05",
+        "file": "02-historic-core/05-enmig-west-facades.jpg",
+        "title": "Enmig west-side facades · W",
+        "heading_deg": 280.0,
+        "pitch_deg": 0.0,
+        "imagery_month": "2026-05",
+        "panorama_id": "DzkbhappxhYBBbe9p7s38Q",
+        "road_feature_id": "roads:657b912ba9b833c6",
+        "road_source_index": 67,
+        "road_name": "carrer d'Enmig",
+        "distance_to_road_m": 0.941,
+        "game_x": 2.92657,
+        "game_z": 14.20555,
+        "source_url": "https://google.com/maps/@40.1015177,-0.0011509,301a,90y,280h,90t/data=!3m7!1e1!3m5!1sDzkbhappxhYBBbe9p7s38Q!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D0%26panoid%3DDzkbhappxhYBBbe9p7s38Q%26yaw%3D280!7i16384!8i8192?entry=ttu&g_ep=EgoyMDI2MDkwMi4wIKXMDSoASAFQAw%3D%3D"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "06",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.0015783,
+          40.1013058
+        ]
+      },
+      "properties": {
+        "image_id": "06",
+        "file": "02-historic-core/06-school-dalt-la-vila-wsw.jpg",
+        "title": "School entrance by Dalt la Vila · WSW",
+        "heading_deg": 250.0,
+        "pitch_deg": 0.0,
+        "imagery_month": "2026-05",
+        "panorama_id": "WRn_fj4WKNOqeMUUO_JFNA",
+        "road_feature_id": "roads:e8937f044495c780",
+        "road_source_index": 27,
+        "road_name": "Carrer de Dalt la Vila",
+        "distance_to_road_m": 1.651,
+        "game_x": -22.54829,
+        "game_z": 30.71764,
+        "source_url": "https://google.com/maps/@40.1013058,-0.0015783,304a,90y,250h,90t/data=!3m7!1e1!3m5!1sWRn_fj4WKNOqeMUUO_JFNA!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D0%26panoid%3DWRn_fj4WKNOqeMUUO_JFNA%26yaw%3D250!7i16384!8i8192?entry=ttu&g_ep=EgoyMDI2MDkwMi4wIKXMDSoASAFQAw%3D%3D"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "07",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.0003904,
+          40.1005967
+        ]
+      },
+      "properties": {
+        "image_id": "07",
+        "file": "03-south-center/07-placa-portal-wsw.jpg",
+        "title": "Plaça del Portal · WSW",
+        "heading_deg": 250.0,
+        "pitch_deg": 0.0,
+        "imagery_month": "2026-05",
+        "panorama_id": "46XPU4_DiBN7TLVughh8zQ",
+        "road_feature_id": "roads:0f42873fdff9810b",
+        "road_source_index": 44,
+        "road_name": "Plaça del Portal",
+        "distance_to_road_m": 1.187,
+        "game_x": 48.2556,
+        "game_z": 85.97355,
+        "source_url": "https://google.com/maps/@40.1005967,-0.0003904,298a,90y,250h,90t/data=!3m7!1e1!3m5!1s46XPU4_DiBN7TLVughh8zQ!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D0%26panoid%3D46XPU4_DiBN7TLVughh8zQ%26yaw%3D250!7i16384!8i8192?entry=ttu&g_ep=EgoyMDI2MDkwMi4wIKXMDSoASAFQAw%3D%3D"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "08",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.0003904,
+          40.1005967
+        ]
+      },
+      "properties": {
+        "image_id": "08",
+        "file": "03-south-center/08-placa-portal-nnw.jpg",
+        "title": "Plaça del Portal · NNW",
+        "heading_deg": 345.0,
+        "pitch_deg": 0.0,
+        "imagery_month": "2026-05",
+        "panorama_id": "46XPU4_DiBN7TLVughh8zQ",
+        "road_feature_id": "roads:0f42873fdff9810b",
+        "road_source_index": 44,
+        "road_name": "Plaça del Portal",
+        "distance_to_road_m": 1.187,
+        "game_x": 48.2556,
+        "game_z": 85.97355,
+        "source_url": "https://google.com/maps/@40.1005967,-0.0003904,298a,90y,345h,90t/data=!3m7!1e1!3m5!1s46XPU4_DiBN7TLVughh8zQ!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D0%26panoid%3D46XPU4_DiBN7TLVughh8zQ%26yaw%3D345!7i16384!8i8192?entry=ttu&g_ep=EgoyMDI2MDkwMi4wIKXMDSoASAFQAw%3D%3D"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "09",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.0006551,
+          40.1016815
+        ]
+      },
+      "properties": {
+        "image_id": "09",
+        "file": "02-historic-core/09-baix-la-vila-nnw.jpg",
+        "title": "Carrer de Baix la Vila · NNW",
+        "heading_deg": 348.0,
+        "pitch_deg": 0.0,
+        "imagery_month": "2026-05",
+        "panorama_id": "QdNkgLBIcK6pJyf8lqDavA",
+        "road_feature_id": "roads:ef97cf452c0896cf",
+        "road_source_index": 87,
+        "road_name": "Carrer de Baix la Vila",
+        "distance_to_road_m": 0.028,
+        "game_x": 32.47835,
+        "game_z": 1.44159,
+        "source_url": "https://google.com/maps/@40.1016815,-0.0006551,297a,90y,348h,90t/data=!3m7!1e1!3m5!1sQdNkgLBIcK6pJyf8lqDavA!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D0%26panoid%3DQdNkgLBIcK6pJyf8lqDavA%26yaw%3D348!7i16384!8i8192?entry=ttu&g_ep=EgoyMDI2MDkwMi4wIKXMDSoASAFQAw%3D%3D"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "10",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.0014863,
+          40.101869
+        ]
+      },
+      "properties": {
+        "image_id": "10",
+        "file": "02-historic-core/10-baix-les-cases-south.jpg",
+        "title": "Baix les Cases corner detail · S",
+        "heading_deg": 175.0,
+        "pitch_deg": 0.0,
+        "imagery_month": "2026-05",
+        "panorama_id": "l2tWttr2-mtXLprRf1NTBQ",
+        "road_feature_id": "roads:bfad9c49f96cb152",
+        "road_source_index": 37,
+        "road_name": "Carrer de Baix les Cases",
+        "distance_to_road_m": 0.022,
+        "game_x": -17.0647,
+        "game_z": -13.16916,
+        "source_url": "https://google.com/maps/@40.101869,-0.0014863,301a,90y,175h,90t/data=!3m7!1e1!3m5!1sl2tWttr2-mtXLprRf1NTBQ!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D0%26panoid%3Dl2tWttr2-mtXLprRf1NTBQ%26yaw%3D175!7i16384!8i8192?entry=ttu&g_ep=EgoyMDI2MDkwMi4wIKXMDSoASAFQAw%3D%3D"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "11",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.002482,
+          40.1017303
+        ]
+      },
+      "properties": {
+        "image_id": "11",
+        "file": "04-west-and-north-edges/11-tossal-de-la-vila-sse.jpg",
+        "title": "Tossal de la Vila · SSE",
+        "heading_deg": 162.0,
+        "pitch_deg": 0.0,
+        "imagery_month": "2026-05",
+        "panorama_id": "IZm4tk7utc0cEcMGUYM3WA",
+        "road_feature_id": "roads:2f32c9d526044464",
+        "road_source_index": 65,
+        "road_name": "Carrer Tossal de la Vila",
+        "distance_to_road_m": 1.14,
+        "game_x": -76.41264,
+        "game_z": -2.3611,
+        "source_url": "https://google.com/maps/@40.1017303,-0.002482,310a,90y,162h,90t/data=!3m7!1e1!3m5!1sIZm4tk7utc0cEcMGUYM3WA!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D0%26panoid%3DIZm4tk7utc0cEcMGUYM3WA%26yaw%3D162!7i16384!8i8192?entry=ttu&g_ep=EgoyMDI2MDkwMi4wIKXMDSoASAFQAw%3D%3D"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "12",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.0026978,
+          40.1035617
+        ]
+      },
+      "properties": {
+        "image_id": "12",
+        "file": "04-west-and-north-edges/12-vilafames-nw.jpg",
+        "title": "Carrer de Vilafamés · NW",
+        "heading_deg": 320.0,
+        "pitch_deg": 0.0,
+        "imagery_month": "2026-05",
+        "panorama_id": "OudQ6vSIevD9QiJ7ASd1MQ",
+        "road_feature_id": "roads:fd08b2cdc65b48d1",
+        "road_source_index": 11,
+        "road_name": "Carrer de Vilafamés",
+        "distance_to_road_m": 2.401,
+        "game_x": -89.27524,
+        "game_z": -145.07111,
+        "source_url": "https://google.com/maps/@40.1035617,-0.0026978,302a,90y,320h,90t/data=!3m7!1e1!3m5!1sOudQ6vSIevD9QiJ7ASd1MQ!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D0%26panoid%3DOudQ6vSIevD9QiJ7ASd1MQ%26yaw%3D320!7i16384!8i8192?entry=ttu&g_ep=EgoyMDI2MDkwMi4wIKXMDSoASAFQAw%3D%3D"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "13",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.0018949,
+          40.1033369
+        ]
+      },
+      "properties": {
+        "image_id": "13",
+        "file": "04-west-and-north-edges/13-calvari-nnw.jpg",
+        "title": "Calvari–Constitució junction · NNW",
+        "heading_deg": 335.0,
+        "pitch_deg": 0.0,
+        "imagery_month": "2026-05",
+        "panorama_id": "lqNu4GJ_zmNp2eHCptBGLg",
+        "road_feature_id": "roads:c2baaeb506c81057",
+        "road_source_index": 31,
+        "road_name": "Carrer de la Constitució",
+        "distance_to_road_m": 0.757,
+        "game_x": -41.41899,
+        "game_z": -127.5538,
+        "source_url": "https://google.com/maps/@40.1033369,-0.0018949,300a,90y,335h,90t/data=!3m7!1e1!3m5!1slqNu4GJ_zmNp2eHCptBGLg!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D0%26panoid%3DlqNu4GJ_zmNp2eHCptBGLg%26yaw%3D335!7i16384!8i8192?entry=ttu&g_ep=EgoyMDI2MDkwMi4wIKXMDSoASAFQAw%3D%3D"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "14",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.0011723,
+          40.1032537
+        ]
+      },
+      "properties": {
+        "image_id": "14",
+        "file": "01-north-center/14-placa-hospital-east.jpg",
+        "title": "Plaça de l’Hospital · E",
+        "heading_deg": 90.0,
+        "pitch_deg": 0.0,
+        "imagery_month": "2026-05",
+        "panorama_id": "epkZ1CKqYFuH8qimUGNNSg",
+        "road_feature_id": "roads:82a0d58e60196658",
+        "road_source_index": 89,
+        "road_name": "Plaça de l'Hospital",
+        "distance_to_road_m": 0.131,
+        "game_x": 1.65104,
+        "game_z": -121.07052,
+        "source_url": "https://google.com/maps/@40.1032537,-0.0011723,301a,90y,90h,90t/data=!3m7!1e1!3m5!1sepkZ1CKqYFuH8qimUGNNSg!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D0%26panoid%3DepkZ1CKqYFuH8qimUGNNSg%26yaw%3D90!7i16384!8i8192?entry=ttu&g_ep=EgoyMDI2MDkwMi4wIKXMDSoASAFQAw%3D%3D"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "15",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.0021177,
+          40.1024959
+        ]
+      },
+      "properties": {
+        "image_id": "15",
+        "file": "05-east-residential/15-benicassim-wnw.jpg",
+        "title": "Carrer de Benicàssim · WNW",
+        "heading_deg": 285.0,
+        "pitch_deg": 0.0,
+        "imagery_month": "2024-11",
+        "panorama_id": "Ev2Dgf8JFzQPzmpuNj3VkQ",
+        "road_feature_id": "roads:c8a00eaa732c8378",
+        "road_source_index": 23,
+        "road_name": "Carrer de Benicàssim",
+        "distance_to_road_m": 1.453,
+        "game_x": 197.74901,
+        "game_z": -62.01971,
+        "source_url": "https://google.com/maps/@40.1024959,0.0021177,289a,90y,285h,90t/data=!3m7!1e1!3m5!1sEv2Dgf8JFzQPzmpuNj3VkQ!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D0%26panoid%3DEv2Dgf8JFzQPzmpuNj3VkQ%26yaw%3D285!7i16384!8i8192?entry=ttu&g_ep=EgoyMDI2MDkwMi4wIKXMDSoASAFQAw%3D%3D"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "16",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.0003645,
+          40.1016724
+        ]
+      },
+      "properties": {
+        "image_id": "16",
+        "file": "05-east-residential/16-eres-west-facade.jpg",
+        "title": "Carrer de les Eres west facade · WSW",
+        "heading_deg": 258.0,
+        "pitch_deg": 0.0,
+        "imagery_month": "2026-05",
+        "panorama_id": "SP6fcErPD54IrrnN-w759g",
+        "road_feature_id": "roads:81bab706941bfdef",
+        "road_source_index": 92,
+        "road_name": "Carrer de les Eres",
+        "distance_to_road_m": 0.453,
+        "game_x": 93.25084,
+        "game_z": 2.1507,
+        "source_url": "https://google.com/maps/@40.1016724,0.0003645,294a,90y,258h,90t/data=!3m7!1e1!3m5!1sSP6fcErPD54IrrnN-w759g!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D0%26panoid%3DSP6fcErPD54IrrnN-w759g%26yaw%3D258!7i16384!8i8192?entry=ttu&g_ep=EgoyMDI2MDkwMi4wIKXMDSoASAFQAw%3D%3D"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "17",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.0016554,
+          40.0985595
+        ]
+      },
+      "properties": {
+        "image_id": "17",
+        "file": "06-south-approach/17-moli-de-foc-nne.jpg",
+        "title": "Molí de Foc south approach · NNE",
+        "heading_deg": 20.0,
+        "pitch_deg": 0.0,
+        "imagery_month": "2024-11",
+        "panorama_id": "ICPV3N6sOaXcmK4wFfXRyA",
+        "road_feature_id": "roads:6c731bb0ed5eedca",
+        "road_source_index": 50,
+        "road_name": "Carrer del Molí de Foc",
+        "distance_to_road_m": 1.918,
+        "game_x": -27.14377,
+        "game_z": 244.72032,
+        "source_url": "https://google.com/maps/@40.0985595,-0.0016554,304a,90y,20h,90t/data=!3m7!1e1!3m5!1sICPV3N6sOaXcmK4wFfXRyA!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D0%26panoid%3DICPV3N6sOaXcmK4wFfXRyA%26yaw%3D20!7i16384!8i8192?entry=ttu&g_ep=EgoyMDI2MDkwMi4wIKXMDSoASAFQAw%3D%3D"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "18",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.0015783,
+          40.1013058
+        ]
+      },
+      "properties": {
+        "image_id": "18",
+        "file": "02-historic-core/18-placa-ajuntament-ne.jpg",
+        "title": "Plaça de l’Ajuntament public building · NE",
+        "heading_deg": 35.0,
+        "pitch_deg": 0.0,
+        "imagery_month": "2026-05",
+        "panorama_id": "WRn_fj4WKNOqeMUUO_JFNA",
+        "road_feature_id": "roads:e8937f044495c780",
+        "road_source_index": 27,
+        "road_name": "Carrer de Dalt la Vila",
+        "distance_to_road_m": 1.651,
+        "game_x": -22.54829,
+        "game_z": 30.71764,
+        "source_url": "https://google.com/maps/@40.1013058,-0.0015783,304a,90y,35h,90t/data=!3m7!1e1!3m5!1sWRn_fj4WKNOqeMUUO_JFNA!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D0%26panoid%3DWRn_fj4WKNOqeMUUO_JFNA%26yaw%3D35!7i16384!8i8192?entry=ttu&g_ep=EgoyMDI2MDkwMi4wIKXMDSoASAFQAw%3D%3D"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "19",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.0011169,
+          40.1014297
+        ]
+      },
+      "properties": {
+        "image_id": "19",
+        "file": "02-historic-core/19-ajuntament-ese.jpg",
+        "title": "Ajuntament / Casa de la Vila · SE",
+        "heading_deg": 125.0,
+        "pitch_deg": 0.0,
+        "imagery_month": "2026-05",
+        "panorama_id": "TjxnsMbTU9TYi4PX4I2C2Q",
+        "road_feature_id": "roads:657b912ba9b833c6",
+        "road_source_index": 67,
+        "road_name": "carrer d'Enmig",
+        "distance_to_road_m": 1.84,
+        "game_x": 4.95311,
+        "game_z": 21.06286,
+        "source_url": "https://google.com/maps/@40.1014297,-0.0011169,301a,90y,125h,90t/data=!3m7!1e1!3m5!1sTjxnsMbTU9TYi4PX4I2C2Q!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D0%26panoid%3DTjxnsMbTU9TYi4PX4I2C2Q%26yaw%3D125!7i16384!8i8192?entry=ttu&g_ep=EgoyMDI2MDkwMi4wIKXMDSoASAFQAw%3D%3D"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "20",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.0014863,
+          40.101869
+        ]
+      },
+      "properties": {
+        "image_id": "20",
+        "file": "02-historic-core/20-baix-les-cases-sse.jpg",
+        "title": "Carrer de Baix les Cases · SSE",
+        "heading_deg": 150.0,
+        "pitch_deg": 0.0,
+        "imagery_month": "2026-05",
+        "panorama_id": "l2tWttr2-mtXLprRf1NTBQ",
+        "road_feature_id": "roads:bfad9c49f96cb152",
+        "road_source_index": 37,
+        "road_name": "Carrer de Baix les Cases",
+        "distance_to_road_m": 0.022,
+        "game_x": -17.0647,
+        "game_z": -13.16916,
+        "source_url": "https://google.com/maps/@40.101869,-0.0014863,301a,90y,150h,90t/data=!3m7!1e1!3m5!1sl2tWttr2-mtXLprRf1NTBQ!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D0%26panoid%3Dl2tWttr2-mtXLprRf1NTBQ%26yaw%3D150!7i16384!8i8192?entry=ttu&g_ep=EgoyMDI2MDkwMi4wIKXMDSoASAFQAw%3D%3D"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "21",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.0003645,
+          40.1016724
+        ]
+      },
+      "properties": {
+        "image_id": "21",
+        "file": "05-east-residential/21-eres-nne.jpg",
+        "title": "Carrer de les Eres · NNE",
+        "heading_deg": 20.0,
+        "pitch_deg": 0.0,
+        "imagery_month": "2026-05",
+        "panorama_id": "SP6fcErPD54IrrnN-w759g",
+        "road_feature_id": "roads:81bab706941bfdef",
+        "road_source_index": 92,
+        "road_name": "Carrer de les Eres",
+        "distance_to_road_m": 0.453,
+        "game_x": 93.25084,
+        "game_z": 2.1507,
+        "source_url": "https://google.com/maps/@40.1016724,0.0003645,294a,90y,20h,90t/data=!3m7!1e1!3m5!1sSP6fcErPD54IrrnN-w759g!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D0%26panoid%3DSP6fcErPD54IrrnN-w759g%26yaw%3D20!7i16384!8i8192?entry=ttu&g_ep=EgoyMDI2MDkwMi4wIKXMDSoASAFQAw%3D%3D"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "22",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.0010826,
+          40.1013414
+        ]
+      },
+      "properties": {
+        "image_id": "22",
+        "file": "02-historic-core/22-church-front-west.jpg",
+        "title": "Church entrance · W",
+        "heading_deg": 260.0,
+        "pitch_deg": 0.0,
+        "imagery_month": "2026-05",
+        "panorama_id": "IMSJJqyURrDuXy5nOFg1pw",
+        "road_feature_id": "roads:657b912ba9b833c6",
+        "road_source_index": 67,
+        "road_name": "carrer d'Enmig",
+        "distance_to_road_m": 2.246,
+        "game_x": 6.99754,
+        "game_z": 27.94355,
+        "source_url": "https://google.com/maps/@40.1013414,-0.0010826,301a,90y,260h,90t/data=!3m7!1e1!3m5!1sIMSJJqyURrDuXy5nOFg1pw!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D0%26panoid%3DIMSJJqyURrDuXy5nOFg1pw%26yaw%3D260!7i16384!8i8192?entry=ttu&g_ep=EgoyMDI2MDkwMi4wIKXMDSoASAFQAw%3D%3D"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "23",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.0010826,
+          40.1013414
+        ]
+      },
+      "properties": {
+        "image_id": "23",
+        "file": "02-historic-core/23-church-upper-facade-west.jpg",
+        "title": "Church facade and tower · W, +30°",
+        "heading_deg": 260.0,
+        "pitch_deg": 30.0,
+        "imagery_month": "2026-05",
+        "panorama_id": "IMSJJqyURrDuXy5nOFg1pw",
+        "road_feature_id": "roads:657b912ba9b833c6",
+        "road_source_index": 67,
+        "road_name": "carrer d'Enmig",
+        "distance_to_road_m": 2.246,
+        "game_x": 6.99754,
+        "game_z": 27.94355,
+        "source_url": "https://google.com/maps/@40.1013414,-0.0010826,301a,90y,260h,120t/data=!3m7!1e1!3m5!1sIMSJJqyURrDuXy5nOFg1pw!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D-30%26panoid%3DIMSJJqyURrDuXy5nOFg1pw%26yaw%3D260!7i16384!8i8192?entry=ttu&g_ep=EgoyMDI2MDkwMi4wIKXMDSoASAFQAw%3D%3D"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "24",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.0011509,
+          40.1015177
+        ]
+      },
+      "properties": {
+        "image_id": "24",
+        "file": "02-historic-core/24-antiga-preso-sw.jpg",
+        "title": "Antiga Presó · SW",
+        "heading_deg": 235.0,
+        "pitch_deg": 0.0,
+        "imagery_month": "2026-05",
+        "panorama_id": "DzkbhappxhYBBbe9p7s38Q",
+        "road_feature_id": "roads:657b912ba9b833c6",
+        "road_source_index": 67,
+        "road_name": "carrer d'Enmig",
+        "distance_to_road_m": 0.941,
+        "game_x": 2.92657,
+        "game_z": 14.20555,
+        "source_url": "https://google.com/maps/@40.1015177,-0.0011509,301a,90y,235h,90t/data=!3m7!1e1!3m5!1sDzkbhappxhYBBbe9p7s38Q!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D0%26panoid%3DDzkbhappxhYBBbe9p7s38Q%26yaw%3D235!7i16384!8i8192?entry=ttu&g_ep=EgoyMDI2MDkwMi4wIKXMDSoASAFQAw%3D%3D"
+      }
+    }
+  ]
+}
