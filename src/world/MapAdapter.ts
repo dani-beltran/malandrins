@@ -1,6 +1,7 @@
 import { LA_POBLA_MAP, type MapDataset } from '../data/laPoblaMap';
 import { closestOnSegment, distance, type Point } from '../core/math';
 import roadProfiles from '../data/scenery/road-profiles.json' with { type: 'json' };
+import { detectBridges, type BridgePlan } from './BridgeLayout';
 export interface Road {
   name: string;
   type: string;
@@ -21,6 +22,7 @@ export class MapAdapter {
   readonly buildings: BuildingFootprint[];
   readonly areas: { type: string; points: Point[] }[];
   readonly water: Point[][];
+  readonly bridges: BridgePlan[];
   readonly bounds: { minX: number; maxX: number; minZ: number; maxZ: number };
   constructor(readonly source: MapDataset = LA_POBLA_MAP) {
     for (const road of source.roads) {
@@ -46,6 +48,7 @@ export class MapAdapter {
     }));
     this.areas = source.areas.map((a) => ({ type: a.t, points: a.c.map((c) => this.project(c)) }));
     this.water = source.water.map((w) => w.c.map((c) => this.project(c)));
+    this.bridges = detectBridges(this.roads, this.water);
     const [west, south, east, north] = source.bounds,
       a = this.project([west, north]),
       b = this.project([east, south]);

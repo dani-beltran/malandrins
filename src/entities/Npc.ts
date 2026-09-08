@@ -2,7 +2,7 @@ import * as THREE from 'three';
 import type { CharacterDefinition } from '../data/characters';
 import { ModelFactory } from '../assets/ModelFactory';
 import type { Point } from '../core/math';
-import type { Terrain } from '../world/Terrain';
+import type { HeightSurface } from '../world/TravelSurface';
 import { ENTITY_SCALE } from './dimensions';
 export class Npc {
   readonly object: THREE.Group;
@@ -11,7 +11,7 @@ export class Npc {
     readonly definition: CharacterDefinition,
     factory: ModelFactory,
     p: Point,
-    terrain: Terrain,
+    terrain: HeightSurface,
   ) {
     this.object = factory.person(definition.color, definition.skin, definition.hair).group;
     this.object.scale.multiplyScalar(ENTITY_SCALE);

@@ -1,0 +1,47 @@
+{
+  "bridge-stone-8": {
+    "length": 8,
+    "width": 5,
+    "arches": 1,
+    "deck_thickness": 0.45,
+    "source": "art/scenery/bridge-stone-8.blend",
+    "triangles": 1080,
+    "reference": "references/street-data/14-bridge-coll-de-la-mola.jpg"
+  },
+  "bridge-stone-16": {
+    "length": 16,
+    "width": 5,
+    "arches": 2,
+    "deck_thickness": 0.45,
+    "source": "art/scenery/bridge-stone-16.blend",
+    "triangles": 1944,
+    "reference": "references/street-data/14-bridge-coll-de-la-mola.jpg"
+  },
+  "bridge-stone-32": {
+    "length": 32,
+    "width": 5,
+    "arches": 3,
+    "deck_thickness": 0.45,
+    "source": "art/scenery/bridge-stone-32.blend",
+    "triangles": 3060,
+    "reference": "references/street-data/14-bridge-coll-de-la-mola.jpg"
+  },
+  "bridge-stone-64": {
+    "length": 64,
+    "width": 5,
+    "arches": 5,
+    "deck_thickness": 0.45,
+    "source": "art/scenery/bridge-stone-64.blend",
+    "triangles": 5520,
+    "reference": "references/street-data/14-bridge-coll-de-la-mola.jpg"
+  },
+  "bridge-stone-128": {
+    "length": 128,
+    "width": 5,
+    "arches": 9,
+    "deck_thickness": 0.45,
+    "source": "art/scenery/bridge-stone-128.blend",
+    "triangles": 10260,
+    "reference": "references/street-data/14-bridge-coll-de-la-mola.jpg"
+  }
+}

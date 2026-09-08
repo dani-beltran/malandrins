@@ -7,6 +7,7 @@ import { ModelFactory } from '../assets/ModelFactory';
 import { MapAdapter } from '../world/MapAdapter';
 import { WorldBuilder } from '../world/WorldBuilder';
 import { Terrain } from '../world/Terrain';
+import { bridgePoint } from '../world/BridgeLayout';
 import { townLayout } from '../world/TownScenery';
 import { Player } from '../entities/Player';
 import { Vehicle } from '../entities/Vehicle';
@@ -63,6 +64,9 @@ export class Game {
   private referenceCamera = import.meta.env.DEV
     ? townLayout.cameras.find((c) => c.id === new URLSearchParams(location.search).get('reference'))
     : undefined;
+  private bridgeView = import.meta.env.DEV
+    ? new URLSearchParams(location.search).get('bridge')
+    : null;
   constructor(
     canvas: HTMLCanvasElement,
     private root: HTMLElement,
@@ -105,12 +109,17 @@ export class Game {
     this.player = new Player(
       this.models,
       this.save.position ? this.safePoint(this.save.position, 0.6 * ENTITY_SCALE) : this.spawn,
-      this.terrain,
+      this.world.travel,
     );
     this.graphics.scene.add(this.player.object);
     this.npcs = characters.map(
       (c, i) =>
-        new Npc(c, this.models, this.safePoint(npcPoints[i], 0.65 * ENTITY_SCALE), this.terrain),
+        new Npc(
+          c,
+          this.models,
+          this.safePoint(npcPoints[i], 0.65 * ENTITY_SCALE),
+          this.world.travel,
+        ),
     );
     this.npcs.forEach((n) => this.graphics.scene.add(n.object));
     this.vehicles = carSpawns.map(
@@ -122,7 +131,7 @@ export class Game {
           this.safePoint(p.point, 2.2 * ENTITY_SCALE),
           p.angle,
           [0xdbbe76, 0x718f88, 0xb0674d, 0xc6c2a7, 0x7d8a9a, 0xad987a, 0xb78359][i],
-          this.terrain,
+          this.world.travel,
         ),
     );
     this.vehicles.forEach((v) => this.graphics.scene.add(v.object));
@@ -135,7 +144,7 @@ export class Game {
     this.ui = new GameUI(this.root, this.i18n, this.missions, (action, value) =>
       this.action(action, value),
     );
-    if (this.referenceCamera) {
+    if (this.referenceCamera || this.bridgeView) {
       this.root.hidden = true;
       this.player.object.visible = false;
       this.npcs.forEach((n) => (n.object.visible = false));
@@ -144,7 +153,7 @@ export class Game {
       this.graphics.setQuality('clear');
     }
     this.minimap = new Minimap(this.ui.minimapCanvas, this.map, this.world.buildingOutlines);
-    this.graphics.setQuality(this.referenceCamera ? 'clear' : this.save.quality);
+    this.graphics.setQuality(this.referenceCamera || this.bridgeView ? 'clear' : this.save.quality);
     this.audio.enabled = this.save.audio;
     this.audio.volume = this.save.volume;
     document.addEventListener(
@@ -204,7 +213,7 @@ export class Game {
       );
       for (const side of [-1, 1])
         group.add(this.models.box(0.14, 0.14, 0.03, 0x3e4c44, side * 0.2, 0.02, 0.12));
-      const groundHeight = this.terrain.heightAt(point.x, point.z);
+      const groundHeight = this.world.travel.heightAt(point.x, point.z);
       group.position.set(point.x, groundHeight + 1, point.z);
       group.visible = !this.save.tapes.includes(id);
       this.graphics.scene.add(group);
@@ -506,7 +515,26 @@ export class Game {
       this.updateUI();
       this.uiTime = 0;
     }
-    if (this.referenceCamera) {
+    if (this.bridgeView) {
+      const b =
+        this.world.travel.bridges.find((b) => b.id === this.bridgeView) ??
+        this.world.travel.bridges[Number(this.bridgeView)] ??
+        this.world.travel.bridges[0];
+      if (b) {
+        const middle = (b.start + b.end) / 2;
+        const center = bridgePoint(b, middle),
+          eye = bridgePoint(b, middle - (b.end - b.start) * 0.4, Math.max(18, b.width * 2.2));
+        this.graphics.camera.position.set(
+          eye.x,
+          Math.max(b.deckHeight + 8, this.terrain.heightAt(eye.x, eye.z) + 3),
+          eye.z,
+        );
+        this.graphics.camera.fov = 65;
+        this.graphics.camera.updateProjectionMatrix();
+        this.graphics.camera.lookAt(center.x, b.deckHeight - 1.5, center.z);
+        this.graphics.followLight(new THREE.Vector3(center.x, b.deckHeight, center.z));
+      }
+    } else if (this.referenceCamera) {
       const c = this.referenceCamera,
         [x, z] = c.position;
       const settings = new URLSearchParams(location.search);
@@ -569,11 +597,11 @@ export class Game {
       this.cameraPosition.copy(target).addScaledVector(dir, Math.max(2.2, hit.distance - 0.7));
     this.graphics.camera.position.lerp(this.cameraPosition, 1 - Math.exp(-dt * 10));
     const camera = this.graphics.camera.position;
-    camera.y = Math.max(camera.y, this.terrain.heightAt(camera.x, camera.z) + 1.5);
+    camera.y = Math.max(camera.y, this.world.travel.heightAt(camera.x, camera.z) + 1.5);
     this.graphics.camera.lookAt(target);
   }
   private updateMarker(): void {
-    if (this.referenceCamera) {
+    if (this.referenceCamera || this.bridgeView) {
       this.activeMarker.visible = false;
       return;
     }
@@ -652,7 +680,8 @@ export class Game {
         grid: [this.terrain.metadata.width, this.terrain.metadata.height],
         minHeight: this.terrain.minHeight,
         maxHeight: this.terrain.maxHeight,
-        playerGround: this.terrain.heightAt(this.player.position.x, this.player.position.z),
+        playerGround: this.world.travel.heightAt(this.player.position.x, this.player.position.z),
+        playerTerrain: this.terrain.heightAt(this.player.position.x, this.player.position.z),
       },
       camera: {
         y: this.graphics.camera.position.y,
@@ -661,17 +690,32 @@ export class Game {
           this.graphics.camera.position.z,
         ),
       },
+      bridges: this.world.travel.bridges.map((b) => ({
+        id: b.id,
+        road: b.road.name,
+        width: b.width,
+        start: bridgePoint(b, b.start),
+        end: bridgePoint(b, b.end),
+        approachStart: bridgePoint(b, b.approachStart),
+        approachEnd: bridgePoint(b, b.approachEnd),
+        center: bridgePoint(b, (b.start + b.end) / 2),
+        deckHeight: b.deckHeight,
+        startHeight: b.startHeight,
+        endHeight: b.endHeight,
+        maxRoadHeight: b.maxRoadHeight,
+        masonryDepth: b.masonryDepth,
+      })),
       cameraYaw: this.cameraYaw,
       vehicle: this.car ? { id: this.car.id, speed: this.car.speed } : null,
       npcs: this.npcs.map((n) => ({
         id: n.definition.id,
         position: { x: n.position.x, y: n.position.y, z: n.position.z },
-        ground: this.terrain.heightAt(n.position.x, n.position.z),
+        ground: this.world.travel.heightAt(n.position.x, n.position.z),
       })),
       cars: this.vehicles.map((v) => ({
         id: v.id,
         position: { x: v.position.x, y: v.position.y, z: v.position.z },
-        ground: this.terrain.heightAt(v.position.x, v.position.z),
+        ground: this.world.travel.heightAt(v.position.x, v.position.z),
         pitch: v.object.rotation.x,
         roll: v.object.rotation.z,
         heading: v.heading,

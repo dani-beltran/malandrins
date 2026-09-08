@@ -6,9 +6,13 @@ import { Terrain } from './Terrain';
 import { TownScenery } from './TownScenery';
 import { ModelFactory } from '../assets/ModelFactory';
 import { distance, seededRandom, rectangle, type Point } from '../core/math';
+import { TravelSurface } from './TravelSurface';
+import { BridgeScenery } from './BridgeScenery';
+import { RIVER_WIDTH, WATER_OFFSET } from './BridgeLayout';
 export class WorldBuilder {
   readonly group = new THREE.Group();
   readonly collision: CollisionWorld;
+  readonly travel: TravelSurface;
   readonly buildingOutlines: Point[][] = [];
   private random = seededRandom(3401);
   constructor(
@@ -18,6 +22,7 @@ export class WorldBuilder {
     private reserved: Point[],
   ) {
     this.collision = new CollisionWorld(map.bounds);
+    this.travel = new TravelSurface(terrain, map.bridges);
   }
   build(): THREE.Group {
     this.ground();
@@ -35,8 +40,9 @@ export class WorldBuilder {
                 : 0xb1b39b,
         0.016,
       );
-    for (const water of this.map.water) this.ribbon(water, 4.5, 0x88a19b, 0.025);
+    for (const water of this.map.water) this.ribbon(water, RIVER_WIDTH, 0x88a19b, WATER_OFFSET);
     for (const road of this.map.roads) this.road(road);
+    this.group.add(new BridgeScenery(this.travel, this.models, this.collision, this.map).build());
     const town = new TownScenery(this.map, this.terrain, this.models, this.collision);
     this.group.add(town.build());
     this.buildingOutlines.push(...town.outlines);
@@ -116,8 +122,14 @@ export class WorldBuilder {
     mesh.receiveShadow = true;
     this.group.add(mesh);
   }
-  private surface(points: Point[], color: number, y: number, texture?: string): void {
-    const geometry = this.terrain.drapeGeometry(points, y);
+  private surface(
+    points: Point[],
+    color: number,
+    y: number,
+    texture?: string,
+    travel = false,
+  ): void {
+    const geometry = (travel ? this.travel : this.terrain).drapeGeometry(points, y);
     const uv = geometry.getAttribute('uv');
     const repeat = texture === 'paving' ? 6.5 : texture === 'sidewalk' ? 5 : 1;
     if (repeat !== 1)
@@ -129,7 +141,14 @@ export class WorldBuilder {
     mesh.receiveShadow = true;
     this.group.add(mesh);
   }
-  private ribbon(points: Point[], width: number, color: number, y: number, texture?: string): void {
+  private ribbon(
+    points: Point[],
+    width: number,
+    color: number,
+    y: number,
+    texture?: string,
+    travel = false,
+  ): void {
     for (let i = 1; i < points.length; i++) {
       const a = points[i - 1],
         b = points[i],
@@ -147,6 +166,7 @@ export class WorldBuilder {
         color,
         y,
         texture,
+        travel,
       );
     }
     for (const p of points)
@@ -158,18 +178,20 @@ export class WorldBuilder {
         color,
         y + 0.002,
         texture,
+        travel,
       );
   }
   private road(road: Road): void {
     const trail = ['track', 'path', 'footway', 'steps', 'cycleway'].includes(road.type);
     if (!trail)
-      this.ribbon(road.points, road.width + road.sidewalk * 2, 0xd2c6b3, 0.055, 'sidewalk');
+      this.ribbon(road.points, road.width + road.sidewalk * 2, 0xd2c6b3, 0.055, 'sidewalk', true);
     this.ribbon(
       road.points,
       road.width,
       trail ? 0xb0a38a : 0x656f6c,
       trail ? 0.074 : 0.085,
       trail && road.surface !== 'paving' ? undefined : road.surface,
+      true,
     );
     if (road.width >= 9 && road.surface === 'asphalt')
       for (let i = 1; i < road.points.length; i++) {
@@ -188,6 +210,8 @@ export class WorldBuilder {
             ),
             0xd5cbb0,
             0.116,
+            undefined,
+            true,
           );
         }
       }
@@ -201,6 +225,7 @@ export class WorldBuilder {
       if (
         near.distance < near.road.width / 2 + 4 ||
         this.collision.blocked(p, 4) ||
+        this.travel.bridgeAt(p) ||
         this.reserved.some((r) => distance(r, p) < 10)
       )
         continue;
@@ -224,6 +249,7 @@ export class WorldBuilder {
           Math.abs(p.x) > 280 ||
           Math.abs(p.z) > 300 ||
           this.collision.blocked(p, 1) ||
+          this.travel.bridgeAt(p) ||
           this.reserved.some((r) => distance(r, p) < 5)
         )
           continue;

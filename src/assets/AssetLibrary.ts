@@ -12,7 +12,14 @@ export class AssetLibrary {
     this.makeTextures();
     makeSceneryTextures(this.textures);
     await Promise.all([
-      ...['church', 'prison', 'townhall', 'publichall', 'passage'].map(async (key) => {
+      ...[
+        'church',
+        'prison',
+        'townhall',
+        'publichall',
+        'passage',
+        ...[8, 16, 32, 64, 128].map((n) => `bridge-stone-${n}`),
+      ].map(async (key) => {
         const model = (
           await new GLTFLoader().loadAsync(`${import.meta.env.BASE_URL}assets/scenery/${key}.glb`)
         ).scene;

@@ -3,7 +3,7 @@ import { ModelFactory, type PersonModel } from '../assets/ModelFactory';
 import { Input } from '../core/Input';
 import { CollisionWorld } from '../world/CollisionWorld';
 import type { Point } from '../core/math';
-import type { Terrain } from '../world/Terrain';
+import type { HeightSurface } from '../world/TravelSurface';
 import { ENTITY_SCALE } from './dimensions';
 export class Player {
   readonly model: PersonModel;
@@ -13,7 +13,7 @@ export class Player {
   constructor(
     factory: ModelFactory,
     p: Point,
-    private terrain: Terrain,
+    private terrain: HeightSurface,
   ) {
     this.model = factory.person(0xe2d3af, 0xc99874, 0x3c302b, 'player');
     this.model.group.scale.multiplyScalar(ENTITY_SCALE);

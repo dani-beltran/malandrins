@@ -3,7 +3,7 @@ import { ModelFactory } from '../assets/ModelFactory';
 import { Input } from '../core/Input';
 import { CollisionWorld } from '../world/CollisionWorld';
 import { clamp, type Point } from '../core/math';
-import type { Terrain } from '../world/Terrain';
+import { TravelSurface, type HeightSurface } from '../world/TravelSurface';
 import { ENTITY_SCALE } from './dimensions';
 export class Vehicle {
   readonly object: THREE.Group;
@@ -17,7 +17,7 @@ export class Vehicle {
     p: Point,
     public heading: number,
     color: number,
-    private terrain: Terrain,
+    private terrain: HeightSurface,
   ) {
     this.initial = { position: { ...p }, heading };
     this.object = factory.car(color);
@@ -92,7 +92,12 @@ export class Vehicle {
           Math.sin(this.heading) * side * 2.8 * ENTITY_SCALE +
           Math.cos(this.heading) * along * 3.4 * ENTITY_SCALE,
       };
-      if (!collision.blocked(p, 0.65 * ENTITY_SCALE)) return p;
+      if (
+        !collision.blocked(p, 0.65 * ENTITY_SCALE) &&
+        (!(this.terrain instanceof TravelSurface) ||
+          this.terrain.canExit(this.position, p, 0.65 * ENTITY_SCALE))
+      )
+        return p;
     }
     return null;
   }

@@ -1,4 +1,5 @@
-import { clamp, distance, type Point } from '../core/math';
+import { clamp, closestOnSegment, distance, type Point } from '../core/math';
+import { bridgePoint, RIVER_WIDTH, type BridgePlan } from './BridgeLayout';
 import type { Road } from './MapAdapter';
 import type { Terrain } from './Terrain';
 
@@ -7,7 +8,12 @@ interface ProfilePoint extends Point {
 }
 
 /** Grade the shared height grid once, before meshes, scenery or entities sample it. */
-export function gradeRoads(terrain: Terrain, roads: readonly Road[]): void {
+export function gradeRoads(
+  terrain: Terrain,
+  roads: readonly Road[],
+  water: readonly Point[][] = [],
+  bridges: readonly BridgePlan[] = [],
+): void {
   const { width, height, game } = terrain.metadata;
   const { spacingX, spacingZ, heights } = terrain;
   const targets = new Float64Array(heights.length);
@@ -16,6 +22,42 @@ export function gradeRoads(terrain: Terrain, roads: readonly Road[]): void {
   // Include the vertices supporting pavement triangles, even on sub-cell-width lanes.
   const margin = Math.hypot(spacingX, spacingZ);
   const shoulder = Math.max(8, Math.max(spacingX, spacingZ) * 2);
+  const protectedVertices = new Uint8Array(heights.length);
+  const protect = (a: Point, b: Point, radius: number) => {
+    const c0 = Math.max(0, Math.floor((Math.min(a.x, b.x) - radius - game.min_x) / spacingX));
+    const c1 = Math.min(
+      width - 1,
+      Math.ceil((Math.max(a.x, b.x) + radius - game.min_x) / spacingX),
+    );
+    const r0 = Math.max(0, Math.floor((Math.min(a.z, b.z) - radius - game.min_z) / spacingZ));
+    const r1 = Math.min(
+      height - 1,
+      Math.ceil((Math.max(a.z, b.z) + radius - game.min_z) / spacingZ),
+    );
+    for (let row = r0; row <= r1; row++)
+      for (let col = c0; col <= c1; col++) {
+        const p = { x: game.min_x + col * spacingX, z: game.min_z + row * spacingZ };
+        if (distance(p, closestOnSegment(p, a, b)) <= radius)
+          protectedVertices[row * width + col] = 1;
+      }
+  };
+  // Protect every vertex of triangles supporting water, including grading shoulders
+  // from adjacent roads. Merely skipping the crossing's centre would still fill it.
+  for (const ps of water)
+    for (let i = 1; i < ps.length; i++) protect(ps[i - 1], ps[i], RIVER_WIDTH / 2 + margin);
+  for (const bridge of bridges) {
+    const ds = [
+      bridge.start,
+      ...bridge.distances.filter((d) => d > bridge.start && d < bridge.end),
+      bridge.end,
+    ];
+    for (let i = 1; i < ds.length; i++)
+      protect(
+        bridgePoint(bridge, ds[i - 1]),
+        bridgePoint(bridge, ds[i]),
+        bridge.width / 2 + margin,
+      );
+  }
 
   for (const road of roads) {
     const trail = ['track', 'path', 'footway', 'cycleway'].includes(road.type);
@@ -64,7 +106,8 @@ export function gradeRoads(terrain: Terrain, roads: readonly Road[]): void {
   }
   // All profiles sample the untouched survey. Intersections blend independently of road order.
   for (let i = 0; i < heights.length; i++)
-    if (weights[i] > 0) heights[i] += (targets[i] / weights[i] - heights[i]) * influence[i];
+    if (!protectedVertices[i] && weights[i] > 0)
+      heights[i] += (targets[i] / weights[i] - heights[i]) * influence[i];
 }
 
 function smoothProfile(terrain: Terrain, road: Road): ProfilePoint[] {

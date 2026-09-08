@@ -39,3 +39,51 @@ This saves the matching game views and reports render counts, asset errors and b
 The footprint overlay shows exactly what was reconstructed. Traced envelopes are approximate roof outlines; party-wall locations, rear elevations and heights are estimates. The imagery covers 17 unique panorama positions, and missing side streets are completed with the same low-poly architectural kit. Small decorative furniture has no movement collision. Terrain uses the existing 257-grid survey, so steps and retaining walls are visual details rather than new movement surfaces.
 
 Ground texture and aerial-derived layout: **PNOA, IGN/CNIG, Sistema Cartográfico Nacional — CC BY 4.0 scne.es**. Source imagery at the sampled town center dates to July 2024. Google Street View is used as a visual reference only; its screenshots are not shipped in `public/`. Full notices are in `MAP_DATA.md`.
+
+## Bridge generation and review
+
+`build-bridges.py` authors the reference-based Blender bridge kit independently
+of `build-landmarks.py`. See `art/scenery/README.md` for dimensions, exports and
+manual editing instructions.
+
+At runtime, `BridgeLayout` detects road/river crossings, merges touching spans
+on connected road fragments, and includes the river strip, full deck width and
+bank margin. Approaches follow existing connections at junctions. Where a mapped
+lane ends too close to a bank, a short straight landing is rendered along its
+heading. `RoadGrading` protects the supporting terrain vertices beneath water and
+bridge decks, including adjacent road shoulders. `TravelSurface` supplies the
+same triangulated heights to road meshes, characters, cars, saved spawns and car
+exits. Railings leave connected side roads and shared bridge decks open.
+Bank elevations define a sloping deck profile, capped by those existing road
+heights. Only depressions inside the span are filled; approaches retain their
+terrain elevation, and existing higher terrain is preserved. Masonry fits below
+that surface by lowering and compressing the model, never by raising the road
+to satisfy a fixed clearance. A triangle-width inset prevents interpolation
+from creating approach humps. Foundations may extend 0.25 units into the ground.
+
+Run the local game and inspect bridges:
+
+```sh
+npm run dev
+node scripts/scenery/inspect-bridges.mjs
+```
+
+The inspection script writes three in-game views and `browser-review.json` under
+`artifacts/bridges`. Pass bridge IDs as arguments to review particular crossings.
+The development-only `?bridge=0` view (or `?bridge=<id>`) positions the camera beside
+a bridge and hides the HUD. `window.malandrins.inspect().bridges` lists IDs,
+positions, widths, bank endpoints and elevations, approach endpoints, the deck
+centre elevation, maximum bank road height and fitted masonry depth.
+
+Optional entries in `src/data/scenery/bridge-overrides.json` are keyed by those
+IDs. `approachLength` sets the length of the ground-following landing and
+railings (at least 14 units, limited by the available route), and `modelSpan`
+selects 8, 16, 32, 64 or 128. Unspecified crossings use automatic defaults.
+Crossing IDs describe their type and computed location; revisit overrides if the
+map geometry or road width profiles change.
+
+`tests/bridges.test.ts` checks detection, grading protection, unchanged approach
+heights, sloping banks, shared mesh heights, all map deck centre lines,
+walking/driving, exits, exported arch openings and vertical model fitting.
+`tests/bridges.e2e.ts` verifies in-game walking, saved positions and the
+camera on a real crossing.
