@@ -51,8 +51,9 @@ the geographic scale; do not scale the model again.
 
 Placement and the collision outline are in `src/data/scenery/portal-well.json`.
 `SceneryLayout.ts` includes it with the other landmarks, so rebuilding the aerial
-layout preserves the well. The approximate position is 0.000722° W, 40.100494° N,
-beside the Enmig / Molí de Foc / Portal junction; photo camera coordinates are
+layout preserves the well. The position is 0.000742° W, 40.100426° N,
+on the small triangular island between the Molí de Foc and Portal roads, just
+south of the Enmig junction; photo camera coordinates are
 unverified. The footprint encloses the base and side steps and is shared with the
 minimap. `node scripts/scenery/inspect-well.mjs` captures close and junction views
 from the running game and checks walking clearance. The temporary review camera

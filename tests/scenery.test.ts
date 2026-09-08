@@ -9,7 +9,7 @@ import {
 } from '../src/world/SceneryLayout';
 import { MapAdapter } from '../src/world/MapAdapter';
 import { CollisionWorld } from '../src/world/CollisionWorld';
-import { distance } from '../src/core/math';
+import { closestOnSegment, distance } from '../src/core/math';
 
 const map = new MapAdapter(),
   collision = new CollisionWorld(map.bounds);
@@ -64,9 +64,23 @@ describe('reconstructed town geometry', () => {
       expect(b.height).toBeGreaterThan(2);
     }
   });
-  it('makes the Portal well solid while leaving room to walk around the junction', () => {
+  it('keeps the Portal well on the road-free island with solid collision and walking clearance', () => {
     const well = layout.landmarks.find((b) => b.id === 'well')!;
     const [x, z] = well.position;
+    const center = { x, z };
+    const radius = Math.max(
+      ...landmarkFootprints(well)
+        .flat()
+        .map((p) => distance(center, p)),
+    );
+    // Enclose the base and side steps, then reserve a margin to every road edge.
+    for (const road of map.roads)
+      for (let i = 1; i < road.points.length; i++) {
+        const nearest = closestOnSegment(center, road.points[i - 1], road.points[i]);
+        expect(distance(center, nearest) - road.width / 2 - radius, road.name).toBeGreaterThan(
+          0.15,
+        );
+      }
     expect(collision.blocked({ x, z }, 0.35)).toBe(true);
     for (let i = 0; i < 24; i++) {
       const angle = (i * Math.PI * 2) / 24;

@@ -48,9 +48,24 @@ try {
   await page.waitForFunction(() => window.wellReview, null, { timeout: 60000 });
   await page.waitForTimeout(800);
   await page.screenshot({ path: 'artifacts/scenery/well-in-game.png' });
-  const review = await page.evaluate(() => {
+  const review = await page.evaluate(async () => {
+    const { closestOnSegment, distance } = await import('/src/core/math.ts');
     const { game, well, ground } = window.wellReview;
     const [x, z] = well.position;
+    const center = { x, z };
+    const radius = Math.max(...well.points.map(([x, z]) => distance(center, { x, z })));
+    const roadEdgeClearance = Math.min(
+      ...game.map.roads.flatMap((road) =>
+        road.points
+          .slice(1)
+          .map(
+            (point, i) =>
+              distance(center, closestOnSegment(center, road.points[i], point)) -
+              road.width / 2 -
+              radius,
+          ),
+      ),
+    );
     const routes = Array.from({ length: 16 }, (_, i) => {
       const a = (i * Math.PI * 2) / 16;
       const p = { x: x + Math.cos(a) * 2.1, z: z + Math.sin(a) * 2.1 };
@@ -59,6 +74,7 @@ try {
     return {
       position: { x, y: ground + 0.12, z },
       centerBlocked: game.world.collision.blocked({ x, z }, 0.35),
+      roadEdgeClearance,
       routes,
       scenery: game.getDiagnostics().scenery,
     };
@@ -72,11 +88,17 @@ try {
     'artifacts/scenery/well-review.json',
     JSON.stringify({ ...review, errors }, null, 2) + '\n',
   );
-  if (!review.centerBlocked || review.routes.some((p) => p.blocked) || errors.length)
+  if (
+    review.roadEdgeClearance <= 0.15 ||
+    !review.centerBlocked ||
+    review.routes.some((p) => p.blocked) ||
+    errors.length
+  )
     throw new Error('Well placement review failed: ' + JSON.stringify({ ...review, errors }));
   console.log(
     JSON.stringify({
       position: review.position,
+      roadEdgeClearance: review.roadEdgeClearance,
       collision: 'solid, with clear walking routes',
       errors,
     }),
