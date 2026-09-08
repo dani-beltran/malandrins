@@ -7,11 +7,14 @@ import { ModelFactory } from '../assets/ModelFactory';
 import { MapAdapter } from '../world/MapAdapter';
 import { WorldBuilder } from '../world/WorldBuilder';
 import { Terrain } from '../world/Terrain';
+import { bridgePoint } from '../world/BridgeLayout';
+import { townLayout } from '../world/TownScenery';
 import { Player } from '../entities/Player';
 import { Vehicle } from '../entities/Vehicle';
 import { Npc } from '../entities/Npc';
+import { ENTITY_SCALE } from '../entities/dimensions';
 import { characters } from '../data/characters';
-import { I18n } from '../systems/I18n';
+import { I18n, languageFromPath, updateLanguagePath } from '../systems/I18n';
 import { MissionSystem } from '../systems/MissionSystem';
 import { SaveStore, freshSave, type SaveData } from '../systems/SaveStore';
 import { AudioSystem } from '../systems/AudioSystem';
@@ -31,7 +34,7 @@ export class Game {
   readonly audio = new AudioSystem();
   readonly save: SaveData = this.store.load();
   readonly missions = new MissionSystem(this.save);
-  readonly i18n = new I18n(this.save.language);
+  readonly i18n: I18n;
   readonly graphics: GameRenderer;
   private models!: ModelFactory;
   private world!: WorldBuilder;
@@ -58,10 +61,21 @@ export class Game {
   private raycaster = new THREE.Raycaster();
   private spawn!: Point;
   private abort = new AbortController();
+  private referenceCamera = import.meta.env.DEV
+    ? townLayout.cameras.find((c) => c.id === new URLSearchParams(location.search).get('reference'))
+    : undefined;
+  private bridgeView = import.meta.env.DEV
+    ? new URLSearchParams(location.search).get('bridge')
+    : null;
+  private tunnelView = import.meta.env.DEV
+    ? new URLSearchParams(location.search).get('tunnel')
+    : null;
   constructor(
     canvas: HTMLCanvasElement,
     private root: HTMLElement,
   ) {
+    this.save.language = languageFromPath(location.pathname) ?? this.save.language;
+    this.i18n = new I18n(this.save.language);
     this.graphics = new GameRenderer(canvas);
   }
   async initialize(): Promise<void> {
@@ -94,15 +108,21 @@ export class Game {
       ...carSpawns.map((c) => c.point),
     ]);
     this.graphics.scene.add(this.world.build());
-    this.spawn = this.safePoint(this.spawn, 0.6);
+    this.spawn = this.safePoint(this.spawn, 0.6 * ENTITY_SCALE);
     this.player = new Player(
       this.models,
-      this.save.position ? this.safePoint(this.save.position, 0.6) : this.spawn,
-      this.terrain,
+      this.save.position ? this.safePoint(this.save.position, 0.6 * ENTITY_SCALE) : this.spawn,
+      this.world.travel,
     );
     this.graphics.scene.add(this.player.object);
     this.npcs = characters.map(
-      (c, i) => new Npc(c, this.models, this.safePoint(npcPoints[i], 0.65), this.terrain),
+      (c, i) =>
+        new Npc(
+          c,
+          this.models,
+          this.safePoint(npcPoints[i], 0.65 * ENTITY_SCALE),
+          this.world.travel,
+        ),
     );
     this.npcs.forEach((n) => this.graphics.scene.add(n.object));
     this.vehicles = carSpawns.map(
@@ -111,10 +131,10 @@ export class Game {
           i,
           ['Raval 80', 'Tramuntana', 'Marjal', 'Raval 80', 'Tramuntana', 'Marjal', 'Raval 80'][i],
           this.models,
-          this.safePoint(p.point, 2.2),
+          this.safePoint(p.point, 2.2 * ENTITY_SCALE),
           p.angle,
           [0xdbbe76, 0x718f88, 0xb0674d, 0xc6c2a7, 0x7d8a9a, 0xad987a, 0xb78359][i],
-          this.terrain,
+          this.world.travel,
         ),
     );
     this.vehicles.forEach((v) => this.graphics.scene.add(v.object));
@@ -124,11 +144,25 @@ export class Game {
       new THREE.MeshBasicMaterial({ color: 0xffd580 }),
     );
     this.graphics.scene.add(this.activeMarker);
-    this.ui = new GameUI(this.root, this.i18n, this.missions, (action, value) =>
-      this.action(action, value),
+    this.ui = new GameUI(
+      this.root,
+      this.i18n,
+      this.missions,
+      (action, value) => this.action(action, value),
+      this.input,
     );
+    if (this.referenceCamera || this.bridgeView || this.tunnelView) {
+      this.root.hidden = true;
+      this.player.object.visible = false;
+      this.npcs.forEach((n) => (n.object.visible = false));
+      this.vehicles.forEach((v) => (v.object.visible = false));
+      this.tapes.forEach((t) => (t.object.visible = false));
+      this.graphics.setQuality('clear');
+    }
     this.minimap = new Minimap(this.ui.minimapCanvas, this.map, this.world.buildingOutlines);
-    this.graphics.setQuality(this.save.quality);
+    this.graphics.setQuality(
+      this.referenceCamera || this.bridgeView || this.tunnelView ? 'clear' : this.save.quality,
+    );
     this.audio.enabled = this.save.audio;
     this.audio.volume = this.save.volume;
     document.addEventListener(
@@ -188,7 +222,7 @@ export class Game {
       );
       for (const side of [-1, 1])
         group.add(this.models.box(0.14, 0.14, 0.03, 0x3e4c44, side * 0.2, 0.02, 0.12));
-      const groundHeight = this.terrain.heightAt(point.x, point.z);
+      const groundHeight = this.world.travel.heightAt(point.x, point.z);
       group.position.set(point.x, groundHeight + 1, point.z);
       group.visible = !this.save.tapes.includes(id);
       this.graphics.scene.add(group);
@@ -224,6 +258,7 @@ export class Game {
       case 'language':
         if (value === 'en' || value === 'ca') {
           this.save.language = value;
+          updateLanguagePath(value);
           this.i18n.set(value);
           this.largeMap = null;
           this.persist();
@@ -345,7 +380,11 @@ export class Game {
   }
   private persist(): void {
     if (!this.player) return;
-    this.save.position = { x: this.player.position.x, z: this.player.position.z };
+    this.save.position = {
+      x: this.player.position.x,
+      y: this.player.position.y,
+      z: this.player.position.z,
+    };
     const success = this.store.save(this.save);
     if (!success && this.ui) this.ui.toast(this.i18n.t('saveUnavailable'));
   }
@@ -384,7 +423,11 @@ export class Game {
       return;
     }
     const vehicle = this.vehicles
-      .filter((v) => distance(this.player.position, v.position) < 5.7)
+      .filter(
+        (v) =>
+          this.player.position.distanceTo(v.position) < 5.7 &&
+          Math.abs(this.player.position.y - v.position.y) < 1.2,
+      )
       .sort(
         (a, b) =>
           distance(a.position, this.player.position) - distance(b.position, this.player.position),
@@ -413,7 +456,11 @@ export class Game {
     const tape = this.tapes.find(
       (t) => !this.save.tapes.includes(t.id) && distance(t.position, this.player.position) < 2.5,
     );
-    const vehicle = this.vehicles.find((v) => distance(v.position, this.player.position) < 5.7);
+    const vehicle = this.vehicles.find(
+      (v) =>
+        this.player.position.distanceTo(v.position) < 5.7 &&
+        Math.abs(this.player.position.y - v.position.y) < 1.2,
+    );
     // A nearby character must not permanently block collecting a tape beside them.
     if (tape) {
       this.ui.showPrompt('E', this.i18n.t('collect'));
@@ -489,7 +536,61 @@ export class Game {
       this.updateUI();
       this.uiTime = 0;
     }
-    this.graphics.followLight(this.player.position);
+    if (this.tunnelView) {
+      const tunnels = this.world.travel.underpasses.tunnels;
+      const t =
+        tunnels.find((t) => t.id === this.tunnelView) ??
+        tunnels[Number(this.tunnelView)] ??
+        tunnels[0];
+      if (t) {
+        const eye = bridgePoint(t, Math.max(t.approachStart, t.start - 12), -1);
+        const target = bridgePoint(t, t.start + Math.min(5, (t.end - t.start) / 2));
+        this.graphics.camera.position.set(
+          eye.x,
+          this.world.travel.underpasses.heightAt(eye.x, eye.z) + 2,
+          eye.z,
+        );
+        this.graphics.camera.fov = 65;
+        this.graphics.camera.updateProjectionMatrix();
+        this.graphics.camera.lookAt(target.x, t.floorHeight + 1.2, target.z);
+        this.graphics.followLight(new THREE.Vector3(target.x, t.floorHeight, target.z));
+      }
+    } else if (this.bridgeView) {
+      const b =
+        this.world.travel.bridges.find((b) => b.id === this.bridgeView) ??
+        this.world.travel.bridges[Number(this.bridgeView)] ??
+        this.world.travel.bridges[0];
+      if (b) {
+        const middle = (b.start + b.end) / 2;
+        const center = bridgePoint(b, middle),
+          eye = bridgePoint(b, middle - (b.end - b.start) * 0.4, Math.max(18, b.width * 2.2));
+        this.graphics.camera.position.set(
+          eye.x,
+          Math.max(b.deckHeight + 8, this.terrain.heightAt(eye.x, eye.z) + 3),
+          eye.z,
+        );
+        this.graphics.camera.fov = 65;
+        this.graphics.camera.updateProjectionMatrix();
+        this.graphics.camera.lookAt(center.x, b.deckHeight - 1.5, center.z);
+        this.graphics.followLight(new THREE.Vector3(center.x, b.deckHeight, center.z));
+      }
+    } else if (this.referenceCamera) {
+      const c = this.referenceCamera,
+        [x, z] = c.position;
+      const settings = new URLSearchParams(location.search);
+      const eye = Math.max(0.7, Math.min(5, Number(settings.get('eye') ?? 1.85)));
+      const yaw = (c.heading * Math.PI) / 180,
+        pitch = (c.pitch * Math.PI) / 180;
+      this.graphics.camera.position.set(x, this.terrain.heightAt(x, z) + eye, z);
+      this.graphics.camera.fov = Math.max(30, Math.min(125, Number(settings.get('fov') ?? 108)));
+      this.graphics.camera.updateProjectionMatrix();
+      this.graphics.camera.lookAt(
+        x + Math.sin(yaw) * Math.cos(pitch),
+        this.graphics.camera.position.y + Math.sin(pitch),
+        z - Math.cos(yaw) * Math.cos(pitch),
+      );
+      this.graphics.followLight(this.graphics.camera.position);
+    } else this.graphics.followLight(this.player.position);
     this.graphics.render();
     this.input.endFrame();
     this.frame = requestAnimationFrame((t) => this.tick(t));
@@ -519,8 +620,8 @@ export class Game {
       this.cameraYaw += diff * (1 - Math.exp(-dt * 2));
     }
     this.cameraTarget.lerp(this.player.position, 1 - Math.exp(-dt * 10));
-    const d = this.car ? 14 + Math.abs(this.car.speed) * 0.12 : 12.5,
-      h = this.car ? 8.5 : 8;
+    const d = this.car ? 10 + Math.abs(this.car.speed) * 0.1 : 6.5,
+      h = this.car ? 5.3 : 3.8;
     const target = this.cameraTarget.clone().add(new THREE.Vector3(0, 1.9, 0));
     this.cameraPosition.set(
       this.cameraTarget.x + Math.sin(this.cameraYaw) * d,
@@ -536,10 +637,24 @@ export class Game {
       this.cameraPosition.copy(target).addScaledVector(dir, Math.max(2.2, hit.distance - 0.7));
     this.graphics.camera.position.lerp(this.cameraPosition, 1 - Math.exp(-dt * 10));
     const camera = this.graphics.camera.position;
-    camera.y = Math.max(camera.y, this.terrain.heightAt(camera.x, camera.z) + 1.5);
+    camera.y = Math.max(
+      camera.y,
+      this.world.travel.heightAt(camera.x, camera.z, this.player.position.y) + 1.5,
+    );
+    const tunnel = this.world.travel.underpasses.at(camera);
+    if (
+      tunnel &&
+      this.player.position.y < tunnel.floorHeight + 1 &&
+      this.world.travel.underpasses.upperAt(camera)
+    )
+      camera.y = Math.min(camera.y, tunnel.floorHeight + 2.2);
     this.graphics.camera.lookAt(target);
   }
   private updateMarker(): void {
+    if (this.referenceCamera || this.bridgeView || this.tunnelView) {
+      this.activeMarker.visible = false;
+      return;
+    }
     const npc = this.npcs.find((n) => n.definition.id === this.missions.contactId);
     this.activeMarker.visible = !!npc;
     if (!npc) {
@@ -615,7 +730,12 @@ export class Game {
         grid: [this.terrain.metadata.width, this.terrain.metadata.height],
         minHeight: this.terrain.minHeight,
         maxHeight: this.terrain.maxHeight,
-        playerGround: this.terrain.heightAt(this.player.position.x, this.player.position.z),
+        playerGround: this.world.travel.heightAt(
+          this.player.position.x,
+          this.player.position.z,
+          this.player.position.y,
+        ),
+        playerTerrain: this.terrain.heightAt(this.player.position.x, this.player.position.z),
       },
       camera: {
         y: this.graphics.camera.position.y,
@@ -624,17 +744,52 @@ export class Game {
           this.graphics.camera.position.z,
         ),
       },
+      bridges: this.world.travel.bridges.map((b) => ({
+        id: b.id,
+        road: b.road.name,
+        width: b.width,
+        start: bridgePoint(b, b.start),
+        end: bridgePoint(b, b.end),
+        approachStart: bridgePoint(b, b.approachStart),
+        approachEnd: bridgePoint(b, b.approachEnd),
+        center: bridgePoint(b, (b.start + b.end) / 2),
+        deckHeight: b.deckHeight,
+        startHeight: b.startHeight,
+        endHeight: b.endHeight,
+        maxRoadHeight: b.maxRoadHeight,
+        masonryDepth: b.masonryDepth,
+      })),
+      tunnels: this.world.travel.underpasses.tunnels.map((t) => ({
+        id: t.id,
+        road: t.road.name,
+        width: t.width,
+        floorHeight: t.floorHeight,
+        start: bridgePoint(t, t.start),
+        end: bridgePoint(t, t.end),
+        approachStart: bridgePoint(t, t.approachStart),
+        approachEnd: bridgePoint(t, t.approachEnd),
+        center: bridgePoint(t, (t.start + t.end) / 2),
+        route: [
+          t.approachStart,
+          t.start,
+          ...t.distances.filter((s) => s > t.approachStart && s < t.approachEnd),
+          t.end,
+          t.approachEnd,
+        ]
+          .sort((a, b) => a - b)
+          .map((s) => bridgePoint(t, s)),
+      })),
       cameraYaw: this.cameraYaw,
       vehicle: this.car ? { id: this.car.id, speed: this.car.speed } : null,
       npcs: this.npcs.map((n) => ({
         id: n.definition.id,
         position: { x: n.position.x, y: n.position.y, z: n.position.z },
-        ground: this.terrain.heightAt(n.position.x, n.position.z),
+        ground: this.world.travel.heightAt(n.position.x, n.position.z),
       })),
       cars: this.vehicles.map((v) => ({
         id: v.id,
         position: { x: v.position.x, y: v.position.y, z: v.position.z },
-        ground: this.terrain.heightAt(v.position.x, v.position.z),
+        ground: this.world.travel.heightAt(v.position.x, v.position.z),
         pitch: v.object.rotation.x,
         roll: v.object.rotation.z,
         heading: v.heading,
@@ -647,6 +802,17 @@ export class Game {
       })),
       stage: this.save.stage,
       buildings: this.world.buildingOutlines.length,
+      scenery: {
+        buildings: townLayout.buildings.length,
+        landmarks: townLayout.landmarks.map((b) => b.id),
+        referenceView: this.referenceCamera?.id ?? null,
+        blockedNpcs: this.npcs
+          .filter((n) => this.world.collision.blocked(n.position, 0.6 * ENTITY_SCALE))
+          .map((n) => n.definition.id),
+        blockedCars: this.vehicles
+          .filter((v) => this.world.collision.blocked(v.position, 2.2 * ENTITY_SCALE))
+          .map((v) => v.id),
+      },
       drawCalls: this.graphics.renderer.info.render.calls,
       triangles: this.graphics.renderer.info.render.triangles,
       saveAvailable: this.store.available,
@@ -657,6 +823,7 @@ export class Game {
     cancelAnimationFrame(this.frame);
     this.persist();
     this.abort.abort();
+    this.ui?.touchControls.dispose();
     this.input.dispose();
     this.audio.dispose();
     this.graphics.scene.traverse((o) => {

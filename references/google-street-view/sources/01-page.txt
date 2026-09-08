@@ -1,0 +1,54 @@
+Browser tab: 1, Title: "1 C. Cabanes - Google Maps", URL: "https://www.google.com/maps/@40.1028927,-0.0010337,299a,90y,35h,90t/data=!3m7!1e1!3m5!1sk5eAJngA01_aMbzT38zFvA!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D0%26panoid%3Dk5eAJngA01_aMbzT38zFvA%26yaw%3D35!7i16384!8i8192?entry=ttu&g_ep=EgoyMDI2MDkwMi4wIKXMDSoASAFQAw%3D%3D".
+1 AXWebArea 1 C. Cabanes - Google Maps, URL: google.com/maps/@40.1028927,-0.0010337,299a,90y,35h,90t/data=!3m7!1e1!3m5!1sk5eAJngA01_aMbzT38zFvA!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D0%26panoid%3Dk5eAJngA01_aMbzT38zFvA%26yaw%3D35!7i16384!8i8192?entry=ttu&g_ep=EgoyMDI2MDkwMi4wIKXMDSoASAFQAw%3D%3D
+	2 container Google Maps
+		3 container
+			4 container Street View
+				5 image
+			6 container
+				7 button Menu
+				8 container
+					9 text Search Google Maps
+					10 combo box (collapsed, settable) Search Google Maps, ID: ucc-1, Secondary Actions: Expand
+				11 button Search
+				12 button Directions
+			13 container
+				14 button Back
+				15 container
+					16 heading 1 C. Cabanes, Value: 1
+						17 text 1 C. Cabanes
+					18 heading La Pobla Tornesa, Valencian Community, Value: 2
+						19 text La Pobla Tornesa, Valencian Community
+					20 heading View Google Street View's profile Google Street View, Value: 2
+						21 link Description: View Google Street View's profile, Value: google.com/streetview
+						22 link Description: Google Street View, Value: google.com/streetview
+				23 text May 2026
+				24 button See more dates
+				25 button Show location on map
+				26 button Menu
+			27 container
+				28 button Share
+					29 text Share
+				30 button Close
+			31 container
+				32 container
+					33 button Rotate the view counterclockwise
+					34 slider Description: Reset the view, Value: 325
+					35 button Rotate the view clockwise
+				36 container
+					37 button Zoom in
+					38 button (disabled) Zoom out
+			39 container
+				40 button Show imagery
+			41 container
+				42 button (disabled) Close
+			43 container
+				44 container Interactive map
+				45 button Expand
+			46 container
+				47 text Image capture: May 2026 © 2026 Google
+				48 button Andorra
+				49 button Terms
+				50 button Privacy
+				51 link Description: Report a problem, Value: google.com/local/imagery/report/?cb_client=maps_sv.tactile&image_key=!1e2!2sk5eAJngA01_aMbzT38zFvA&hl=en&gl=ad&cbp=1%2C35%2C%2C0%2C0&has_annotation=1
+
+The focused UI element is 1 AXWebArea 1 C. Cabanes - Google Maps, URL: google.com/maps/@40.1028927,-0.0010337,299a,90y,35h,90t/data=!3m7!1e1!3m5!1sk5eAJngA01_aMbzT38zFvA!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D0%26panoid%3Dk5eAJngA01_aMbzT38zFvA%26yaw%3D35!7i16384!8i8192?entry=ttu&g_ep=EgoyMDI2MDkwMi4wIKXMDSoASAFQAw%3D%3D

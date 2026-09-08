@@ -172,7 +172,7 @@ describe('saved game resilience', () => {
     expect(s.position).toBeNull();
     expect(s.language).toBe('ca');
     expect(s.volume).toBe(1);
-    expect(s.quality).toBe('retro');
+    expect(s.quality).toBe(freshSave().quality);
   });
   it('keeps playing when browser storage is denied', () => {
     vi.stubGlobal('localStorage', {

@@ -1,4 +1,23 @@
 import { en, ca, type Language, type Localized, type TranslationKey } from '../data/locales';
+
+export function languageFromPath(
+  pathname: string,
+  basePath = import.meta.env.BASE_URL,
+): Language | undefined {
+  if (!pathname.startsWith(basePath)) return;
+  const language = pathname.slice(basePath.length).split('/')[0];
+  return language === 'en' || language === 'ca' ? language : undefined;
+}
+
+export function updateLanguagePath(language: Language): void {
+  const url = new URL(location.href);
+  const current = languageFromPath(url.pathname);
+  if (!current) return;
+  const basePath = import.meta.env.BASE_URL;
+  url.pathname = basePath + language + url.pathname.slice(basePath.length + current.length);
+  history.replaceState(history.state, '', url);
+}
+
 export class I18n {
   private listeners = new Set<() => void>();
   constructor(public language: Language = 'en') {

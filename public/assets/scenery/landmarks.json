@@ -1,0 +1,27 @@
+{
+  "church": {
+    "triangles": 9676,
+    "materials": 37,
+    "file": "church.glb"
+  },
+  "prison": {
+    "triangles": 2994,
+    "materials": 21,
+    "file": "prison.glb"
+  },
+  "townhall": {
+    "triangles": 968,
+    "materials": 12,
+    "file": "townhall.glb"
+  },
+  "publichall": {
+    "triangles": 1006,
+    "materials": 12,
+    "file": "publichall.glb"
+  },
+  "passage": {
+    "triangles": 1333,
+    "materials": 18,
+    "file": "passage.glb"
+  }
+}

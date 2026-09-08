@@ -3,6 +3,8 @@ import { MissionSystem } from '../systems/MissionSystem';
 import { characters } from '../data/characters';
 import { portrait, placeholderPortrait } from './portraits';
 import type { TranslationKey } from '../data/locales';
+import { Input } from '../core/Input';
+import { TouchControls } from './TouchControls';
 export type Screen = 'menu' | 'playing' | 'paused' | 'controls' | 'settings' | 'map';
 export type UIAction =
   | 'play'
@@ -37,12 +39,14 @@ export class GameUI {
   private toastTimer = 0;
   private confirmReset = false;
   private lastPrompt = '';
+  readonly touchControls: TouchControls;
   readonly minimapCanvas: HTMLCanvasElement;
   constructor(
     private root: HTMLElement,
     readonly i18n: I18n,
     private missions: MissionSystem,
     private onAction: (action: UIAction, value?: string) => void,
+    input: Input,
   ) {
     root.innerHTML = `<div class="film-grain" aria-hidden="true"></div><div id="hud" hidden></div><div id="overlay"></div><div id="interaction" hidden></div><div id="dialogue" hidden></div><div id="toast" role="status" aria-live="polite" hidden></div><div id="world-marker" hidden><span>◇</span><small></small></div>`;
     this.hud = root.querySelector('#hud')!;
@@ -50,6 +54,7 @@ export class GameUI {
     this.dialogue = root.querySelector('#dialogue')!;
     this.prompt = root.querySelector('#interaction')!;
     this.toastElement = root.querySelector('#toast')!;
+    this.touchControls = new TouchControls(root, input, i18n);
     this.minimapCanvas = document.createElement('canvas');
     this.minimapCanvas.setAttribute('aria-label', 'Town minimap');
     root.addEventListener('click', (e) => {
@@ -79,6 +84,7 @@ export class GameUI {
     this.render();
   }
   render(): void {
+    this.touchControls.localize();
     this.renderHud();
     this.hud.hidden = !['playing', 'map'].includes(this.screen);
     this.overlay.hidden = this.screen === 'playing';
@@ -86,9 +92,9 @@ export class GameUI {
     this.lastPrompt = '';
     const brand = `<span class="brand-mark">M</span><span class="brand-name">MALANDRINS<span class="brand-dot">01</span></span>`;
     const header = `<header class="menu-header"><div class="brand">${brand}</div><div class="header-right"><span class="edition">${this.t('edition')}</span>${this.languages()}</div></header>`;
-    const credit = `<a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noreferrer">${this.t('credit')}</a><span>${this.t('creditSuffix')}</span><a href="https://dadesobertes.gva.es/dataset/modelo-digital-del-terreno-mdt-de-lidar-de-1-metro-de-resolucion-de-la-provincia-de-castel-2017" target="_blank" rel="noreferrer">${this.t('terrainCredit')}</a><span><a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noreferrer">CC BY 4.0 scne.es</a> · ${this.t('terrainChanges')}</span>`;
+    const credit = `<a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noreferrer">${this.t('credit')}</a><span>${this.t('creditSuffix')}</span><a href="https://dadesobertes.gva.es/dataset/modelo-digital-del-terreno-mdt-de-lidar-de-1-metro-de-resolucion-de-la-provincia-de-castel-2017" target="_blank" rel="noreferrer">${this.t('terrainCredit')}</a><span><a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noreferrer">CC BY 4.0 scne.es</a> · ${this.t('terrainChanges')}</span><a href="https://pnoa.ign.es/" target="_blank" rel="noreferrer">${this.t('sceneryCredit')}</a><span>${this.t('sceneryChanges')}</span>`;
     if (this.screen === 'menu') {
-      this.overlay.innerHTML = `<section class="title-screen">${header}<main class="title-content"><div class="eyebrow"><span class="little-star">✳</span> ${this.t('chapter')} <span class="eyebrow-line"></span> ${this.t('chapterName')}</div><p class="tagline">${this.t('tagline')}</p><h1>MALANDRINS<span class="title-period">.</span></h1><p class="intro-copy">${this.t('subtitle').replaceAll('\n', '<br>')}</p><div class="start-actions"><button class="primary-button" data-action="play"><span class="button-symbol">▶</span>${this.t(this.missions.save.started ? 'continue' : 'play')}<span class="button-arrow">↗</span></button><button class="text-button" data-action="controls">${this.t('controls')} <span>↗</span></button></div><div class="menu-links"><button data-action="settings">${this.t('settings')}</button>${this.missions.save.started ? `<span>·</span><button data-action="new">${this.t('newGame')}</button>` : ''}</div><div class="title-note"><span class="tiny-square"></span>${this.t('menuNote')}</div></main><aside class="location-stamp"><span class="stamp-top">◈ &nbsp; ${this.t('location')}</span><span class="stamp-coords">40°06′ N &nbsp; 00°00′ W</span><span class="stamp-bottom">${this.t('about')}</span></aside><footer class="title-footer"><span>${this.t('keyboard')} <i></i> ${this.t('tip')}</span><div class="map-credit">${credit}</div></footer><div class="vertical-edition">M / 1998 &nbsp; — &nbsp; VOL. 01</div></section>`;
+      this.overlay.innerHTML = `<section class="title-screen">${header}<main class="title-content"><div class="eyebrow"><span class="little-star">✳</span> ${this.t('chapter')} <span class="eyebrow-line"></span> ${this.t('chapterName')}</div><p class="tagline">${this.t('tagline')}</p><h1>MALANDRINS<span class="title-period">.</span></h1><p class="intro-copy">${this.t('subtitle').replaceAll('\n', '<br>')}</p><div class="start-actions"><button class="primary-button" data-action="play"><span class="button-symbol">▶</span>${this.t(this.missions.save.started ? 'continue' : 'play')}<span class="button-arrow">↗</span></button><button class="text-button" data-action="controls">${this.t('controls')} <span>↗</span></button></div><div class="menu-links"><button data-action="settings">${this.t('settings')}</button>${this.missions.save.started ? `<span>·</span><button data-action="new">${this.t('newGame')}</button>` : ''}</div><div class="title-note"><span class="tiny-square"></span>${this.t('menuNote')}</div></main><aside class="location-stamp"><span class="stamp-top">◈ &nbsp; ${this.t('location')}</span><span class="stamp-coords">40°06′ N &nbsp; 00°00′ W</span><span class="stamp-bottom">${this.t('about')}</span></aside><footer class="title-footer"><span>${this.t(this.touchControls.mobile ? 'touchControls' : 'keyboard')} <i></i> ${this.t('tip')}</span><div class="map-credit">${credit}</div></footer><div class="vertical-edition">M / 1998 &nbsp; — &nbsp; VOL. 01</div></section>`;
     } else if (this.screen === 'paused') {
       this.overlay.innerHTML = `<section class="modal-screen">${header}<main class="panel pause-panel"><p class="eyebrow">${this.t('paused')}</p><h2>${this.t('pause')}</h2><p class="panel-subtitle">${this.t('chapterName')} <span class="separator">/</span> ${this.missions.save.stage === 5 ? this.t('freeRoam') : this.t('step', { current: this.missions.save.stage + 1 })}</p><button class="primary-button" data-action="resume">${this.t('resume')}<span>↗</span></button><div class="pause-links"><button data-action="map">${this.t('map')} <kbd>M</kbd></button><button data-action="controls">${this.t('controls')} ↗</button><button data-action="settings">${this.t('settings')} ↗</button><button data-action="rescue">${this.t('rescue')} ↗</button></div><p class="rescue-note">${this.t('rescueNote')}</p><div class="progress-row"><div><strong>${this.missions.metCount}<span>/${characters.length}</span></strong><small>${this.t('met')}</small></div><div><strong>${this.missions.save.tapes.length}<span>/8</span></strong><small>${this.t('tapes')}</small></div><span class="save-tag">● ${this.t('saved')}</span></div></main></section>`;
     } else if (this.screen === 'controls') {
@@ -103,7 +109,25 @@ export class GameUI {
         ['map', 'M'],
         ['pauseKey', 'ESC'],
       ];
-      this.overlay.innerHTML = `<section class="modal-screen">${header}<main class="panel controls-panel"><button class="back-button" data-action="back">← ${this.t('back')}</button><p class="eyebrow">${this.t('keyboard')}</p><h2>${this.t('controls')}</h2><div class="controls-columns"><div class="control-list">${rows.map(([key, code]) => `<div><span>${this.t(key)}</span><kbd>${code}</kbd></div>`).join('')}</div><div class="control-notes"><span>01 / ${this.t('walk')}</span><p>${this.t('walkHelp')}</p><span>02 / ${this.t('drive')}</span><p>${this.t('driveHelp')}</p><span>03 / ${this.t('interact')}</span><p>${this.t('dialogueHelp')}</p></div></div></main></section>`;
+      if (this.touchControls.mobile) {
+        const tap = (key: TranslationKey) => this.i18n.t('touchTap', { button: this.i18n.t(key) });
+        const hold = (key: TranslationKey) =>
+          this.i18n.t('touchHold', { button: this.i18n.t(key) });
+        rows.splice(
+          0,
+          rows.length,
+          ['move', this.i18n.t('touchStick')],
+          ['run', hold('run')],
+          ['interact', tap('touchInteract')],
+          ['vehicle', tap('touchCar')],
+          ['brake', hold('touchBrake')],
+          ['camera', '↶ / ↷'],
+          ['horn', tap('horn')],
+          ['map', tap('map')],
+          ['pauseKey', 'Ⅱ'],
+        );
+      }
+      this.overlay.innerHTML = `<section class="modal-screen">${header}<main class="panel controls-panel"><button class="back-button" data-action="back">← ${this.t('back')}</button><p class="eyebrow">${this.t(this.touchControls.mobile ? 'touchControls' : 'keyboard')}</p><h2>${this.t('controls')}</h2><div class="controls-columns"><div class="control-list">${rows.map(([key, code]) => `<div><span>${this.t(key)}</span><kbd>${esc(code)}</kbd></div>`).join('')}</div><div class="control-notes"><span>01 / ${this.t('walk')}</span><p>${this.t('walkHelp')}</p><span>02 / ${this.t('drive')}</span><p>${this.t(this.touchControls.mobile ? 'touchDriveHelp' : 'driveHelp')}</p><span>03 / ${this.t('interact')}</span><p>${this.t(this.touchControls.mobile ? 'touchDialogueHelp' : 'dialogueHelp')}</p></div></div></main></section>`;
     } else if (this.screen === 'settings') {
       const save = this.missions.save;
       this.overlay.innerHTML = `<section class="modal-screen">${header}<main class="panel settings-panel"><button class="back-button" data-action="back">← ${this.t('back')}</button><p class="eyebrow">MALANDRINS / ${this.t('settings')}</p><h2>${this.t('settings')}</h2><div class="setting-row"><label>${this.t('language')}</label>${this.languages()}</div><div class="setting-row"><label for="quality-select">${this.t('graphics')}</label><select id="quality-select" data-action="quality"><option value="retro" ${save.quality === 'retro' ? 'selected' : ''}>${this.t('retro')}</option><option value="clear" ${save.quality === 'clear' ? 'selected' : ''}>${this.t('clear')}</option></select></div><div class="setting-row"><span>${this.t('music')}</span><button class="toggle ${save.audio ? 'active' : ''}" data-action="audio" aria-pressed="${save.audio}">${this.t(save.audio ? 'on' : 'off')} <i></i></button></div><div class="setting-row"><label for="volume">${this.t('volume')}</label><input type="range" id="volume" min="0" max="1" step=".05" value="${save.volume}" data-action="volume"></div><div class="setting-row"><span>${this.t('fullscreen')}</span><button class="small-button" data-action="fullscreen">⛶</button></div><div class="radio-card"><span class="radio-icon">▥</span><div><strong>${this.t('soundLabel')}</strong><p>${this.t('soundTrack')}</p></div><span class="equalizer">▂▆▃▇▅</span></div></main></section>`;
@@ -118,10 +142,11 @@ export class GameUI {
     this.renderDialogue();
   }
   private renderHud(): void {
-    this.hud.innerHTML = `<div class="hud-top"><div class="hud-brand">M<span> / </span><small>MALANDRINS</small></div><div class="hud-status"><span class="wallet">€${String(this.missions.money).padStart(5, '0')}</span><button class="hud-icon" data-action="pause" aria-label="${this.t('pauseKey')}">Ⅱ</button></div></div><div class="mission-panel"><span class="mission-number">${this.missions.save.stage === 5 ? '✓' : String(this.missions.save.stage + 1).padStart(2, '0')}</span><div><span class="eyebrow">${this.t('objective')}</span><h3>${this.t(this.missions.save.stage === 5 ? 'missionComplete' : 'chapterName')}</h3><p id="objective-text">${this.t(this.missions.objectiveKey)}</p></div></div><div class="hud-bottom-left"><div class="minimap-frame"><div class="minimap-content"></div><button class="map-open" data-action="map" aria-label="${this.t('map')}"><kbd>M</kbd> ↗</button></div><div class="street-label"><span>●</span><strong id="street-name">Plaça del Raval</strong></div></div><div class="hud-bottom-right"><div class="radio-label"><span class="equalizer">▂▅▃▆</span><button data-action="audio">${this.t(this.missions.save.audio ? 'soundLabel' : 'soundOff')}</button></div><div class="speed-display"><strong id="speed-value">${this.t('onFoot')}</strong><span id="speed-unit"></span></div><div class="key-hints"><span><kbd>F</kbd> ${this.t('vehicle')}</span><span><kbd>E</kbd> ${this.t('interact')}</span><span><kbd>ESC</kbd> ${this.t('pauseKey')}</span></div></div>`;
+    this.hud.innerHTML = `<div class="hud-top"><div class="hud-brand">M<span> / </span><small>MALANDRINS</small></div><div class="hud-status"><span class="wallet">€${String(this.missions.money).padStart(5, '0')}</span><button class="hud-icon" data-action="pause" aria-label="${this.t('pauseKey')}">Ⅱ</button></div></div><div class="mission-panel"><span class="mission-number">${this.missions.save.stage === 5 ? '✓' : String(this.missions.save.stage + 1).padStart(2, '0')}</span><div><span class="eyebrow">${this.t('objective')}</span><h3>${this.t(this.missions.save.stage === 5 ? 'missionComplete' : 'chapterName')}</h3><p id="objective-text">${this.t(this.missions.objectiveKey)}</p></div></div><div class="hud-bottom-left"><div class="minimap-frame"><div class="minimap-content"></div><button class="map-open" data-action="map" aria-label="${this.t('map')}">${this.touchControls.mobile ? this.t('map') : '<kbd>M</kbd>'} ↗</button></div><div class="street-label"><span>●</span><strong id="street-name">Plaça del Raval</strong></div></div><div class="hud-bottom-right"><div class="radio-label"><span class="equalizer">▂▅▃▆</span><button data-action="audio">${this.t(this.missions.save.audio ? 'soundLabel' : 'soundOff')}</button></div><div class="speed-display"><strong id="speed-value">${this.t('onFoot')}</strong><span id="speed-unit"></span></div><div class="key-hints"><span><kbd>F</kbd> ${this.t('vehicle')}</span><span><kbd>E</kbd> ${this.t('interact')}</span><span><kbd>ESC</kbd> ${this.t('pauseKey')}</span></div></div>`;
     this.hud.querySelector('.minimap-content')!.append(this.minimapCanvas);
   }
   updateHud(street: string, speed: number | null): void {
+    this.touchControls.setDriving(speed !== null);
     this.hud.querySelector('#street-name')!.textContent = street || this.i18n.t('location');
     this.hud.querySelector('#speed-value')!.textContent =
       speed === null
@@ -136,7 +161,7 @@ export class GameUI {
   showPrompt(key: string, text: string): void {
     const value = `${key}:${text}`;
     if (value !== this.lastPrompt) {
-      this.prompt.innerHTML = `<kbd>${esc(key)}</kbd><span>${esc(text)}</span>`;
+      this.prompt.innerHTML = `<kbd>${this.touchControls.mobile ? this.t(key === 'F' ? 'touchCar' : 'touchInteract') : esc(key)}</kbd><span>${esc(text)}</span>`;
       this.lastPrompt = value;
     }
     this.prompt.hidden = this.screen !== 'playing' || !!this.missions.conversation;
@@ -147,6 +172,7 @@ export class GameUI {
   renderDialogue(): void {
     const conversation = this.missions.conversation;
     this.dialogue.hidden = !conversation || this.screen !== 'playing';
+    this.touchControls.setActive(this.screen === 'playing' && !conversation);
     if (!conversation) return;
     const { character, lines, index } = conversation;
     this.dialogue.innerHTML = `<div class="portrait-frame"><img src="${esc(portrait(character))}" alt="${esc(character.name)}" width="96" height="112"/><span>${esc(character.name.slice(0, 2).toUpperCase())}</span></div><div class="dialogue-content"><div class="speaker-row"><div><h3>${esc(character.name)}</h3><span>${esc(this.i18n.text(character.role))}</span></div><span class="dialogue-count">${String(index + 1).padStart(2, '0')} / ${String(lines.length).padStart(2, '0')}</span></div><p class="dialogue-text" aria-live="polite">${esc(this.i18n.text(lines[index]))}</p><button class="dialogue-next" data-action="dialogue">${this.t(index === lines.length - 1 ? 'endDialogue' : 'continueDialogue')} <kbd>↵</kbd></button></div>`;

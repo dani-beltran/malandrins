@@ -1,0 +1,267 @@
+/Users/danielbeltran/Projects/malandrins/scripts/scenery/build-landmarks.py:20: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  m.diffuse_color=(*rgb,1);m.use_nodes=True
+Warning: No mesh data to join
+Warning: No mesh data to join
+Warning: No mesh data to join
+Warning: No mesh data to join
+Warning: No mesh data to join
+Warning: No mesh data to join
+Warning: No mesh data to join
+Warning: No mesh data to join
+Warning: No mesh data to join
+Warning: No mesh data to join
+Warning: No mesh data to join
+Warning: No mesh data to join
+Warning: No mesh data to join
+Warning: No mesh data to join
+Info: Saved as "church.blend"
+INFO Draco is available, use library at /Applications/Blender.app/Contents/Resources/5.2/scripts/addons_core/io_scene_gltf2/libbf_intern_draco_bridge.dylib
+INFO MeshOptimizer is available, use library at /Applications/Blender.app/Contents/Resources/5.2/scripts/addons_core/io_scene_gltf2/libbf_intern_meshopt_bridge.dylib
+11:21:50 | INFO: Starting glTF 2.0 export
+11:21:50 | INFO: Extracting primitive: door boards
+11:21:50 | INFO: Primitives created: 1
+11:21:50 | INFO: Extracting primitive: window glass
+11:21:50 | INFO: Primitives created: 1
+11:21:50 | INFO: Extracting primitive: statue niche
+11:21:50 | INFO: Primitives created: 1
+11:21:50 | INFO: Extracting primitive: rail horizontal
+11:21:50 | INFO: Primitives created: 1
+11:21:50 | INFO: Extracting primitive: clock hour
+11:21:50 | INFO: Primitives created: 1
+11:21:50 | INFO: Extracting primitive: arched timber door
+11:21:50 | INFO: Primitives created: 1
+11:21:50 | INFO: Extracting primitive: tile channel
+11:21:50 | INFO: Primitives created: 1
+11:21:50 | INFO: Extracting primitive: window recess
+11:21:50 | INFO: Primitives created: 1
+11:21:50 | INFO: Extracting primitive: door metal strap
+11:21:50 | INFO: Primitives created: 1
+11:21:50 | INFO: Extracting primitive: Cone
+11:21:50 | INFO: Primitives created: 1
+11:21:50 | INFO: Extracting primitive: bell beam
+11:21:50 | INFO: Primitives created: 1
+11:21:50 | INFO: Extracting primitive: window mullion
+11:21:50 | INFO: Primitives created: 1
+11:21:50 | INFO: Extracting primitive: masonry
+11:21:50 | INFO: Primitives created: 1
+11:21:50 | INFO: Extracting primitive: masonry.003
+11:21:50 | INFO: Primitives created: 1
+11:21:50 | INFO: Extracting primitive: terracotta pitched roof
+11:21:50 | INFO: Primitives created: 1
+11:21:50 | INFO: Extracting primitive: masonry.098
+11:21:50 | INFO: Primitives created: 1
+11:21:50 | INFO: Extracting primitive: church nave
+11:21:50 | INFO: Primitives created: 1
+11:21:50 | INFO: Extracting primitive: bell tower shaft
+11:21:50 | INFO: Primitives created: 1
+11:21:50 | INFO: Extracting primitive: carved portal pilaster
+11:21:50 | INFO: Primitives created: 1
+11:21:50 | INFO: Extracting primitive: window surround
+11:21:50 | INFO: Primitives created: 1
+11:21:50 | INFO: Extracting primitive: pediment coping
+11:21:50 | INFO: Primitives created: 1
+11:21:50 | INFO: Extracting primitive: masonry.001
+11:21:50 | INFO: Primitives created: 1
+11:21:50 | INFO: Extracting primitive: belfry corner pier
+11:21:50 | INFO: Primitives created: 1
+11:21:50 | INFO: Extracting primitive: masonry.097
+11:21:50 | INFO: Primitives created: 1
+11:21:50 | INFO: Extracting primitive: shaped stone facade
+11:21:50 | INFO: Primitives created: 1
+11:21:50 | INFO: Extracting primitive: entrance step
+11:21:50 | INFO: Primitives created: 1
+11:21:50 | INFO: Extracting primitive: saint robe
+11:21:50 | INFO: Primitives created: 1
+11:21:50 | INFO: Extracting primitive: masonry.100
+11:21:50 | INFO: Primitives created: 1
+11:21:50 | INFO: Extracting primitive: arch left pier.002
+11:21:50 | INFO: Primitives created: 1
+11:21:50 | INFO: Extracting primitive: tower cornice
+11:21:50 | INFO: Primitives created: 1
+11:21:50 | INFO: Extracting primitive: masonry.012
+11:21:50 | INFO: Primitives created: 1
+11:21:50 | INFO: Extracting primitive: arch left pier
+11:21:50 | INFO: Primitives created: 1
+11:21:50 | INFO: Extracting primitive: door entablature
+11:21:50 | INFO: Primitives created: 1
+11:21:50 | INFO: Extracting primitive: masonry.103
+11:21:50 | INFO: Primitives created: 1
+11:21:50 | INFO: Extracting primitive: statue base
+11:21:50 | INFO: Primitives created: 1
+11:21:50 | INFO: Extracting primitive: clock face
+11:21:50 | INFO: Primitives created: 1
+11:21:50 | INFO: Extracting primitive: clock storey plaster
+11:21:50 | INFO: Primitives created: 1
+11:21:50 | INFO: Finished glTF 2.0 export in 0.038488149642944336 s
+/Users/danielbeltran/Projects/malandrins/scripts/scenery/build-landmarks.py:20: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  m.diffuse_color=(*rgb,1);m.use_nodes=True
+
+Warning: No mesh data to join
+Warning: No mesh data to join
+Warning: No mesh data to join
+Warning: No mesh data to join
+Warning: No mesh data to join
+Warning: No mesh data to join
+Info: Saved as "prison.blend"
+11:21:50 | INFO: Starting glTF 2.0 export
+11:21:50 | INFO: Extracting primitive: door planks
+11:21:50 | INFO: Primitives created: 1
+11:21:50 | INFO: Extracting primitive: window glass.001
+11:21:50 | INFO: Primitives created: 1
+11:21:50 | INFO: Extracting primitive: window iron
+11:21:50 | INFO: Primitives created: 1
+11:21:50 | INFO: Extracting primitive: PRESÓ
+11:21:50 | INFO: Primitives created: 1
+11:21:50 | INFO: Extracting primitive: facade wiring
+11:21:50 | INFO: Primitives created: 1
+11:21:50 | INFO: Extracting primitive: old timber door
+11:21:50 | INFO: Primitives created: 1
+11:21:50 | INFO: Extracting primitive: tile channel.024
+11:21:50 | INFO: Primitives created: 1
+11:21:50 | INFO: Extracting primitive: window recess.001
+11:21:50 | INFO: Primitives created: 1
+11:21:50 | INFO: Extracting primitive: window mullion.001
+11:21:50 | INFO: Primitives created: 1
+11:21:50 | INFO: Extracting primitive: sandstone jamb
+11:21:50 | INFO: Primitives created: 1
+11:21:50 | INFO: Extracting primitive: window surround.001
+11:21:50 | INFO: Primitives created: 1
+11:21:50 | INFO: Extracting primitive: masonry.372
+11:21:50 | INFO: Primitives created: 1
+11:21:50 | INFO: Extracting primitive: terracotta pitched roof.002
+11:21:50 | INFO: Primitives created: 1
+11:21:50 | INFO: Extracting primitive: window surround.002
+11:21:50 | INFO: Primitives created: 1
+11:21:50 | INFO: Extracting primitive: door lintel
+11:21:50 | INFO: Primitives created: 1
+11:21:50 | INFO: Extracting primitive: preso masonry
+11:21:50 | INFO: Primitives created: 1
+11:21:50 | INFO: Extracting primitive: masonry.373
+11:21:50 | INFO: Primitives created: 1
+11:21:50 | INFO: Extracting primitive: masonry.367
+11:21:50 | INFO: Primitives created: 1
+11:21:50 | INFO: Extracting primitive: masonry.363
+11:21:50 | INFO: Primitives created: 1
+11:21:50 | INFO: Extracting primitive: masonry.364
+11:21:50 | INFO: Primitives created: 1
+11:21:50 | INFO: Extracting primitive: Preso plaque
+11:21:50 | INFO: Primitives created: 1
+11:21:50 | INFO: Finished glTF 2.0 export in 0.019383907318115234 s
+
+Warning: No mesh data to join
+Warning: No mesh data to join
+Warning: No mesh data to join
+Warning: No mesh data to join
+Warning: No mesh data to join
+Info: Saved as "townhall.blend"
+11:21:50 | INFO: Starting glTF 2.0 export
+11:21:50 | INFO: Extracting primitive: window glass.003
+11:21:50 | INFO: Primitives created: 1
+11:21:50 | INFO: Extracting primitive: window iron.010
+11:21:50 | INFO: Primitives created: 1
+11:21:50 | INFO: Extracting primitive: CASA
+11:21:50 | INFO: Primitives created: 1
+11:21:50 | INFO: Extracting primitive: entrance glazing
+11:21:50 | INFO: Primitives created: 1
+11:21:50 | INFO: Extracting primitive: window recess.003
+11:21:50 | INFO: Primitives created: 1
+11:21:50 | INFO: Extracting primitive: window mullion.003
+11:21:50 | INFO: Primitives created: 1
+11:21:50 | INFO: Extracting primitive: entrance recess
+11:21:50 | INFO: Primitives created: 1
+11:21:50 | INFO: Extracting primitive: roof overhang
+11:21:50 | INFO: Primitives created: 1
+11:21:50 | INFO: Extracting primitive: roof parapet
+11:21:50 | INFO: Primitives created: 1
+11:21:50 | INFO: Extracting primitive: casa de la vila
+11:21:50 | INFO: Primitives created: 1
+11:21:50 | INFO: Extracting primitive: entry signage wall
+11:21:50 | INFO: Primitives created: 1
+11:21:50 | INFO: Extracting primitive: window surround.003
+11:21:50 | INFO: Primitives created: 1
+11:21:50 | INFO: Finished glTF 2.0 export in 0.011336803436279297 s
+
+Warning: No mesh data to join
+Warning: No mesh data to join
+Warning: No mesh data to join
+Warning: No mesh data to join
+Warning: No mesh data to join
+Warning: No mesh data to join
+Info: Saved as "publichall.blend"
+11:21:50 | INFO: Starting glTF 2.0 export
+11:21:50 | INFO: Extracting primitive: window glass.008
+11:21:50 | INFO: Primitives created: 1
+11:21:50 | INFO: Extracting primitive: rail horizontal.004
+11:21:50 | INFO: Primitives created: 1
+11:21:50 | INFO: Extracting primitive: AJUNTAMENT
+11:21:50 | INFO: Primitives created: 1
+11:21:50 | INFO: Extracting primitive: tile channel.036
+11:21:50 | INFO: Primitives created: 1
+11:21:50 | INFO: Extracting primitive: window recess.008
+11:21:50 | INFO: Primitives created: 1
+11:21:50 | INFO: Extracting primitive: window mullion.008
+11:21:50 | INFO: Primitives created: 1
+11:21:50 | INFO: Extracting primitive: public doorway
+11:21:50 | INFO: Primitives created: 1
+11:21:50 | INFO: Extracting primitive: window surround.008
+11:21:50 | INFO: Primitives created: 1
+11:21:50 | INFO: Extracting primitive: terracotta pitched roof.003
+11:21:50 | INFO: Primitives created: 1
+11:21:50 | INFO: Extracting primitive: stone plinth
+11:21:50 | INFO: Primitives created: 1
+11:21:50 | INFO: Extracting primitive: balcony slab
+11:21:50 | INFO: Primitives created: 1
+11:21:50 | INFO: Extracting primitive: public hall
+11:21:50 | INFO: Primitives created: 1
+11:21:50 | INFO: Finished glTF 2.0 export in 0.010998964309692383 s
+
+Warning: No mesh data to join
+Warning: No mesh data to join
+Warning: No mesh data to join
+Warning: No mesh data to join
+Warning: No mesh data to join
+Warning: No mesh data to join
+Info: Saved as "passage.blend"
+11:21:50 | INFO: Starting glTF 2.0 export
+11:21:50 | INFO: Extracting primitive: utility cable
+11:21:50 | INFO: Primitives created: 1
+11:21:50 | INFO: Extracting primitive: window glass.013
+11:21:50 | INFO: Primitives created: 1
+11:21:50 | INFO: Extracting primitive: rail horizontal.006
+11:21:50 | INFO: Primitives created: 1
+11:21:50 | INFO: Extracting primitive: BARRERETES
+11:21:50 | INFO: Primitives created: 1
+11:21:50 | INFO: Extracting primitive: pointed leaves
+11:21:50 | INFO: Primitives created: 1
+11:21:50 | INFO: Extracting primitive: tile channel.048
+11:21:50 | INFO: Primitives created: 1
+11:21:50 | INFO: Extracting primitive: window recess.013
+11:21:50 | INFO: Primitives created: 1
+11:21:50 | INFO: Extracting primitive: window mullion.013
+11:21:50 | INFO: Primitives created: 1
+11:21:50 | INFO: Extracting primitive: shutter slat
+11:21:50 | INFO: Primitives created: 1
+11:21:50 | INFO: Extracting primitive: terracotta planter
+11:21:50 | INFO: Primitives created: 1
+11:21:50 | INFO: Extracting primitive: stone trough base
+11:21:50 | INFO: Primitives created: 1
+11:21:50 | INFO: Extracting primitive: terracotta pitched roof.004
+11:21:50 | INFO: Primitives created: 1
+11:21:50 | INFO: Extracting primitive: roller shutter
+11:21:50 | INFO: Primitives created: 1
+11:21:50 | INFO: Extracting primitive: trough short side
+11:21:50 | INFO: Primitives created: 1
+11:21:50 | INFO: Extracting primitive: passage support
+11:21:50 | INFO: Primitives created: 1
+11:21:50 | INFO: Extracting primitive: rooms over passage
+11:21:50 | INFO: Primitives created: 1
+11:21:50 | INFO: Extracting primitive: passage sign
+11:21:50 | INFO: Primitives created: 1
+11:21:50 | INFO: Extracting primitive: window surround.013
+11:21:50 | INFO: Primitives created: 1
+11:21:50 | INFO: Finished glTF 2.0 export in 0.015745878219604492 s
+
+LANDMARK_STATS {"church": {"triangles": 9676, "materials": 37, "file": "church.glb"}, "prison": {"triangles": 2994, "materials": 21, "file": "prison.glb"}, "townhall": {"triangles": 968, "materials": 12, "file": "townhall.glb"}, "publichall": {"triangles": 1006, "materials": 12, "file": "publichall.glb"}, "passage": {"triangles": 1333, "materials": 18, "file": "passage.glb"}}
+Blender 5.2.1 LTS (hash 9e2066aef7ef built 2026-08-25 01:35:57)
+
+Blender quit

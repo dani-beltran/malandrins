@@ -2,7 +2,10 @@ import * as THREE from 'three';
 import metadata from '../../references/topographic-data/derived/icv-2017-heightmap-257.json';
 import heightmapUrl from '../../references/topographic-data/derived/icv-2017-heightmap-257.f32?url';
 import { clamp, type Point } from '../core/math';
-import { MapAdapter } from './MapAdapter';
+import { MapAdapter, type Road } from './MapAdapter';
+import { gradeTerrain } from './TerrainGrading';
+import type { BridgePlan } from './BridgeLayout';
+import type { TunnelSurface } from './TunnelSurface';
 
 export interface TerrainMetadata {
   width: number;
@@ -28,6 +31,9 @@ export class Terrain {
   constructor(
     readonly metadata: TerrainMetadata,
     buffer: ArrayBuffer,
+    roads: readonly Road[] = [],
+    water: readonly Point[][] = [],
+    bridges: readonly BridgePlan[] = [],
   ) {
     const { width, height, game } = metadata;
     if (width < 2 || height < 2 || buffer.byteLength !== width * height * 4)
@@ -36,13 +42,16 @@ export class Terrain {
     this.spacingZ = (game.max_z - game.min_z) / (height - 1);
     const data = new DataView(buffer);
     this.heights = new Float32Array(width * height);
-    let min = Infinity,
-      max = -Infinity;
     for (let i = 0; i < this.heights.length; i++) {
       const elevation = data.getFloat32(i * 4, true);
       if (!Number.isFinite(elevation)) throw new Error('Invalid terrain elevation.');
       const y = (elevation - game.baseline_elevation_m) * game.scale;
       this.heights[i] = y;
+    }
+    gradeTerrain(this, roads, water, bridges);
+    let min = Infinity,
+      max = -Infinity;
+    for (const y of this.heights) {
       min = Math.min(min, y);
       max = Math.max(max, y);
     }
@@ -63,7 +72,7 @@ export class Terrain {
       throw new Error('Terrain heightmap does not match the game map projection.');
     const response = await fetch(heightmapUrl);
     if (!response.ok) throw new Error(`Terrain heightmap could not load (${response.status}).`);
-    return new Terrain(metadata, await response.arrayBuffer());
+    return new Terrain(metadata, await response.arrayBuffer(), map.roads, map.water, map.bridges);
   }
 
   heightAt(x: number, z: number): number {
@@ -90,7 +99,37 @@ export class Terrain {
     row = 0,
     columns = this.metadata.width - 1,
     rows = this.metadata.height - 1,
+    excavation?: TunnelSurface,
   ): THREE.BufferGeometry {
+    if (excavation) {
+      const { game } = this.metadata;
+      const pieces: number[] = [],
+        uvs: number[] = [];
+      for (let r = row; r < row + rows; r++)
+        for (let c = col; c < col + columns; c++) {
+          const x = game.min_x + c * this.spacingX,
+            z = game.min_z + r * this.spacingZ;
+          const bounds = { minX: x, maxX: x + this.spacingX, minZ: z, maxZ: z + this.spacingZ };
+          const n = excavation.affects(bounds) ? excavation.subdivisions : 1;
+          for (let j = 0; j < n; j++)
+            for (let i = 0; i < n; i++) {
+              for (const [dx, dz] of [
+                [0, 0],
+                [0, 1],
+                [1, 0],
+                [1, 0],
+                [0, 1],
+                [1, 1],
+              ]) {
+                const px = x + ((i + dx) * this.spacingX) / n,
+                  pz = z + ((j + dz) * this.spacingZ) / n;
+                pieces.push(px, excavation.heightAt(px, pz), pz);
+                uvs.push(px / 8, pz / 8);
+              }
+            }
+        }
+      return this.geometry(pieces, uvs);
+    }
     const positions: number[] = [],
       uvs: number[] = [],
       indices: number[] = [];
@@ -112,30 +151,34 @@ export class Terrain {
   }
 
   /** Split overlays at grid edges AND diagonals so roads cannot cut through hills. */
-  drapeGeometry(points: Point[], offset = 0): THREE.BufferGeometry {
+  drapeGeometry(
+    points: Point[],
+    offset = 0,
+    grid: Pick<Terrain, 'metadata' | 'spacingX' | 'spacingZ' | 'heightAt'> = this,
+  ): THREE.BufferGeometry {
     const positions: number[] = [],
       uvs: number[] = [];
     const contour = points.map((p) => new THREE.Vector2(p.x, p.z));
     const faces = THREE.ShapeUtils.triangulateShape(contour, []);
-    const { game, width, height } = this.metadata;
+    const { game, width, height } = grid.metadata;
     for (const face of faces) {
       const triangle = face.map((i) => points[i]);
       const xs = triangle.map((p) => p.x),
         zs = triangle.map((p) => p.z);
-      const c0 = Math.max(0, Math.floor((Math.min(...xs) - game.min_x) / this.spacingX));
-      const c1 = Math.min(width - 2, Math.floor((Math.max(...xs) - game.min_x) / this.spacingX));
-      const r0 = Math.max(0, Math.floor((Math.min(...zs) - game.min_z) / this.spacingZ));
-      const r1 = Math.min(height - 2, Math.floor((Math.max(...zs) - game.min_z) / this.spacingZ));
+      const c0 = Math.max(0, Math.floor((Math.min(...xs) - game.min_x) / grid.spacingX));
+      const c1 = Math.min(width - 2, Math.floor((Math.max(...xs) - game.min_x) / grid.spacingX));
+      const r0 = Math.max(0, Math.floor((Math.min(...zs) - game.min_z) / grid.spacingZ));
+      const r1 = Math.min(height - 2, Math.floor((Math.max(...zs) - game.min_z) / grid.spacingZ));
       for (let r = r0; r <= r1; r++)
         for (let c = c0; c <= c1; c++) {
-          const x = game.min_x + c * this.spacingX,
-            z = game.min_z + r * this.spacingZ;
+          const x = game.min_x + c * grid.spacingX,
+            z = game.min_z + r * grid.spacingZ;
           let cell = clip(triangle, (p) => p.x - x);
-          cell = clip(cell, (p) => x + this.spacingX - p.x);
+          cell = clip(cell, (p) => x + grid.spacingX - p.x);
           cell = clip(cell, (p) => p.z - z);
-          cell = clip(cell, (p) => z + this.spacingZ - p.z);
+          cell = clip(cell, (p) => z + grid.spacingZ - p.z);
           if (cell.length < 3) continue;
-          const diagonal = (p: Point) => 1 - (p.x - x) / this.spacingX - (p.z - z) / this.spacingZ;
+          const diagonal = (p: Point) => 1 - (p.x - x) / grid.spacingX - (p.z - z) / grid.spacingZ;
           for (const polygon of [clip(cell, diagonal), clip(cell, (p) => -diagonal(p))]) {
             for (let i = 1; i + 1 < polygon.length; i++) {
               const a = polygon[0],
@@ -144,7 +187,7 @@ export class Terrain {
               const cross = (b.x - a.x) * (d.z - a.z) - (b.z - a.z) * (d.x - a.x);
               if (Math.abs(cross) < 1e-9) continue;
               for (const p of cross < 0 ? [a, b, d] : [a, d, b]) {
-                positions.push(p.x, this.heightAt(p.x, p.z) + offset, p.z);
+                positions.push(p.x, grid.heightAt(p.x, p.z) + offset, p.z);
                 uvs.push(p.x / 8, p.z / 8);
               }
             }

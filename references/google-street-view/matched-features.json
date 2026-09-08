@@ -1,0 +1,1266 @@
+{
+  "map_sha256": "5c855f43765a9a007f880ab0644d9cfc5a8443d0f226b254d006c4752ac377f2",
+  "id_convention": "layer + first 16 hex digits of SHA256 of canonical source feature JSON",
+  "canonical_json": "UTF-8, sorted keys, no whitespace, ensure_ascii=False",
+  "features": [
+    {
+      "id": "roads:d3782d616045e10c",
+      "layer": "roads",
+      "source_index": 38,
+      "name": "Carrer Cabanes",
+      "type": "tertiary",
+      "feature_sha256": "d3782d616045e10c2bf184b9df431efee97a765b81cd1a2c93a7efafb303f855",
+      "source_feature": {
+        "t": "tertiary",
+        "n": "Carrer Cabanes",
+        "c": [
+          [
+            0.00214,
+            40.10428
+          ],
+          [
+            0.00197,
+            40.10415
+          ],
+          [
+            0.00161,
+            40.10389
+          ],
+          [
+            0.00136,
+            40.10377
+          ],
+          [
+            0.00076,
+            40.10355
+          ],
+          [
+            -0.00049,
+            40.10309
+          ],
+          [
+            -0.00112,
+            40.10286
+          ]
+        ]
+      }
+    },
+    {
+      "id": "roads:fd08b2cdc65b48d1",
+      "layer": "roads",
+      "source_index": 11,
+      "name": "Carrer de Vilafamés",
+      "type": "tertiary",
+      "feature_sha256": "fd08b2cdc65b48d1be4ae540924448ef55977f701fa17c2f3339ed1646f2a3c9",
+      "source_feature": {
+        "t": "tertiary",
+        "n": "Carrer de Vilafamés",
+        "c": [
+          [
+            -0.0015,
+            40.10262
+          ],
+          [
+            -0.0016,
+            40.1027
+          ],
+          [
+            -0.00271,
+            40.10354
+          ],
+          [
+            -0.00318,
+            40.10393
+          ],
+          [
+            -0.00382,
+            40.10477
+          ],
+          [
+            -0.00419,
+            40.10526
+          ]
+        ]
+      }
+    },
+    {
+      "id": "roads:b559572b7f2f3893",
+      "layer": "roads",
+      "source_index": 20,
+      "name": "Carrer de la Cova",
+      "type": "residential",
+      "feature_sha256": "b559572b7f2f3893b34fc6a9b0cbc0602194fdce6c8a9f937ddd005673f3553f",
+      "source_feature": {
+        "t": "residential",
+        "n": "Carrer de la Cova",
+        "c": [
+          [
+            -0.00187,
+            40.10446
+          ],
+          [
+            -0.00213,
+            40.1035
+          ]
+        ]
+      }
+    },
+    {
+      "id": "roads:c8a00eaa732c8378",
+      "layer": "roads",
+      "source_index": 23,
+      "name": "Carrer de Benicàssim",
+      "type": "residential",
+      "feature_sha256": "c8a00eaa732c8378d4694c90bf6af63b978192b6d740bbb80fd878603554ec27",
+      "source_feature": {
+        "t": "residential",
+        "n": "Carrer de Benicàssim",
+        "c": [
+          [
+            0.00282,
+            40.10234
+          ],
+          [
+            0.00213,
+            40.10248
+          ],
+          [
+            0.00147,
+            40.10261
+          ],
+          [
+            0.00081,
+            40.10274
+          ]
+        ]
+      }
+    },
+    {
+      "id": "roads:e8937f044495c780",
+      "layer": "roads",
+      "source_index": 27,
+      "name": "Carrer de Dalt la Vila",
+      "type": "residential",
+      "feature_sha256": "e8937f044495c780c6b9db636b3543bea515fc8644b9b76df8f2cc31f139d141",
+      "source_feature": {
+        "t": "residential",
+        "n": "Carrer de Dalt la Vila",
+        "c": [
+          [
+            -0.0014,
+            40.10075
+          ],
+          [
+            -0.00144,
+            40.10086
+          ],
+          [
+            -0.00159,
+            40.10119
+          ],
+          [
+            -0.0016,
+            40.10134
+          ]
+        ]
+      }
+    },
+    {
+      "id": "roads:d7c02691ceda44c6",
+      "layer": "roads",
+      "source_index": 28,
+      "name": "Carreró de les Barreretes",
+      "type": "footway",
+      "feature_sha256": "d7c02691ceda44c6baf7fbeb00597fea5506e5c93d8e4841212fd5d5ac4c84cc",
+      "source_feature": {
+        "t": "footway",
+        "n": "Carreró de les Barreretes",
+        "c": [
+          [
+            -0.00115,
+            40.10148
+          ],
+          [
+            -0.00097,
+            40.10153
+          ]
+        ]
+      }
+    },
+    {
+      "id": "roads:c2baaeb506c81057",
+      "layer": "roads",
+      "source_index": 31,
+      "name": "Carrer de la Constitució",
+      "type": "residential",
+      "feature_sha256": "c2baaeb506c81057fbe9f8bbf3b3b57074bebb731d3883460010cbd60c28a780",
+      "source_feature": {
+        "t": "residential",
+        "n": "Carrer de la Constitució",
+        "c": [
+          [
+            -0.00191,
+            40.10334
+          ],
+          [
+            -0.0018,
+            40.10337
+          ],
+          [
+            -0.00162,
+            40.10343
+          ],
+          [
+            -0.00051,
+            40.10349
+          ]
+        ]
+      }
+    },
+    {
+      "id": "roads:bd401e5097fa3740",
+      "layer": "roads",
+      "source_index": 32,
+      "name": "Carrer del Calvari",
+      "type": "residential",
+      "feature_sha256": "bd401e5097fa374082aacba6522b56ab98d8510d26998d080c3f8ea4186da10e",
+      "source_feature": {
+        "t": "residential",
+        "n": "Carrer del Calvari",
+        "c": [
+          [
+            -0.00191,
+            40.10334
+          ],
+          [
+            -0.00213,
+            40.1035
+          ],
+          [
+            -0.00269,
+            40.10383
+          ],
+          [
+            -0.00295,
+            40.10403
+          ],
+          [
+            -0.00356,
+            40.10461
+          ],
+          [
+            -0.00382,
+            40.10477
+          ]
+        ]
+      }
+    },
+    {
+      "id": "roads:e5e59ecb678f9151",
+      "layer": "roads",
+      "source_index": 33,
+      "name": "Plaça de l'Ajuntament",
+      "type": "pedestrian",
+      "feature_sha256": "e5e59ecb678f9151d81a1403b41b38804251da65b779250f0ee1d49b95eb0e98",
+      "source_feature": {
+        "t": "pedestrian",
+        "n": "Plaça de l'Ajuntament",
+        "c": [
+          [
+            -0.00146,
+            40.10135
+          ],
+          [
+            -0.00146,
+            40.10136
+          ],
+          [
+            -0.00148,
+            40.10136
+          ],
+          [
+            -0.00157,
+            40.10135
+          ],
+          [
+            -0.0016,
+            40.10134
+          ],
+          [
+            -0.00159,
+            40.10119
+          ],
+          [
+            -0.00142,
+            40.10123
+          ],
+          [
+            -0.00146,
+            40.10135
+          ]
+        ]
+      }
+    },
+    {
+      "id": "roads:85785dc01389c2e0",
+      "layer": "roads",
+      "source_index": 35,
+      "name": "carreró de l'Església",
+      "type": "footway",
+      "feature_sha256": "85785dc01389c2e02854296c4a20406cd1b7332b875f131f70270a9364e131f4",
+      "source_feature": {
+        "t": "footway",
+        "n": "carreró de l'Església",
+        "c": [
+          [
+            -0.00146,
+            40.10135
+          ],
+          [
+            -0.00136,
+            40.10137
+          ],
+          [
+            -0.00133,
+            40.10137
+          ],
+          [
+            -0.00133,
+            40.10136
+          ],
+          [
+            -0.00113,
+            40.10139
+          ]
+        ]
+      }
+    },
+    {
+      "id": "roads:bfad9c49f96cb152",
+      "layer": "roads",
+      "source_index": 37,
+      "name": "Carrer de Baix les Cases",
+      "type": "living_street",
+      "feature_sha256": "bfad9c49f96cb152e868df2fe50d292f1c5b0e9a9064d8f89a02330268e74b60",
+      "source_feature": {
+        "t": "living_street",
+        "n": "Carrer de Baix les Cases",
+        "c": [
+          [
+            -0.00136,
+            40.10137
+          ],
+          [
+            -0.00138,
+            40.10154
+          ],
+          [
+            -0.00143,
+            40.10172
+          ],
+          [
+            -0.00148,
+            40.10187
+          ],
+          [
+            -0.00169,
+            40.10183
+          ]
+        ]
+      }
+    },
+    {
+      "id": "roads:f37dbe9934f76839",
+      "layer": "roads",
+      "source_index": 40,
+      "name": "Carrer de Dalt la Vila",
+      "type": "residential",
+      "feature_sha256": "f37dbe9934f768395573cdfb002547f8679048e0d92daf003a7e4f43dcfe8590",
+      "source_feature": {
+        "t": "residential",
+        "n": "Carrer de Dalt la Vila",
+        "c": [
+          [
+            -0.0016,
+            40.10134
+          ],
+          [
+            -0.00169,
+            40.10183
+          ],
+          [
+            -0.00172,
+            40.10196
+          ],
+          [
+            -0.00178,
+            40.10214
+          ],
+          [
+            -0.00182,
+            40.10244
+          ]
+        ]
+      }
+    },
+    {
+      "id": "roads:19e6b3c0ccfe547e",
+      "layer": "roads",
+      "source_index": 43,
+      "name": "Plaça del Raval",
+      "type": "tertiary",
+      "feature_sha256": "19e6b3c0ccfe547e3df20acc279442c9974d9b27779b5d3d31da863ed3badaf8",
+      "source_feature": {
+        "t": "tertiary",
+        "n": "Plaça del Raval",
+        "c": [
+          [
+            -0.00112,
+            40.10286
+          ],
+          [
+            -0.00124,
+            40.10282
+          ],
+          [
+            -0.00138,
+            40.10273
+          ],
+          [
+            -0.0015,
+            40.10262
+          ]
+        ]
+      }
+    },
+    {
+      "id": "roads:0f42873fdff9810b",
+      "layer": "roads",
+      "source_index": 44,
+      "name": "Plaça del Portal",
+      "type": "residential",
+      "feature_sha256": "0f42873fdff9810bda2f3eed003101e4f8103a90d06af1c20c1bda90bebd5dcf",
+      "source_feature": {
+        "t": "residential",
+        "n": "Plaça del Portal",
+        "c": [
+          [
+            -0.0003,
+            40.10024
+          ],
+          [
+            -0.00036,
+            40.10043
+          ],
+          [
+            -0.0004,
+            40.10057
+          ],
+          [
+            -0.00041,
+            40.10063
+          ],
+          [
+            -0.00041,
+            40.10079
+          ]
+        ]
+      }
+    },
+    {
+      "id": "roads:5343f27d89d97726",
+      "layer": "roads",
+      "source_index": 45,
+      "name": "Carrer de Casalduch",
+      "type": "residential",
+      "feature_sha256": "5343f27d89d9772639693cecbb15ceacb9becbc1e67c19a6b4b0857ba0dd11c6",
+      "source_feature": {
+        "t": "residential",
+        "n": "Carrer de Casalduch",
+        "c": [
+          [
+            0.00086,
+            40.10161
+          ],
+          [
+            0.00072,
+            40.10113
+          ],
+          [
+            0.00064,
+            40.10063
+          ],
+          [
+            0.00058,
+            40.10031
+          ],
+          [
+            0.00055,
+            40.10009
+          ],
+          [
+            0.00054,
+            40.09999
+          ],
+          [
+            0.00049,
+            40.09971
+          ]
+        ]
+      }
+    },
+    {
+      "id": "roads:6c731bb0ed5eedca",
+      "layer": "roads",
+      "source_index": 50,
+      "name": "Carrer del Molí de Foc",
+      "type": "tertiary",
+      "feature_sha256": "6c731bb0ed5eedcabd24f7e5171edbf89b35beab214d15dba72324d897ada6e2",
+      "source_feature": {
+        "t": "tertiary",
+        "n": "Carrer del Molí de Foc",
+        "c": [
+          [
+            -0.00078,
+            40.10053
+          ],
+          [
+            -0.00082,
+            40.10044
+          ],
+          [
+            -0.00084,
+            40.10041
+          ],
+          [
+            -0.00167,
+            40.09858
+          ],
+          [
+            -0.00185,
+            40.09818
+          ],
+          [
+            -0.00193,
+            40.098
+          ],
+          [
+            -0.00202,
+            40.09776
+          ]
+        ]
+      }
+    },
+    {
+      "id": "roads:4f329d648276fd18",
+      "layer": "roads",
+      "source_index": 51,
+      "name": "Carreró de les Barberetes",
+      "type": "footway",
+      "feature_sha256": "4f329d648276fd18027de6733b3435d738b352593edeef5ac1263fb1375507c4",
+      "source_feature": {
+        "t": "footway",
+        "n": "Carreró de les Barberetes",
+        "c": [
+          [
+            -0.00097,
+            40.10153
+          ],
+          [
+            -0.00063,
+            40.10162
+          ]
+        ]
+      }
+    },
+    {
+      "id": "roads:067736367d23faeb",
+      "layer": "roads",
+      "source_index": 53,
+      "name": "Carrer dels Freginals",
+      "type": "residential",
+      "feature_sha256": "067736367d23faeb57172ab157daebac478a9da6de4a5ccd69a24e696f964ce1",
+      "source_feature": {
+        "t": "residential",
+        "n": "Carrer dels Freginals",
+        "c": [
+          [
+            0.00058,
+            40.10031
+          ],
+          [
+            -0.00036,
+            40.10043
+          ]
+        ]
+      }
+    },
+    {
+      "id": "roads:ad9283a0980808c2",
+      "layer": "roads",
+      "source_index": 58,
+      "name": "Carrer Clotàs",
+      "type": "residential",
+      "feature_sha256": "ad9283a0980808c2a957ce2b7d4c89454e3969fbd52e7cd99cfa7140a072e5cf",
+      "source_feature": {
+        "t": "residential",
+        "n": "Carrer Clotàs",
+        "c": [
+          [
+            -0.00227,
+            40.10238
+          ],
+          [
+            -0.00203,
+            40.10176
+          ],
+          [
+            -0.00248,
+            40.10169
+          ]
+        ]
+      }
+    },
+    {
+      "id": "roads:ffc958e9c905ee77",
+      "layer": "roads",
+      "source_index": 61,
+      "name": "Carrer de la Font Pitxera",
+      "type": "residential",
+      "feature_sha256": "ffc958e9c905ee7718d501a1ade0d7b550475d6dbacee7e43408e4b46fba88d1",
+      "source_feature": {
+        "t": "residential",
+        "n": "Carrer de la Font Pitxera",
+        "c": [
+          [
+            -0.00295,
+            40.10229
+          ],
+          [
+            -0.00277,
+            40.10231
+          ],
+          [
+            -0.00273,
+            40.10232
+          ],
+          [
+            -0.00227,
+            40.10238
+          ],
+          [
+            -0.00182,
+            40.10244
+          ],
+          [
+            -0.00162,
+            40.10254
+          ],
+          [
+            -0.0015,
+            40.10262
+          ]
+        ]
+      }
+    },
+    {
+      "id": "roads:2f32c9d526044464",
+      "layer": "roads",
+      "source_index": 65,
+      "name": "Carrer Tossal de la Vila",
+      "type": "residential",
+      "feature_sha256": "2f32c9d5260444646823677874349425c6c53b3fa7cf8de2a3c6e4804a73257c",
+      "source_feature": {
+        "t": "residential",
+        "n": "Carrer Tossal de la Vila",
+        "c": [
+          [
+            -0.00273,
+            40.10232
+          ],
+          [
+            -0.00248,
+            40.10169
+          ],
+          [
+            -0.00199,
+            40.10049
+          ]
+        ]
+      }
+    },
+    {
+      "id": "roads:5822b0b1abed3ed3",
+      "layer": "roads",
+      "source_index": 66,
+      "name": "Plaça del Portal",
+      "type": "footway",
+      "feature_sha256": "5822b0b1abed3ed3ae81caca2d1127f711efd8fd3b2ee2764dec2d241bd8844f",
+      "source_feature": {
+        "t": "footway",
+        "n": "Plaça del Portal",
+        "c": [
+          [
+            -0.0007,
+            40.10047
+          ],
+          [
+            -0.0004,
+            40.10057
+          ]
+        ]
+      }
+    },
+    {
+      "id": "roads:657b912ba9b833c6",
+      "layer": "roads",
+      "source_index": 67,
+      "name": "carrer d'Enmig",
+      "type": "tertiary",
+      "feature_sha256": "657b912ba9b833c64178913012dba8854634113aa7aa0a694e50109bfa7f3b93",
+      "source_feature": {
+        "t": "tertiary",
+        "n": "carrer d'Enmig",
+        "c": [
+          [
+            -0.0015,
+            40.10262
+          ],
+          [
+            -0.00145,
+            40.1024
+          ],
+          [
+            -0.00115,
+            40.10148
+          ],
+          [
+            -0.00113,
+            40.10139
+          ],
+          [
+            -0.00078,
+            40.10053
+          ]
+        ]
+      }
+    },
+    {
+      "id": "roads:73ffbb23b54f1f28",
+      "layer": "roads",
+      "source_index": 70,
+      "name": "Carrer d'Isidor Herrera",
+      "type": "residential",
+      "feature_sha256": "73ffbb23b54f1f28e73876f797f1374f1a6a0efc15f57a4050c2b6e39818331c",
+      "source_feature": {
+        "t": "residential",
+        "n": "Carrer d'Isidor Herrera",
+        "c": [
+          [
+            0.00286,
+            40.1027
+          ],
+          [
+            0.00232,
+            40.1028
+          ],
+          [
+            0.00166,
+            40.10294
+          ],
+          [
+            0.00101,
+            40.10307
+          ]
+        ]
+      }
+    },
+    {
+      "id": "roads:4e344082bb46d4af",
+      "layer": "roads",
+      "source_index": 74,
+      "name": "Carrer Montornés",
+      "type": "residential",
+      "feature_sha256": "4e344082bb46d4afe058461bdf342effd66cc51ebe8bae9a9f25243e0c0d7599",
+      "source_feature": {
+        "t": "residential",
+        "n": "Carrer Montornés",
+        "c": [
+          [
+            0.00197,
+            40.1022
+          ],
+          [
+            0.00213,
+            40.10248
+          ],
+          [
+            0.00232,
+            40.1028
+          ],
+          [
+            0.00251,
+            40.10312
+          ]
+        ]
+      }
+    },
+    {
+      "id": "roads:f6960407feda723e",
+      "layer": "roads",
+      "source_index": 79,
+      "name": "Carrer del Calvari",
+      "type": "residential",
+      "feature_sha256": "f6960407feda723e9902ba333cae3b73a75300f5b41a781f2b9bc7b06d0da80d",
+      "source_feature": {
+        "t": "residential",
+        "n": "Carrer del Calvari",
+        "c": [
+          [
+            -0.0016,
+            40.1027
+          ],
+          [
+            -0.00172,
+            40.10294
+          ],
+          [
+            -0.00191,
+            40.10334
+          ]
+        ]
+      }
+    },
+    {
+      "id": "roads:422a2b12bc57b095",
+      "layer": "roads",
+      "source_index": 82,
+      "name": "Carrer del Riu",
+      "type": "residential",
+      "feature_sha256": "422a2b12bc57b0957f8928531b0c0450272c8ce1add543981062df037ce516b6",
+      "source_feature": {
+        "t": "residential",
+        "n": "Carrer del Riu",
+        "c": [
+          [
+            -0.00075,
+            40.10191
+          ],
+          [
+            0.00038,
+            40.1017
+          ],
+          [
+            0.00086,
+            40.10161
+          ]
+        ]
+      }
+    },
+    {
+      "id": "roads:ef97cf452c0896cf",
+      "layer": "roads",
+      "source_index": 87,
+      "name": "Carrer de Baix la Vila",
+      "type": "residential",
+      "feature_sha256": "ef97cf452c0896cfb4cf4724dde67e2bb811465a31a07d34a035a3c3ad64ebf2",
+      "source_feature": {
+        "t": "residential",
+        "n": "Carrer de Baix la Vila",
+        "c": [
+          [
+            -0.00041,
+            40.10079
+          ],
+          [
+            -0.0005,
+            40.10129
+          ],
+          [
+            -0.00063,
+            40.10162
+          ],
+          [
+            -0.00075,
+            40.10191
+          ],
+          [
+            -0.00112,
+            40.10286
+          ]
+        ]
+      }
+    },
+    {
+      "id": "roads:82a0d58e60196658",
+      "layer": "roads",
+      "source_index": 89,
+      "name": "Plaça de l'Hospital",
+      "type": "residential",
+      "feature_sha256": "82a0d58e60196658b7066ca87b8237aaf155c5166423dd87e700e3c7f1b18ad9",
+      "source_feature": {
+        "t": "residential",
+        "n": "Plaça de l'Hospital",
+        "c": [
+          [
+            -0.00087,
+            40.10326
+          ],
+          [
+            -0.00146,
+            40.10325
+          ],
+          [
+            -0.00137,
+            40.10308
+          ],
+          [
+            -0.00087,
+            40.10326
+          ]
+        ]
+      }
+    },
+    {
+      "id": "roads:81bab706941bfdef",
+      "layer": "roads",
+      "source_index": 92,
+      "name": "Carrer de les Eres",
+      "type": "residential",
+      "feature_sha256": "81bab706941bfdefa249bb4099237fafb65988e04be96a182703917b4c67b723",
+      "source_feature": {
+        "t": "residential",
+        "n": "Carrer de les Eres",
+        "c": [
+          [
+            0.00021,
+            40.10123
+          ],
+          [
+            0.00038,
+            40.1017
+          ],
+          [
+            0.00051,
+            40.10208
+          ],
+          [
+            0.00065,
+            40.10246
+          ],
+          [
+            0.00081,
+            40.10274
+          ],
+          [
+            0.00101,
+            40.10307
+          ],
+          [
+            0.00121,
+            40.10339
+          ]
+        ]
+      }
+    },
+    {
+      "id": "roads:ba428eec4227532f",
+      "layer": "roads",
+      "source_index": 103,
+      "name": "Avinguda de Castelló",
+      "type": "residential",
+      "feature_sha256": "ba428eec4227532f08b43f4fa86cdc3ce1783873a666265d35825fe75edecdc8",
+      "source_feature": {
+        "t": "residential",
+        "n": "Avinguda de Castelló",
+        "c": [
+          [
+            -0.00193,
+            40.098
+          ],
+          [
+            -0.00172,
+            40.09809
+          ],
+          [
+            -0.00185,
+            40.09818
+          ]
+        ]
+      }
+    },
+    {
+      "id": "roads:4c43f9de41e3a88c",
+      "layer": "roads",
+      "source_index": 151,
+      "name": "",
+      "type": "path",
+      "feature_sha256": "4c43f9de41e3a88c51311d68511074404ece175d885e4a287a4eb0363a47f9de",
+      "source_feature": {
+        "t": "path",
+        "n": "",
+        "c": [
+          [
+            -0.00337,
+            40.09885
+          ],
+          [
+            -0.0033,
+            40.09887
+          ],
+          [
+            -0.00309,
+            40.09902
+          ],
+          [
+            -0.00297,
+            40.09904
+          ],
+          [
+            -0.00294,
+            40.09908
+          ],
+          [
+            -0.00291,
+            40.09908
+          ],
+          [
+            -0.00284,
+            40.09906
+          ],
+          [
+            -0.00271,
+            40.09904
+          ],
+          [
+            -0.0026,
+            40.09899
+          ],
+          [
+            -0.00253,
+            40.09901
+          ],
+          [
+            -0.00247,
+            40.09898
+          ],
+          [
+            -0.00241,
+            40.09893
+          ],
+          [
+            -0.00226,
+            40.09894
+          ],
+          [
+            -0.00219,
+            40.0989
+          ],
+          [
+            -0.00217,
+            40.09879
+          ],
+          [
+            -0.00209,
+            40.09877
+          ],
+          [
+            -0.00203,
+            40.09873
+          ],
+          [
+            -0.00188,
+            40.09868
+          ],
+          [
+            -0.00185,
+            40.09865
+          ],
+          [
+            -0.00177,
+            40.09864
+          ],
+          [
+            -0.00167,
+            40.09858
+          ]
+        ]
+      }
+    },
+    {
+      "id": "roads:9b2fe93c9eec4f3a",
+      "layer": "roads",
+      "source_index": 224,
+      "name": "",
+      "type": "footway",
+      "feature_sha256": "9b2fe93c9eec4f3ac083d88cabb501c8e6e5dae6061105afedf356153bcd6f1d",
+      "source_feature": {
+        "t": "footway",
+        "n": "",
+        "c": [
+          [
+            -0.00137,
+            40.10308
+          ],
+          [
+            -0.00172,
+            40.10294
+          ]
+        ]
+      }
+    },
+    {
+      "id": "buildings:02f80da18a87ce60",
+      "layer": "buildings",
+      "source_index": 15,
+      "name": "Antiga Presó",
+      "type": "public",
+      "feature_sha256": "02f80da18a87ce60cb353a25d75923e56cfdd556a20d44b2e89b61050d5abc17",
+      "source_feature": {
+        "n": "Antiga Presó",
+        "t": "public",
+        "c": [
+          [
+            -0.00121,
+            40.10153
+          ],
+          [
+            -0.00119,
+            40.10148
+          ],
+          [
+            -0.00127,
+            40.10145
+          ],
+          [
+            -0.00129,
+            40.10151
+          ],
+          [
+            -0.00121,
+            40.10153
+          ]
+        ]
+      }
+    },
+    {
+      "id": "pois:3d5e9244381a2b8a",
+      "layer": "pois",
+      "source_index": 22,
+      "name": "El Trescaire: Aulari de la Pobla Tornesa",
+      "type": "school",
+      "feature_sha256": "3d5e9244381a2b8a308ac409c5570becb13b39b7111d68b4bac1f786bab93ea0",
+      "source_feature": {
+        "k": "amenity",
+        "t": "school",
+        "n": "El Trescaire: Aulari de la Pobla Tornesa",
+        "c": [
+          -0.00166,
+          40.10119
+        ]
+      }
+    },
+    {
+      "id": "pois:636113c696ef0710",
+      "layer": "pois",
+      "source_index": 4,
+      "name": "",
+      "type": "playground",
+      "feature_sha256": "636113c696ef07109eb7cf0300b581c0e412d667acb349725c460a91924b6e6c",
+      "source_feature": {
+        "k": "leisure",
+        "t": "playground",
+        "n": "",
+        "c": [
+          -0.00047,
+          40.10046
+        ]
+      }
+    },
+    {
+      "id": "pois:99b252ec5b73893a",
+      "layer": "pois",
+      "source_index": 15,
+      "name": "Casa de la Cultura",
+      "type": "community_centre",
+      "feature_sha256": "99b252ec5b73893a82e23635e29fd551202eb290fcc2664a2d2e2319d021d4a5",
+      "source_feature": {
+        "k": "amenity",
+        "t": "community_centre",
+        "n": "Casa de la Cultura",
+        "c": [
+          -0.00071,
+          40.10066
+        ]
+      }
+    },
+    {
+      "id": "buildings:3d9cb469ae94f904",
+      "layer": "buildings",
+      "source_index": 16,
+      "name": "",
+      "type": "public",
+      "feature_sha256": "3d9cb469ae94f904ec8c8feffe8bd092aee053ff78f694a0840ed842ed4492bf",
+      "source_feature": {
+        "n": "",
+        "t": "public",
+        "c": [
+          [
+            -0.00157,
+            40.10135
+          ],
+          [
+            -0.00157,
+            40.10138
+          ],
+          [
+            -0.00149,
+            40.10139
+          ],
+          [
+            -0.00148,
+            40.10136
+          ],
+          [
+            -0.00157,
+            40.10135
+          ]
+        ]
+      }
+    },
+    {
+      "id": "buildings:3a0db142d2fafd9c",
+      "layer": "buildings",
+      "source_index": 2,
+      "name": "Ajuntament de la Pobla Tornesa",
+      "type": "yes",
+      "feature_sha256": "3a0db142d2fafd9cdb23ee02a159cf9280885f89c60e76ba8e5084a44ca519a5",
+      "source_feature": {
+        "n": "Ajuntament de la Pobla Tornesa",
+        "t": "yes",
+        "c": [
+          [
+            -0.00094,
+            40.10142
+          ],
+          [
+            -0.00105,
+            40.1014
+          ],
+          [
+            -0.00102,
+            40.1013
+          ],
+          [
+            -0.00091,
+            40.10133
+          ],
+          [
+            -0.00094,
+            40.10142
+          ]
+        ]
+      }
+    }
+  ]
+}

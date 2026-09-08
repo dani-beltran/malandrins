@@ -18,7 +18,7 @@ export class GameRenderer {
   constructor(canvas: HTMLCanvasElement) {
     this.renderer = new THREE.WebGLRenderer({
       canvas,
-      antialias: false,
+      antialias: true,
       powerPreference: 'high-performance',
     });
     this.renderer.info.autoReset = false;
@@ -32,12 +32,12 @@ export class GameRenderer {
     this.sun = new THREE.DirectionalLight(0xffdfad, 3.3);
     this.sun.position.set(-130, 220, 150);
     this.sun.castShadow = true;
-    this.sun.shadow.mapSize.set(1024, 1024);
+    this.sun.shadow.mapSize.set(2048, 2048);
     Object.assign(this.sun.shadow.camera, {
-      left: -100,
-      right: 100,
-      top: 100,
-      bottom: -100,
+      left: -65,
+      right: 65,
+      top: 65,
+      bottom: -65,
       near: 1,
       far: 600,
     });
