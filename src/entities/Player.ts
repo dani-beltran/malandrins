@@ -4,6 +4,7 @@ import { Input } from '../core/Input';
 import { CollisionWorld } from '../world/CollisionWorld';
 import type { Point } from '../core/math';
 import type { Terrain } from '../world/Terrain';
+import { ENTITY_SCALE } from './dimensions';
 export class Player {
   readonly model: PersonModel;
   readonly position = new THREE.Vector3();
@@ -15,6 +16,7 @@ export class Player {
     private terrain: Terrain,
   ) {
     this.model = factory.person(0xe2d3af, 0xc99874, 0x3c302b, 'player');
+    this.model.group.scale.multiplyScalar(ENTITY_SCALE);
     this.teleport(p);
   }
   get object(): THREE.Group {
@@ -35,7 +37,7 @@ export class Player {
     const dz = length
       ? ((-Math.cos(cameraYaw) * forward - Math.sin(cameraYaw) * right) / length) * speed * dt
       : 0;
-    const next = collision.move(this.position, dx, dz, 0.48);
+    const next = collision.move(this.position, dx, dz, 0.48 * ENTITY_SCALE);
     this.moving = length > 0;
     this.position.x = next.x;
     this.position.z = next.z;

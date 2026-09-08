@@ -11,6 +11,7 @@ import { townLayout } from '../world/TownScenery';
 import { Player } from '../entities/Player';
 import { Vehicle } from '../entities/Vehicle';
 import { Npc } from '../entities/Npc';
+import { ENTITY_SCALE } from '../entities/dimensions';
 import { characters } from '../data/characters';
 import { I18n } from '../systems/I18n';
 import { MissionSystem } from '../systems/MissionSystem';
@@ -98,15 +99,16 @@ export class Game {
       ...carSpawns.map((c) => c.point),
     ]);
     this.graphics.scene.add(this.world.build());
-    this.spawn = this.safePoint(this.spawn, 0.6);
+    this.spawn = this.safePoint(this.spawn, 0.6 * ENTITY_SCALE);
     this.player = new Player(
       this.models,
-      this.save.position ? this.safePoint(this.save.position, 0.6) : this.spawn,
+      this.save.position ? this.safePoint(this.save.position, 0.6 * ENTITY_SCALE) : this.spawn,
       this.terrain,
     );
     this.graphics.scene.add(this.player.object);
     this.npcs = characters.map(
-      (c, i) => new Npc(c, this.models, this.safePoint(npcPoints[i], 0.65), this.terrain),
+      (c, i) =>
+        new Npc(c, this.models, this.safePoint(npcPoints[i], 0.65 * ENTITY_SCALE), this.terrain),
     );
     this.npcs.forEach((n) => this.graphics.scene.add(n.object));
     this.vehicles = carSpawns.map(
@@ -115,7 +117,7 @@ export class Game {
           i,
           ['Raval 80', 'Tramuntana', 'Marjal', 'Raval 80', 'Tramuntana', 'Marjal', 'Raval 80'][i],
           this.models,
-          this.safePoint(p.point, 2.2),
+          this.safePoint(p.point, 2.2 * ENTITY_SCALE),
           p.angle,
           [0xdbbe76, 0x718f88, 0xb0674d, 0xc6c2a7, 0x7d8a9a, 0xad987a, 0xb78359][i],
           this.terrain,
@@ -684,10 +686,10 @@ export class Game {
         landmarks: townLayout.landmarks.map((b) => b.id),
         referenceView: this.referenceCamera?.id ?? null,
         blockedNpcs: this.npcs
-          .filter((n) => this.world.collision.blocked(n.position, 0.6))
+          .filter((n) => this.world.collision.blocked(n.position, 0.6 * ENTITY_SCALE))
           .map((n) => n.definition.id),
         blockedCars: this.vehicles
-          .filter((v) => this.world.collision.blocked(v.position, 2.2))
+          .filter((v) => this.world.collision.blocked(v.position, 2.2 * ENTITY_SCALE))
           .map((v) => v.id),
       },
       drawCalls: this.graphics.renderer.info.render.calls,

@@ -4,6 +4,7 @@ import { Input } from '../core/Input';
 import { CollisionWorld } from '../world/CollisionWorld';
 import { clamp, type Point } from '../core/math';
 import type { Terrain } from '../world/Terrain';
+import { ENTITY_SCALE } from './dimensions';
 export class Vehicle {
   readonly object: THREE.Group;
   speed = 0;
@@ -20,6 +21,7 @@ export class Vehicle {
   ) {
     this.initial = { position: { ...p }, heading };
     this.object = factory.car(color);
+    this.object.scale.multiplyScalar(ENTITY_SCALE);
     this.object.position.set(p.x, 0, p.z);
     this.ground();
   }
@@ -44,7 +46,7 @@ export class Vehicle {
     this.heading -= steer * dt * clamp(this.speed / 9, -1, 1) * (brake ? 2.6 : 1.6);
     const dx = Math.sin(this.heading) * this.speed * dt,
       dz = Math.cos(this.heading) * this.speed * dt;
-    const next = collision.move(this.position, dx, dz, 2.2),
+    const next = collision.move(this.position, dx, dz, 2.2 * ENTITY_SCALE),
       travel = Math.hypot(next.x - this.position.x, next.z - this.position.z);
     if (travel < Math.hypot(dx, dz) * 0.5) this.speed *= 0.4;
     this.position.x = next.x;
@@ -59,15 +61,17 @@ export class Vehicle {
         this.position.x + cos * side + sin * along,
         this.position.z - sin * side + cos * along,
       );
-    const fl = sample(-0.95, 1.35),
-      fr = sample(0.95, 1.35);
-    const bl = sample(-0.95, -1.35),
-      br = sample(0.95, -1.35);
+    const halfWidth = 0.95 * ENTITY_SCALE,
+      halfLength = 1.35 * ENTITY_SCALE;
+    const fl = sample(-halfWidth, halfLength),
+      fr = sample(halfWidth, halfLength);
+    const bl = sample(-halfWidth, -halfLength),
+      br = sample(halfWidth, -halfLength);
     this.position.y = Math.max((fl + fr + bl + br) / 4, sample(0, 0)) + 0.12;
     this.object.rotation.set(
-      -Math.atan2((fl + fr - bl - br) / 2, 2.7),
+      -Math.atan2((fl + fr - bl - br) / 2, halfLength * 2),
       this.heading,
-      Math.atan2((fr + br - fl - bl) / 2, 1.9) + lean,
+      Math.atan2((fr + br - fl - bl) / 2, halfWidth * 2) + lean,
       'YXZ',
     );
   }
@@ -81,14 +85,14 @@ export class Vehicle {
       const p = {
         x:
           this.position.x +
-          Math.cos(this.heading) * side * 2.8 +
-          Math.sin(this.heading) * along * 3.4,
+          Math.cos(this.heading) * side * 2.8 * ENTITY_SCALE +
+          Math.sin(this.heading) * along * 3.4 * ENTITY_SCALE,
         z:
           this.position.z -
-          Math.sin(this.heading) * side * 2.8 +
-          Math.cos(this.heading) * along * 3.4,
+          Math.sin(this.heading) * side * 2.8 * ENTITY_SCALE +
+          Math.cos(this.heading) * along * 3.4 * ENTITY_SCALE,
       };
-      if (!collision.blocked(p, 0.65)) return p;
+      if (!collision.blocked(p, 0.65 * ENTITY_SCALE)) return p;
     }
     return null;
   }
