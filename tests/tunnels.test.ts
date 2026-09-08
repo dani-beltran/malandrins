@@ -58,7 +58,7 @@ function fixture() {
   return { terrain, travel, collision, tunnel: travel.underpasses.tunnels[0] };
 }
 const input = {
-  axis: (_n: string[], p: string[]) => (p.includes('KeyW') ? 1 : 0),
+  movement: () => ({ forward: 1, right: 0 }),
   down: () => false,
 } as unknown as Input;
 const models = new ModelFactory(new AssetLibrary());

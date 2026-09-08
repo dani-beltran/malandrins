@@ -144,8 +144,12 @@ export class Game {
       new THREE.MeshBasicMaterial({ color: 0xffd580 }),
     );
     this.graphics.scene.add(this.activeMarker);
-    this.ui = new GameUI(this.root, this.i18n, this.missions, (action, value) =>
-      this.action(action, value),
+    this.ui = new GameUI(
+      this.root,
+      this.i18n,
+      this.missions,
+      (action, value) => this.action(action, value),
+      this.input,
     );
     if (this.referenceCamera || this.bridgeView || this.tunnelView) {
       this.root.hidden = true;
@@ -819,6 +823,7 @@ export class Game {
     cancelAnimationFrame(this.frame);
     this.persist();
     this.abort.abort();
+    this.ui?.touchControls.dispose();
     this.input.dispose();
     this.audio.dispose();
     this.graphics.scene.traverse((o) => {

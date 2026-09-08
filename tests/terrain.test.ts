@@ -370,7 +370,7 @@ describe('terrain-aware entities', () => {
   } as unknown as ModelFactory;
   const collision = new CollisionWorld({ minX: 0, maxX: 100, minZ: 0, maxZ: 100 });
   const input = {
-    axis: (_negative: string[], positive: string[]) => (positive.includes('KeyW') ? 1 : 0),
+    movement: () => ({ forward: 1, right: 0 }),
     down: () => false,
   } as unknown as Input;
 

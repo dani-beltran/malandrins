@@ -36,7 +36,7 @@ Configure the host to serve `index.html` for game routes such as `/ca` and `/en`
 - An original synthesized soundtrack, **“Última llum”**, plus engine, horn and reward sounds. Audio starts after a user gesture, in line with browser autoplay behavior.
 - Local saves for mission stage, tapes, people met, player location, language, graphics and sound settings. Cars return to their initial parking positions after reloading. “Start a new night” resets the adventure while retaining preferences.
 
-This is a complete small playable prototype, not a full GTA-scale production. It has no combat, police pursuit, traffic AI, interiors, multiplayer, controller support, touchscreen driving controls, recorded voices or animated cutscenes. Characters idle and turn toward the player; they do not simulate pedestrian traffic. Vehicles use a conservative circular collision shape and simplified handling. The UI adapts to small screens, but gameplay requires a keyboard.
+This is a complete small playable prototype, not a full GTA-scale production. It has no combat, police pursuit, traffic AI, interiors, multiplayer, controller support, recorded voices or animated cutscenes. Characters idle and turn toward the player; they do not simulate pedestrian traffic. Vehicles use a conservative circular collision shape and simplified handling. Phones and tablets have a touch overlay during gameplay, with layouts for portrait and landscape. Desktop browsers retain keyboard and mouse controls, even in a narrow window.
 
 ## Controls
 
@@ -52,6 +52,8 @@ This is a complete small playable prototype, not a full GTA-scale production. It
 | Rotate camera                               | Q / R or drag with the right mouse button |
 | Open / close town map                       | M                                         |
 | Pause / resume                              | Esc                                       |
+
+**On phones and tablets:** drag the left joystick to walk or to accelerate, reverse and steer a car. Hold Sprint on foot or Brake while driving. Tap Talk / pick up to interact, Car to enter or exit, and Horn while driving. Hold the camera arrows to look around. Open the town map from the minimap, pause with Ⅱ, and tap the dialogue button to continue conversations. The overlay hides during menus, the full map and dialogue; lifting or cancelling a touch, rotating the device, and leaving the game release held controls.
 
 Follow the gold marker to Marcos first. Get out of the car before speaking to someone. The minimap points toward the current contact when they are off-screen. If you get stuck, use **Pause → Return to Raval**. That keeps completed favours and collectibles.
 
@@ -81,7 +83,7 @@ The code uses classes with explicit dependencies rather than one global game scr
 | ----------------------------- | ----------------------------------------------------------------------------------------- |
 | `src/core/Game.ts`            | Composition root, game loop, state transitions, interactions, camera and save checkpoints |
 | `src/core/Renderer.ts`        | WebGL scene, lighting, shadows, low-resolution rendering and final screen pass            |
-| `src/core/Input.ts`           | Held keys, one-shot presses, mouse camera input and focus cleanup                         |
+| `src/core/Input.ts`           | Keyboard and touch input, one-shot presses, movement axes and focus cleanup                         |
 | `src/world/MapAdapter.ts`     | Geographic projection, road normalization and nearest-road queries                        |
 | `src/world/Terrain.ts`        | Bundled elevation data, exact triangle sampling, terrain chunks and draped surfaces       |
 | `src/world/WorldBuilder.ts`   | Terrain, roads, reconstructed scenery and spatial mesh batching                           |
@@ -110,6 +112,6 @@ npm run test:e2e  # Browser gameplay checks; starts/reuses the local dev server
 npm run build     # Strict TypeScript and production bundle
 ```
 
-The browser suite uses installed Google Chrome on macOS when available. Otherwise install the test browser with `npx playwright install chromium`, or supply `CHROME_PATH=/path/to/chrome`. Tests use software WebGL for reproducibility and a separate temporary browser profile. They exercise real keyboard movement to Marcos and Castor, vehicle entry/acceleration/braking/exit, bilingual settings, map and portrait UI, story rewards, save/reload, reset, and a narrow viewport. For later story contacts the reward test loads saved-position fixtures; it does not claim to autonomously drive the complete route. Unit tests separately check swept movement against walls and bounds.
+The browser suite uses installed Google Chrome on macOS when available. Otherwise install the test browser with `npx playwright install chromium`, or supply `CHROME_PATH=/path/to/chrome`. Tests use software WebGL for reproducibility and a separate temporary browser profile. They exercise real keyboard movement to Marcos and Castor, vehicle entry/acceleration/braking/exit, bilingual settings, map and portrait UI, story rewards, save/reload, reset, and a narrow viewport. For later story contacts the reward test loads saved-position fixtures; it does not claim to autonomously drive the complete route. Mobile browser checks cover simultaneous touches, walking, camera rotation, vehicle entry/acceleration/braking/exit, dialogue, map, pause, English/Catalan controls, cancellation and rotation, plus desktop-only behavior at a narrow width. Unit tests separately check swept movement against walls and bounds and independent keyboard/touch input lifetimes.
 
 Screenshots from verification are in `artifacts/`. To regenerate the two basic visual snapshots while the dev server runs, use `node scripts/inspect.mjs` (this convenience script currently targets macOS Chrome). See [ASSETS.md](ASSETS.md) for asset export commands.

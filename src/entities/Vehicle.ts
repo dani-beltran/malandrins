@@ -40,8 +40,7 @@ export class Vehicle {
     return this.object.position;
   }
   update(dt: number, input: Input, collision: CollisionWorld): void {
-    const throttle = input.axis(['KeyS', 'ArrowDown'], ['KeyW', 'ArrowUp']),
-      steer = input.axis(['KeyA', 'ArrowLeft'], ['KeyD', 'ArrowRight']);
+    const { forward: throttle, right: steer } = input.movement();
     const brake = input.down('Space');
     this.speed += throttle * dt * (throttle * this.speed < 0 ? 32 : 16);
     this.speed *= Math.exp(-dt * (brake ? 4.4 : throttle === 0 ? 1.2 : 0.24));

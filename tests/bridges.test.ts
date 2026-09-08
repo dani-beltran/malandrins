@@ -201,7 +201,7 @@ describe('shared bridge travel surface', () => {
     new BridgeScenery(travel, models, { roads: [road] } as MapAdapter).build();
     expect(travel.canExit({ x: 0, z: 0 }, { x: 0, z: 6 }, 0.4)).toBe(false);
     const input = {
-      axis: (_negative: string[], positive: string[]) => (positive.includes('KeyW') ? 1 : 0),
+      movement: () => ({ forward: 1, right: 0 }),
       down: () => false,
     } as unknown as Input;
     for (const direction of [-1, 1]) {

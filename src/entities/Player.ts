@@ -27,15 +27,18 @@ export class Player {
     this.object.position.copy(this.position);
   }
   update(dt: number, input: Input, collision: CollisionWorld, cameraYaw: number): void {
-    const forward = input.axis(['KeyS', 'ArrowDown'], ['KeyW', 'ArrowUp']),
-      right = input.axis(['KeyA', 'ArrowLeft'], ['KeyD', 'ArrowRight']);
+    const { forward, right } = input.movement();
     const length = Math.hypot(forward, right),
       speed = input.down('ShiftLeft', 'ShiftRight') ? 13 : 7.5;
     const dx = length
-      ? ((-Math.sin(cameraYaw) * forward + Math.cos(cameraYaw) * right) / length) * speed * dt
+      ? ((-Math.sin(cameraYaw) * forward + Math.cos(cameraYaw) * right) / Math.max(1, length)) *
+        speed *
+        dt
       : 0;
     const dz = length
-      ? ((-Math.cos(cameraYaw) * forward - Math.sin(cameraYaw) * right) / length) * speed * dt
+      ? ((-Math.cos(cameraYaw) * forward - Math.sin(cameraYaw) * right) / Math.max(1, length)) *
+        speed *
+        dt
       : 0;
     const next = collision.move(this.position, dx, dz, 0.48 * ENTITY_SCALE);
     this.moving = length > 0;
