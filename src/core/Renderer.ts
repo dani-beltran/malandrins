@@ -81,8 +81,8 @@ export class GameRenderer {
     this.shader.uniforms.retro.value = this.quality === 'retro' ? 1 : 0;
   }
   followLight(p: THREE.Vector3): void {
-    this.sun.position.set(p.x - 130, 220, p.z + 150);
-    this.sun.target.position.set(p.x, 0, p.z);
+    this.sun.position.set(p.x - 130, p.y + 220, p.z + 150);
+    this.sun.target.position.copy(p);
   }
   render(): void {
     this.renderer.info.reset();

@@ -2,19 +2,19 @@
 
 **Recommended base terrain: the ICV 2017 LiDAR ground model at 1 m resolution.** Its refined ground classification gives a cleaner foundation for a game with separately modelled buildings. The newer **CNIG 2023 model at 0.5 m** is also saved for finer terrain inspection, but it is provisional and contains conspicuous raised rectangular features in the northwest of this map.
 
-Downloaded on **7 September 2026**. The prepared exports cover the existing game's approximately **2.04 × 2.23 km** geographic extent, including the town and nearby hills. This is the game's boundary, **not the entire municipality**. These are offline references and importable assets; the game's current terrain has not been replaced.
+Downloaded on **7 September 2026**. The prepared exports cover the existing game's approximately **2.04 × 2.23 km** geographic extent, including the town and nearby hills. This is the game's boundary, **not the entire municipality**. The game now bundles `derived/icv-2017-heightmap-257.f32` and its JSON sidecar to build the terrain; the other exports remain offline references and authoring assets.
 
 ## Start here
 
-| File | Purpose |
-| --- | --- |
+| File                                                                   | Purpose                                                                                                                              |
+| ---------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
 | [ICV ground GeoTIFF, native 1 m](raw/icv-2017-ground-game-area-1m.tif) | **Recommended master for modelling.** Float32 elevations in metres, with georeferencing. Lossless crop from the official 2017 sheet. |
-| [ICV terrain mesh, GLB](derived/terrain-icv-2017-game-257.glb) | **Ready to import into Blender or Three.js.** Aligned with the game's coordinates and scale; 66,049 vertices and 131,072 triangles. |
-| [ICV 1025 × 1025 heightmap](derived/icv-2017-heightmap-1025.png) | 16-bit heightmap for authoring, with approximately 2 m sampling. Read its [import metadata](derived/icv-2017-heightmap-1025.json). |
-| [ICV 257 × 257 heightmap](derived/icv-2017-heightmap-257.png) | Lighter mesh reference, with approximately 8 m sampling. Read its [import metadata](derived/icv-2017-heightmap-257.json). |
-| [CNIG ground GeoTIFF, native 0.5 m](derived/ground-game-area-0p5m.tif) | Higher-resolution comparison master; provisional classification. |
-| [Source comparison](derived/source-comparison.png) | Visual comparison showing why ICV is recommended for the base ground. |
-| [ICV terrain preview](derived/terrain-icv-2017-preview.png) | Shaded elevation, 20 m contours and a 3D overview. |
+| [ICV terrain mesh, GLB](derived/terrain-icv-2017-game-257.glb)         | **Ready to import into Blender or Three.js.** Aligned with the game's coordinates and scale; 66,049 vertices and 131,072 triangles.  |
+| [ICV 1025 × 1025 heightmap](derived/icv-2017-heightmap-1025.png)       | 16-bit heightmap for authoring, with approximately 2 m sampling. Read its [import metadata](derived/icv-2017-heightmap-1025.json).   |
+| [ICV 257 × 257 heightmap](derived/icv-2017-heightmap-257.png)          | Lighter mesh reference, with approximately 8 m sampling. Read its [import metadata](derived/icv-2017-heightmap-257.json).            |
+| [CNIG ground GeoTIFF, native 0.5 m](derived/ground-game-area-0p5m.tif) | Higher-resolution comparison master; provisional classification.                                                                     |
+| [Source comparison](derived/source-comparison.png)                     | Visual comparison showing why ICV is recommended for the base ground.                                                                |
+| [ICV terrain preview](derived/terrain-icv-2017-preview.png)            | Shaded elevation, 20 m contours and a 3D overview.                                                                                   |
 
 The heightmaps also have matching `.f32` files containing full-precision floating-point elevations. Equivalent CNIG exports are named `game-heightmap-1025.*`, `game-heightmap-257.*`, and `terrain-game-257.glb`. **Choose the `icv-2017` files for the recommended base.**
 
@@ -28,12 +28,12 @@ Both were sampled at the same **1,050,625 game-aligned positions**. The median a
 
 Other options considered:
 
-| Option | Assessment for this game |
-| --- | --- |
-| [CNIG MDT02, 2 m](https://centrodedescargas.cnig.es/CentroDescargas/catalogo.do?Serie=MDT02) | Useful national fallback, but the downloaded local 1 m ground model gives a denser base. |
-| Coarser terrain grids and contour-map images | Suitable for broad scenery or reference, less useful for the town's slopes and road placement. A rendered hillshade is not numeric elevation data. |
-| [Classified LiDAR point clouds](https://pnoa.ign.es/pnoa-lidar/productos-a-descarga) | Useful for later custom classification or extracting objects, but require additional processing. No point-cloud files are included here. |
-| Surface models (MDS/DSM) | Include above-ground objects and should not directly become the ground beneath separately built houses and trees. |
+| Option                                                                                       | Assessment for this game                                                                                                                           |
+| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [CNIG MDT02, 2 m](https://centrodedescargas.cnig.es/CentroDescargas/catalogo.do?Serie=MDT02) | Useful national fallback, but the downloaded local 1 m ground model gives a denser base.                                                           |
+| Coarser terrain grids and contour-map images                                                 | Suitable for broad scenery or reference, less useful for the town's slopes and road placement. A rendered hillshade is not numeric elevation data. |
+| [Classified LiDAR point clouds](https://pnoa.ign.es/pnoa-lidar/productos-a-descarga)         | Useful for later custom classification or extracting objects, but require additional processing. No point-cloud files are included here.           |
+| Surface models (MDS/DSM)                                                                     | Include above-ground objects and should not directly become the ground beneath separately built houses and trees.                                  |
 
 ## Original data and coverage
 
@@ -77,7 +77,7 @@ For the recommended ICV data:
 game_y = (elevation_metres - 299.1851501464844) × 0.7
 ```
 
-This sets the sampled ground at the game origin to zero. CNIG has its own baseline, **299.13751220703125 m**. Each JSON sidecar records the applicable baseline, dimensions and limits. A 257-grid mesh is a reference starting point; optimize, chunk or simplify it for the game's target hardware. Road heights, collisions and object placement will also need to sample the chosen terrain when it is integrated.
+This sets the sampled ground at the game origin to zero. CNIG has its own baseline, **299.13751220703125 m**. Each JSON sidecar records the applicable baseline, dimensions and limits. The runtime uses 64 indexed terrain chunks and interpolates the same triangles for roads, land-use overlays, scenery, characters, vehicles and camera clearance. Roads split at grid edges and diagonals to remain above the ground; buildings use level foundations. Collision retains the game's X/Z footprint checks, while movement resamples elevation after each move. See [Terrain.ts](../../src/world/Terrain.ts). The runtime's piecewise planar interpolation can differ slightly from bilinear sampling between source vertices.
 
 Both surveys postdate the game's 1998 setting. Use the existing [historical and current imagery](../satellite-data/README.md) to assess later road works, industrial development and other changes. Ground models do not supply building facades, textures or a historical reconstruction.
 

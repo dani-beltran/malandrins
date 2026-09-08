@@ -1,17 +1,7 @@
 import { test, expect, type Page } from '@playwright/test';
 import { MapAdapter } from '../src/world/MapAdapter';
 const saveKey = 'malandrins.save.v1';
-interface Diagnostics {
-  screen: string;
-  player: { x: number; z: number };
-  cameraYaw: number;
-  vehicle: { id: number; speed: number } | null;
-  npcs: { id: string; position: { x: number; z: number } }[];
-  cars: { id: number; position: { x: number; z: number }; heading: number }[];
-  tapes: { id: number; position: { x: number; z: number }; collected: boolean }[];
-  stage: number;
-  buildings: number;
-}
+type Diagnostics = ReturnType<import('../src/core/Game').Game['getDiagnostics']>;
 async function diagnostics(page: Page): Promise<Diagnostics> {
   return page.evaluate(() =>
     (window as unknown as { malandrins: { inspect: () => Diagnostics } }).malandrins.inspect(),
@@ -183,6 +173,8 @@ test('enter a car, accelerate, brake and exit; small viewport remains usable', a
   await page.screenshot({ path: 'artifacts/driving.png' });
   await page.keyboard.press('f');
   await expect.poll(async () => (await diagnostics(page)).vehicle).toBeNull();
+  const exited = await diagnostics(page);
+  expect(exited.player.y - exited.terrain.playerGround).toBeCloseTo(0.12, 5);
   await page.setViewportSize({ width: 390, height: 844 });
   await page.keyboard.press('Escape');
   await expect(page.locator('[data-action="resume"]')).toBeInViewport();
@@ -221,4 +213,54 @@ test('all eight tapes can be collected, including the one beside Lucas', async (
   }
   await expect(page.locator('.wallet')).toContainText('00350');
   await expect(page.locator('#toast')).toContainText('All 8 tapes found');
+});
+
+test('survey relief grounds entities, restored saves and the camera on hills and low ground', async ({
+  page,
+}) => {
+  const errors: string[] = [];
+  page.on('pageerror', (error) => errors.push(error.message));
+  await boot(page);
+  await expect(
+    page.getByRole('link', { name: 'Terrain derived from ICV · LiDAR-PNOA 2017' }),
+  ).toBeVisible();
+  await start(page);
+  const initial = await diagnostics(page);
+  expect(initial.terrain.grid).toEqual([257, 257]);
+  expect(initial.terrain.maxHeight - initial.terrain.minHeight).toBeGreaterThan(175);
+  for (const npc of initial.npcs) expect(npc.position.y - npc.ground).toBeCloseTo(0.12, 1);
+  for (const car of initial.cars) expect(car.position.y).toBeGreaterThan(car.ground);
+  expect(initial.cars.some((car) => Math.abs(car.pitch) > 0.01)).toBe(true);
+  for (const tape of initial.tapes) expect(tape.position.y - tape.ground).toBeGreaterThan(0.8);
+
+  const map = new MapAdapter();
+  for (const [coordinate, high] of [
+    [[-0.008, 40.1], true],
+    [[0.01, 40.109], false],
+  ] as const) {
+    await loadPosition(page, map.project(coordinate));
+    const restored = await diagnostics(page);
+    if (high) expect(restored.player.y).toBeGreaterThan(100);
+    else expect(restored.player.y).toBeLessThan(-5);
+    expect(restored.player.y - restored.terrain.playerGround).toBeCloseTo(0.12, 5);
+    await page.keyboard.down('w');
+    await page.waitForTimeout(1200);
+    await page.keyboard.up('w');
+    const moved = await diagnostics(page);
+    expect(
+      Math.hypot(moved.player.x - restored.player.x, moved.player.z - restored.player.z),
+    ).toBeGreaterThan(2);
+    expect(Math.abs(moved.player.y - restored.player.y)).toBeGreaterThan(0.02);
+    expect(moved.player.y - moved.terrain.playerGround).toBeCloseTo(0.12, 5);
+    expect(moved.camera.y - moved.camera.ground).toBeGreaterThanOrEqual(1.49);
+    if (high) await page.screenshot({ path: 'artifacts/terrain-hillside.png' });
+  }
+  await page.keyboard.press('Escape');
+  await page.locator('[data-action="rescue"]').click();
+  const rescued = await diagnostics(page);
+  expect(rescued.player.y - rescued.terrain.playerGround).toBeCloseTo(0.12, 5);
+  expect(
+    Math.hypot(rescued.player.x - initial.player.x, rescued.player.z - initial.player.z),
+  ).toBeLessThan(0.1);
+  expect(errors).toEqual([]);
 });

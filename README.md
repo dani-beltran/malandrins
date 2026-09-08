@@ -55,7 +55,9 @@ Follow the gold marker to Marcos first. Get out of the car before speaking to so
 
 The map in `src/data/laPoblaMap.ts` contains **267 road features**, some of which are multipart and produce **270 independent line strings**, **19 building footprints**, **15 areas**, **39 waterways** and **38 points of interest**.
 
-`MapAdapter` projects longitude/latitude into a local X/Z coordinate system, with latitude corrected longitude scaling, north along negative Z, origin `[-0.0012, 40.1017]` and a uniform gameplay scale of `0.7`. Road and landmark relationships are preserved. Road widths are chosen for playability; heights, terrain, facades and vegetation are artistic approximations. Because the source has very sparse buildings, `WorldBuilder` adds deterministic houses beside the roads. These are fictional infill, not surveyed addresses. The map depicts **La Pobla Tornesa, Castelló**.
+`MapAdapter` projects longitude/latitude into a local X/Z coordinate system, with latitude corrected longitude scaling, north along negative Z, origin `[-0.0012, 40.1017]` and a uniform gameplay scale of `0.7`. Road and landmark relationships are preserved. The ground uses the **ICV MDT Castellón / LiDAR-PNOA 2017** heightmap in `references/topographic-data/derived/icv-2017-heightmap-257.f32`: 257 × 257 samples across the exact map bounds, with elevation converted by `(metres - 299.1851501464844) × 0.7`. The same triangle interpolation drives ground geometry, road and land-use surfaces, walking, vehicle height and slope, scenery placement and camera clearance. Buildings have level roofs and foundations extending to the slope. Terrain is divided into 64 indexed chunks; the boundary extends into fog outside the playable area as an unsurveyed backdrop.
+
+Road widths, building heights, facades and vegetation are artistic approximations. Because the source has very sparse buildings, `WorldBuilder` adds deterministic houses beside the roads. These are fictional infill, not surveyed addresses. The terrain survey postdates the 1998 setting. Movement retains arcade handling and X/Z building collision; there is no gravity, jumping or slope-dependent traction. The map depicts **La Pobla Tornesa, Castelló**.
 
 **Map data © OpenStreetMap contributors, ODbL 1.0.** The dataset’s original attribution is preserved and is visible in the game. See [OpenStreetMap copyright](https://www.openstreetmap.org/copyright) and [MAP_DATA.md](MAP_DATA.md) for the source and data license information.
 
@@ -65,7 +67,7 @@ Geographic data and imagery for future scenery work are saved in the reference f
 - **[street-data/](references/street-data/README.md):** twelve ground-level photographs of streets, squares, narrow lanes and building details from Wikimedia Commons, including Carrer d’Enmig, Carrer de Baix la Vila, Carrer Tossal de la Vila, Plaça del Raval and Plaça del Portal.
 - **[topographic-data/](references/topographic-data/README.md):** official 1 m and 0.5 m LiDAR ground models, source comparisons, heightmaps and game-aligned 3D meshes. The ICV 1 m model is recommended for the base terrain because it removes raised building-like features present in the provisional 0.5 m model.
 
-Each reference guide records sources, capture dates and attribution; the overhead imagery also includes coordinates and georeferencing files. These files are for offline reference and are not loaded by the game.
+Each reference guide records sources, capture dates and attribution; the overhead imagery also includes coordinates and georeferencing files. Only the ICV 257-grid Float32 heightmap (264 KB) and its metadata are bundled for runtime terrain. The other reference files remain offline. **Terrain derived from ICV MDT Castellón / LiDAR-PNOA 2017, CC BY 4.0 scne.es**, cropped, resampled and meshed; source and license links appear on the title screen and full map, with details in [MAP_DATA.md](MAP_DATA.md).
 
 ## Code structure
 
@@ -77,6 +79,7 @@ The code uses classes with explicit dependencies rather than one global game scr
 | `src/core/Renderer.ts`        | WebGL scene, lighting, shadows, low-resolution rendering and final screen pass            |
 | `src/core/Input.ts`           | Held keys, one-shot presses, mouse camera input and focus cleanup                         |
 | `src/world/MapAdapter.ts`     | Geographic projection, road normalization and nearest-road queries                        |
+| `src/world/Terrain.ts`        | Bundled elevation data, exact triangle sampling, terrain chunks and draped surfaces       |
 | `src/world/WorldBuilder.ts`   | Source geography, procedural scenery and static mesh batching                             |
 | `src/world/CollisionWorld.ts` | Spatially indexed polygon collision and subdivided movement                               |
 | `src/entities/`               | Player, NPC and vehicle classes                                                           |

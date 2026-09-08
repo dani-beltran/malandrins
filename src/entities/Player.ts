@@ -3,12 +3,17 @@ import { ModelFactory, type PersonModel } from '../assets/ModelFactory';
 import { Input } from '../core/Input';
 import { CollisionWorld } from '../world/CollisionWorld';
 import type { Point } from '../core/math';
+import type { Terrain } from '../world/Terrain';
 export class Player {
   readonly model: PersonModel;
   readonly position = new THREE.Vector3();
   private gait = 0;
   moving = false;
-  constructor(factory: ModelFactory, p: Point) {
+  constructor(
+    factory: ModelFactory,
+    p: Point,
+    private terrain: Terrain,
+  ) {
     this.model = factory.person(0xe2d3af, 0xc99874, 0x3c302b, 'player');
     this.teleport(p);
   }
@@ -16,7 +21,7 @@ export class Player {
     return this.model.group;
   }
   teleport(p: Point): void {
-    this.position.set(p.x, 0.12, p.z);
+    this.position.set(p.x, this.terrain.heightAt(p.x, p.z) + 0.12, p.z);
     this.object.position.copy(this.position);
   }
   update(dt: number, input: Input, collision: CollisionWorld, cameraYaw: number): void {
@@ -34,6 +39,7 @@ export class Player {
     this.moving = length > 0;
     this.position.x = next.x;
     this.position.z = next.z;
+    this.position.y = this.terrain.heightAt(next.x, next.z) + 0.12;
     this.object.position.copy(this.position);
     if (length) {
       this.object.rotation.y = Math.atan2(dx, dz);

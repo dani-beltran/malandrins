@@ -6,6 +6,7 @@ import { AssetLibrary } from '../assets/AssetLibrary';
 import { ModelFactory } from '../assets/ModelFactory';
 import { MapAdapter } from '../world/MapAdapter';
 import { WorldBuilder } from '../world/WorldBuilder';
+import { Terrain } from '../world/Terrain';
 import { Player } from '../entities/Player';
 import { Vehicle } from '../entities/Vehicle';
 import { Npc } from '../entities/Npc';
@@ -20,6 +21,7 @@ interface Tape {
   id: number;
   object: THREE.Group;
   position: THREE.Vector3;
+  groundHeight: number;
 }
 export class Game {
   readonly map = new MapAdapter();
@@ -33,6 +35,7 @@ export class Game {
   readonly graphics: GameRenderer;
   private models!: ModelFactory;
   private world!: WorldBuilder;
+  private terrain!: Terrain;
   private player!: Player;
   private vehicles: Vehicle[] = [];
   private npcs: Npc[] = [];
@@ -62,7 +65,8 @@ export class Game {
     this.graphics = new GameRenderer(canvas);
   }
   async initialize(): Promise<void> {
-    await this.assets.load();
+    const [, terrain] = await Promise.all([this.assets.load(), Terrain.load(this.map)]);
+    this.terrain = terrain;
     this.models = new ModelFactory(this.assets);
     const npcPoints = characters.map((c) => {
       const projected = this.map.project(c.coordinate),
@@ -83,7 +87,7 @@ export class Game {
       [-0.00186, 40.0986],
     ];
     const carSpawns = carCoordinates.map((p) => this.map.nearestRoad(this.map.project(p), true));
-    this.world = new WorldBuilder(this.map, this.models, [
+    this.world = new WorldBuilder(this.map, this.terrain, this.models, [
       npcPoints[0],
       this.spawn,
       ...npcPoints,
@@ -94,10 +98,11 @@ export class Game {
     this.player = new Player(
       this.models,
       this.save.position ? this.safePoint(this.save.position, 0.6) : this.spawn,
+      this.terrain,
     );
     this.graphics.scene.add(this.player.object);
     this.npcs = characters.map(
-      (c, i) => new Npc(c, this.models, this.safePoint(npcPoints[i], 0.65)),
+      (c, i) => new Npc(c, this.models, this.safePoint(npcPoints[i], 0.65), this.terrain),
     );
     this.npcs.forEach((n) => this.graphics.scene.add(n.object));
     this.vehicles = carSpawns.map(
@@ -109,6 +114,7 @@ export class Game {
           this.safePoint(p.point, 2.2),
           p.angle,
           [0xdbbe76, 0x718f88, 0xb0674d, 0xc6c2a7, 0x7d8a9a, 0xad987a, 0xb78359][i],
+          this.terrain,
         ),
     );
     this.vehicles.forEach((v) => this.graphics.scene.add(v.object));
@@ -141,7 +147,11 @@ export class Game {
     );
     window.addEventListener('pagehide', () => this.persist(), { signal: this.abort.signal });
     this.cameraTarget.copy(this.player.position);
-    this.graphics.camera.position.set(this.spawn.x + 90, 85, this.spawn.z + 115);
+    this.graphics.camera.position.set(
+      this.spawn.x + 90,
+      this.terrain.heightAt(this.spawn.x, this.spawn.z) + 85,
+      this.spawn.z + 115,
+    );
     this.frame = requestAnimationFrame((time) => this.tick(time));
   }
   private safePoint(p: Point, radius: number): Point {
@@ -178,10 +188,11 @@ export class Game {
       );
       for (const side of [-1, 1])
         group.add(this.models.box(0.14, 0.14, 0.03, 0x3e4c44, side * 0.2, 0.02, 0.12));
-      group.position.set(point.x, 1, point.z);
+      const groundHeight = this.terrain.heightAt(point.x, point.z);
+      group.position.set(point.x, groundHeight + 1, point.z);
       group.visible = !this.save.tapes.includes(id);
       this.graphics.scene.add(group);
-      return { id, object: group, position: group.position };
+      return { id, object: group, position: group.position, groundHeight };
     });
   }
   private action(action: UIAction, value?: string): void {
@@ -461,7 +472,7 @@ export class Game {
       this.npcs.forEach((n) => n.update(this.elapsed, this.player.position));
       this.tapes.forEach((t) => {
         t.object.rotation.y = this.elapsed * 1.3;
-        t.position.y = 1.1 + Math.sin(this.elapsed * 2 + t.id) * 0.2;
+        t.position.y = t.groundHeight + 1.1 + Math.sin(this.elapsed * 2 + t.id) * 0.2;
       });
       this.updateCamera(dt);
       this.saveTime += dt;
@@ -486,8 +497,14 @@ export class Game {
   private menuCamera(): void {
     const p = this.map.project([-0.0007, 40.1019]),
       angle = 0.77 + Math.sin(this.elapsed * 0.035) * 0.15;
-    this.graphics.camera.position.set(p.x + Math.sin(angle) * 170, 99, p.z + Math.cos(angle) * 170);
-    this.graphics.camera.lookAt(p.x - 28, 4, p.z - 38);
+    const x = p.x + Math.sin(angle) * 170,
+      z = p.z + Math.cos(angle) * 170;
+    this.graphics.camera.position.set(
+      x,
+      Math.max(this.terrain.heightAt(p.x, p.z) + 99, this.terrain.heightAt(x, z) + 12),
+      z,
+    );
+    this.graphics.camera.lookAt(p.x - 28, this.terrain.heightAt(p.x - 28, p.z - 38) + 4, p.z - 38);
   }
   private snapCamera(): void {
     this.cameraTarget.copy(this.player.position);
@@ -518,6 +535,8 @@ export class Game {
     if (hit && hit.distance < length)
       this.cameraPosition.copy(target).addScaledVector(dir, Math.max(2.2, hit.distance - 0.7));
     this.graphics.camera.position.lerp(this.cameraPosition, 1 - Math.exp(-dt * 10));
+    const camera = this.graphics.camera.position;
+    camera.y = Math.max(camera.y, this.terrain.heightAt(camera.x, camera.z) + 1.5);
     this.graphics.camera.lookAt(target);
   }
   private updateMarker(): void {
@@ -590,21 +609,40 @@ export class Game {
   getDiagnostics() {
     return {
       screen: this.ui.screen,
-      player: { x: this.player.position.x, z: this.player.position.z },
+      player: { x: this.player.position.x, y: this.player.position.y, z: this.player.position.z },
+      terrain: {
+        source: 'ICV MDT Castellón / LiDAR-PNOA 2017',
+        grid: [this.terrain.metadata.width, this.terrain.metadata.height],
+        minHeight: this.terrain.minHeight,
+        maxHeight: this.terrain.maxHeight,
+        playerGround: this.terrain.heightAt(this.player.position.x, this.player.position.z),
+      },
+      camera: {
+        y: this.graphics.camera.position.y,
+        ground: this.terrain.heightAt(
+          this.graphics.camera.position.x,
+          this.graphics.camera.position.z,
+        ),
+      },
       cameraYaw: this.cameraYaw,
       vehicle: this.car ? { id: this.car.id, speed: this.car.speed } : null,
       npcs: this.npcs.map((n) => ({
         id: n.definition.id,
-        position: { x: n.position.x, z: n.position.z },
+        position: { x: n.position.x, y: n.position.y, z: n.position.z },
+        ground: this.terrain.heightAt(n.position.x, n.position.z),
       })),
       cars: this.vehicles.map((v) => ({
         id: v.id,
-        position: { x: v.position.x, z: v.position.z },
+        position: { x: v.position.x, y: v.position.y, z: v.position.z },
+        ground: this.terrain.heightAt(v.position.x, v.position.z),
+        pitch: v.object.rotation.x,
+        roll: v.object.rotation.z,
         heading: v.heading,
       })),
       tapes: this.tapes.map((t) => ({
         id: t.id,
-        position: { x: t.position.x, z: t.position.z },
+        position: { x: t.position.x, y: t.position.y, z: t.position.z },
+        ground: t.groundHeight,
         collected: this.save.tapes.includes(t.id),
       })),
       stage: this.save.stage,

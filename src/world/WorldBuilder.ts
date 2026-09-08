@@ -2,6 +2,7 @@ import * as THREE from 'three';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
 import { MapAdapter, type Road } from './MapAdapter';
 import { CollisionWorld } from './CollisionWorld';
+import { Terrain } from './Terrain';
 import { ModelFactory } from '../assets/ModelFactory';
 import { distance, seededRandom, rectangle, type Point } from '../core/math';
 export class WorldBuilder {
@@ -11,6 +12,7 @@ export class WorldBuilder {
   private random = seededRandom(3401);
   constructor(
     readonly map: MapAdapter,
+    readonly terrain: Terrain,
     private models: ModelFactory,
     private reserved: Point[],
   ) {
@@ -19,7 +21,7 @@ export class WorldBuilder {
   build(): THREE.Group {
     this.ground();
     for (const area of this.map.areas)
-      this.polygon(
+      this.surface(
         area.points,
         area.type === 'forest'
           ? 0x778667
@@ -36,8 +38,14 @@ export class WorldBuilder {
     for (const road of this.map.roads) this.road(road);
     for (const b of this.map.buildings) {
       const height = b.type === 'industrial' ? 8 : b.type === 'ruins' ? 2 : 7 + this.random() * 5;
-      this.polygon(b.points, b.name.startsWith('Ajuntament') ? 0xdbcaac : 0xc6b89b, 0, height);
-      this.polygon(b.points, 0xa8674e, height + 0.1, 0.4);
+      const ground = this.terrain.footprintRange(b.points);
+      this.polygon(
+        b.points,
+        b.name.startsWith('Ajuntament') ? 0xdbcaac : 0xc6b89b,
+        ground.min - 0.3,
+        height + ground.max - ground.min + 0.3,
+      );
+      this.polygon(b.points, 0xa8674e, ground.max + height + 0.1, 0.4);
       this.collision.add(b.points);
       this.buildingOutlines.push(b.points);
     }
@@ -48,27 +56,70 @@ export class WorldBuilder {
     return this.group;
   }
   private ground(): void {
-    const ground = new THREE.Mesh(
-      new THREE.PlaneGeometry(6500, 6500),
-      this.models.assets.material(0x8d9975),
-    );
-    ground.rotation.x = -Math.PI / 2;
-    ground.position.y = -0.05;
-    ground.receiveShadow = true;
-    this.group.add(ground);
-    const colors = [0x899174, 0x92977d, 0x7c8c73, 0x9c9d84];
-    for (let i = 0; i < 45; i++) {
-      const angle = (i / 45) * Math.PI * 2,
-        r = 1250 + this.random() * 550,
-        height = 100 + this.random() * 280;
-      const hill = new THREE.Mesh(
-        new THREE.ConeGeometry(300 + this.random() * 230, height, 5),
-        this.models.assets.material(colors[i % 4]),
-      );
-      hill.position.set(Math.sin(angle) * r, height / 2 - 25, Math.cos(angle) * r);
-      hill.rotation.y = this.random() * 6;
-      this.group.add(hill);
+    const { width, height } = this.terrain.metadata;
+    // Keep indexed terrain chunks out of material batching for culling and camera raycasts.
+    for (let row = 0; row < height - 1; row += 32)
+      for (let col = 0; col < width - 1; col += 32) {
+        const mesh = new THREE.Mesh(
+          this.terrain.createGeometry(
+            col,
+            row,
+            Math.min(32, width - 1 - col),
+            Math.min(32, height - 1 - row),
+          ),
+          this.models.assets.material(0x8d9975),
+        );
+        mesh.userData.terrain = true;
+        mesh.receiveShadow = true;
+        this.group.add(mesh);
+      }
+    // Extend only the boundary into the fog; this apron is outside the playable survey.
+    const { minX, maxX, minZ, maxZ } = this.map.bounds;
+    const corners = [
+      { x: minX, z: minZ },
+      { x: minX, z: maxZ },
+      { x: maxX, z: maxZ },
+      { x: maxX, z: minZ },
+    ];
+    const center = { x: (minX + maxX) / 2, z: (minZ + maxZ) / 2 };
+    const positions: number[] = [];
+    for (let side = 0; side < 4; side++) {
+      const a = corners[side],
+        b = corners[(side + 1) % 4];
+      const steps = side % 2 === 0 ? height - 1 : width - 1;
+      for (let i = 0; i < steps; i++) {
+        const edge = [i / steps, (i + 1) / steps].map((t) => ({
+          x: a.x + (b.x - a.x) * t,
+          z: a.z + (b.z - a.z) * t,
+        }));
+        const inner = edge.map((p) => new THREE.Vector3(p.x, this.terrain.heightAt(p.x, p.z), p.z));
+        const outer = inner.map(
+          (p) =>
+            new THREE.Vector3(
+              center.x + (p.x - center.x) * 4,
+              p.y - 40,
+              center.z + (p.z - center.z) * 4,
+            ),
+        );
+        for (const p of [inner[0], outer[0], inner[1], inner[1], outer[0], outer[1]])
+          positions.push(p.x, p.y, p.z);
+      }
     }
+    const apron = new THREE.BufferGeometry();
+    apron.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
+    apron.computeVertexNormals();
+    const mesh = new THREE.Mesh(apron, this.models.assets.material(0x8d9975));
+    mesh.userData.terrain = true;
+    mesh.receiveShadow = true;
+    this.group.add(mesh);
+  }
+  private surface(points: Point[], color: number, y: number, texture?: string): void {
+    const mesh = new THREE.Mesh(
+      this.terrain.drapeGeometry(points, y),
+      this.models.assets.material(texture ? 0xffffff : color, texture),
+    );
+    mesh.receiveShadow = true;
+    this.group.add(mesh);
   }
   private polygon(points: Point[], color: number, y: number, height = 0): void {
     if (points.length < 3) return;
@@ -89,28 +140,30 @@ export class WorldBuilder {
         b = points[i],
         len = distance(a, b);
       if (len < 0.01) continue;
-      const strip = this.models.box(
-        width,
-        0.018,
-        len + 0.1,
+      const nx = (((b.z - a.z) / len) * width) / 2,
+        nz = ((-(b.x - a.x) / len) * width) / 2;
+      this.surface(
+        [
+          { x: a.x + nx, z: a.z + nz },
+          { x: b.x + nx, z: b.z + nz },
+          { x: b.x - nx, z: b.z - nz },
+          { x: a.x - nx, z: a.z - nz },
+        ],
         color,
-        (a.x + b.x) / 2,
         y,
-        (a.z + b.z) / 2,
+        texture,
       );
-      strip.rotation.y = Math.atan2(b.x - a.x, b.z - a.z);
-      strip.castShadow = false;
-      if (texture) strip.material = this.models.assets.material(0xffffff, texture);
-      this.group.add(strip);
-      const joint = new THREE.Mesh(
-        new THREE.CircleGeometry(width / 2, 8),
-        this.models.assets.material(color),
-      );
-      joint.rotation.x = -Math.PI / 2;
-      joint.position.set(a.x, y + 0.012, a.z);
-      joint.receiveShadow = true;
-      this.group.add(joint);
     }
+    for (const p of points)
+      this.surface(
+        Array.from({ length: 8 }, (_, i) => ({
+          x: p.x + (Math.cos((i * Math.PI) / 4) * width) / 2,
+          z: p.z + (Math.sin((i * Math.PI) / 4) * width) / 2,
+        })),
+        color,
+        y + 0.002,
+        texture,
+      );
   }
   private road(road: Road): void {
     const trail = ['track', 'path', 'footway', 'steps', 'cycleway'].includes(road.type);
@@ -129,18 +182,17 @@ export class WorldBuilder {
           len = distance(a, b),
           angle = Math.atan2(b.x - a.x, b.z - a.z);
         for (let d = 3; d < len - 2; d += 8) {
-          const line = this.models.box(
-            0.17,
-            0.018,
-            2.5,
+          this.surface(
+            rectangle(
+              a.x + ((b.x - a.x) * d) / len,
+              a.z + ((b.z - a.z) * d) / len,
+              0.17,
+              2.5,
+              angle,
+            ),
             0xd5cbb0,
-            a.x + ((b.x - a.x) * d) / len,
             0.116,
-            a.z + ((b.z - a.z) * d) / len,
           );
-          line.rotation.y = angle;
-          line.castShadow = false;
-          this.group.add(line);
         }
       }
   }
@@ -177,8 +229,21 @@ export class WorldBuilder {
             const h = 5.8 + Math.floor(this.random() * 3) * 2.7,
               color = palette[Math.floor(this.random() * palette.length)];
             const house = new THREE.Group();
-            house.position.set(x, 0, z);
+            const ground = this.terrain.footprintRange(poly);
+            house.position.set(x, ground.max, z);
             house.rotation.y = angle;
+            const foundationHeight = ground.max - ground.min + 0.4;
+            house.add(
+              this.models.box(
+                w,
+                foundationHeight,
+                depth,
+                0x9c9785,
+                0,
+                0.12 - foundationHeight / 2,
+                0,
+              ),
+            );
             house.add(this.models.box(w, h, depth, color, 0, h / 2 + 0.12, 0, 'facade'));
             const verts = new Float32Array([
               -w / 2 - 0.3,
@@ -237,7 +302,7 @@ export class WorldBuilder {
         continue;
       if (Math.abs(x) < 140 && Math.abs(z) < 160 && this.random() > 0.15) continue;
       const tree = this.models.tree(0.65 + this.random() * 0.7);
-      tree.position.set(x, 0, z);
+      tree.position.set(x, this.terrain.heightAt(x, z), z);
       this.group.add(tree);
     }
     let k = 0;
@@ -260,7 +325,7 @@ export class WorldBuilder {
           continue;
         if (k++ % 2 === 0) {
           const lamp = this.models.lamp();
-          lamp.position.set(p.x, 0, p.z);
+          lamp.position.set(p.x, this.terrain.heightAt(p.x, p.z), p.z);
           this.group.add(lamp);
         }
       }
@@ -277,7 +342,8 @@ export class WorldBuilder {
           x: r.point.x + Math.cos(r.angle) * (r.road.width / 2 + 1.2),
           z: r.point.z - Math.sin(r.angle) * (r.road.width / 2 + 1.2),
         };
-      const post = this.models.box(0.13, 3.3, 0.13, 0x34443f, side.x, 1.65, side.z);
+      const ground = this.terrain.heightAt(side.x, side.z);
+      const post = this.models.box(0.13, 3.3, 0.13, 0x34443f, side.x, ground + 1.65, side.z);
       this.group.add(post);
       const c = document.createElement('canvas');
       c.width = 256;
@@ -298,7 +364,7 @@ export class WorldBuilder {
         new THREE.BoxGeometry(5, 0.9, 0.13),
         new THREE.MeshLambertMaterial({ map: tex }),
       );
-      sign.position.set(side.x, 3.15, side.z);
+      sign.position.set(side.x, ground + 3.15, side.z);
       sign.rotation.y = r.angle;
       this.group.add(sign);
     }
@@ -310,16 +376,21 @@ export class WorldBuilder {
         this.models.assets.material([0xcd7754, 0xe7c57d, 0x638c7a][i % 3]),
       );
       flag.rotation.z = Math.PI;
-      flag.position.set(center.x - 9 + i * 2, 12 - Math.sin((i / 9) * Math.PI), center.z);
+      flag.position.set(
+        center.x - 9 + i * 2,
+        this.terrain.heightAt(center.x, center.z) + 12 - Math.sin((i / 9) * Math.PI),
+        center.z,
+      );
       this.group.add(flag);
     }
   }
   private batchStatic(): void {
     this.group.updateMatrixWorld(true);
+    const terrain = this.group.children.filter((o) => o.userData.terrain);
     const batches = new Map<THREE.Material, THREE.BufferGeometry[]>(),
       originals: THREE.BufferGeometry[] = [];
     this.group.traverse((o) => {
-      if (!(o instanceof THREE.Mesh) || Array.isArray(o.material)) return;
+      if (!(o instanceof THREE.Mesh) || Array.isArray(o.material) || o.userData.terrain) return;
       let geometry = o.geometry.clone();
       geometry.applyMatrix4(o.matrixWorld);
       if (geometry.index) {
@@ -340,6 +411,7 @@ export class WorldBuilder {
       originals.push(o.geometry);
     });
     this.group.clear();
+    this.group.add(...terrain);
     for (const geo of originals) geo.dispose();
     for (const [material, geometries] of batches) {
       const merged = mergeGeometries(geometries);

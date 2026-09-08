@@ -3,6 +3,7 @@ import { ModelFactory } from '../assets/ModelFactory';
 import { Input } from '../core/Input';
 import { CollisionWorld } from '../world/CollisionWorld';
 import { clamp, type Point } from '../core/math';
+import type { Terrain } from '../world/Terrain';
 export class Vehicle {
   readonly object: THREE.Group;
   speed = 0;
@@ -15,18 +16,19 @@ export class Vehicle {
     p: Point,
     public heading: number,
     color: number,
+    private terrain: Terrain,
   ) {
     this.initial = { position: { ...p }, heading };
     this.object = factory.car(color);
-    this.object.position.set(p.x, 0.12, p.z);
-    this.object.rotation.y = heading;
+    this.object.position.set(p.x, 0, p.z);
+    this.ground();
   }
   reset(): void {
     this.speed = 0;
     this.occupied = false;
     this.heading = this.initial.heading;
-    this.object.position.set(this.initial.position.x, 0.12, this.initial.position.z);
-    this.object.rotation.set(0, this.heading, 0);
+    this.object.position.set(this.initial.position.x, 0, this.initial.position.z);
+    this.ground();
   }
   get position(): THREE.Vector3 {
     return this.object.position;
@@ -47,8 +49,27 @@ export class Vehicle {
     if (travel < Math.hypot(dx, dz) * 0.5) this.speed *= 0.4;
     this.position.x = next.x;
     this.position.z = next.z;
-    this.object.rotation.y = this.heading;
-    this.object.rotation.z = steer * this.speed * 0.0009;
+    this.ground(steer * this.speed * 0.0009);
+  }
+  private ground(lean = 0): void {
+    const sin = Math.sin(this.heading),
+      cos = Math.cos(this.heading);
+    const sample = (side: number, along: number) =>
+      this.terrain.heightAt(
+        this.position.x + cos * side + sin * along,
+        this.position.z - sin * side + cos * along,
+      );
+    const fl = sample(-0.95, 1.35),
+      fr = sample(0.95, 1.35);
+    const bl = sample(-0.95, -1.35),
+      br = sample(0.95, -1.35);
+    this.position.y = Math.max((fl + fr + bl + br) / 4, sample(0, 0)) + 0.12;
+    this.object.rotation.set(
+      -Math.atan2((fl + fr - bl - br) / 2, 2.7),
+      this.heading,
+      Math.atan2((fr + br - fl - bl) / 2, 1.9) + lean,
+      'YXZ',
+    );
   }
   exitPosition(collision: CollisionWorld): Point | null {
     for (const [side, along] of [
