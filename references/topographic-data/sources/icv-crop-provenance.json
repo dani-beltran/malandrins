@@ -1,0 +1,41 @@
+{
+  "source_url": "https://descargas.icv.gva.es/dcd/03_mde/02_mdt/2017_PCAS_0100/01_Malla/01_25830_01_Hoja_CV50_03_TIF/030201_MDT_2017PCAS0100_25830_01_Hoja_CV50_0616.tif",
+  "download_method": "HTTP range reads of original GeoTIFF; native 1 m crop only retained",
+  "source_original_filename": "030201_MDT_2017PCAS0100_25830_01_Hoja_CV50_0616.tif",
+  "source_original_bytes": 2071281546,
+  "source_original_crs": "EPSG:25830",
+  "source_original_dimensions": [
+    29160,
+    19570
+  ],
+  "source_original_transform": [
+    1.0,
+    0.0,
+    739450.0,
+    0.0,
+    -1.0,
+    4451060.0,
+    0.0,
+    0.0,
+    1.0
+  ],
+  "source_original_tags": {
+    "AREA_OR_POINT": "Point"
+  },
+  "saved_crop": "raw/icv-2017-ground-game-area-1m.tif",
+  "crop_dimensions": [
+    2126,
+    2294
+  ],
+  "valid_fraction": 1.0,
+  "crop_min_m": 268.55401611328125,
+  "crop_max_m": 523.4306640625,
+  "crop_bounds_requested": [
+    754655,
+    4442246,
+    756781,
+    4444540
+  ],
+  "crop_sha256": "cb6ba382ad5919f5ca55baed376f26d0d0410212156b2f61c3f5dea3c9c4f434",
+  "metadata_url": "https://catalogo.icv.gva.es/geonetwork/srv/api/records/spaicv030201_2017PCAS0100/formatters/xml"
+}

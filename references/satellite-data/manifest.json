@@ -1,0 +1,206 @@
+{
+  "place": "La Pobla Tornesa, Castellón, Valencian Community, Spain",
+  "center_wgs84_lon_lat": [
+    -0.0015,
+    40.1027
+  ],
+  "download_date": "2026-09-07",
+  "crs": "EPSG:3857",
+  "orientation": "north up",
+  "purpose": "Offline visual reference for the Malandrins project. Not loaded by the game.",
+  "license_url": "https://www.ign.es/resources/licencia/Condiciones_licenciaUso_IGN.pdf",
+  "service_access_constraints": "CC BY 4.0 scne.es",
+  "images": [
+    {
+      "file": "01-satellite-region-winter-2026.jpg",
+      "title": "Satellite regional overview — winter 2026",
+      "image_type": "satellite",
+      "imagery_period": "Winter 2026 mosaic",
+      "native_resolution_m": 10,
+      "width": 1536,
+      "height": 1536,
+      "bbox_epsg3857": [
+        -8011.233693,
+        4873033.351694,
+        7677.27522,
+        4888721.860607
+      ],
+      "bbox_wgs84_west_south_east_north": [
+        -0.07196613671075179,
+        40.048779735097035,
+        0.06896613670518062,
+        40.1565775645669
+      ],
+      "approximate_export_ground_m_per_pixel": 7.812499999891298,
+      "source_url": "https://wms-satelites-historicos.idee.es/satelites-historicos?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=SENTINEL.2026invierno_432-1184&STYLES=&CRS=EPSG%3A3857&BBOX=-8011.233693%2C4873033.351694%2C7677.27522%2C4888721.860607&WIDTH=1536&HEIGHT=1536&FORMAT=image%2Fjpeg&TRANSPARENT=FALSE",
+      "service_endpoint": "https://wms-satelites-historicos.idee.es/satelites-historicos",
+      "layer": "SENTINEL.2026invierno_432-1184",
+      "attribution": "Copernicus Sentinel-2; IGN/CNIG, Sistema Cartográfico Nacional; CC BY 4.0 scne.es",
+      "notes": "False natural color composite (bands 11, 4, 3, 2).",
+      "processing": "Unmodified JPEG response from official WMS; service performs crop, reprojection and resampling.",
+      "bytes": 325804,
+      "sha256": "883793fe5f8ddff74931aed96d74c544b0db9b6f8c5b89a7724a825b16bdc540"
+    },
+    {
+      "file": "02-satellite-region-summer-2024.jpg",
+      "title": "Satellite regional overview — summer 2024",
+      "image_type": "satellite",
+      "imagery_period": "Summer 2024 mosaic",
+      "native_resolution_m": 10,
+      "width": 1536,
+      "height": 1536,
+      "bbox_epsg3857": [
+        -8011.233693,
+        4873033.351694,
+        7677.27522,
+        4888721.860607
+      ],
+      "bbox_wgs84_west_south_east_north": [
+        -0.07196613671075179,
+        40.048779735097035,
+        0.06896613670518062,
+        40.1565775645669
+      ],
+      "approximate_export_ground_m_per_pixel": 7.812499999891298,
+      "source_url": "https://wms-satelites-historicos.idee.es/satelites-historicos?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=SENTINEL.2024verano_432-1184&STYLES=&CRS=EPSG%3A3857&BBOX=-8011.233693%2C4873033.351694%2C7677.27522%2C4888721.860607&WIDTH=1536&HEIGHT=1536&FORMAT=image%2Fjpeg&TRANSPARENT=FALSE",
+      "service_endpoint": "https://wms-satelites-historicos.idee.es/satelites-historicos",
+      "layer": "SENTINEL.2024verano_432-1184",
+      "attribution": "Copernicus Sentinel-2; IGN/CNIG, Sistema Cartográfico Nacional; CC BY 4.0 scne.es",
+      "notes": "False natural color composite (bands 11, 4, 3, 2). Selected for clear regional coverage after visually inspecting the available summer mosaics.",
+      "processing": "Unmodified JPEG response from official WMS; service performs crop, reprojection and resampling.",
+      "bytes": 269473,
+      "sha256": "4c88c53036a866c5838c7077af3ecddb22fbcd6030e938d57cf3c6cc4b43b26b"
+    },
+    {
+      "file": "03-satellite-region-landsat-1996.jpg",
+      "title": "Historical satellite regional overview — 1996",
+      "image_type": "satellite",
+      "imagery_period": "1996 mosaic",
+      "native_resolution_m": 30,
+      "width": 1536,
+      "height": 1536,
+      "bbox_epsg3857": [
+        -8011.233693,
+        4873033.351694,
+        7677.27522,
+        4888721.860607
+      ],
+      "bbox_wgs84_west_south_east_north": [
+        -0.07196613671075179,
+        40.048779735097035,
+        0.06896613670518062,
+        40.1565775645669
+      ],
+      "approximate_export_ground_m_per_pixel": 7.812499999891298,
+      "source_url": "https://wms-satelites-historicos.idee.es/satelites-historicos?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=LANDSAT5.1996_321-543&STYLES=&CRS=EPSG%3A3857&BBOX=-8011.233693%2C4873033.351694%2C7677.27522%2C4888721.860607&WIDTH=1536&HEIGHT=1536&FORMAT=image%2Fjpeg&TRANSPARENT=FALSE",
+      "service_endpoint": "https://wms-satelites-historicos.idee.es/satelites-historicos",
+      "layer": "LANDSAT5.1996_321-543",
+      "attribution": "Landsat 5 TM / USGS; IGN/CNIG historical mosaic service; CC BY 4.0 scne.es",
+      "notes": "Natural color composite: 80% bands 3,2,1 and 20% bands 5,4,3. Useful near the game’s 1998 setting; not a 1998 acquisition.",
+      "processing": "Unmodified JPEG response from official WMS; service performs crop, reprojection and resampling.",
+      "bytes": 347664,
+      "sha256": "6fd640a91581cf0b5deb361fb62e11e9c1d2198c3dcc12448aa412a1a768ad95"
+    },
+    {
+      "file": "04-aerial-surroundings-pnoa.jpg",
+      "title": "Town and surrounding hills",
+      "image_type": "aerial orthophoto",
+      "imagery_period": "PNOA maximum actuality; July 2024 at sampled village center",
+      "native_resolution_m": null,
+      "width": 3072,
+      "height": 3072,
+      "bbox_epsg3857": [
+        -3435.418593,
+        4877609.166794,
+        3101.460121,
+        4884146.045508
+      ],
+      "bbox_wgs84_west_south_east_north": [
+        -0.030860890294402813,
+        40.08023841143864,
+        0.027860890297814807,
+        40.12515417531128
+      ],
+      "approximate_export_ground_m_per_pixel": 1.627604166706267,
+      "source_url": "https://www.ign.es/wms-inspire/pnoa-ma?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=OI.OrthoimageCoverage&STYLES=&CRS=EPSG%3A3857&BBOX=-3435.418593%2C4877609.166794%2C3101.460121%2C4884146.045508&WIDTH=3072&HEIGHT=3072&FORMAT=image%2Fjpeg&TRANSPARENT=FALSE",
+      "service_endpoint": "https://www.ign.es/wms-inspire/pnoa-ma",
+      "layer": "OI.OrthoimageCoverage",
+      "attribution": "PNOA, IGN/CNIG, Sistema Cartográfico Nacional; CC BY 4.0 scne.es",
+      "notes": "PNOA maximum actuality service. Modern imagery; village-center sample reports July 2024 at 0.25 m native resolution.",
+      "processing": "Unmodified JPEG response from official WMS; service performs crop, reprojection and resampling.",
+      "bytes": 2388231,
+      "sha256": "885be968a22586942f2b9801cdc64c476c8ab6549934e21a908716ce3d638311"
+    },
+    {
+      "file": "05-aerial-game-map-bounds-pnoa.jpg",
+      "title": "Exact game map extent",
+      "image_type": "aerial orthophoto",
+      "imagery_period": "PNOA maximum actuality; July 2024 at sampled village center",
+      "native_resolution_m": null,
+      "width": 2820,
+      "height": 3072,
+      "bbox_epsg3857": [
+        -1335.83389,
+        4879320.489084,
+        1335.83389,
+        4882231.187211
+      ],
+      "bbox_wgs84_west_south_east_north": [
+        -0.012000000004318357,
+        40.092000000000276,
+        0.012000000004318357,
+        40.111999999998545
+      ],
+      "approximate_export_ground_m_per_pixel": 0.7246577177421273,
+      "source_url": "https://www.ign.es/wms-inspire/pnoa-ma?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=OI.OrthoimageCoverage&STYLES=&CRS=EPSG%3A3857&BBOX=-1335.83389%2C4879320.489084%2C1335.83389%2C4882231.187211&WIDTH=2820&HEIGHT=3072&FORMAT=image%2Fjpeg&TRANSPARENT=FALSE",
+      "service_endpoint": "https://www.ign.es/wms-inspire/pnoa-ma",
+      "layer": "OI.OrthoimageCoverage",
+      "attribution": "PNOA, IGN/CNIG, Sistema Cartográfico Nacional; CC BY 4.0 scne.es",
+      "notes": "Matches src/data/laPoblaMap.ts bounds: west -0.012, south 40.092, east 0.012, north 40.112. Modern imagery.",
+      "processing": "Unmodified JPEG response from official WMS; service performs crop, reprojection and resampling.",
+      "bytes": 2345383,
+      "sha256": "2a0029ef139b35a71f53a522c50012af67a7da4067774ef39025303b04b47c60"
+    },
+    {
+      "file": "06-aerial-town-center-pnoa.jpg",
+      "title": "Town center detail",
+      "image_type": "aerial orthophoto",
+      "imagery_period": "PNOA maximum actuality; July 2024 at sampled village center",
+      "native_resolution_m": null,
+      "width": 3072,
+      "height": 3072,
+      "bbox_epsg3857": [
+        -820.667108,
+        4880223.918279,
+        486.708635,
+        4881531.294022
+      ],
+      "bbox_wgs84_west_south_east_north": [
+        -0.007372178062905661,
+        40.09820827531351,
+        0.004372178057334495,
+        40.10719142815361
+      ],
+      "approximate_export_ground_m_per_pixel": 0.32552083339105103,
+      "source_url": "https://www.ign.es/wms-inspire/pnoa-ma?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=OI.OrthoimageCoverage&STYLES=&CRS=EPSG%3A3857&BBOX=-820.667108%2C4880223.918279%2C486.708635%2C4881531.294022&WIDTH=3072&HEIGHT=3072&FORMAT=image%2Fjpeg&TRANSPARENT=FALSE",
+      "service_endpoint": "https://www.ign.es/wms-inspire/pnoa-ma",
+      "layer": "OI.OrthoimageCoverage",
+      "attribution": "PNOA, IGN/CNIG, Sistema Cartográfico Nacional; CC BY 4.0 scne.es",
+      "notes": "Approximately 1 km square centered on the village; modern imagery.",
+      "processing": "Unmodified JPEG response from official WMS; service performs crop, reprojection and resampling.",
+      "bytes": 2215972,
+      "sha256": "647822a83edfd6b5c7535e239298e2e3ba75b76a6e2793064a411c70e9092a16"
+    }
+  ],
+  "aerial_metadata_sample": {
+    "location_wgs84_lon_lat": [
+      -0.0015,
+      40.1027
+    ],
+    "imagery_date": "2024-07",
+    "native_resolution_m": 0.25,
+    "scope": "Single GetFeatureInfo sample at village center; other pixels in the wider mosaics may have different dates or resolutions.",
+    "response_file": "sources/pnoa-date.json",
+    "request_url": "https://www.ign.es/wms-inspire/pnoa-ma?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetFeatureInfo&LAYERS=OI.MosaicElement&QUERY_LAYERS=OI.MosaicElement&STYLES=&CRS=EPSG%3A3857&BBOX=-820.6671075740059%2C4880223.918279309%2C486.70863519418515%2C4881531.294022078&WIDTH=101&HEIGHT=101&I=50&J=50&INFO_FORMAT=application%2Fjson&FEATURE_COUNT=10"
+  }
+}

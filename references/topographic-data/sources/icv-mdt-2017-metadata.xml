@@ -1,0 +1,872 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gmd:MD_Metadata xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:gml="http://www.opengis.net/gml"
+                 xmlns:gco="http://www.isotc211.org/2005/gco"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xmlns:xlink="http://www.w3.org/1999/xlink"
+                 xmlns:gmx="http://www.isotc211.org/2005/gmx"
+                 xsi:schemaLocation="http://www.isotc211.org/2005/gmd http://schemas.opengis.net/iso/19139/20060504/gmd/gmd.xsd  http://www.isotc211.org/2005/gmx http://schemas.opengis.net/iso/19139/20060504/gmx/gmx.xsd">
+  <gmd:fileIdentifier>
+      <gco:CharacterString>spaicv030201_2017PCAS0100</gco:CharacterString>
+  </gmd:fileIdentifier>
+  <gmd:language>
+      <gmd:LanguageCode codeList="http://www.loc.gov/standards/iso639-2/" codeListValue="spa"/>
+  </gmd:language>
+  <gmd:characterSet>
+      <gmd:MD_CharacterSetCode codeListValue="utf8"
+                               codeList="http://standards.iso.org/iso/19139/resources/gmxCodelists.xml#MD_CharacterSetCode">UTF-8</gmd:MD_CharacterSetCode>
+  </gmd:characterSet>
+  <gmd:parentIdentifier>
+      <gco:CharacterString>spaicv0301_2017PCAS0010</gco:CharacterString>
+  </gmd:parentIdentifier>
+  <gmd:hierarchyLevel>
+      <gmd:MD_ScopeCode codeList="http://standards.iso.org/iso/19139/resources/gmxCodelists.xml#MD_ScopeCode"
+                        codeListValue="dataset"/>
+  </gmd:hierarchyLevel>
+  <gmd:contact>
+      <gmd:CI_ResponsibleParty>
+         <gmd:organisationName xsi:type="gmd:PT_FreeText_PropertyType">
+            <gco:CharacterString>Institut Cartogràfic Valencià</gco:CharacterString>
+            <gmd:PT_FreeText>
+               <gmd:textGroup>
+                  <gmd:LocalisedCharacterString locale="#cat">Institut Cartogràfic Valencià</gmd:LocalisedCharacterString>
+               </gmd:textGroup>
+               <gmd:textGroup>
+                  <gmd:LocalisedCharacterString locale="#eng">Institut Cartogràfic Valencià</gmd:LocalisedCharacterString>
+               </gmd:textGroup>
+            </gmd:PT_FreeText>
+         </gmd:organisationName>
+         <gmd:contactInfo>
+            <gmd:CI_Contact>
+               <gmd:address>
+                  <gmd:CI_Address>
+                     <gmd:electronicMailAddress xsi:type="gmd:PT_FreeText_PropertyType">
+                        <gco:CharacterString>responde_icv@gva.es</gco:CharacterString>
+                        <gmd:PT_FreeText>
+                           <gmd:textGroup>
+                              <gmd:LocalisedCharacterString locale="#cat">responde_icv@gva.es</gmd:LocalisedCharacterString>
+                           </gmd:textGroup>
+                           <gmd:textGroup>
+                              <gmd:LocalisedCharacterString locale="#eng">responde_icv@gva.es</gmd:LocalisedCharacterString>
+                           </gmd:textGroup>
+                        </gmd:PT_FreeText>
+                     </gmd:electronicMailAddress>
+                  </gmd:CI_Address>
+               </gmd:address>
+               <gmd:onlineResource>
+                  <gmd:CI_OnlineResource>
+                     <gmd:linkage>
+                        <gmd:URL>www.icv.gva.es</gmd:URL>
+                     </gmd:linkage>
+                  </gmd:CI_OnlineResource>
+               </gmd:onlineResource>
+            </gmd:CI_Contact>
+         </gmd:contactInfo>
+         <gmd:role>
+            <gmd:CI_RoleCode codeList="http://standards.iso.org/iso/19139/resources/gmxCodelists.xml#CI_RoleCode"
+                             codeListValue="pointOfContact"/>
+         </gmd:role>
+      </gmd:CI_ResponsibleParty>
+  </gmd:contact>
+  <gmd:dateStamp>
+      <gco:Date>2022-04-11</gco:Date>
+  </gmd:dateStamp>
+  <gmd:metadataStandardName xsi:type="gmd:PT_FreeText_PropertyType">
+      <gco:CharacterString>Reglamento (CE) Nº 1205/2008 de Inspire. INSPIRE TG 2.0</gco:CharacterString>
+      <gmd:PT_FreeText>
+         <gmd:textGroup>
+            <gmd:LocalisedCharacterString locale="#cat">Reglamento (CE) Nº 1205/2008 de Inspire. INSPIRE TG 2.0</gmd:LocalisedCharacterString>
+         </gmd:textGroup>
+         <gmd:textGroup>
+            <gmd:LocalisedCharacterString locale="#eng">Reglamento (CE) Nº 1205/2008 de Inspire. INSPIRE TG 2.0</gmd:LocalisedCharacterString>
+         </gmd:textGroup>
+      </gmd:PT_FreeText>
+  </gmd:metadataStandardName>
+  <gmd:metadataStandardVersion>
+      <gco:CharacterString>INSPIRE TG 2.0</gco:CharacterString>
+  </gmd:metadataStandardVersion>
+  <gmd:locale>
+      <gmd:PT_Locale id="cat">
+         <gmd:languageCode>
+            <gmd:LanguageCode codeList="http://www.loc.gov/standards/iso639-2/" codeListValue="cat"/>
+         </gmd:languageCode>
+         <gmd:characterEncoding>
+            <gmd:MD_CharacterSetCode codeListValue="utf8"
+                                     codeList="http://standards.iso.org/iso/19139/resources/gmxCodelists.xml#MD_CharacterSetCode">UTF-8</gmd:MD_CharacterSetCode>
+         </gmd:characterEncoding>
+      </gmd:PT_Locale>
+  </gmd:locale>
+  <gmd:locale>
+      <gmd:PT_Locale id="eng">
+         <gmd:languageCode>
+            <gmd:LanguageCode codeList="http://www.loc.gov/standards/iso639-2/" codeListValue="eng"/>
+         </gmd:languageCode>
+         <gmd:characterEncoding>
+            <gmd:MD_CharacterSetCode codeListValue="utf8"
+                                     codeList="http://standards.iso.org/iso/19139/resources/gmxCodelists.xml#MD_CharacterSetCode">UTF-8</gmd:MD_CharacterSetCode>
+         </gmd:characterEncoding>
+      </gmd:PT_Locale>
+  </gmd:locale>
+  <gmd:referenceSystemInfo>
+      <gmd:MD_ReferenceSystem>
+         <gmd:referenceSystemIdentifier>
+            <gmd:RS_Identifier>
+               <gmd:code>
+                  <gmx:Anchor xlink:href="http://www.opengis.net/def/crs/EPSG/0/3042">EPSG:3042</gmx:Anchor>
+               </gmd:code>
+            </gmd:RS_Identifier>
+         </gmd:referenceSystemIdentifier>
+      </gmd:MD_ReferenceSystem>
+  </gmd:referenceSystemInfo>
+  <gmd:referenceSystemInfo>
+      <gmd:MD_ReferenceSystem>
+         <gmd:referenceSystemIdentifier>
+            <gmd:RS_Identifier>
+               <gmd:code>
+                  <gmx:Anchor xlink:href="http://www.opengis.net/def/crs/EPSG/0/25830">EPSG:25830</gmx:Anchor>
+               </gmd:code>
+            </gmd:RS_Identifier>
+         </gmd:referenceSystemIdentifier>
+      </gmd:MD_ReferenceSystem>
+  </gmd:referenceSystemInfo>
+  <gmd:referenceSystemInfo>
+      <gmd:MD_ReferenceSystem>
+         <gmd:referenceSystemIdentifier>
+            <gmd:RS_Identifier>
+               <gmd:code>
+                  <gmx:Anchor xlink:href="http://www.opengis.net/def/crs/EPSG/0/5782">EPSG:5782</gmx:Anchor>
+               </gmd:code>
+            </gmd:RS_Identifier>
+         </gmd:referenceSystemIdentifier>
+      </gmd:MD_ReferenceSystem>
+  </gmd:referenceSystemInfo>
+  <gmd:identificationInfo>
+      <gmd:MD_DataIdentification>
+         <gmd:citation>
+            <gmd:CI_Citation>
+               <gmd:title xsi:type="gmd:PT_FreeText_PropertyType">
+                  <gco:CharacterString>Modelo Digital del Terreno (MDT) de LIDAR de 1 metro de resolución de la provincia de Castellón 2017</gco:CharacterString>
+                  <gmd:PT_FreeText>
+                     <gmd:textGroup>
+                        <gmd:LocalisedCharacterString locale="#cat">Model Digital del Terreny (MDT) de LIDAR d'1 metre de resolució de la província de Castelló 2017</gmd:LocalisedCharacterString>
+                     </gmd:textGroup>
+                     <gmd:textGroup>
+                        <gmd:LocalisedCharacterString locale="#eng">LIDAR Digital Terrain Model (DTM) of 1 meter resolution covering the province of Castellón 2017</gmd:LocalisedCharacterString>
+                     </gmd:textGroup>
+                  </gmd:PT_FreeText>
+               </gmd:title>
+               <gmd:alternateTitle xsi:type="gmd:PT_FreeText_PropertyType">
+                  <gco:CharacterString>MDT 01m de resolución de la provincia de Castellón (Lidar año 2017)</gco:CharacterString>
+                  <gmd:PT_FreeText>
+                     <gmd:textGroup>
+                        <gmd:LocalisedCharacterString locale="#cat">MDT 01m de resolució de la província de Castelló (Lidar any 2017)</gmd:LocalisedCharacterString>
+                     </gmd:textGroup>
+                     <gmd:textGroup>
+                        <gmd:LocalisedCharacterString locale="#eng">DTM 01m resolution of the province of Castellón (Lidar year 2017)</gmd:LocalisedCharacterString>
+                     </gmd:textGroup>
+                  </gmd:PT_FreeText>
+               </gmd:alternateTitle>
+               <gmd:date>
+                  <gmd:CI_Date>
+                     <gmd:date>
+                        <gco:Date>2022-03-23</gco:Date>
+                     </gmd:date>
+                     <gmd:dateType>
+                        <gmd:CI_DateTypeCode codeList="http://standards.iso.org/iso/19139/resources/gmxCodelists.xml#CI_DateTypeCode"
+                                             codeListValue="creation">Creation</gmd:CI_DateTypeCode>
+                     </gmd:dateType>
+                  </gmd:CI_Date>
+               </gmd:date>
+               <gmd:date>
+                  <gmd:CI_Date>
+                     <gmd:date>
+                        <gco:Date>2022-03-23</gco:Date>
+                     </gmd:date>
+                     <gmd:dateType>
+                        <gmd:CI_DateTypeCode codeList="http://standards.iso.org/iso/19139/resources/gmxCodelists.xml#CI_DateTypeCode"
+                                             codeListValue="revision">Revisión</gmd:CI_DateTypeCode>
+                     </gmd:dateType>
+                  </gmd:CI_Date>
+               </gmd:date>
+               <gmd:identifier>
+                  <gmd:MD_Identifier>
+                     <gmd:code xsi:type="gmd:PT_FreeText_PropertyType">
+                        <gco:CharacterString>030201_2017PCAS0100</gco:CharacterString>
+                        <gmd:PT_FreeText>
+                           <gmd:textGroup>
+                              <gmd:LocalisedCharacterString locale="#cat">030201_2017PCAS0100</gmd:LocalisedCharacterString>
+                           </gmd:textGroup>
+                           <gmd:textGroup>
+                              <gmd:LocalisedCharacterString locale="#eng">030201_2017PCAS0100</gmd:LocalisedCharacterString>
+                           </gmd:textGroup>
+                        </gmd:PT_FreeText>
+                     </gmd:code>
+                  </gmd:MD_Identifier>
+               </gmd:identifier>
+            </gmd:CI_Citation>
+         </gmd:citation>
+         <gmd:abstract xsi:type="gmd:PT_FreeText_PropertyType">
+            <gco:CharacterString>Modelo digital del terreno (MDT) ráster de paso de malla 1 metro de píxel de la provincia de Castellón. Este modelo digital del terreno ha sido generado a partir de la clase suelo del LIDAR del 2017 (1 punto por metro cuadrado) que previamente ha sido reclasificado de forma precisa. Se han utilizado también breaklines para que el MDT se adapte al terreno donde éste no quede bien definido por la clase suelo. El formato de distribución de los ficheros es GeoTIFF de 32 bits. La unidad de descarga es por hojas MTN50. Sistema geodésico de referencia ETRS89 y proyección UTM en el huso 30. Alturas ortométricas. Producto derivado de LiDAR-PNOA 2017 CC-BY 4.0 scne.es</gco:CharacterString>
+            <gmd:PT_FreeText>
+               <gmd:textGroup>
+                  <gmd:LocalisedCharacterString locale="#cat">Model digital del terreny (MDT) ráster de pas de malla 1 metre de píxel de la província de Castelló. Aquest model digital del terreny ha sigut generat a partir de la classe sòl del LIDAR del 2017 (1 punt per metre quadrat) que prèviament ha sigut reclassificat de manera precisa. S'han utilitzat també breaklines perquè el MDT s'adapte al terreny on aquest no quede ben definit per la classe sòl. El format de distribució dels fitxers és GeoTIFF de 32 bits. La unitat de descàrrega és per fulles MTN50. Sistema geodèsic de referència ETRS89 i projecció UTM en el fus 30. Altures ortomètriques. Producte derivat de LiDAR-PNOA 2017 CC-BY 4.0 scne.es</gmd:LocalisedCharacterString>
+               </gmd:textGroup>
+               <gmd:textGroup>
+                  <gmd:LocalisedCharacterString locale="#eng">Digital terrain model (DTM). Raster with ground sample distance (GSD) of 1 meter of the province of Castellón. This digital terrain model has been generated from the 2017 LIDAR (1 point per square meter ) ground class that has previously been accurately reclassified. Breaklines have also been used so that the DTM adapts to the terrain where it is not well defined by the ground class. The distribution format of the files is GeoTIFF 32 bits. The unloading unit is by sheets MTN50. ETRS89 geodetic reference system and UTM projection in zone 30. Orthometric heights. Product derived from LiDAR-PNOA 2017 CC-BY 4.0 scne.es</gmd:LocalisedCharacterString>
+               </gmd:textGroup>
+            </gmd:PT_FreeText>
+         </gmd:abstract>
+         <gmd:purpose xsi:type="gmd:PT_FreeText_PropertyType">
+            <gco:CharacterString>Describir la altimetría del terreno a partir de una depuración precisa de la clase suelo de los puntos LIDAR de 2017 de la provincia de Castellón</gco:CharacterString>
+            <gmd:PT_FreeText>
+               <gmd:textGroup>
+                  <gmd:LocalisedCharacterString locale="#cat">Descriure l'altimetria del terreny a partir d'una depuració precisa de la classe sòl dels punts LIDAR de 2017 de la província de Castelló</gmd:LocalisedCharacterString>
+               </gmd:textGroup>
+               <gmd:textGroup>
+                  <gmd:LocalisedCharacterString locale="#eng">Describing the altimetry of the ground surface from a precise filtering of the ground class of the 2017 LIDAR points in the province of Castellón</gmd:LocalisedCharacterString>
+               </gmd:textGroup>
+            </gmd:PT_FreeText>
+         </gmd:purpose>
+         <gmd:credit>
+            <gco:CharacterString>Institut Cartogràfic Valencià;Instituto Geográfico Nacional</gco:CharacterString>
+         </gmd:credit>
+         <gmd:status>
+            <gmd:MD_ProgressCode codeList="http://standards.iso.org/iso/19139/resources/gmxCodelists.xml#MD_ProgressCode"
+                                 codeListValue="final">final</gmd:MD_ProgressCode>
+         </gmd:status>
+         <gmd:pointOfContact>
+            <gmd:CI_ResponsibleParty>
+               <gmd:organisationName xsi:type="gmd:PT_FreeText_PropertyType">
+                  <gco:CharacterString>Servicio de Observación del Territorio - Institut Cartogràfic Valencià</gco:CharacterString>
+                  <gmd:PT_FreeText>
+                     <gmd:textGroup>
+                        <gmd:LocalisedCharacterString locale="#cat">Servei d'Observació del Territori - Institut Cartogràfic Valencià</gmd:LocalisedCharacterString>
+                     </gmd:textGroup>
+                     <gmd:textGroup>
+                        <gmd:LocalisedCharacterString locale="#eng">Territory Observation Service - Institut Cartogràfic Valencià</gmd:LocalisedCharacterString>
+                     </gmd:textGroup>
+                  </gmd:PT_FreeText>
+               </gmd:organisationName>
+               <gmd:contactInfo>
+                  <gmd:CI_Contact>
+                     <gmd:address>
+                        <gmd:CI_Address>
+                           <gmd:electronicMailAddress xsi:type="gmd:PT_FreeText_PropertyType">
+                              <gco:CharacterString>responde_icv@gva.es</gco:CharacterString>
+                              <gmd:PT_FreeText>
+                                 <gmd:textGroup>
+                                    <gmd:LocalisedCharacterString locale="#cat">responde_icv@gva.es</gmd:LocalisedCharacterString>
+                                 </gmd:textGroup>
+                                 <gmd:textGroup>
+                                    <gmd:LocalisedCharacterString locale="#eng">responde_icv@gva.es</gmd:LocalisedCharacterString>
+                                 </gmd:textGroup>
+                              </gmd:PT_FreeText>
+                           </gmd:electronicMailAddress>
+                        </gmd:CI_Address>
+                     </gmd:address>
+                     <gmd:onlineResource>
+                        <gmd:CI_OnlineResource>
+                           <gmd:linkage>
+                              <gmd:URL>www.icv.gva.es</gmd:URL>
+                           </gmd:linkage>
+                        </gmd:CI_OnlineResource>
+                     </gmd:onlineResource>
+                  </gmd:CI_Contact>
+               </gmd:contactInfo>
+               <gmd:role>
+                  <gmd:CI_RoleCode codeList="http://standards.iso.org/iso/19139/resources/gmxCodelists.xml#CI_RoleCode"
+                                   codeListValue="owner"/>
+               </gmd:role>
+            </gmd:CI_ResponsibleParty>
+         </gmd:pointOfContact>
+         <gmd:pointOfContact>
+            <gmd:CI_ResponsibleParty>
+               <gmd:organisationName xsi:type="gmd:PT_FreeText_PropertyType">
+                  <gco:CharacterString>Servicio de Observación del Territorio - Institut Cartogràfic Valencià</gco:CharacterString>
+                  <gmd:PT_FreeText>
+                     <gmd:textGroup>
+                        <gmd:LocalisedCharacterString locale="#cat">Servei d'Observació del Territori - Institut Cartogràfic Valencià</gmd:LocalisedCharacterString>
+                     </gmd:textGroup>
+                     <gmd:textGroup>
+                        <gmd:LocalisedCharacterString locale="#eng">Territory Observation Service - Institut Cartogràfic Valencià</gmd:LocalisedCharacterString>
+                     </gmd:textGroup>
+                  </gmd:PT_FreeText>
+               </gmd:organisationName>
+               <gmd:contactInfo>
+                  <gmd:CI_Contact>
+                     <gmd:address>
+                        <gmd:CI_Address>
+                           <gmd:electronicMailAddress xsi:type="gmd:PT_FreeText_PropertyType">
+                              <gco:CharacterString>responde_icv@gva.es</gco:CharacterString>
+                              <gmd:PT_FreeText>
+                                 <gmd:textGroup>
+                                    <gmd:LocalisedCharacterString locale="#cat">responde_icv@gva.es</gmd:LocalisedCharacterString>
+                                 </gmd:textGroup>
+                                 <gmd:textGroup>
+                                    <gmd:LocalisedCharacterString locale="#eng">responde_icv@gva.es</gmd:LocalisedCharacterString>
+                                 </gmd:textGroup>
+                              </gmd:PT_FreeText>
+                           </gmd:electronicMailAddress>
+                        </gmd:CI_Address>
+                     </gmd:address>
+                     <gmd:onlineResource>
+                        <gmd:CI_OnlineResource>
+                           <gmd:linkage>
+                              <gmd:URL>www.icv.gva.es</gmd:URL>
+                           </gmd:linkage>
+                        </gmd:CI_OnlineResource>
+                     </gmd:onlineResource>
+                  </gmd:CI_Contact>
+               </gmd:contactInfo>
+               <gmd:role>
+                  <gmd:CI_RoleCode codeList="http://standards.iso.org/iso/19139/resources/gmxCodelists.xml#CI_RoleCode"
+                                   codeListValue="processor"/>
+               </gmd:role>
+            </gmd:CI_ResponsibleParty>
+         </gmd:pointOfContact>
+         <gmd:pointOfContact>
+            <gmd:CI_ResponsibleParty>
+               <gmd:organisationName xsi:type="gmd:PT_FreeText_PropertyType">
+                  <gco:CharacterString>Institut Cartogràfic Valencià</gco:CharacterString>
+                  <gmd:PT_FreeText>
+                     <gmd:textGroup>
+                        <gmd:LocalisedCharacterString locale="#cat">Institut Cartogràfic Valencià</gmd:LocalisedCharacterString>
+                     </gmd:textGroup>
+                     <gmd:textGroup>
+                        <gmd:LocalisedCharacterString locale="#eng">Institut Cartogràfic Valencià</gmd:LocalisedCharacterString>
+                     </gmd:textGroup>
+                  </gmd:PT_FreeText>
+               </gmd:organisationName>
+               <gmd:contactInfo>
+                  <gmd:CI_Contact>
+                     <gmd:address>
+                        <gmd:CI_Address>
+                           <gmd:electronicMailAddress xsi:type="gmd:PT_FreeText_PropertyType">
+                              <gco:CharacterString>responde_icv@gva.es</gco:CharacterString>
+                              <gmd:PT_FreeText>
+                                 <gmd:textGroup>
+                                    <gmd:LocalisedCharacterString locale="#cat">responde_icv@gva.es</gmd:LocalisedCharacterString>
+                                 </gmd:textGroup>
+                                 <gmd:textGroup>
+                                    <gmd:LocalisedCharacterString locale="#eng">responde_icv@gva.es</gmd:LocalisedCharacterString>
+                                 </gmd:textGroup>
+                              </gmd:PT_FreeText>
+                           </gmd:electronicMailAddress>
+                        </gmd:CI_Address>
+                     </gmd:address>
+                     <gmd:onlineResource>
+                        <gmd:CI_OnlineResource>
+                           <gmd:linkage>
+                              <gmd:URL>www.icv.gva.es</gmd:URL>
+                           </gmd:linkage>
+                        </gmd:CI_OnlineResource>
+                     </gmd:onlineResource>
+                  </gmd:CI_Contact>
+               </gmd:contactInfo>
+               <gmd:role>
+                  <gmd:CI_RoleCode codeList="http://standards.iso.org/iso/19139/resources/gmxCodelists.xml#CI_RoleCode"
+                                   codeListValue="custodian"/>
+               </gmd:role>
+            </gmd:CI_ResponsibleParty>
+         </gmd:pointOfContact>
+         <gmd:resourceMaintenance>
+            <gmd:MD_MaintenanceInformation>
+               <gmd:maintenanceAndUpdateFrequency>
+                  <gmd:MD_MaintenanceFrequencyCode codeList="http://standards.iso.org/iso/19139/resources/gmxCodelists.xml#MD_MaintenanceFrequencyCode"
+                                                   codeListValue="notPlanned">notPlanned</gmd:MD_MaintenanceFrequencyCode>
+               </gmd:maintenanceAndUpdateFrequency>
+            </gmd:MD_MaintenanceInformation>
+         </gmd:resourceMaintenance>
+         <gmd:graphicOverview>
+            <gmd:MD_BrowseGraphic>
+               <gmd:fileName>
+                  <gco:CharacterString>https://icvficherosweb.icv.gva.es/04/geonetwork/miniaturas/030201_MDT01.png</gco:CharacterString>
+               </gmd:fileName>
+               <gmd:fileDescription>
+                  <gco:CharacterString>large_thumbnail</gco:CharacterString>
+               </gmd:fileDescription>
+               <gmd:fileType>
+                  <gco:CharacterString>PNG</gco:CharacterString>
+               </gmd:fileType>
+            </gmd:MD_BrowseGraphic>
+         </gmd:graphicOverview>
+         <gmd:descriptiveKeywords>
+            <gmd:MD_Keywords>
+               <gmd:keyword xsi:type="gmd:PT_FreeText_PropertyType">
+                  <gco:CharacterString>ICV_CLAS:Relieve;MDT</gco:CharacterString>
+                  <gmd:PT_FreeText>
+                     <gmd:textGroup>
+                        <gmd:LocalisedCharacterString locale="#cat">ICV_CLAS:Relleu;MDT</gmd:LocalisedCharacterString>
+                     </gmd:textGroup>
+                     <gmd:textGroup>
+                        <gmd:LocalisedCharacterString locale="#eng">ICV_CLAS:Elevation;DTM</gmd:LocalisedCharacterString>
+                     </gmd:textGroup>
+                  </gmd:PT_FreeText>
+               </gmd:keyword>
+               <gmd:keyword xsi:type="gmd:PT_FreeText_PropertyType">
+                  <gco:CharacterString>Datos Abiertos</gco:CharacterString>
+                  <gmd:PT_FreeText>
+                     <gmd:textGroup>
+                        <gmd:LocalisedCharacterString locale="#cat">Dades Obertes</gmd:LocalisedCharacterString>
+                     </gmd:textGroup>
+                     <gmd:textGroup>
+                        <gmd:LocalisedCharacterString locale="#eng">Open Data</gmd:LocalisedCharacterString>
+                     </gmd:textGroup>
+                  </gmd:PT_FreeText>
+               </gmd:keyword>
+               <gmd:keyword xsi:type="gmd:PT_FreeText_PropertyType">
+                  <gco:CharacterString>2017</gco:CharacterString>
+                  <gmd:PT_FreeText>
+                     <gmd:textGroup>
+                        <gmd:LocalisedCharacterString locale="#cat">2017</gmd:LocalisedCharacterString>
+                     </gmd:textGroup>
+                     <gmd:textGroup>
+                        <gmd:LocalisedCharacterString locale="#eng">2017</gmd:LocalisedCharacterString>
+                     </gmd:textGroup>
+                  </gmd:PT_FreeText>
+               </gmd:keyword>
+               <gmd:keyword xsi:type="gmd:PT_FreeText_PropertyType">
+                  <gco:CharacterString>PNOA-LiDAR</gco:CharacterString>
+                  <gmd:PT_FreeText>
+                     <gmd:textGroup>
+                        <gmd:LocalisedCharacterString locale="#cat">PNOA-LiDAR</gmd:LocalisedCharacterString>
+                     </gmd:textGroup>
+                     <gmd:textGroup>
+                        <gmd:LocalisedCharacterString locale="#eng">PNOA-LiDAR</gmd:LocalisedCharacterString>
+                     </gmd:textGroup>
+                  </gmd:PT_FreeText>
+               </gmd:keyword>
+               <gmd:keyword xsi:type="gmd:PT_FreeText_PropertyType">
+                  <gco:CharacterString>Relieve</gco:CharacterString>
+                  <gmd:PT_FreeText>
+                     <gmd:textGroup>
+                        <gmd:LocalisedCharacterString locale="#cat">Relleu</gmd:LocalisedCharacterString>
+                     </gmd:textGroup>
+                     <gmd:textGroup>
+                        <gmd:LocalisedCharacterString locale="#eng">Elevation</gmd:LocalisedCharacterString>
+                     </gmd:textGroup>
+                  </gmd:PT_FreeText>
+               </gmd:keyword>
+               <gmd:keyword xsi:type="gmd:PT_FreeText_PropertyType">
+                  <gco:CharacterString>MDT</gco:CharacterString>
+                  <gmd:PT_FreeText>
+                     <gmd:textGroup>
+                        <gmd:LocalisedCharacterString locale="#cat">MDT</gmd:LocalisedCharacterString>
+                     </gmd:textGroup>
+                     <gmd:textGroup>
+                        <gmd:LocalisedCharacterString locale="#eng">DTM</gmd:LocalisedCharacterString>
+                     </gmd:textGroup>
+                  </gmd:PT_FreeText>
+               </gmd:keyword>
+               <gmd:keyword xsi:type="gmd:PT_FreeText_PropertyType">
+                  <gco:CharacterString>ICV</gco:CharacterString>
+                  <gmd:PT_FreeText>
+                     <gmd:textGroup>
+                        <gmd:LocalisedCharacterString locale="#cat">ICV</gmd:LocalisedCharacterString>
+                     </gmd:textGroup>
+                     <gmd:textGroup>
+                        <gmd:LocalisedCharacterString locale="#eng">ICV</gmd:LocalisedCharacterString>
+                     </gmd:textGroup>
+                  </gmd:PT_FreeText>
+               </gmd:keyword>
+               <gmd:keyword xsi:type="gmd:PT_FreeText_PropertyType">
+                  <gco:CharacterString>IDEV</gco:CharacterString>
+                  <gmd:PT_FreeText>
+                     <gmd:textGroup>
+                        <gmd:LocalisedCharacterString locale="#cat">IDEV</gmd:LocalisedCharacterString>
+                     </gmd:textGroup>
+                     <gmd:textGroup>
+                        <gmd:LocalisedCharacterString locale="#eng">IDEV</gmd:LocalisedCharacterString>
+                     </gmd:textGroup>
+                  </gmd:PT_FreeText>
+               </gmd:keyword>
+               <gmd:keyword xsi:type="gmd:PT_FreeText_PropertyType">
+                  <gco:CharacterString>Comunitat Valenciana</gco:CharacterString>
+                  <gmd:PT_FreeText>
+                     <gmd:textGroup>
+                        <gmd:LocalisedCharacterString locale="#cat">Comunitat Valenciana</gmd:LocalisedCharacterString>
+                     </gmd:textGroup>
+                     <gmd:textGroup>
+                        <gmd:LocalisedCharacterString locale="#eng">Comunitat Valenciana</gmd:LocalisedCharacterString>
+                     </gmd:textGroup>
+                  </gmd:PT_FreeText>
+               </gmd:keyword>
+               <gmd:keyword xsi:type="gmd:PT_FreeText_PropertyType">
+                  <gco:CharacterString>España</gco:CharacterString>
+                  <gmd:PT_FreeText>
+                     <gmd:textGroup>
+                        <gmd:LocalisedCharacterString locale="#cat">Espanya</gmd:LocalisedCharacterString>
+                     </gmd:textGroup>
+                     <gmd:textGroup>
+                        <gmd:LocalisedCharacterString locale="#eng">Spain</gmd:LocalisedCharacterString>
+                     </gmd:textGroup>
+                  </gmd:PT_FreeText>
+               </gmd:keyword>
+            </gmd:MD_Keywords>
+         </gmd:descriptiveKeywords>
+         <gmd:descriptiveKeywords>
+            <gmd:MD_Keywords>
+               <gmd:keyword>
+                  <gmx:Anchor xlink:href="https://inspire.ec.europa.eu/theme/el">Elevaciones</gmx:Anchor>
+               </gmd:keyword>
+               <gmd:type>
+                  <gmd:MD_KeywordTypeCode codeList="http://standards.iso.org/iso/19139/resources/gmxCodelists.xml#MD_KeywordTypeCode"
+                                          codeListValue="theme">Tema</gmd:MD_KeywordTypeCode>
+               </gmd:type>
+               <gmd:thesaurusName>
+                  <gmd:CI_Citation>
+                     <gmd:title>
+                        <gmx:Anchor xlink:href="http://www.eionet.europa.eu/gemet/inspire_themes">GEMET - INSPIRE themes, version 1.0</gmx:Anchor>
+                     </gmd:title>
+                     <gmd:date>
+                        <gmd:CI_Date>
+                           <gmd:date>
+                              <gco:Date>2008-06-01</gco:Date>
+                           </gmd:date>
+                           <gmd:dateType>
+                              <gmd:CI_DateTypeCode codeList="http://standards.iso.org/iso/19139/resources/gmxCodelists.xml#CI_DateTypeCode"
+                                                   codeListValue="publication">Publicación</gmd:CI_DateTypeCode>
+                           </gmd:dateType>
+                        </gmd:CI_Date>
+                     </gmd:date>
+                  </gmd:CI_Citation>
+               </gmd:thesaurusName>
+            </gmd:MD_Keywords>
+         </gmd:descriptiveKeywords>
+         <gmd:descriptiveKeywords>
+            <gmd:MD_Keywords>
+               <gmd:keyword>
+                  <gmx:Anchor xlink:href="http://inspire.ec.europa.eu/metadata-codelist/SpatialScope/regional">regional</gmx:Anchor>
+               </gmd:keyword>
+               <gmd:thesaurusName>
+                  <gmd:CI_Citation>
+                     <gmd:title>
+                        <gmx:Anchor xlink:href="http://inspire.ec.europa.eu/metadata-codelist/SpatialScope">Spatial scope</gmx:Anchor>
+                     </gmd:title>
+                     <gmd:date>
+                        <gmd:CI_Date>
+                           <gmd:date>
+                              <gco:Date>2019-05-22</gco:Date>
+                           </gmd:date>
+                           <gmd:dateType>
+                              <gmd:CI_DateTypeCode codeList="http://standards.iso.org/iso/19139/resources/gmxCodelists.xml#CI_DateTypeCode"
+                                                   codeListValue="publication">Publication</gmd:CI_DateTypeCode>
+                           </gmd:dateType>
+                        </gmd:CI_Date>
+                     </gmd:date>
+                  </gmd:CI_Citation>
+               </gmd:thesaurusName>
+            </gmd:MD_Keywords>
+         </gmd:descriptiveKeywords>
+         <gmd:resourceConstraints>
+            <gmd:MD_LegalConstraints>
+               <gmd:accessConstraints>
+                  <gmd:MD_RestrictionCode codeList="http://standards.iso.org/iso/19139/resources/gmxCodelists.xml#MD_RestrictionCode"
+                                          codeListValue="otherRestrictions"/>
+               </gmd:accessConstraints>
+               <gmd:otherConstraints>
+                  <gmx:Anchor xlink:href="http://inspire.ec.europa.eu/metadata-codelist/LimitationsOnPublicAccess/noLimitations">Sin limitaciones al acceso público.</gmx:Anchor>
+               </gmd:otherConstraints>
+            </gmd:MD_LegalConstraints>
+         </gmd:resourceConstraints>
+         <gmd:resourceConstraints>
+            <gmd:MD_LegalConstraints>
+               <gmd:useConstraints>
+                  <gmd:MD_RestrictionCode codeList="http://standards.iso.org/iso/19139/resources/gmxCodelists.xml#MD_RestrictionCode"
+                                          codeListValue="otherRestrictions"/>
+               </gmd:useConstraints>
+               <gmd:otherConstraints>
+                  <gmx:Anchor xlink:href="http://inspire.ec.europa.eu/metadata-codelist/ConditionsApplyingToAccessAndUse/noConditionsApply">No se aplican condiciones de acceso y uso.</gmx:Anchor>
+               </gmd:otherConstraints>
+               <gmd:otherConstraints>
+                  <gmx:Anchor xlink:href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</gmx:Anchor>
+               </gmd:otherConstraints>
+               <gmd:otherConstraints>
+                  <gco:CharacterString>http://www.icv.gva.es/condiciones-de-uso-de-la-geoinformacion-icv</gco:CharacterString>
+               </gmd:otherConstraints>
+            </gmd:MD_LegalConstraints>
+         </gmd:resourceConstraints>
+         <gmd:spatialRepresentationType>
+            <gmd:MD_SpatialRepresentationTypeCode codeList="http://standards.iso.org/iso/19139/resources/gmxCodelists.xml#MD_SpatialRepresentationTypeCode"
+                                                  codeListValue="grid">grid</gmd:MD_SpatialRepresentationTypeCode>
+         </gmd:spatialRepresentationType>
+         <gmd:spatialResolution>
+            <gmd:MD_Resolution>
+               <gmd:distance>
+                  <gco:Distance uom="metros">1</gco:Distance>
+               </gmd:distance>
+            </gmd:MD_Resolution>
+         </gmd:spatialResolution>
+         <gmd:language>
+            <gmd:LanguageCode codeList="http://www.loc.gov/standards/iso639-2/" codeListValue="spa">Español</gmd:LanguageCode>
+         </gmd:language>
+         <gmd:topicCategory>
+            <gmd:MD_TopicCategoryCode>elevation</gmd:MD_TopicCategoryCode>
+         </gmd:topicCategory>
+         <gmd:extent>
+            <gmd:EX_Extent>
+               <gmd:description>
+                  <gco:CharacterString>Las altitudes están referidas al nivel medio del Mar Mediterráneo en Alicante</gco:CharacterString>
+               </gmd:description>
+               <gmd:geographicElement>
+                  <gmd:EX_GeographicBoundingBox>
+                     <gmd:westBoundLongitude>
+                        <gco:Decimal>-0.858351</gco:Decimal>
+                     </gmd:westBoundLongitude>
+                     <gmd:eastBoundLongitude>
+                        <gco:Decimal>0.525445</gco:Decimal>
+                     </gmd:eastBoundLongitude>
+                     <gmd:southBoundLatitude>
+                        <gco:Decimal>39.70473</gco:Decimal>
+                     </gmd:southBoundLatitude>
+                     <gmd:northBoundLatitude>
+                        <gco:Decimal>40.795414</gco:Decimal>
+                     </gmd:northBoundLatitude>
+                  </gmd:EX_GeographicBoundingBox>
+               </gmd:geographicElement>
+               <gmd:temporalElement>
+                  <gmd:EX_TemporalExtent>
+                     <gmd:extent>
+                        <gml:TimePeriod gml:id="Fecha_datos_LIDAR">
+                           <gml:beginPosition>2017-12-01</gml:beginPosition>
+                           <gml:endPosition>2018-11-30</gml:endPosition>
+                        </gml:TimePeriod>
+                     </gmd:extent>
+                  </gmd:EX_TemporalExtent>
+               </gmd:temporalElement>
+            </gmd:EX_Extent>
+         </gmd:extent>
+      </gmd:MD_DataIdentification>
+  </gmd:identificationInfo>
+  <gmd:distributionInfo>
+      <gmd:MD_Distribution>
+         <gmd:distributionFormat>
+            <gmd:MD_Format>
+               <gmd:name>
+                  <gmx:Anchor xlink:href="https://inspire.ec.europa.eu/media-types/application/x-worldfile">GeoTIFF</gmx:Anchor>
+               </gmd:name>
+               <gmd:version>
+                  <gco:CharacterString>desconocido</gco:CharacterString>
+               </gmd:version>
+            </gmd:MD_Format>
+         </gmd:distributionFormat>
+         <gmd:distributor>
+            <gmd:MD_Distributor>
+               <gmd:distributorContact>
+                  <gmd:CI_ResponsibleParty>
+                     <gmd:organisationName xsi:type="gmd:PT_FreeText_PropertyType">
+                        <gco:CharacterString>Institut Cartogràfic Valencià</gco:CharacterString>
+                        <gmd:PT_FreeText>
+                           <gmd:textGroup>
+                              <gmd:LocalisedCharacterString locale="#cat">Institut Cartogràfic Valencià</gmd:LocalisedCharacterString>
+                           </gmd:textGroup>
+                           <gmd:textGroup>
+                              <gmd:LocalisedCharacterString locale="#eng">Institut Cartogràfic Valencià</gmd:LocalisedCharacterString>
+                           </gmd:textGroup>
+                        </gmd:PT_FreeText>
+                     </gmd:organisationName>
+                     <gmd:contactInfo>
+                        <gmd:CI_Contact>
+                           <gmd:address>
+                              <gmd:CI_Address>
+                                 <gmd:electronicMailAddress xsi:type="gmd:PT_FreeText_PropertyType">
+                                    <gco:CharacterString>responde_icv@gva.es</gco:CharacterString>
+                                    <gmd:PT_FreeText>
+                                       <gmd:textGroup>
+                                          <gmd:LocalisedCharacterString locale="#cat">responde_icv@gva.es</gmd:LocalisedCharacterString>
+                                       </gmd:textGroup>
+                                       <gmd:textGroup>
+                                          <gmd:LocalisedCharacterString locale="#eng">responde_icv@gva.es</gmd:LocalisedCharacterString>
+                                       </gmd:textGroup>
+                                    </gmd:PT_FreeText>
+                                 </gmd:electronicMailAddress>
+                              </gmd:CI_Address>
+                           </gmd:address>
+                        </gmd:CI_Contact>
+                     </gmd:contactInfo>
+                     <gmd:role>
+                        <gmd:CI_RoleCode codeList="./resources/codeList.xml#CI_RoleCode" codeListValue="distributor">distributor</gmd:CI_RoleCode>
+                     </gmd:role>
+                  </gmd:CI_ResponsibleParty>
+               </gmd:distributorContact>
+            </gmd:MD_Distributor>
+         </gmd:distributor>
+         <gmd:transferOptions>
+            <gmd:MD_DigitalTransferOptions>
+               <gmd:onLine>
+                  <gmd:CI_OnlineResource>
+                     <gmd:linkage>
+                        <gmd:URL>https://terramapas.icv.gva.es/030201_2017PCAS0100_hojas?service=WMS&amp;request=GetCapabilities</gmd:URL>
+                     </gmd:linkage>
+                     <gmd:protocol>
+                        <gmx:Anchor xlink:href="http://www.opengis.net/def/serviceType/ogc/wms">OGC Web Map Service</gmx:Anchor>
+                     </gmd:protocol>
+                     <gmd:applicationProfile>
+                        <gmx:Anchor xlink:href="http://inspire.ec.europa.eu/metadata-codelist/SpatialDataServiceType/view">Servicio de visualización WMS</gmx:Anchor>
+                     </gmd:applicationProfile>
+                     <gmd:name xsi:type="gmd:PT_FreeText_PropertyType">
+                        <gco:CharacterString>distribucion_descargas</gco:CharacterString>
+                        <gmd:PT_FreeText>
+                           <gmd:textGroup>
+                              <gmd:LocalisedCharacterString locale="#cat">distribucion_descargas</gmd:LocalisedCharacterString>
+                           </gmd:textGroup>
+                           <gmd:textGroup>
+                              <gmd:LocalisedCharacterString locale="#eng">distribucion_descargas</gmd:LocalisedCharacterString>
+                           </gmd:textGroup>
+                        </gmd:PT_FreeText>
+                     </gmd:name>
+                     <gmd:description>
+                        <gmx:Anchor xlink:href="http://inspire.ec.europa.eu/metadata-codelist/OnLineDescriptionCode/accessPoint">URL de acceso</gmx:Anchor>
+                     </gmd:description>
+                     <gmd:function>
+                        <gmd:CI_OnLineFunctionCode codeList="http://standards.iso.org/iso/19139/resources/gmxCodelists.xml#CI_OnLineFunctionCode"
+                                                   codeListValue="information"/>
+                     </gmd:function>
+                  </gmd:CI_OnlineResource>
+               </gmd:onLine>
+               <gmd:onLine>
+                  <gmd:CI_OnlineResource>
+                     <gmd:linkage>
+                        <gmd:URL>https://descargas.icv.gva.es/030201-MDT-2017PCAS0100-25830_DATO_HOJA_TIF</gmd:URL>
+                     </gmd:linkage>
+                     <gmd:protocol>
+                        <gco:CharacterString>WWW:DOWNLOAD-1.0-http--download</gco:CharacterString>
+                     </gmd:protocol>
+                     <gmd:name xsi:type="gmd:PT_FreeText_PropertyType">
+                        <gco:CharacterString>Descarga por hojas en formato GeoTIFF</gco:CharacterString>
+                        <gmd:PT_FreeText>
+                           <gmd:textGroup>
+                              <gmd:LocalisedCharacterString locale="#cat">Descàrrega per fulles en formato GeoTIFF</gmd:LocalisedCharacterString>
+                           </gmd:textGroup>
+                           <gmd:textGroup>
+                              <gmd:LocalisedCharacterString locale="#eng">Download by tiles in GeoTIFF format</gmd:LocalisedCharacterString>
+                           </gmd:textGroup>
+                        </gmd:PT_FreeText>
+                     </gmd:name>
+                     <gmd:description>
+                        <gmx:Anchor xlink:href="http://inspire.ec.europa.eu/metadata-codelist/OnLineDescriptionCode/accessPoint">URL de acceso</gmx:Anchor>
+                     </gmd:description>
+                     <gmd:function>
+                        <gmd:CI_OnLineFunctionCode codeList="http://standards.iso.org/iso/19139/resources/gmxCodelists.xml#CI_OnLineFunctionCode"
+                                                   codeListValue="download"/>
+                     </gmd:function>
+                  </gmd:CI_OnlineResource>
+               </gmd:onLine>
+            </gmd:MD_DigitalTransferOptions>
+         </gmd:transferOptions>
+      </gmd:MD_Distribution>
+  </gmd:distributionInfo>
+  <gmd:dataQualityInfo>
+      <gmd:DQ_DataQuality>
+         <gmd:scope>
+            <gmd:DQ_Scope>
+               <gmd:level>
+                  <gmd:MD_ScopeCode codeList="http://standards.iso.org/iso/19139/resources/gmxCodelists.xml#MD_ScopeCode"
+                                    codeListValue="dataset">dataset</gmd:MD_ScopeCode>
+               </gmd:level>
+            </gmd:DQ_Scope>
+         </gmd:scope>
+         <gmd:report>
+            <gmd:DQ_DomainConsistency>
+               <gmd:result>
+                  <gmd:DQ_ConformanceResult>
+                     <gmd:specification>
+                        <gmd:CI_Citation>
+                           <gmd:title>
+                              <gmx:Anchor xlink:href="http://data.europa.eu/eli/reg/2010/1089">REGLAMENTO (UE) N o 1089/2010 DE LA COMISIÓN de 23 de noviembre de 2010 por el que se aplica la Directiva 2007/2/CE del Parlamento Europeo y del Consejo en lo que se refiere a la interoperabilidad de los conjuntos y los servicios de datos espaciales</gmx:Anchor>
+                           </gmd:title>
+                           <gmd:date>
+                              <gmd:CI_Date>
+                                 <gmd:date>
+                                    <gco:Date>2010-12-08</gco:Date>
+                                 </gmd:date>
+                                 <gmd:dateType>
+                                    <gmd:CI_DateTypeCode codeList="http://standards.iso.org/iso/19139/resources/gmxCodelists.xml#CI_DateTypeCode"
+                                                         codeListValue="publication">Publicación</gmd:CI_DateTypeCode>
+                                 </gmd:dateType>
+                              </gmd:CI_Date>
+                           </gmd:date>
+                        </gmd:CI_Citation>
+                     </gmd:specification>
+                     <gmd:explanation>
+                        <gco:CharacterString>No es conforme con el reglamento 1089/2010</gco:CharacterString>
+                     </gmd:explanation>
+                     <gmd:pass>
+                        <gco:Boolean>false</gco:Boolean>
+                     </gmd:pass>
+                  </gmd:DQ_ConformanceResult>
+               </gmd:result>
+            </gmd:DQ_DomainConsistency>
+         </gmd:report>
+         <gmd:report>
+            <gmd:DQ_DomainConsistency>
+               <gmd:result>
+                  <gmd:DQ_ConformanceResult>
+                     <gmd:specification>
+                        <gmd:CI_Citation>
+                           <gmd:title>
+                              <gmx:Anchor xlink:href="http://data.europa.eu/eli/reg/2008/1205/oj">REGLAMENTO (CE) N o 1205/2008 DE LA COMISIÓN de 3 de diciembre de 2008 por el que se ejecuta la Directiva 2007/2/CE del Parlamento Europeo y del Consejo en lo que se refiere a los metadatos</gmx:Anchor>
+                           </gmd:title>
+                           <gmd:date>
+                              <gmd:CI_Date>
+                                 <gmd:date>
+                                    <gco:Date>2008-12-04</gco:Date>
+                                 </gmd:date>
+                                 <gmd:dateType>
+                                    <gmd:CI_DateTypeCode codeList="http://standards.iso.org/iso/19139/resources/gmxCodelists.xml#CI_DateTypeCode"
+                                                         codeListValue="publication">Publicación</gmd:CI_DateTypeCode>
+                                 </gmd:dateType>
+                              </gmd:CI_Date>
+                           </gmd:date>
+                        </gmd:CI_Citation>
+                     </gmd:specification>
+                     <gmd:explanation>
+                        <gco:CharacterString>Es conforme con el reglamento 1205/2008</gco:CharacterString>
+                     </gmd:explanation>
+                     <gmd:pass>
+                        <gco:Boolean>true</gco:Boolean>
+                     </gmd:pass>
+                  </gmd:DQ_ConformanceResult>
+               </gmd:result>
+            </gmd:DQ_DomainConsistency>
+         </gmd:report>
+         <gmd:lineage>
+            <gmd:LI_Lineage>
+               <gmd:statement xsi:type="gmd:PT_FreeText_PropertyType">
+                  <gco:CharacterString>Modelo derivado de la nube de puntos LIDAR, del proyecto PNOA LIDAR 2017, de la provincia de Castellón a partir de trabajos de postproceso y edición manual de los ficheros LAS. Se ha depurado y verificado de forma precisa la totalidad de los puntos mediante la visualización estereoscópica sobre el vuelo de Castellón</gco:CharacterString>
+                  <gmd:PT_FreeText>
+                     <gmd:textGroup>
+                        <gmd:LocalisedCharacterString locale="#cat">Model derivat del núvol de punts LIDAR, del projecte PNOA LIDAR 2017, de la província de Castelló a partir de treballs de postprocès i edició manual dels fitxers LAS. S'ha depurat i verificat de manera precisa la totalitat dels punts mitjançant la visualització estereoscòpica sobre el vol de Castelló</gmd:LocalisedCharacterString>
+                     </gmd:textGroup>
+                     <gmd:textGroup>
+                        <gmd:LocalisedCharacterString locale="#eng">Model derived from the LIDAR point cloud, from the PNOA LIDAR 2017 project, of the province of Castellón based on post-processing work and manual editing of the LAS files. All the points have been refined and accurately verified by means of stereoscopic visualisation of the flight over Castellón</gmd:LocalisedCharacterString>
+                     </gmd:textGroup>
+                  </gmd:PT_FreeText>
+               </gmd:statement>
+               <gmd:processStep>
+                  <gmd:LI_ProcessStep>
+                     <gmd:description xsi:type="gmd:PT_FreeText_PropertyType">
+                        <gco:CharacterString>1-Captura del dato LIDAR en la provincia de Castellón con 1 punto por metro cuadrado entre diciembre de 2017 y noviembre de 2018. 2- Reclasificación precisa de las clases de los datos LIDAR durante el año 2021. 3- Generación del Modelo digital del terreno por interpolación a partir de la clase suelo (clase 2) de los datos LIDAR anteriores y de las líneas de ruptura (breaklines) para que el MDT se adapte al terreno donde éste no quede bien definido por la clase suelo. 4- Verificación final de la calidad de los resultados. 5- Distribución formato GeoTIFF hojas MTN50</gco:CharacterString>
+                        <gmd:PT_FreeText>
+                           <gmd:textGroup>
+                              <gmd:LocalisedCharacterString locale="#cat">1-Presa de dades LIDAR a la província de Castelló amb 1 punt per metre quadrat entre desembre de 2017 i novembre de 2018. 2- Reclassificació precisa de les classes de les dades LIDAR durant l'any 2021. 3- Generació del Model digital del terreny per interpolació a partir de la classe sòl (classe 2) de les dades LIDAR anteriors i de les línies de ruptura (breaklines) perquè el MDT s'adapte al terreny on aquest no quede ben definit per la classe sòl. 4- Verificació final de la qualitat dels resultats. 5- Distribució format GeoTIFF fulles MTN50</gmd:LocalisedCharacterString>
+                           </gmd:textGroup>
+                           <gmd:textGroup>
+                              <gmd:LocalisedCharacterString locale="#eng">1-LIDAR Data collection in the province of Castellón with 1 point per square metre between December 2017 and November 2018. 2-Precise reclassification of the classes of the LIDAR data during 2021. 3-Generation of the Digital Terrain Model by interpolation from the ground class (class 2) of the previous LIDAR data and breaklines so that the DTM adapts to the terrain where it is not well defined by the ground class. 4-Final verification of results quality. 5-GeoTIFF format distribution tiles MTN50</gmd:LocalisedCharacterString>
+                           </gmd:textGroup>
+                        </gmd:PT_FreeText>
+                     </gmd:description>
+                  </gmd:LI_ProcessStep>
+               </gmd:processStep>
+            </gmd:LI_Lineage>
+         </gmd:lineage>
+      </gmd:DQ_DataQuality>
+  </gmd:dataQualityInfo>
+  <gmd:metadataMaintenance>
+      <gmd:MD_MaintenanceInformation>
+         <gmd:maintenanceAndUpdateFrequency>
+            <gmd:MD_MaintenanceFrequencyCode codeList="./resources/codeList.xml#MD_MaintenanceFrequencyCode"
+                                             codeListValue="asNeeded">asNeeded</gmd:MD_MaintenanceFrequencyCode>
+         </gmd:maintenanceAndUpdateFrequency>
+      </gmd:MD_MaintenanceInformation>
+  </gmd:metadataMaintenance>
+</gmd:MD_Metadata>

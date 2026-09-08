@@ -1,0 +1,35 @@
+{
+  "comparison": "CNIG 2023 provisional 0.5 m minus ICV 2017 classified 1 m; both bilinearly sampled at the same 1025 x 1025 game vertices.",
+  "interpretation": "Differences can reflect terrain change, interpolation or classification; this is not an external accuracy assessment.",
+  "samples": 1050625,
+  "median_signed_difference_m": -0.039520263671875,
+  "median_absolute_difference_m": 0.120849609375,
+  "p95_absolute_difference_m": 0.923583984375,
+  "maximum_absolute_difference_m": 18.0057373046875,
+  "fraction_abs_difference_over_2m": 0.02547436049970256,
+  "fraction_abs_difference_over_5m": 0.020955145746579418,
+  "northwest_rectangular_features": {
+    "bounds_wgs84": [
+      -0.012,
+      40.108,
+      -0.007,
+      40.112
+    ],
+    "median_difference_m": 0.020751953125,
+    "p95_absolute_difference_m": 13.412692070007324,
+    "max_positive_difference_m": 18.0057373046875,
+    "min_signed_difference_m": -4.5162353515625
+  },
+  "central_town": {
+    "bounds_wgs84": [
+      -0.005,
+      40.099,
+      0.003,
+      40.105
+    ],
+    "median_difference_m": -0.066131591796875,
+    "p95_absolute_difference_m": 0.6994735598564148,
+    "max_positive_difference_m": 9.7349853515625,
+    "min_signed_difference_m": -3.309783935546875
+  }
+}

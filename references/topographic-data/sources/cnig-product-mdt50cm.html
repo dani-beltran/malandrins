@@ -1,0 +1,3229 @@
+
+
+		
+<!doctype html>
+
+<html lang="ES">
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+	    <meta charset="utf-8">
+	    <meta http-equiv="X-UA-Compatible" content="chrome=1,IE=edge,IE=10">
+		<title>Centro de Descargas del CNIG (IGN)</title>
+		<meta name="Title" CONTENT="Centro de Descargas del CNIG (IGN)">
+		<meta name="google-site-verification" content="MlneDQByeAS4ugHvSUhxGS10MTY83QtiE52IrfteqhE">
+		<meta name="robots" content="ALL">
+		<meta name="dc.creator" content="Centro Nacional de Informaci&oacute;n Geogr&aacute;fica">
+		<meta name="revisit" content="1 day">
+		<META NAME="Author" CONTENT="Centro Nacional de Informaci&oacute;n Geogr&aacute;fica">
+		<META NAME="Subject" CONTENT="Centro de Descargas del CNIG">
+		<META NAME="Description" CONTENT="En el Centro de Descargas del CNIG puede descargarse gratuitamente la informaci&oacute;n geogr&aacute;fica digital producida por el IGN">
+		<META NAME="Keywords" CONTENT="CNIG, Centro Nacional de Informaci&oacute;n Geogr&aacute;fica, IGN, centro de descargas, descargas, cartograf&iacute;a digital, fotograf&iacute;a a&eacute;rea, PNOA, mapas digitales, geodesia, nomenc&aacute;tor, l&iacute;neas l&iacute;mite, v&eacute;rtices geod&eacute;sicos, mapa topogr&aacute;fico nacional, MTN25, MTN50, ortofotos, cartociudad, equipamiento geográfico de referencia nacional, EGRN, mapas de Espa&ntilde;a,Mapas para móviles, Vuelos fotogramétricos, CartoCiudad, SIOSE, CORINE Land Cover, BTN25, BTN100, BCN500, LIDAR, Modelo Digital del Terreno, MDT05, Minutas Cartograficas, Planos de población, Planos de edificios, Actas y Cuadernos de Líneas Límite, Rutas, Parques Nacionales, Caminos de Santiago">
+		<meta content="width=device-width; user-scalable=1; initial-scale = 1; minimum-scale = 1;" name="viewport"> 
+		<meta name="rating" content="General"> 
+		
+		<meta property="og:type" content="website"> 
+		<meta property="og:title" content="Centro de Descargas del CNIG (IGN)"> 
+		<meta property="og:description" content="En el Centro de Descargas del CNIG puede descargarse gratuitamente la informaci&oacute;n geogr&aacute;fica digital producida por el IGN"> 
+		<meta property="og:url" content="http://centrodedescargas.cnig.es"> 
+		<meta property="og:site_name" content="Centro de Descargas del CNIG"> 
+		<meta property="og:image" content="http://www.ign.es/web/resources/docs/IGNCnig/IGN-Difusion.jpg"> 
+		<meta property="og:locale" content="es_ES"> 
+		<meta property="og:locale:alternate" content="en_GB">                     
+		<meta property="og:locale:alternate" content="fr_FR">
+		
+		<meta data-name="twitter:card" content="summary" itemprop="resumen"> 
+		<meta data-name="twitter:site" content="@IGNSpain" itemprop="sitio"> 
+		<meta data-name="twitter:title" content="CentroDescargasCNIG" itemprop="titulo"> 
+		<meta data-name="twitter:description" content="En el Centro de Descargas del CNIG puede descargarse gratuitamente la informaci&oacute;n geogr&aacute;fica digital producida por el IGN" itemprop="description"> 
+		<meta data-name="twitter:creator" content="@IGNSpain" itemprop="sitio"> 
+		<meta data-name="twitter:image" content="http://www.ign.es/web/resources/docs/IGNCnig/IGN-Difusion.jpg" itemprop="image"> 
+		
+		<meta data-name="geo.region" content="ES-M" itemprop="region"> 
+		<meta data-name="geo.placename" content="Madrid" itemprop="location"> 
+		<meta data-name="geo.position" content="40.404460;-3.710000" itemprop="position"> 
+		<meta data-name="ICBM" content="40.404460, -3.710000" itemprop="ICBM"> 
+		
+		<meta data-name="DC.title" content=" CentroNacionalInformaciónGeográfica " itemprop="titulo">
+				
+		<link rel="shortcut icon" href="img/favicon.ico">
+		
+		<link href="css/estilos-css-cnig-2024.css" rel="stylesheet">
+
+		
+		<link rel="stylesheet" href="css/all.css">
+		
+		<script src="js/msj.js"></script>
+		
+		<script src="js/jquery-latest.js"></script>
+		
+		<script src="js/funciones.js"></script>
+				
+		<script src="js/jquery-ui.min.js"></script>
+				
+		<script src="conf/municipios.js"></script>
+		<script src="js/hojas50.js"></script>
+		
+		
+		<script src="conf/configSeries.js"></script>
+		
+		<script src="ol5/ol.js"></script>
+    			
+		<script src="js/configVisor.js"></script>
+    			
+		<link rel="stylesheet" href="ol5/ol.css" type="text/css">
+
+
+
+    	    <!-- Estilo de la API -->
+<!--    api antigua 	    <link type="text/css" rel="stylesheet" href="https://componentes.cnig.es/api-core/assets/css/apiign.ol.min.css">   -->
+			<link type="text/css" rel="stylesheet" href="https://componentes.idee.es/api-idee/assets/css/apiidee.ol.min.css">
+			            
+    	    <!-- Estilos de los plugins añadidos -->
+    	<!--     <link href="https://componentes.cnig.es/api-core/plugins/ignsearchlocator/ignsearchlocator.ol.min.css" rel="stylesheet">            -->
+<!--    api antugua 	        	    
+    	    <link href="https://componentes.cnig.es/api-core/plugins/attributions/attributions.ol.min.css" rel="stylesheet">            
+    		<link href="https://componentes.cnig.es/api-core/plugins/selectiondraw/selectiondraw.ol.min.css" rel="stylesheet">
+    		<link href="https://componentes.cnig.es/api-core/plugins/locator/locator.ol.min.css" rel="stylesheet">
+-->   	 
+			<link href="https://componentes.idee.es/api-idee/plugins/attributions/attributions.ol.min.css" rel="stylesheet" />
+  	  		<link href="https://componentes.idee.es/api-idee/plugins/measurebar/measurebar.ol.min.css" rel="stylesheet" />
+  	  		<link href="https://componentes.idee.es/api-idee/plugins/backimglayer/backimglayer.ol.min.css" rel="stylesheet" />
+  	  		<link href="https://componentes.idee.es/api-idee/plugins/locator/locator.ol.min.css" rel="stylesheet" />
+  	  		
+    	      <!-- Ficheros javascript de la API -->
+
+    	      
+			  <script type="text/javascript" src="https://componentes.idee.es/api-idee/vendor/browser-polyfill.js"></script>          
+			  <script type="text/javascript" src="https://componentes.idee.es/api-idee/js/apiidee.ol.min.js"></script>        
+			  <script type="text/javascript" src="https://componentes.idee.es/api-idee/js/configuration.js"></script>
+    	      
+    	      
+    	      
+    	      <!-- Ficheros  javascript de los plugins añadidos-->
+    	<!--       <script src="https://componentes.cnig.es/api-core/plugins/ignsearchlocator/ignsearchlocator.ol.min.js"></script>         -->
+
+    	      
+    	    <script type="text/javascript" src="https://componentes.idee.es/api-idee/plugins/attributions/attributions.ol.min.js"></script>         
+    	 		
+    	 		    <!-- Dependencias del plugin -->
+    	    
+    	 
+  
+ 		  <script type="text/javascript" src="https://componentes.idee.es/api-idee/plugins/measurebar/measurebar.ol.min.js"></script>	
+		
+		
+		
+		<link href="https://componentes.idee.es/api-idee/plugins/layerswitcher/layerswitcher.ol.min.css" rel="stylesheet" />
+ 		<script type="text/javascript" src="https://componentes.idee.es/api-idee/plugins/layerswitcher/layerswitcher.ol.min.js"></script>		
+		
+
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MHC1KPDP10"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-MHC1KPDP10');
+</script>
+
+	
+		<!-- Facebook Pixel Code -->
+ 		<script>
+		!function(f,b,e,v,n,t,s)
+		{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+		n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+		if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+		n.queue=[];t=b.createElement(e);t.async=!0;
+		t.src=v;s=b.getElementsByTagName(e)[0];
+		s.parentNode.insertBefore(t,s)}(window,document,'script',
+		'https://connect.facebook.net/en_US/fbevents.js');
+		fbq('init', '381881688811171'); 
+		fbq('track', 'PageView');
+		</script>
+		<!-- End Facebook Pixel Code -->	 	
+
+
+		
+		<link href="css/jquery-ui.css" rel="stylesheet">
+		<script src="js/menunew.js"></script>
+		<script src="conf/capasVisor.js"></script>
+
+		
+<style>
+#licencias {
+	scroll-margin-top: 50px;
+}
+
+@media (max-width: 768px) {
+    .buttonContainer .displayInlineTable > a, 
+    .buttonContainer .displayInlineBlock > a {
+       min-width: 115px;      
+    }
+    
+    .mbTxtCenter {
+        text-align: center!important;
+    }
+ 
+}
+
+#capaStdVotos{
+	z-index: 0;
+} 
+</style>
+
+</head>
+<body>
+
+	<noscript>
+		<img height="1" width="1" src="https://www.facebook.com/tr?id=381881688811171&ev=PageView&noscript=1"/>
+	</noscript>  
+
+<div id="cabecera">
+		
+<script src="js/jquery-ui.min.js"></script>
+<!-- botón subir (si se posiciona este js por encima del menunew da fallos )-->
+<script src="js/arriba.js"></script>
+<!-- fin botón subir -->
+<!-- Boton hacia arriba -->
+<a  class="ir-arriba zIndex1000" title="Subir">
+  <span class="fa-stack-x2">
+    <i class="fa fa-chart fa-stack-2x"></i>
+    <i class="fa fa-chevron-up fontSize13em"></i>
+  </span>
+</a>
+<!-- fin Boton hacia arriba -->
+
+<!-- cabecera -->
+
+<header>
+
+
+<div id="header-pc">
+
+  <div class="col-12">
+  
+    <div class="col-1 floatDer paddingRight3por">
+		
+      		<a id="changeIdiomaEN" class="atxtBlanco fontSize08em cursorPointer" title="English">English</a>      		
+      	
+      	
+      		
+    </div>
+    <div class="col-3 marginTop20px">
+      <a href="https://www.ign.es" target="_blank" title="Instituto Geográfico Nacional y O. A. Centro Nacional de Información Geográfica">
+      <img src="imgCdD/escudoInstitucional.png" alt="Instituto Geográfico Nacional y O. A. Centro Nacional de Información Geográfica" class="img-fluid imgMinisterio "></a>
+    </div>
+    <div class="col-6 col-m-12 marginTop20px">
+      <div class="col-12 txtCenter"><a href="home" class="txtSupCdDCabenlace" title="Centro de Descargas">Centro de Descargas</a></div>
+      <div class="marginTop10px col-12 colorVerdeClaro   txtCenter paddingBottom10px ">Instituto Geográfico Nacional</div>
+      <div class="col-12 colorVerdeClaro   txtCenter  ">Organismo Autónomo Centro Nacional de Información Geográfica</div>
+    </div>
+  </div>
+</div>  
+<div id="header-mobile">
+  <div class="col-12">
+
+    <div class="col-12">
+     <div class="col-6 "> 
+      <a href="https://www.ign.es" target="_blank" title="Instituto Geográfico Nacional y O. A. Centro Nacional de Información Geográfica">
+      <img src="imgCdD/escudoInstitucional.png" alt="Instituto Geográfico Nacional y O. A. Centro Nacional de Información Geográfica" class="img-fluid imgMinisterio"></a>
+      </div>
+    </div>
+    <div class="col-12">
+      <div class="col-12 txtCenter">
+      		<a href="home" class="txtCenter colorBlanco fontSize18vw" title="Centro de Descargas">Centro de Descargas</a>
+      </div>
+      <div class="col-12 colorVerdeClaro txtSuperiorCabecera txtCenter paddingBottom10px">Instituto Geográfico Nacional</div>
+      <div class="col-12 colorVerdeClaro txtSuperiorCabecera txtCenter padding5px">Organismo Autónomo Centro Nacional de Información Geográfica</div>
+    </div>
+  </div>
+</div>  
+
+  
+</header>
+<!-- fin cabecera -->
+
+<form id="formMenuCdd3" name="formMenuCdd3" method="POST">
+		
+		
+			<input type="hidden" id="lang" name="lang" value="ES">
+		
+      	
+<div class="maincontain navigation colorfondomenu txtCenter">
+
+
+<!-- inicio de cabecera para visualizacion en pc -->
+<div id = "cabecera-pc">
+	<div class="col-12 col-m-12 nav-container colorfondomenu">
+	
+		<nav id="menuCDD" class="nav">
+
+				<ul class="nav-links cursorPointer" id="nav-links">
+			      	<li id="optMenuHome"><a href="home" class="tct" title="Inicio">Inicio</a></li>
+			        <li><a  title="Catálogo">Catálogo</a>
+			          <ul class="nav-submenu">
+			            <li class="txtLeft"><a href="catalogo"  title="Todo el catálogo">Todo el catálogo</a></li>
+
+			            
+						<!-- Nuevos -->
+			            <li class="txtLeft"><a href="mapa-topografico-nacional" title="Mapas Topográficos Nacionales">Mapas Topográficos Nacionales</a></li>
+			            <li class="txtLeft"><a href="mapas-provincia-comunidad-autonoma"  title="Mapas provinciales y autonómicos">Mapas provinciales y autonómicos</a></li>
+			            <li class="txtLeft"><a href="mapas-espana-mundo"  title="Mapas de España y del mundo">Mapas de España y del mundo</a></li>
+			            <li class="txtLeft"><a href="bases-topograficas-cartograficas"  title="Bases topográficas y cartográficas">Bases topográficas y cartográficas</a></li>
+						
+						<!-- Antiguos -->
+
+
+
+			            
+			            <li class="txtLeft"><a href="informacion-geografica-referencia" title="Información geográfica de referencia">Información geográfica de referencia</a></li>
+			            <li class="txtLeft"><a href="informacion-geografica-tematica" title="Información geográfica temática">Información geográfica temática</a></li>
+			            <li class="txtLeft"><a href="modelos-digitales-elevaciones" title="Modelos Digitales de Elevaciones">Modelos Digitales de Elevaciones</a></li>
+			            <li class="txtLeft"><a href="fotos-imagenes-aereas" title="Imágenes aéreas y satelitales">Imágenes aéreas y satelitales</a></li>
+			            <li class="txtLeft"><a href="documentacion-geografica-cartografia-antigua"  title="Documentación geográfica y cartografía antiguas">Documentación geográfica y cartografía antiguas</a></li>
+			            <li class="txtLeft"><a href="rutas-ocio-tiempo-libre"  title="Rutas, ocio y tiempo libre">Rutas, ocio y tiempo libre</a></li>
+			          </ul>
+			        </li>
+			        <li id="optMenuBuscar"> <a  id="bBuscarCab" title="Buscar">Buscar</a></li>
+			          
+			        <li id="menuCdd3LicenciasUso"><a href="politica-datos" title="Política de datos">Política de datos</a></li>
+			        <li><a title="Ayuda">Ayuda</a>
+				        <ul class="nav-submenu" style="display: none;">
+				            <li class="txtLeft"><a href="faqs" title="Preguntas frecuentes">Preguntas frecuentes</a></li>
+				            <li class="txtLeft"><a href="ayuda" title="Manual de ayuda">Manual de ayuda</a></li>
+				        </ul>
+				    </li>
+				    <li id="menuCdd3Novedades"><a href="novedades" title="Novedades">Novedades</a></li> 
+				   	<li id="menuEclipses"><a href="eclipses" title="Trío de eclipses">Trío de eclipses</a></li>   
+
+				        
+				</ul>
+		      <div class=" displayInlineFlex paddingRight3por" style="vertical-align:top">
+
+
+	
+	            
+	<!-- seccion para area de clientes y login -->       
+				
+	
+		<a id="linkRegistrate" class="paddingLeft10px paddingRight10px atxtBlanco " href="registrate"  title="Iniciar sesión"> <i class="fa fa-user fa-fw fontSize09em paddingBottom2px" ></i></a>
+	
+	
+	<!-- fin seccion login y area de clientes -->
+	
+	<!-- Seccion para la cesta de descargas -->
+	
+
+		<div id="capaCestaDesc" >
+			
+			
+				<a  onmouseout="document.getElementById('icoCestaSin').src='imgCdD/ico-cesta-bl-menu-lleno-h.svg';" onmouseover="document.getElementById('icoCestaSin').src='imgCdD/ico-cesta-bl-menu-lleno.svg';" style="display:none" id="menuCdd3CarroCon" href="#" target="_self" class="acolorVerdeClaro paddingRight10px " title="Descargas: ( Mb)">
+				  <img id="icoCestaSin" alt="Descargas" src="imgCdD/ico-cesta-bl-menu-lleno-h.svg" class="icoCestaMenu">
+				  <sup class="paddingRight10px">(<span id="displayCountDescarga" class="fontSize08em"></span>)</sup>
+				  </a>
+
+			<div class="paddingTop2px">
+			<a id="menuCdd3CarroSin" href="#" target="_self" class="atxtBlanco paddingRight10px " title="Descargas"> 
+			    <img  alt="Descargas" onmouseout="this.src='imgCdD/ico-cesta-bl-menu.svg';" onmouseover="this.src='imgCdD/ico-cesta-bl-menu-h.svg';" src="imgCdD/ico-cesta-bl-menu.svg" class="icoCestaMenu ">
+			 </a>
+			</div> 
+			
+		</div> 	
+	
+	
+	<!-- fin seccion de cesta de descargas -->
+	
+		<a href="contacto" class=" atxtBlanco paddingRight3px cursorPointer paddingTop2px" title="Contacto"><i class="fa fa-envelope fa-fw " title="Contacto"></i></a>
+	
+
+
+
+
+			</div>
+		</nav>
+	</div>
+	
+  </div>
+
+<!-- fin cabecera para pc -->
+
+<!-- inicio para cabecera en moviles	 -->
+
+<div id = "cabecera-mobile" >
+	<div class="col-12 nav-container" style="height:40px; vertical-align:bottom;display:flex;align-items: center;">
+	<button class="menu-toggle col-2 txtLeft-m txtLeft" id="menu-toggle">&#9776;</button>
+	   
+    <div class="col-10 txtCenter" >
+
+      <div class="floatDer floatDer-m" style="height:40px;vertical-align:bottom;display:flex;align-items: center; ">
+      	
+       	<a id="linkBuscadorMov" class="paddingRight3px atxtBlanco" href="loadBuscador"  title="Iniciar sesión"><i class="fa fa-search  fontSize09em">&nbsp;</i></a> 
+		
+			<!-- seccion para area de clientes y login -->       
+  		
+							
+	
+								<a id="linkRegistrate" class="atxtBlanco paddingRight3px cursorPointer" href="registrate"  title="Iniciar sesión"> <i class="fa fa-user fa-fw  fontSize09em" ></i></a>
+							
+	
+							<!-- fin seccion login y area de clientes -->
+							<a href="contacto" class=" atxtBlanco paddingRight3px cursorPointer" title="Contacto"><i class="fa fa-envelope fa-fw " title="Contacto"></i></a>
+							
+
+    
+							
+					      		<a id="changeIdiomaENm" class="atxtBlanco cursorPointer paddingRight5px " title="English">EN</a>      		
+					      	
+					      	
+      		
+				</div>	
+			</div>
+			
+			
+	      <div id="menumovil" class="col-6 floatIzq-m colorfondomenu " style="display:none; position:absolute; left:0px; top:40px;">
+				<ul class="cursorPointer txtLeft lineHeight30 " >
+			      	<li id="optMenuHome"><a class="atxtBlanco" href="home" title="Inicio">Inicio</a></li>
+			        <li><a class="atxtBlanco"  href="catalogo" title="Catálogo">Catálogo</a>
+			        <li> <a class="atxtBlanco" href="politica-datos" title="Política de datos">Política de datos</a></li>
+			        <li> <a class="atxtBlanco" href="faqs" title="Preguntas frecuentes">Preguntas frecuentes</a></li>
+			        <li> <a class="atxtBlanco" href="ayuda" title="Manual de ayuda">Manual de ayuda</a></li>
+				    <li> <a class="atxtBlanco" href="novedades" title="Novedades">Novedades</a></li>  
+				    <li id="menuEclipsesm"><a class="atxtBlanco" title="Trío de eclipses">Trío de eclipses</a></li>  
+
+				        
+				</ul>
+		   </div>	
+	</div>	
+	
+  </div>
+
+<!-- fin cabecera para moviles -->
+	
+</div>
+</form>
+
+	
+	<form id="formLinkMD" name="formLinkMD" method="POST">
+		<input type="hidden" id="urlMD" name="urlMD" value="">		
+	</form>
+
+		
+
+
+
+	<div id="modalMsj" class="modalCDD">
+	
+	  <!-- Modal content -->
+	  <div class="modalCDD-content">
+	  <div class="row">
+	  	<div class="col-sm-12">
+	  		<span id="closeModal" class="closeCDD" style="">&times;</span>
+	  	</div>
+	  	
+	  </div>
+	  <div class="row" style="padding-right:5%;padding-left:5%;">
+	    <div class="modalCDD-header" > 
+	      
+<!-- 	      <h2>AVISO</h2> -->
+	    </div>
+	    <div  class="modalCDD-body">
+	      <p id="txtModalMsj" style="text-align:center;"></p>
+	      
+	    </div>
+	    <div class="modalCDD-footer" style="text-align:center">
+	      <button id="bCloseMsj" type="button" class="btn btn-primary btn-block ">Cerrar</button>
+	      
+	    </div>
+	  
+	  </div>
+	  </div>
+	
+	</div>
+
+		
+
+
+
+	<div id="modalConf" class="modalCDD">
+	
+	  <!-- Modal content -->
+	  <div class="modalCDD-content">
+<!-- 	  <div class="row"> -->
+<!-- 	  	<div class="col-sm-12"> -->
+
+<!-- 	  	</div> -->
+	  	
+<!-- 	  </div> -->
+	  <div class="row" style="padding-right:5%;padding-left:5%;">
+	    <div class="modalCDD-header" > 
+	      
+<!-- 	      <h2>AVISO</h2> -->
+	    </div>
+	    <div  class="modalCDD-body">
+	      <p id="txtModalConf" style="text-align:center;"></p>
+	      
+	    </div>
+	    <div class="modalCDD-footer" style="text-align:center">
+	    
+			<input type="button" id="bAceptConfirm" class="btn" value='Si'>
+        	<input type="button" id="bCancelConfirm" class="btn" value='No'>
+	    
+	    </div>
+	  
+	  </div>
+	  </div>
+	
+	</div>
+
+		
+
+
+
+	<div id="modalEspera" class="modalCDD">
+		<div class="modalCDD-content">
+	  		<div class="row" style="padding-right:5%;padding-left:5%;">
+	    		<div  class="modalCDD-body">
+	     			<div class="col-12 txtCenter paddingBottom20px paddingTop20px">
+	            		<img id="imgWaiting" src="img/wait.gif" alt="Buscando">
+	        		</div>
+	       			<div id="txtWaiting" class="col-12 txtCenter colorVerde fontSize10em">
+	        			Procesando solicitud. Espera por favor... 
+	        		</div>
+	    		</div>
+	  		</div>
+	  </div>
+	
+	</div> 
+ 
+ 
+	
+
+
+
+	<div id="modalEsperaBuscando" class="modalCDD">
+		<!-- Modal content -->
+	  	<div class="modalCDD-content">
+	  		<div class="row" style="padding-right:5%;padding-left:5%;">
+
+	    		<div  class="modalCDD-body">
+	     			<div class="col-12 txtCenter paddingBottom20px paddingTop20px">
+	            		<img id="imgWaiting" src="img/wait.gif" alt="Buscando">
+	        		</div>
+	       			<div id="txtWaiting" class="col-12 txtCenter colorVerde fontSize10em">
+	        			Buscando entre más de 2.000.000 de recursos
+	        		</div>
+	    		</div>
+	  		</div>
+	  </div>
+	
+	</div> 
+ 
+ 
+
+
+<!-- The Modal -->
+<div id="modalBuscCab" class="modalBuscar">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <div class="modal-header col-12">
+      <span id="closeBuscCab" class="cerrar" title="Cerrar">&times;</span>
+    </div>
+    <div class="modal-body txtCenter col-12">
+      <div class="col-12 col-m-12">
+        <form id="formBuscadorCab" name="formBuscadorCab" method="POST">
+        <div class="input-group-tres buscador floatDer paddinBuscador">
+			<input id="keySearchCab" name="keySearchCab" class="form-controlBuscar main-search form-control form-text ui-autocomplete-input" maxlength="128" size="15" type="text">
+			<button id="bBuscadorCab" class="buton fontSize12em marginLeft5px" title="Buscador de productos"><i class="fa fa-search fa-lg">&nbsp;</i></button>
+			<button id="bClearSearchCab" class="buton fontSize12em marginLeft5px" title="Limpiar"><i class="fa fa-close fa-lg">&nbsp;</i></button>
+        </div>
+      	</form>
+      </div>
+      <div class="">
+            <a href="buscar-mapa" class="mapa-svg-tres cabe atxtAzVer marginLeft10px marginBottom10px" title="Buscar en mapa"><br><span class="paddingRight50px paddingTop10px">Buscar en mapa</span></a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+	<script>
+	
+	if("home"==$(location).attr('pathname').substring($(location).attr('pathname').lastIndexOf('/')+1)){
+		$('#linkBuscadorMov').hide();
+	}
+	
+// gestion de cabecera en funcion del dispositivo desde el que nos navegan.
+
+	if(deviceType=='Mobile'){
+		$('#cabecera-pc').hide();
+		$('#cabecera-mobile').show();
+		$('#header-pc').hide();
+		$('#header-mobile').show();
+		
+	}
+	else
+	{
+		$('#cabecera-pc').show();
+		$('#cabecera-mobile').hide();
+		$('#header-pc').show();
+		$('#header-mobile').hide();		
+	}
+	
+	
+// fin gestion de cabecera en funcion del dispositivo desde el que nos navegan.	
+	
+	
+		$('#changeIdiomaES,#changeIdiomaESm').on('click',function(event){
+
+			$('#lang').val('ES');
+			
+			if("resultados-busqueda"==$(location).attr('pathname').substring($(location).attr('pathname').lastIndexOf('/')+1)){
+				$('#formMenuCdd3').prop('action','home');
+				$('#formMenuCdd3').submit();
+			}
+			else if("detalleArchivo"==$(location).attr('pathname').substring($(location).attr('pathname').lastIndexOf('/')+1)){
+				var recurso = $(location).attr('pathname').substring($(location).attr('pathname').lastIndexOf('/')+1);
+				var urlConSec;
+				var secuencial = '';
+				if(secuencial == 'null' || secuencial == ''){
+					urlConSec = recurso;
+				}else{
+					urlConSec = recurso + "?sec=" + secuencial;
+				}
+				$('#formMenuCdd3').prop('action',urlConSec);
+				$('#formMenuCdd3').submit();
+			}
+			else{
+				$('#formMenuCdd3').prop('action',$(location).attr('pathname').substring($(location).attr('pathname').lastIndexOf('/')+1));
+				$('#formMenuCdd3').submit();				
+			}
+
+		});
+		
+		$('#changeIdiomaEN,#changeIdiomaENm').on('click',function(event){
+
+			$('#lang').val('EN');
+			
+			if("resultados-busqueda"==$(location).attr('pathname').substring($(location).attr('pathname').lastIndexOf('/')+1)){
+				$('#formMenuCdd3').prop('action','home');
+				$('#formMenuCdd3').submit();
+			}
+			else if("detalleArchivo"==$(location).attr('pathname').substring($(location).attr('pathname').lastIndexOf('/')+1)){
+				var recurso = $(location).attr('pathname').substring($(location).attr('pathname').lastIndexOf('/')+1);
+				var urlConSec;
+				var secuencial = '';
+				if(secuencial == 'null' || secuencial == ''){
+					urlConSec = recurso;
+				}else{
+					urlConSec = recurso + "?sec=" + secuencial;
+				}
+				$('#formMenuCdd3').prop('action',urlConSec);
+				$('#formMenuCdd3').submit();
+			}
+			else{
+				$('#formMenuCdd3').prop('action',$(location).attr('pathname').substring($(location).attr('pathname').lastIndexOf('/')+1));
+				$('#formMenuCdd3').submit();				
+			}
+
+		});
+		
+		if('home'==$(location).attr('pathname').substring($(location).attr('pathname').lastIndexOf('/')+1)){
+			$('#optMenuHome,#optMenuBuscar').hide();
+		}
+
+ 		$(document).on('click', 'a[href^="#capa"]', function (event) {
+ 		    event.preventDefault();
+		    $('html, body').animate({
+		    	scrollTop: $($.attr(this, 'href')).offset().top
+		    }, 500);
+
+ 		});
+		
+		$('#menuCdd3LicenciasUso').on('click',function(event){
+			$('#formMenuCdd3').prop('action','licUso');
+			$('#formMenuCdd3').submit();			
+		});		
+
+		$('#menuDana,#menuDanam').on('click',function(event){
+			$('#formMenuCdd3').prop('action','dana');
+			$('#formMenuCdd3').submit();			
+		});	
+		
+		$('#menuEclipses,#menuEclipsesm').on('click',function(event){
+			$('#formMenuCdd3').prop('action','eclipses');
+			$('#formMenuCdd3').submit();			
+		});	
+
+		$('#menuCdd3Novedades').on('click',function(event){
+			$('#formMenuCdd3').prop('action','novedades');
+			$('#formMenuCdd3').submit();			
+		});		
+
+		$('#menuCdd3CarroCon').on('click',function(event){
+			$('#formMenuCdd3').prop('action','listaFicheros');
+			$('#formMenuCdd3').submit();		
+		});
+		
+		$('#linkAreaCliente').on('click',function(event){
+			$('#formMenuCdd3').prop('action','area-cliente');
+			$('#formMenuCdd3').submit();		
+		});
+
+		
+		$('#idNotificaciones,#idNotificacionesMobile').on('click',function(event){
+			$('#formMenuCdd3').prop('action','notificaciones');
+			$('#formMenuCdd3').submit();		
+		});
+
+		
+		
+	</script>
+	
+	<script>
+	// Get the modal
+	var modalBuscar = document.getElementById("modalBuscCab");
+	
+	$('#bBuscarCab').on('click',function(event){
+		modalBuscar.style.display = "block";
+		$('#keySearchCab').val('');
+		
+		  //var arrTxtCab = new Array("Buscar por producto y topónimo. Ej. Lidar Tarifa", "Buscar producto por provincia, comunidad. Ej. Raster Aragón", "Buscar por producto y número de hoja . Ej. PNOA hoja 559", "Buscar por tipo de producto. Ej.Raster, Vectorial, Modelos digitales, fotografía aérea, Lidar, Atlas Nacional");
+		  var arrTxtCab = new Array(busquedaSugerida1[$('#lang').val()],busquedaSugerida2[$('#lang').val()],busquedaSugerida3[$('#lang').val()],busquedaSugerida4[$('#lang').val()],busquedaSugerida5[$('#lang').val()],busquedaSugerida6[$('#lang').val()],busquedaSugerida7[$('#lang').val()],busquedaSugerida8[$('#lang').val()],busquedaSugerida9[$('#lang').val()],busquedaSugerida10[$('#lang').val()]);
+		  
+		  var timeOutCab;
+		  var txtLenCab;
+		  var characterCab= 0;
+		  $('#keySearchCab').attr('placeholder', '|');
+		  var typeCab ;
+		  var iCab=Math.floor(Math.random() * arrTxtCab.length);
+		  
+		  (function typeItCab() {
+		     
+//		  	var humanize = Math.round(Math.random() * (200 - 30)) + 30;
+		  var humanizeCab = 200;
+
+
+		      timeOutCab = setTimeout(function () {
+		      	characterCab++;
+		      	txtLenCab=arrTxtCab[iCab].length;
+		  		typeCab= arrTxtCab[iCab].substring(0, characterCab);
+
+		          $('#keySearchCab').attr('placeholder', typeCab + '|');
+		          typeItCab();
+
+		          if (characterCab == txtLenCab) {
+		              $('#keySearchCab').attr('placeholder', $('#keySearchCab').attr('placeholder').slice(0, -1)) // remove the '|'
+		              //clearTimeout(timeOut);
+		              iCab=Math.floor(Math.random() * arrTxtCab.length);
+		              //iCab++;
+		              //if(iCab>3){
+		              	//iCab=0;
+		              	//clearTimeout(timeOut);
+		              //}
+		              characterCab=0;
+		          }
+
+		      }, humanizeCab);
+		  }());
+		
+	});
+	
+	$('#closeBuscCab').on('click',function(event){
+	  modalBuscar.style.display = "none";
+	  $('#keySearchCab').val('');
+	});
+	
+	// When the user clicks anywhere outside of the modal, close it
+	window.onclick = function(event) {
+	  if (event.target == modalBuscar) {
+	    modalBuscar.style.display = "none";
+	  }
+	}
+
+	$(document).ready(function(){
+		
+
+		
+		
+		 var cache = {};
+		
+       $("#keySearchCab").autocomplete({
+           minLength : 2,
+           autoFocus: false,
+           source: function( request, response ) {
+           	var term = request.term;
+               if ( term in cache ) {
+                   response( cache[ term ] );
+                   return;
+               }
+           	
+               else{	
+	            	$.ajax( {
+	                  url: "buscarContenido",
+	                  dataType: "json",
+	                  data: {
+	                	  palabraClave: term
+	                  },
+	                  success:function(data){
+	                	  cache[ term ] = $.map(JSON.parse(data.listaAutocomp), function(item) {
+	                          return {
+	                              label: item.valor,
+	                              value: item.valor,
+	                              id:item.id
+	                          }
+	                      });
+	                	  response(
+	                			  $.map(JSON.parse(data.listaAutocomp), function(item) {
+	                                  return {
+	                                      label: item.valor,
+	                                      value: item.valor,
+	                                      id:item.id
+	                                  }
+	                              })
+	                	  
+	                	  )//fin response
+	                	  
+	                  }
+	                  
+	//                   success: function( data ) {
+	//                 	  cache[ term ] = JSON.parse(data.listaAutocomp);
+	//                 	  console.log(JSON.parse(data.listaAutocomp));
+	//                 	  response(JSON.parse(data.listaAutocomp));
+	//                   }
+	                } );
+           	
+           	
+           	}//fin else
+             },
+           search:function(event, ui ) {
+           	
+           	//limpiamos el codigo ine ,cada vez que se busca
+              // $('#numHoja').val('');
+           },
+           select: function (event, ui ) {
+           	//console.log(ui.item.value+"   "+ui.item.label+"   ---"+ui.item.id);
+           }
+       });	
+
+	$("#keySearchCab").on( "keyup", function(event) {
+		
+		if($("#keySearchCab").val()==" "){//event.keyCode == 32 && 
+			$("#keySearchCab").val('');
+			return;
+		}
+	
+			if (event.keyCode == 13) {
+				event.preventDefault();
+				$('#bBuscadorCab').trigger('click');
+			}
+		
+	});
+	
+	
+		$('#bBuscadorCab').on('click',function(event){
+  			event.preventDefault();
+  			if($("#keySearchCab").val()==" "){//event.keyCode == 32 && 
+				$("#keySearchCab").val('');
+				return false;
+			}
+			if($.trim($("#keySearchCab").val()).length<2){
+					alert("Introduzca al menos tres caracteres");
+					return false;
+				}
+			else{
+	  			$("#modalEsperaBuscando").show();
+	  			$('#formBuscadorCab').attr('action','resultados-busqueda');
+				$('#formBuscadorCab').submit();
+			}				
+
+			//setTimeout(function () {$("#modalEspera").hide();}, 1000);
+  		});
+
+		
+  		$('#bClearSearchCab').on('click',function(e){
+  			e.preventDefault();
+  			$('#keySearchCab').val('');
+  		});
+		
+	});	
+	
+	
+	
+	
+		$('#menu-toggle').on('click',function(e){
+  			e.preventDefault();
+  			$('#menumovil').toggle();
+  		});
+
+	
+	
+		$(document).keydown(function(e) {
+			if ((e.keyCode || e.which) == 27) {
+				$("#modalBuscCab").hide();
+			}
+		});
+	
+		
+	
+	
+	
+</script>
+</div>	
+
+<form id="detalleSerieForm" name="detalleSerieForm" action="" method="POST">
+ 	<input type="hidden" id="secDescDirLA" name="secDescDirLA" value="">
+ 	<input type="hidden" id="secuencial" name="secuencial" value="">
+ 	<input type="hidden" id="codNumMD" name="codNumMD">
+ 	
+ 	<input type="hidden" id="idsMenciones" name="idsMenciones" value="MDT50 cm - 3&ordf; Cobertura">
+ 	
+	<input type="hidden" id="texto" name="texto" value=''><!-- para las noticias, quitamos el valor formSerie.serie.nomSerieES porque ahora vamos con el codigo-->
+	
+	<input type="hidden" id="tipoReport" name="tipoReport" value=""/>
+ 	
+ 	
+<div class="contenedor clear">
+	<!-- migas -->
+  <div class="col-12 col-m-12 marginTop10px"> 
+    <!-- Migas inicio-->
+    <div class="displayInline "><a href="home" title="Inicio" class="acolorAzulClaro"><i class="fas fa-home fontSize08em"></i></a></div>
+    <div class="displayInline fontSize08em colorAzulClaro "> / </div>
+    <div class="displayInline fontSize08em acolorAzulClaro cursorPointer "><a href="catalogo" title="Catálogo Productos" class="acolorAzulClaro">Catálogo Productos</a></div>
+    <div class="displayInline fontSize08em colorAzulClaro "> / </div>
+    <div class="displayInline fontSize08em ">
+     	<a href="modelos-digitales-elevaciones" class="acolorAzulClaro" title="Modelos Digitales de Elevaciones">Modelos Digitales de Elevaciones</a>
+    </div>
+    <div class="displayInline fontSize08em colorAzulClaro "> / </div>    
+    <div class="displayInline fontSize08em ">MDT50 cm - 3&ordf; cobertura</div>      
+  </div>
+  <!-- fin migas -->
+</div>
+<div class="contenedor clear">
+	<div class="col-12 col-t-12 col-m-12 txtCenter colorBlanco paddingTop20px">
+		<div class="txtRight colorBlanco width100x100">	  
+			<div class="catalogoPro">
+	            
+						<img id="imgSerie" src="imgCdD/imagen_cabecera_MDT01.jpg" class="img-fluid width100x100">
+					
+					
+					            
+				<div class="catalogoTxt txtBlanco fontSizeResponsive07em">
+	            	
+					MDT50 cm - 3&ordf; cobertura
+					
+					
+					
+	            </div>
+			 </div>           
+		</div>
+	</div>
+			
+	<div class="col-12 col-m-12 marginBottom5px">
+		<div class="colorGreyFondo txtRight"> 
+			<div class=" wa-icons displayInlineBlock">
+				<div class="button__container">
+	                <div class="button-radio button-radio--main button-radio--redessociales marginRight3px">    
+	                  <a rel="nofollow noopener noreferrer" title="Redes Sociales" class="fontSize08em atxtBlanco txtCenter"><i class="fa-solid fa-share-nodes"></i>
+	                  </a>              
+	                </div>
+	                <div class="button-radio button-radio--hidden button-radio--blue">
+	                  <a href="http://www.facebook.com/sharer.php?u=https://centrodedescargas.cnig.es/CentroDescargas/modelo-digital-terreno-mdt50cm" class="fontSize08em atxtBlanco margin8px" target="_blank" title="Compartir por Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+	                </div>
+	                <div class="button-radio button-radio--hidden button-radio--blue">
+	                  <a href="https://twitter.com/share?url=https://centrodedescargas.cnig.es/CentroDescargas/modelo-digital-terreno-mdt50cm" class="fontSize08em atxtBlanco" target="_blank" title="Compartir en X"><i class="fa-brands fa-x-twitter"></i></a>
+	                </div>
+	                <div class="button-radio button-radio--hidden button-radio--blue">
+	                <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://centrodedescargas.cnig.es/CentroDescargas/modelo-digital-terreno-mdt50cm" class="fontSize08em atxtBlanco" title="Compartir por Linkedin" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+	                </div>
+	                <div class="button-radio button-radio--hidden button-radio--blue">
+	                	<a id="linkCopyURlSerie" class="fontSize08em atxtBlanco cursorPointer" title="Copiar Url"><i class="fa-solid fa-link"></i></a>
+	                </div>
+				</div>
+			</div>
+	           
+	         
+			
+			
+			
+			
+					<div id="capaStdVotos" class="cursorPointer floatRight displayInlineBlock padding10px txtAzul colorGreyFondo txtCenter iconoEstrellaGalery">
+							<div class="marginRight3px txtCenter colorAzulClaro displayInlineBlock fontSize09em">4.96</div>
+								
+									
+								  					
+									<div id="outer" class=" txtCenter displayInlineBlock fontSize09em">
+									
+										<div id="overlay"></div>						  		
+						  				<div id="inner"  style="width:99.19999695%"></div>
+						  				
+									</div>
+								
+															
+						  	
+						
+							<div class="displayInlineBlock colorAzulClaro fontSize09em marginRight3px">47 Valoraciones</div> 	
+						
+
+					</div>
+			
+			
+			
+		</div>
+		
+		<div class="row col-12 colorGreyFondo">
+			
+				<p class="txtLeft padding10px">
+				
+					
+					Modelo digital del terreno de la 3ª Cobertura (2022-2025) con paso de malla de 0,5 metros.
+					
+					
+					
+										
+				</p>						              
+			
+		</div>
+		
+		<div id="capaVerMasPC"  class="row">
+			<div class="colorGreyFondo col-12">            
+				
+				<p class="txtLeft padding10px">
+					
+					Se ha obtenido por interpolación, a partir de la clase suelo, de los vuelos LiDAR de la 3ª cobertura del Plan Nacional de Ortofotografía Aérea (PNOA).</br></br>
+
+Se publicarán los modelos provisionales (MDT50cm v1) obtenidos a partir de la nube de puntos con un nivel de clasificación NPC01. Está prevista la publicación de una versión definitiva del MDT, que se elaborará a partir de clasificaciones más avanzadas (NPC02, NPC03) lo que permitirá mejorar la calidad y fiabilidad del producto final.</br></br>
+
+Sobre las superficies de agua el LiDAR proporciona muy pocos puntos debido a que el haz retorna al sensor de manera parcial, dando lugar a vacíos de información. Estas zonas son interpoladas y editadas para asignarles la cota.</br></br>
+
+Cobertura por completar.
+					
+					
+					
+					
+				</p>
+			</div>
+
+			  
+			  <div class="row col-12 col-m-12">  
+				<div class="col-3 col-m-12 padding10px">
+					Sistema de Referencia Geodésico: 
+				</div>
+				<div class="col-9 col-m-12 padding10px">
+					
+					ETRS89 y WGS84. ETRS89 en la península, Illes Balears, Ceuta y Melilla, y REGCAN95 en Canarias. Proyección UTM en el huso correspondiente. WGS84 coordenadas geográficas longitud y latitud para toda España. Alturas ortométricas.
+
+					
+					
+					
+										
+				</div>
+			</div>	
+			<div class="row col-12 col-m-12">
+				<div class="col-3 col-m-12 productos padding10px">
+					Unidad de descarga: 
+				</div>
+				<div class="col-9 col-m-12 productos padding10px">
+					
+					Cortes de hoja 1:5.000 (subdivisión de cada MTN50 en 8 x 8 hojas).
+					
+					
+					
+					
+				</div>
+			</div>
+			<div class="row col-12 col-m-12">	
+				<div class="col-3 col-m-12 productos padding10px">
+					Formato: 
+				</div>
+				<div class="col-9 col-m-12 productos padding10px">
+					
+					COG (Cloud Optimized GeoTIFF).
+					
+					
+					
+					
+				</div>	
+			</div>		              
+			
+			
+			</div>
+			
+			<div id="capaVerMasMobile" class="row col-12 col-m-12">
+
+				<p id="bVerMas" class="cursorPointer col-12 col-m-12 txtRight link">
+				    <i id="iconoVerMas" class="fa-solid fa-chevron-down marginRight5px"></i> 
+				    <span id="textoVerMas">Ver detalles</span>
+				</p>
+
+				<div id="verMasSerie" class="displayNone ">
+
+					<div class="row col-12 colorGreyFondo">            
+												              
+						<p class="txtLeft padding10px">
+							
+							Se ha obtenido por interpolación, a partir de la clase suelo, de los vuelos LiDAR de la 3ª cobertura del Plan Nacional de Ortofotografía Aérea (PNOA).</br></br>
+
+Se publicarán los modelos provisionales (MDT50cm v1) obtenidos a partir de la nube de puntos con un nivel de clasificación NPC01. Está prevista la publicación de una versión definitiva del MDT, que se elaborará a partir de clasificaciones más avanzadas (NPC02, NPC03) lo que permitirá mejorar la calidad y fiabilidad del producto final.</br></br>
+
+Sobre las superficies de agua el LiDAR proporciona muy pocos puntos debido a que el haz retorna al sensor de manera parcial, dando lugar a vacíos de información. Estas zonas son interpoladas y editadas para asignarles la cota.</br></br>
+
+Cobertura por completar.
+							
+							
+							
+							
+						</p>
+					</div>
+
+						  <div class="row col-12 col-m-12 colorGreyFondo">  
+							<div class="col-3 col-m-12 padding10px">
+								Sistema de Referencia Geodésico: 
+							</div>
+							<div class="col-9 col-m-12 padding10px">
+								
+								ETRS89 y WGS84. ETRS89 en la península, Illes Balears, Ceuta y Melilla, y REGCAN95 en Canarias. Proyección UTM en el huso correspondiente. WGS84 coordenadas geográficas longitud y latitud para toda España. Alturas ortométricas.
+
+								
+								
+								
+													
+							</div>
+						</div>	
+						<div class="row col-12 col-m-12 colorGreyFondo">
+							<div class="col-3 col-m-12 productos padding10px">
+								Unidad de descarga: 
+							</div>
+							<div class="col-9 col-m-12 productos padding10px">
+								
+								Cortes de hoja 1:5.000 (subdivisión de cada MTN50 en 8 x 8 hojas).
+								
+								
+								
+								
+							</div>
+						</div>
+						<div class="row col-12 col-m-12 colorGreyFondo">	
+							<div class="col-3 col-m-12 productos padding10px">
+								Formato: 
+							</div>
+							<div class="col-9 col-m-12 productos padding10px">
+								
+								COG (Cloud Optimized GeoTIFF).
+								
+								
+								
+								
+							</div>	
+						</div>	
+
+
+				</div>
+			</div>
+			
+	<div class="buttonContainer">		
+			<div class="row col-12 col-m-12"> 
+				<div class="col-12 col-t-12 col-m-12 txtRight mbTxtCenter">
+								
+			    
+				
+					<div class="displayInlineTable marginRight5px marginTop20px">
+					<a href="documentos/Informacion_Auxiliar_MDT50cm.zip" target="_blank" class="fontSize09em buttonIconsNew" title="Contenido auxiliar">
+				    <i class="fas fa-file-download butColorIco"></i><br>Contenido auxiliar
+				    </a>
+					</div>
+				 
+			
+					
+					
+					<div class="displayInlineTable marginRight5px marginTop20px">
+					    
+							
+						
+						<a id="descargaUMD" href="#" class="fontSize09em buttonIconsNew" title="Más información">
+					    <i class="fas fa-file-code butColorIco"></i><br>Más información
+					    </a>
+						
+						 
+					</div>
+					
+					
+					<div class="displayInlineTable marginRight5px marginTop20px">
+			          <a  id="linkLicenciasPC" href="#licencias" class="buttonIconsNew fontSize09em" title="Licencia" id="ui-id-4">
+			          	<i class="fa fa-award " title="Licencia"></i><br>Licencia
+			          </a>
+			          <a  id="linkLicenciasMobile" href="politica-datos" class="buttonIconsNew fontSize09em" title="Licencia" id="ui-id-4">
+			          	<i class="fa fa-award " title="Licencia"></i><br>Licencia
+			          </a>
+			        </div>
+			        
+			        
+					<div class="displayInlineBlock marginRight5px marginTop20px">
+			          <a id="linkNoticias" href="novedades?codSerie=MDT01"  class="buttonIconsNew fontSize09em" title="Novedades" id="ui-id-15">
+			          <i class="fa-solid fa-newspaper" title="Novedades"></i><br>Novedades</a>
+			        </div>
+
+					
+					
+				</div>
+
+				</div>            
+			
+			
+			
+									              
+		</div>
+		
+		
+		
+	</div>
+</div>
+		 	
+
+		 	
+			<div class="row paddingBottom3por">
+
+				<div class="col-12 col-m-12">
+					 	
+					 	<div id="divArchivosSerie" class="marginTop15px">
+					 	
+							
+
+<script>
+
+var EPSG_3857='EPSG:3857';
+var EPSG_4326='EPSG:4326';
+
+</script>
+
+	 <input type="hidden" id="codAgr" name="codAgr" value="MOMDT">
+	 <input type="hidden" id="codSerie" name="codSerie" value="MDT01">
+	 
+	 
+	<input type="hidden" id="codSerieVisor" name="codSerieVisor">
+				
+	 <input type="hidden" id="numPagina" name="numPagina" value="">
+	 	
+	<input type="hidden" id="coordenadas" name="coordenadas" value='-0.012,40.092,0.012,40.112'>
+
+	<input type="hidden" id="codComAutonoma" name="codComAutonoma" value="">
+	<input type="hidden" id="codProvincia" name="codProvincia" value="">
+	<input type="hidden" id="codIne" name="codIne" value="">
+	<input type="hidden" id="codTipoArchivo" name="codTipoArchivo" value="">
+	<input type="hidden" id="codIdiomaInf" name="codIdiomaInf" value="">
+	<input type="hidden" id="todaEspania" name="todaEspania" value="">
+	<input type="hidden" id="todoMundo" name="todoMundo" value="">
+	<input type="hidden" id="idProductor" name="idProductor" value="">
+	<input type="hidden" id="rutaNombre" name="rutaNombre" value="">
+	<input type="hidden" id="numHoja" name="numHoja" value="">	
+	
+	<input type="hidden" id="numHoja25" name="numHoja25" value="">
+	 	
+	<input type="hidden" id="totalArchivos" name="totalArchivos" value="">	
+
+	<input type="hidden" id="urlProd" name="urlProd" value="modelo-digital-terreno-mdt50cm">
+	
+ 	<input type="hidden" id="sec" name="sec" value="">
+	
+	<input type="hidden" id="codSubserie" name="codSubserie" value=""/>
+	
+	<!--input type="hidden" id="referCatastral" name="referCastastral" value=""/-->
+	
+	<input type="hidden" id="filtroOrderBy" name="filtroOrderBy" value="">
+
+	<input type="hidden" id="lon" name="lon" value=""/>
+	<input type="hidden" id="lat" name="lat" value=""/>
+
+	<input type="hidden" id="avisoLimiteFiles" name="avisoLimiteFiles" value="">
+	
+	<input type="hidden" id="nomFormato" name="nomFormato" value="">
+	<input type="hidden" id="nomTematica" name="nomTematica" value="">
+	<input type="hidden" id="ambitoGeografico" name="ambitoGeografico" value="">
+	
+	
+	<!-- contenedor con margen -->
+	<div class="padRight3Por padLeft3Por">
+		 	
+		<div class="margen15sup margen20bottom"></div>
+	 	
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		 	
+
+<div class="contenedor clear col-12 col-m-12">  
+  <div>
+    <div>
+      <h2 class="floatLeft">
+
+
+	      
+			MDT50 cm - 3&ordf; cobertura
+		
+		
+		
+		: 
+ 			0
+ 		&nbsp;ficheros
+
+	</h2>
+
+    </div>
+   
+
+   
+    <!-- jota ini -->
+    <div class="row col-12 col-m-12">
+    
+    	<div class="col-3 col-t-4 col-m-12 floatLeft marginBottom10px"> 
+
+		   <!-- jota INI NUEVO MENU FILTRO -->
+				
+				<div class="row lineHeight40">
+					<div id="linkFiltros" class="col-12 fontSize09em cursorPointer paddingRight10px paddingLeft10px marginBottom3px colorFondoGrisBotAcordeon">
+						<span id="spanTriangleIcon" class="ui-icon ui-icon-triangle-1-s"></span>Filtrar <i class="fas fa-sliders-h sifloatDer fontSize13em marginTop10px" title="Filtrar"></i>
+					</div>
+					<div id="capaListaFiltros">
+					
+					<div class="row">
+						<div class="col-12 txtLeft paddingLeft10px">
+						
+							<input type="text" id="keySearch" name="keySearch" value="" placeholder="" class="height40 keySearch">
+						</div>
+						
+					</div>
+					
+					
+					<div class="clear marginTop5px"></div>
+					
+						<div class="row">
+							
+						  		<div class="col-12 paddingTop40px txtLeft paddingLeft10px">
+									<select id="comboDivAdm" class="form-select width100x100 fontSize09em">
+										<option value="">Ámbito</option>	
+										<!--<option value="optTodoMundo">Todo el mundo</option>-->
+										<option value="optTodaEsp">Toda España</option>								
+										<option value="optComAut">Comunidad Autónoma</option>	
+										<option value="optProv">Provincia</option>	
+										<option value="optMunicipio">Municipio</option>	
+										<option value="optH50">Hoja MTN50</option>
+										<option value="optCatas">Catastro</option>
+										<option value="optCoord">Coordenadas</option>
+									</select>
+								</div>			  		
+						 	
+					  			<div class="clear marginTop10px"></div>
+					  			
+					  			<div id="capaDivAdmComAut" class="displayNone txtLeft paddingLeft10px paddingTop10px">
+					  				<select id="comboComSerie" name="comboComSerie" class="form-select width100x100 fontSize09em">
+						        		<option value="">Comunidad Autónoma</option>
+						        		
+						        	</select>
+					  			
+					  			</div>	
+					  			<div id="capaDivAdmProv" class="displayNone txtLeft paddingLeft10px paddingTop10px">
+					
+						        	<select id="comboProvSerie" name="comboProvSerie" class="form-select width100x100 fontSize09em">
+						        		<option value="">Provincia</option>
+						        		 
+						        	</select>        	
+					        	
+					        	</div>
+					
+					
+					  			<div id="capaDivAdmMun" class="displayNone txtLeft paddingLeft10px paddingTop10px">
+									<input type="text" id="mostrarPobSerie" placeholder="Escribe nombre de municipio" class="form-control width100x100 fontSize09em"/>
+					        	
+					        	</div>    			
+    			
+    							
+    							<div id="capaH50" class="displayNone txtLeft paddingLeft10px paddingTop10px">
+    								<div class="row">
+										<div class="col-12 txtCenter">
+											<input type="text" class="form-control width100x100 fontSize09em" id="filtroNumHoja" name="filtroNumHoja" value="" maxlength="4"/>
+										</div>
+									</div>
+									<div class="clear marginTop10px"></div>
+									
+									<div class="row">
+										<div class="col-12 txtLeft fontSize09em">
+							    			1. Escribe el número entre el 1 y el 1111.
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-12 txtLeft fontSize09em">
+							    			2. Selecciona una hoja de la lista
+										</div>
+									</div>
+									<div id="capaLink50K" class="row">
+										<div class="col-12 txtLeft fontSize09em">
+											<a id="linkVerCapa50K"  class="acolorAzulClaro cursorPointer">
+												Ver cuadrícula MTN50						 
+											</a>
+										</div>
+									</div>
+									<div class="clear marginTop5px"></div>    							
+    								
+    							</div>
+    							
+    							
+    							<div id="capaCatastro" class="displayNone txtLeft paddingLeft10px paddingTop10px">
+    								<div class="row">
+										<div class="col-12 txtCenter">
+    										<input type="text" id="referCatastral" name="referCatastral" class="form-control width100x100 fontSize09em" value="" placeholder="9977715VK3797F" maxlength="14"/>
+										</div>
+									</div>
+									<div class="clear marginTop5px"></div>    							
+    							</div>
+    							
+    							
+    							<div id="capaCoordenadas" class="displayNone txtLeft paddingLeft10px paddingTop10px">
+
+									<div class="row fontSize08em">	
+										<div class="col-12">
+											<input type="radio" name="radOpCoord" id="radCoordUtm" value="COORD_UTM"/>
+											<label for="radCoordUtm"><span class="negrita colorAzulClaro fontSize09em">UTM</span></label>
+											<span class="negrita fontSize09em"> ETRS89 </span> (compatible con WGS84) 
+										</div>
+										
+										<div class="row">
+											<div id="capaCoordsUTM" class="col-12 txLeft displayNone" >
+												<div class="col-12"></div>
+												<div class="displayInlineBlock col-2">Huso:</div>
+												<div class="displayInlineBlock col-10">
+												<select id="comboCoordsHuso" class="form-select width100x100 colorAzulClaro fontSize09em">
+													<option value="28">28</option>
+													<option value="29">29</option>
+													<option value="30" selected="selected">30</option>
+													<option value="31">31</option>
+												</select>
+												</div>
+												<div class="col-12"></div>
+												<div class="displayInlineBlock col-2 fontSize09em">x:</div>
+												<div class="displayInlineBlock col-10"><input id="coordUtmx" type="text" class="form-control width100x100 fontSize09em" maxlength="20"/></div>
+												<div class="clear5px col-12"></div>
+												<div class="displayInlineBlock col-2 fontSize09em">y:</div>
+												<div class="displayInlineBlock col-10"><input id="coordUtmy" type="text" class="form-control width100x100 fontSize09em" maxlength="20"/></div>
+												<div class="clear10px col-12"></div>
+												<div class="txtCenter displayNone">
+													<input id="bCoordsUTM" type="button" class="orangeButton" value="Buscar">
+												</div>
+											</div>
+										</div>										
+										
+											
+										<div class="col-12 colorAzulClaro">
+										
+											<input type="radio" name="radOpCoord" id="radCoordGeo" value="COORD_GEO"/>
+											<label for="radCoordGeo"><span class="negrita colorAzulClaro fontSize09em">GEOGRÁFICAS</span></label>
+											<span class="negrita fontSize09em"> ETRS89 </span> (compatible con WGS84)
+											
+										</div>
+										<div class="row">
+											<div id="capaCoordsGeo" class="col-12 txtLeft displayNone">
+												
+												<div class="col-2 col-t-2 col-m-2 paddingBottom10px fontSize09em">lon: </div>
+												<div class="col-8 col-t-7 col-m-7 paddingBottom10px paddingRight10px"><input id="coordLon" type="text" class="form-control width100x100 fontSize09em" maxlength="11"></div>
+												<div class="col-2  col-t-3 col-m-3 paddingBottom10px">
+													<select id="comboLon" class="form-select width100x100">
+														<option value="" selected="selected">E</option>
+														<option value="-">O</option>
+													</select>
+												</div>
+												
+												<div class="row">
+													<div class="col-12 paddingTop10px">
+														<div class="col-2 col-t-2 col-m-2 paddingBottom10px fontSize09em">lat: </div>
+														<div class="col-8 col-t-7 col-m-7 paddingBottom10px paddingRight10px"><input id="coordLat" name="coordLat" type="text" class="form-control width100x100 fontSize09em" maxlength="11"></div>
+														<div class="col-2 col-t-3 col-m-3 paddingBottom10px">
+															<select id="comboLat" class="form-select">
+																<option value="" selected="selected">N</option>
+															</select>
+														</div>
+													</div>
+												</div>
+												<div class="col-12"></div>
+												<div class="txtCenter displayNone paddingTop10px fontSize09em">
+													<input id="bLocCoord" type="button" class="btn width100x100 fontSize09em" value='Buscar'>
+												</div>
+												<div class=" fontSize09em">Ej: lon: 3.71024042 Oeste, lat:40.44620881</div>
+											</div>	
+										</div>											
+										
+										
+									</div>
+									
+								</div>    			
+    			
+    							<div class="clear5px"></div>							
+							
+			        	</div>
+			        	
+						<div class="clear5px"></div>							
+					
+					
+					<div class="row">
+
+						<div class="col-12 txtLeft  paddingLeft10px">
+							<select id="comboTipoArchSerie" name="comboTipoArchSerie" class="form-select width100x100 fontSize09em">
+				        		<option value="">Formato</option>
+				        		
+				        	</select>
+		        		</div>
+		        	</div>
+		        	
+					<div class="clear10px"></div>
+					
+										
+						
+	  				
+					
+					
+					<div class="row paddingTop10px paddingBottom20px">
+						<div class="col-12 txtCenter">
+							<input type="button" id="bFiltroArchSerie" value="Aplicar filtros" class="btn btn-primary submitalta marginTop20px fontSize09em">
+						</div>
+					</div>					
+					
+					</div>
+				</div>
+	
+	
+	
+			<div id="capaCheckUncheckAll" class="row lineHeight40 marginBottom3px">
+
+				<div id="checkAllFiles" class="col-6-menos-3 colorFondoGrisBotAcordeon fontSize09em paddingLeft10px cursorPointer">
+					<span id="textoCheckAll">Añadir todos</span>
+					<img src="imgCdD/ico-cesta-mas.svg" id="iCarroTodos" class="heightIconocestaTablaTodosSerie fontSize13em marginTop3px marginRight3px floatDer"></img>					
+<!-- 					<i id="iCarroTodos" class="fas fa-plus-square fontSize13em colorAzulClaro marginTop10px floatDer"></i> -->
+				</div>
+				<div id="uncheckAllFiles" class="col-6-menos-3 colorFondoGrisBotAcordeon fontSize09em cursorPointer paddingLeft10px floatDer">
+					<span id="textoCheckAll">Quitar todos</span>
+					<img src="imgCdD/ico-cesta-menos-azul.svg" id="iCarroNinguno" class="heightIconocestaTablaTodosSerie fontSize13em marginTop3px marginRight3px floatDer"></img>					
+<!-- 					<i id="iCarroNinguno" class="fas fa-minus-square fontSize13em colorAzulClaro marginTop10px floatDer"></i> -->
+				</div>
+			</div>
+					
+					
+			<div id="capaBuscarMapa" class="row colorFondoGrisBotAcordeon height40 paddingRight10px paddingLeft10px marginBottom3px">
+				<div id="bVisor" class="col-12 fontSize09em cursorPointer">
+					<div class="marginTop10px">Buscar en mapa 
+					<img src="imgCdD/2-ico-map-az.svg" class="btnSizeIcoMapaTabla floatDer" alt="Ir al mapa">
+					</div>
+				</div>
+			</div>					
+				
+			<div id="capaPrintResultados" class="row colorFondoGrisBotAcordeon height40 paddingRight10px paddingLeft10px">							
+   				<div id="showReportTypes" class="col-12 fontSize09em cursorPointer">
+   					<div class="marginTop10px">Imprimir resultados 
+      				<i class="fa fa-print printresult fontSize13em floatDer" aria-hidden="true"></i>
+      				</div>
+      			</div>      			
+      		</div>			
+	
+		   	<!-- jota FIN NUEVO MENU FILTRO -->
+					
+    	</div>
+    	
+    	
+    	<div class="col-9  col-t-8 col-m-12 paddingLeft2por" style="float:left">
+    	
+    	<div class="row">
+
+	    		
+	    			
+	    			
+	    			
+	    			
+	
+	    		   
+<!-- 		david nuevo para filtro por hoja 25 desde llamada externa		 -->
+			<!--	   	
+	    	-->
+	    		    	
+	    		    	
+	    	
+	    		    	
+	    	
+	    		    	
+	    		    	
+	    		
+
+	    		 	
+
+	    </div>
+
+		<div id="capaTableSeriePc" class="row">
+			<div class="table100 ver8 paddingBottom20px">
+          <table class="table table-bordered table-hover tablaAdaptable tablaAdaptableCab">
+            <thead>
+              <tr id="trLASerie" tabindex="0">
+                <th class="txtTablasCab column2 txtCenter minWidth100px width150px" data-column="column2" >
+	               Nombre	                
+	                
+	                
+	                	<img class="displayNone width13" src="img/down.png" alt='Ordenar por nombre descendente' title='Ordenar por nombre descendente'>
+	          			<img class="cursorPointer width13" id="orderArch_ND" src="img/down.png" alt='Ordenar por nombre descendente' title='Ordenar por nombre descendente'>
+	          		
+	                
+	          		
+          		</th>
+                <th class="txtTablasCab column3 txtCenter maxWidth80px minWidth80px width80px" data-column="column3">
+	                Formato
+	                
+	                 
+	                 
+	                 	<img class="cursorPointer width13" id="orderArch_TAD" src="img/down.png" alt='Ordenar por formato descendente' title='Ordenar por formato descendente'/>
+	                	<img src="img/up.png" class="displayNone width13" title='Ordenar por formato ascendente' alt='Ordenar por formato ascendente'>
+	            	
+	            	
+                </th>
+                <th class="txtTablasCab column4 txtCenter maxWidth80px minWidth80px width80px" data-column="column4">
+	                Fecha
+	                
+	                
+	                 	<img id="orderArch_FDT" src="img/down.png" class="cursorPointer width13" title='Ordenar por fecha descendente' alt='Ordenar por fecha descendente'>
+	             		<img src="img/up.png"  class="displayNone width13"  title='Ordenar por fecha ascendente' alt='Ordenar por fecha ascendente'>
+	                
+	                	
+                </th>
+                <th  class="txtTablasCab column5 txtCenter maxWidth80px minWidth80px width80px" data-column="column5">
+				<div id="columnScale" class= "col-10"></div>
+                <div class="col-2">	
+                	
+                	
+                		<img class="cursorPointer width13" id="orderArch_ED" src="img/down.png"  title='Ordenar por escala descendente' alt='Ordenar por escala descendente'>
+                		<img src="img/up.png"  class="displayNone width13"  title='Ordenar por escala ascendente' alt='Ordenar por escala ascendente'>
+                	
+                		
+			</div>		
+                </th>
+                <th class="txtTablasCab column6 txtCenter maxWidth80px minWidth80px width80px" data-column="column6">
+                	<!-- txt.mg-->MB
+                	
+                	
+                	    <img class="cursorPointer width13" id="orderArch_TD" src="img/down.png" title='Ordenar por tamaño descendente' alt='Ordenar por tamaño descendente'>
+                		<img src="img/up.png"  class="displayNone width13"  title='Ordenar por tamaño ascendente' alt='Ordenar por tamaño ascendente'>
+					
+						
+                </th>
+                <th class="txtTablasCab column7 txtCenter maxWidth80px minWidth80px width80px" data-column="column7">Acciones</th>
+                <th class="txtTablasCab column8 txtCenter maxWidth80px minWidth80px width80px" data-column="column8">Descarga</th>
+              </tr>
+            </thead>
+            <tbody>
+                	            
+            </tbody>
+          </table>
+        </div>
+<!-- tabla -->
+						 
+						   
+			</div> 
+    	
+    	
+    	<div id="capaTableSerieMov" class="row">
+			<div class="col-12">
+				<table class="tableMovil">
+			 		<tbody>
+	        			<tr id="trLASerieMov"  tabindex="0">
+	        			</tr>
+								        			
+	        			
+					</tbody>
+				</table>
+			</div>		
+    	</div>
+    	
+    	
+						<div class="row">
+							
+							      <div class=" col-12 fontSize09em paddingTop10px paddingBottom10px">
+							        <ul class="pagination floatDer">
+							                 
+							        
+							        
+													
+							          
+											 
+							        </ul>
+							      </div>	
+							
+							</div>	    	
+    	
+    	</div>
+    </div>
+    <!-- jota fin -->
+    
+  </div>
+  
+  		
+  
+</div>
+
+
+<!-- separador 15px alto -->
+<div class="margen15sup"></div>
+<!-- fin separador 15px alto -->	 	
+	 	
+	 	
+	</div> 	
+	<!-- fin contenedor con margen --> 	
+
+	
+<!-- 	</form> -->
+
+
+		<div id="modalVisor" class="modalCDD">
+		</div>
+		
+		<div id="modalGral" class="modalCDD"></div>
+		
+	 	<div id="capaRRSS" class="displayNone">
+		 	<div class="txtLeft">
+		 		 <a id="linkFacebook" href="#" class="fontSize10em acolorAzulClaro marginRight5px" target="_blank" title="Compartir por Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+		 		 <a id="linkTwiter" href="#" class="fontSize10em acolorAzulClaro marginRight5px" target="_blank" title="Compartir en X"><i class="fa-brands fa-x-twitter"></i></a> 
+		 		 <a id="linkLinkedin" href="#" href="https://www.linkedin.com/company/instituto-geografico-nacional-cnig-spain/" class="fontSize10em acolorAzulClaro marginRight5px" title="Compartir por Linkedin" target="_blank"><i class="fab fa-linkedin-in"></i></a> 
+				 <a id="linkCopyURl" href="#" onclick="return false;"  class="fontSize10em acolorAzulClaro marginRight5px cursorPointer" title="Copiar Url"><i class="fa-solid fa-link"></i></a>
+            </div>
+		</div>
+
+		 		<div id="capaFormatoImpresion" class="modalCDD">
+ 			<div class="modalCDD-content">
+ 				<div class="row">
+ 					<div class="col-12 txtCenter">
+ 						<h2>Seleccione el formato de impresi&oacute;n:</h2>
+ 					</div>
+ 				</div>
+	 			<div class="row">
+	 				<div class="col-6 txtRight">
+	 					<input type="radio" id="radFormatoPDF" name="radFormatoReport" value="PDF">
+	 				</div>
+	 				<div class="col-6 txtLeft">PDF</div>
+	 			</div>
+	 			<div class="row">
+	 				<div class="col-6 txtRight">
+	 					<input type="radio" id="radFormatoCSV" name="radFormatoReport" value="csv">
+	 				</div>
+	 				<div class="col-6 txtRight">
+	 					<div class="col-6 txtLeft">CSV</div>
+	 				</div>	
+	 			</div>
+	 			<div class="row paddingTop35px">
+	 				<div class="col-12 txtCenter">
+	 					<input id="printArchivos"   type="button" class="btn" value="Imprimir resultados">
+	 					<input id="closeModalPrint" type="button" class="btn" value="Cerrar">
+	 				</div>
+	 			</div>
+ 			</div>
+ 		</div>
+		
+		
+		
+	<script>
+	//window.history.pushState("","",$('#urlProd').val());
+	
+//26-12-2026 ocultar capa redes sociales.
+
+	$(document).on('click', function (e) {
+		if (!$(e.target).closest('#capaRRSS, [id^="compartirArchivo_"]').length) {
+			  ocultaCapaRRSS();
+		  }
+		});
+
+
+	  $('#capaRRSS').on('click', function (e) {
+		    e.stopPropagation();
+		  });
+	  
+	function ocultaCapaRRSS(){
+		
+		var $capa = $('#capaRRSS');
+		$('[id^=compartirArchivo_]').each(function () {
+	    	$(this).removeClass('colorVerdeClaro').addClass('colorAzulClaro');
+	    	$capa.fadeOut('slow');
+		});
+	}
+	//26-12-2026 ocultar capa redes sociales.
+	
+	if(deviceType=='Mobile'){
+		$('#capaCheckUncheckAll,#capaLink50K,#capaPrintResultados,#capaBuscarMapa,[id^=capaCestaArchivo_]').hide();
+		$('#capaTableSeriePc').hide();
+		$('#capaTableSerieMov').show();
+	}
+	else{
+		$('#capaTableSeriePc').show();
+		$('#capaTableSerieMov').hide();
+	}
+	
+		if(mapSeries.has($('#codSerie').val())){
+			if($('#lang').val()=='EN'){
+				$("#columnScale").html(mapSeries.get($('#codSerie').val()).txtEscalaEN);
+				$('#comboTematica option[value=""] ').text(mapSeries.get($('#codSerie').val()).txtFiltroTematicaEN);
+				
+				$("#txtTematicaFiltro").html(mapSeries.get($('#codSerie').val()).txtFiltroTematicaEN);
+			}
+			else{
+				$("#columnScale").html(mapSeries.get($('#codSerie').val()).txtEscalaES);				
+				$('#comboTematica option[value=""] ').text(mapSeries.get($('#codSerie').val()).txtFiltroTematicaES);
+				
+				$("#txtTematicaFiltro").html(mapSeries.get($('#codSerie').val()).txtFiltroTematicaES);
+			}
+		}
+		else{
+			$('#comboTematica option[value=""] ').text(selectTematica[$('#lang').val()]);
+			
+			$("#txtTematicaFiltro").html(selectTematica[$('#lang').val()]);
+			
+			$("#columnScale").html(escala[$('#lang').val()]);
+		}
+	
+	$('#comboDivAdm').val('');
+	$('#radCoordUtm,#radCoordGeo').prop('checked',false);
+	
+	
+	$("#tabsFiltro").tabs();
+	
+	$('#comboProvSerie').val($('#codProvincia').val());
+
+	$('#comboComSerie').val($('#codComAutonoma').val());
+	
+	$('#comboTipoArchSerie').val($('#codTipoArchivo').val());
+	
+	$('#comboIdiomaInfSerie').val($('#codIdiomaInf').val());
+	
+	$('#comboTematica').val($('#codSubserie').val());
+	
+	
+	if($('#codProvincia').val().length>0){
+		$('#textoFiltroProv').text($('#comboProvSerie option:selected').text());
+	}
+	
+	if($('#codComAutonoma').val().length>0){
+		$('#textoFiltroComAuto').text($('#comboComSerie option:selected').text());
+	}
+	
+	if($('#codTipoArchivo').val().length>0){
+		$('#textoFiltroTipoArch').text($('#comboTipoArchSerie option:selected').text());
+	}
+	if($('#codIdiomaInf').val().length>0){
+		$('#textoFiltroIdiInf').text($('#comboIdiomaInfSerie option:selected').text());
+	}
+	if($('#codSubserie').val().length>0){
+		$('#textoFiltroSubserie').text($('#comboTematica option:selected').text());
+	}
+	
+
+	if($('#codIne').val()!=''){
+		
+		function municipio(obj) {
+			  return obj.cod ==$('#codIne').val();
+		}
+		
+		$('#mostrarPobSerie').val(nomenList.find(municipio).value);
+		
+		$('#textoFiltroMunicipio').text($('#mostrarPobSerie').val());
+	}
+
+	
+	$('#closeFiltroComAuto').bind('click',function(event){
+		$('#comboComSerie,#coordenadas').val('');
+		$('#bFiltroArchSerie').trigger('click');
+	});
+	$('#closeFiltroProv').bind('click',function(event){
+		$('#comboProvSerie,#coordenadas').val('');
+		$('#bFiltroArchSerie').trigger('click');
+	});
+	$('#closeFiltroHoja').bind('click',function(event){
+		$('#numHoja,#filtroNumHoja,#coordenadas').val('');
+		$('#bFiltroArchSerie').trigger('click');
+	});
+	
+	
+	$('#closeFiltroHoja25').bind('click',function(event){
+		$('#numHoja25,#filtroNumHoja25,#coordenadas').val('');
+		$('#bFiltroArchSerie').trigger('click');
+	});
+	
+	
+	$('#closeFiltroCodIne').bind('click',function(event){
+		$('#codIne,#coordenadas,#mostrarPobSerie').val('');
+		$('#bFiltroArchSerie').trigger('click');
+	});
+	
+	$('#closeFiltroTipArch').bind('click',function(event){
+		$('#comboTipoArchSerie').val('');
+		$('#bFiltroArchSerie').trigger('click');
+	});
+
+	$('#closeFiltroTodaEsp').bind('click',function(event){
+		$('#comboDivAdm,#coordenadas').val('');
+		$('#todaEspania').val('N');
+		$('#bFiltroArchSerie').trigger('click');
+	});
+
+	$('#closeFiltroTodoMun').bind('click',function(event){
+		$('#comboDivAdm,#coordenadas').val('');
+		$('#todoMundo').val('N');
+		$('#bFiltroArchSerie').trigger('click');
+	});
+	
+	$('#closeFiltroTipArch').bind('click',function(event){
+		$('#comboTipoArchSerie').val('');
+		$('#bFiltroArchSerie').trigger('click');
+	});
+
+	$('#closeFiltroIdiInf').bind('click',function(event){
+		$('#comboIdiomaInfSerie').val('');
+		$('#bFiltroArchSerie').trigger('click');
+	});
+	
+	$('#closeFiltroTematica').bind('click',function(event){
+		$('#comboTematica').val('');
+		$('#bFiltroArchSerie').trigger('click');
+	});
+	
+	$('#closeFiltroRefCatastral').bind('click',function(event){
+		$('#referCatastral,#coordenadas').val('');
+		$('#bFiltroArchSerie').trigger('click');
+	});
+
+	$('#closeFiltroContiene').bind('click',function(event){
+		$('#keySearch').val('');
+		$('#bFiltroArchSerie').trigger('click');
+	});
+	$('#closeFiltroContieneArc').bind('click',function(event){
+		$('#contieneArc').val('');
+		$('#bFiltroArchSerie').trigger('click');
+	});
+	
+	$('#closeFiltroCoordenadas').bind('click',function(event){
+		$('#comboDivAdm,#coordenadas').val('');
+		$('#bFiltroArchSerie').trigger('click');
+	});
+
+	$('#closeFiltroIdProductor').bind('click',function(event){
+		$('#idProductor').val('');
+		$('#bFiltroArchSerie').trigger('click');
+	});
+	
+	
+    $("#filtroNumHoja").autocomplete({
+        //minLength : 2,
+        source:hojas50List,
+        search:function(event, ui ) {
+            $('#numHoja').val('');
+        },
+        select: function (event, ui ) {
+            $('#numHoja').val(ui.item.value);
+        }
+    });		
+	
+	
+	$('#bFiltroArchSerie').bind('click',function(event){
+		
+		if($('#comboDivAdm').val()=='optCoord'){
+			
+			if($('#radCoordUtm').is(':checked')){
+				var utmx=$('#coordUtmx').val().replace(',','.').trim();
+				var utmy=$('#coordUtmy').val().replace(',','.').trim();
+				var huso=$('#comboCoordsHuso').val();
+				if($.validaUtmSearch(utmx,utmy)){
+					$("#bCoordsUTM").trigger('click');
+				}
+				else{
+					return false;
+				}
+			}
+			else if($('#radCoordGeo').is(':checked')){
+				var lon=$('#coordLon').val().replace(',','.').trim();
+				var eo=$('#comboLon').val();			
+				var lat=$('#coordLat').val().replace(',','.').trim();
+				//searchCoords
+				if($.validaLonLatSearch(lon,lat)){				
+					$("#bLocCoord").trigger('click');
+				}
+				else{
+					return false;
+				}
+			}
+			else{
+				$.infoMsj(selectOpBusc[$('#lang').val()]);
+				return;
+			}
+		}
+		
+		$("#modalEspera").show();
+		
+		if($('#referCatastral').val().length>0){
+			if($.validaRCSearch($('#referCatastral').val())){
+			      $.ajax({
+	                  url: 'coordsRC',
+	                  data:{codReferCatastral:$('#referCatastral').val()},
+	                  success: referCatasOk,
+	                  dataType: "json",
+	                  error: function(xhr, ajaxOptions, thrownError){
+	                	  setTimeout(function () {$("#modalEspera").hide();}, 1000);
+	                	  $.infoMsj(ajaxErrorGral[$('#lang').val()]);
+	                  }
+	          	});
+			}else{
+				$("#modalEspera").hide();
+			}
+			
+		}
+		else{
+			callArchivosSerie();
+		}
+
+	});
+	
+	$('[id^=linkPag_]').bind('click',function(event){
+		event.preventDefault();
+		
+		$('#numPagina').val($(this).attr('id').split('_')[1]);
+		
+		$("#modalEspera").show();
+		
+		callArchivosSerie();
+		
+		
+	});//FIN linkPag_
+	
+	function referCatasOk(jsonObj){
+		 //setTimeout(function () {$("#capaModal").dialog("close");}, 1000);
+		var jsonCat = JSON.parse(jsonObj.jsonCatastro);
+		
+		if(jsonCat.cuerr=='0'){
+			if(isNaN(jsonCat.xcen) || isNaN(jsonCat.ycen)){
+				$.infoMsj(noCoordsReferCatas[$('#lang').val()]);
+				return;
+			}
+
+			
+			searchCoords="{\"type\" : \"FeatureCollection\", \"features\" : [{";
+			
+			searchCoords=searchCoords+"\"type\":\"Feature\",\"geometry\":{\"type\": \"Point\",\"coordinates\": ["+ jsonCat.xcen+","+jsonCat.ycen+"]}";
+        	
+			searchCoords=searchCoords+"}]}";
+			//console.log(searchCoords);
+			$('#coordenadas').val(searchCoords);
+			callArchivosSerie();
+		}
+		else{
+			let texto = jsonCat.des.toLowerCase();
+		    let textoFormateado = texto.charAt(0).toUpperCase() + texto.slice(1);
+		    $("#modalEspera").hide();
+			$.infoMsj(textoFormateado);
+			return;
+		}
+	}	
+	
+	
+	function callArchivosSerie(){
+		
+		$.ajax({
+            url: 'archivosSerie',						
+            data:{
+            	numPagina:$('#numPagina').val(),
+           	 	codAgr:$('#codAgr').val(),
+           		codSerie:$('#codSerie').val(),
+				coordenadas:$('#coordenadas').val(),
+				series:$('#series').val(),
+           		codComAutonoma:$('#comboComSerie').val(),
+           		codProvincia:$('#comboProvSerie').val(),
+           		codIne:$('#codIne').val(),
+           		codTipoArchivo:$('#comboTipoArchSerie').val(),
+           		codIdiomaInf:$('#comboIdiomaInfSerie').val(),
+           		todaEspania:$('#todaEspania').val(),
+           		todoMundo:$('#todoMundo').val(),
+           		idProductor:$('#idProductor').val(),
+           		rutaNombre:$('#rutaNombre').val(),
+           		numHoja:$('#numHoja').val(),
+           		//nuevo para llamada externa por hoja 25.000
+           		numHoja25:$('#numHoja25').val(),
+           		totalArchivos:$('#totalArchivos').val(),
+           		codSubSerie:$('#comboTematica').val(),
+           		contieneArc:$('#contieneArc').val(),
+           		keySearch:$('#keySearch').val(),
+           		referCatastral:$('#referCatastral').val(),
+           		orderBy:$('#filtroOrderBy').val()
+            },
+            success: buscarArchivosSerieOk,
+            dataType: "html",
+            error: function(xhr, ajaxOptions, thrownError){
+            	 setTimeout(function () {$("#modalEspera").hide();}, 1000);
+            	alert("xhr:"+xhr+", ap:"+ajaxOptions+",  te:"+thrownError);
+            }		
+    	});
+	}
+	
+
+	
+	$('[id^=orderArch_]').bind('click',function(event){
+		
+		
+		var orderBy=$(this).attr('id').split('_')[1];
+		
+		$('#filtroOrderBy').val($(this).attr('id').split('_')[1]);
+		
+		$("#modalEspera").show();
+		 
+		$.ajax({
+            url: 'archivosSerie',						
+            data:{
+            	numPagina:"1",
+           	 	codAgr:$('#codAgr').val(),
+           		codSerie:$('#codSerie').val(),
+				coordenadas:$('#coordenadas').val(),
+				series:$('#series').val(),
+           		codComAutonoma:$('#comboComSerie').val(),
+           		codProvincia:$('#comboProvSerie').val(),
+           		codIne:$('#codIne').val(),
+           		codTipoArchivo:$('#comboTipoArchSerie').val(),
+           		codIdiomaInf:$('#comboIdiomaInfSerie').val(),
+           		todaEspania:$('#todaEspania').val(),
+           		todoMundo:$('#todoMundo').val(),
+           		idProductor:$('#idProductor').val(),
+           		rutaNombre:$('#rutaNombre').val(),
+           		numHoja:$('#numHoja').val(),
+           		//nuevo para llamada externa por hoja 25.000
+           		numHoja25:$('#numHoja25').val(),
+           		totalArchivos:$('#totalArchivos').val(),
+           		codSubSerie:$('#comboTematica').val(),
+           		contieneArc:$('#contieneArc').val(),
+           		keySearch:$('#keySearch').val(),
+           		referCatastral:$('#referCatastral').val(),
+           		orderBy:$('#filtroOrderBy').val()
+            },
+            success: buscarArchivosSerieOk,
+            dataType: "html",
+            error: function(xhr, ajaxOptions, thrownError){
+           	 	alert("xhr:"+xhr+", ap:"+ajaxOptions+",  te:"+thrownError);
+            }		
+    	});
+		
+	});
+	
+	
+	
+	function buscarArchivosSerieOk(htmlObj){
+		 setTimeout(function () {$("#modalEspera").hide();}, 1000);
+		$('#divArchivosSerie').html(htmlObj);
+		
+		if(deviceType=='Mobile'){
+			$('#trLASerieMov').focus();
+		}
+		else{
+			$('#trLASerie').focus();	
+		}
+		
+	}
+	
+	
+ 	 $('[id^=anadir_]').bind('click',function(event){
+ 		
+ 			$("#modalEspera").show();
+ 		
+ 		 var arcSeq=$(this).attr('id').split('_')[1];
+	      $.ajax({
+              url: 'checkFile',
+              data:{secuencial:arcSeq},
+              success: checkOk,
+              dataType: "json",
+              error: function(xhr, ajaxOptions, thrownError){
+            	  $("#modalEspera").hide();
+            	  $.infoMsj(ajaxErrorGral[$('#lang').val()]);
+              }		
+      	});
+	 });
+	 
+	 $('[id^=quitar_]').bind('click',function(event){
+		 $("#modalEspera").show();
+		 var arcSeq=$(this).attr('id').split('_')[1];
+	      $.ajax({
+              url: 'uncheckFile',
+              data:{secuencial:arcSeq},
+              success: uncheckOk,
+              dataType: "json",
+              error: function(xhr, ajaxOptions, thrownError){
+            	  $("#modalEspera").hide();
+            	  $.infoMsj(ajaxErrorGral[$('#lang').val()]);
+              }		
+      	});
+	 });
+ 	 
+ 	 
+ 	$('[id^=target_]').on('click',function(event){
+		
+ 		$('[id^=target_]').each(function () {
+	 		$(this).prop('src','imgCdD/2-ico-map-az.svg');
+		});
+		
+		var idSec=$(this).attr('id').split('_')[1];
+		$(this).prop('src','imgCdD/2-ico-map-az-h.svg');
+		
+		var $capa = $('#capaRRSS');
+		$('[id^=compartirArchivo_]').each(function () {
+	    	$(this).removeClass('colorVerdeClaro').addClass('colorAzulClaro');
+	    	$capa.fadeOut('slow');
+		});
+		
+        $.ajax({
+            url: 'loadVisor',						
+            data:{secuencial:idSec},
+            success: targetOk,
+            dataType: "html",
+            error: function(xhr, ajaxOptions, thrownError){               	 	
+            	$.infoMsj(ajaxErrorGral[$('#lang').val()]);
+            }
+    	});
+	});			
+	
+	function targetOk(htmlObj){
+		$('#modalVisor').show();
+		$('#modalVisor').html(htmlObj);
+	
+	}
+	
+ 	$('#linkVerCapa50K').on('click',function(event){
+		
+ 		$('#codSerieVisor').val("50K");
+        $.ajax({
+            url: 'loadVisor',						
+            data:{
+            	codSerie50K:$('#codSerieVisor').val()
+            },
+            success: targetOk,
+            dataType: "html",
+            error: function(xhr, ajaxOptions, thrownError){               	 	
+            	$.infoMsj(ajaxErrorGral[$('#lang').val()]);
+            }
+    	});
+	});	
+	
+	
+	
+	
+	function checkOk(jsonObj){
+		setTimeout(function () {$("#modalEspera").hide();}, 1000); 
+		//david añade el limite de archivos en la cesta
+		if (jsonObj.msj=='OK' || jsonObj.msj=='MAXSINUSER'){
+			$('#capaCestaDesc').show();
+// 			$('#menuCddDescarga').addClass('avisoSeleccionados').delay(800);
+ 		 $.actualizaTotales(jsonObj.totalFiles,jsonObj.totalMb);
+ 		 $('#anadir_'+jsonObj.secuencial).hide();
+ 		 $('#quitar_'+jsonObj.secuencial).show();
+ 			if (jsonObj.msj=='MAXSINUSER'  && $("#avisoLimiteFiles").val()!='N'){		
+ 				$("#avisoLimiteFiles").val('N');
+ 				$.infoMsj(limiteArchivosSinUser[$('#lang').val()]);
+ 			} 		 
+ 		 
+		 }
+		else if (jsonObj.msj=='MAX'){			
+			$.infoMsj(limiteArchivos[$('#lang').val()]);
+		 }
+// 		else if (jsonObj.msj=='MAXSINUSER'){			
+// 			$.infoMsj(limiteArchivosSinUser[$('#lang').val()]);
+// 		 }
+		//fin david
+	}
+	function uncheckOk(jsonObj){
+		setTimeout(function () {$("#modalEspera").hide();}, 1000); 
+		 //$('#menuCddDescarga').addClass('avisoSeleccionados').delay(800);
+		 $.actualizaTotales(jsonObj.totalFiles,jsonObj.totalMb);
+		 $('#quitar_'+jsonObj.secuencial).hide();
+		 $('#anadir_'+jsonObj.secuencial).show();
+		 
+		 $("#iCarroTodos").removeClass('colorVerdeClaro').addClass('colorAzulClaro');
+		 //$("#textoCheckAll").text('Seleccionar todos');
+	}
+	
+	
+	 $('#checkAllFiles').on('click',function(event){
+
+// 		 if($('#totalArchivos').val()>LIMIT_FILES_DESCARGA){
+// 			 $.infoMsj(limiteArchivos[$('#lang').val()]);
+// 			 return false;
+// 		 }		 
+		 
+		 
+		 $("#modalEspera").show();
+				
+			  $.ajax({
+	              url: 'checkAllFiles',
+	              data:{
+		           	 	codAgr:$('#codAgr').val(),
+		           		codSerie:$('#codSerie').val(),
+						coordenadas:$('#coordenadas').val(),
+						series:$('#series').val(),
+		           		codComAutonoma:$('#comboComSerie').val(),
+		           		codProvincia:$('#comboProvSerie').val(),
+		           		codIne:$('#codIne').val(),
+		           		codTipoArchivo:$('#comboTipoArchSerie').val(),
+		           		codIdiomaInf:$('#comboIdiomaInfSerie').val(),
+		           		todaEspania:$('#todaEspania').val(),
+		           		todoMundo:$('#todoMundo').val(),
+		           		idProductor:$('#idProductor').val(),
+		           		rutaNombre:$('#rutaNombre').val(),
+		           		numHoja:$('#numHoja').val(),	
+		           		//nuevo para llamada externa por hoja 25.000
+		           		numHoja25:$('#numHoja25').val(),
+		           		codSubSerie:$('#comboTematica').val(),
+		           		contieneArc:$('#contieneArc').val(),
+		           		keySearch:$('#keySearch').val(),
+		           		referCatastral:$('#referCatastral').val(),
+		           		orderBy:$('#filtroOrderBy').val()
+	             	 },
+	              success: checkAllFilesOk,
+	              dataType: "json",
+	              error: function(xhr, ajaxOptions, thrownError){
+	            	  setTimeout(function () {$("#modalEspera").hide();}, 1000);
+	            	  $.infoMsj(ajaxErrorGral[$('#lang').val()]);
+	              }		
+	      	});
+
+		 
+	 });//FIN checkAll
+	
+	 $('#uncheckAllFiles').on('click',function(event){
+
+		 $("#modalEspera").show();
+
+		      $.ajax({
+                  url: 'uncheckAllFiles',
+                  data:{
+  	           	 	codAgr:$('#codAgr').val(),
+	           		codSerie:$('#codSerie').val(),
+					coordenadas:$('#coordenadas').val(),
+					series:$('#series').val(),
+	           		codComAutonoma:$('#comboComSerie').val(),
+	           		codProvincia:$('#comboProvSerie').val(),
+	           		codIne:$('#codIne').val(),
+	           		codTipoArchivo:$('#comboTipoArchSerie').val(),
+	           		codIdiomaInf:$('#comboIdiomaInfSerie').val(),
+	           		todaEspania:$('#todaEspania').val(),
+	           		todoMundo:$('#todoMundo').val(),
+	           		idProductor:$('#idProductor').val(),
+	           		rutaNombre:$('#rutaNombre').val(),
+	           		numHoja:$('#numHoja').val(),
+	           		//nuevo para llamada externa por hoja 25.000
+	           		numHoja25:$('#numHoja25').val(),
+	           		codSubSerie:$('#comboTematica').val(),
+	           		referCatastral:$('#referCatastral').val(),
+	           		contieneArc:$('#contieneArc').val(),
+	           		keySearch:$('#keySearch').val()
+                 },
+                  success: uncheckAllFilesOk,
+                  dataType: "json",
+                  error: function(xhr, ajaxOptions, thrownError){
+                	  setTimeout(function () {$("#modalEspera").hide();}, 1000);
+                	  $.infoMsj(ajaxErrorGral[$('#lang').val()]);
+                  }		
+          	});
+
+		 
+		 
+	 });//FIN uncheckAll
+	 
+	 
+		function checkAllFilesOk(jsonObj){
+			setTimeout(function () {$("#modalEspera").hide();}, 1000);
+		 	//david añade el limite de archivos en la cesta
+			if (jsonObj.msj=='OK' || jsonObj.msj=='MAXSINUSER'){
+			
+				$('#capaCestaDesc').show();
+			    $.actualizaTotales(jsonObj.totalFiles,jsonObj.totalMb);
+			    $('[id^=anadir_]').hide();
+			    $('[id^=quitar_]').show();
+			    
+			   // $("#iCarroTodos").removeClass('colorAzulClaro').addClass('colorVerdeClaro');//.removeClass('fa-plus-square').addClass('fa-minus-square');
+			    
+			    //$("#textoCheckAll").text('Quitar todos');
+			    
+			    if(jsonObj.msj=='MAXSINUSER' && $("#avisoLimiteFiles").val()!='N'){	
+			    	$("#avisoLimiteFiles").val('N');
+			    	$.infoMsj(limiteArchivosSinUser[$('#lang').val()]);	
+			    }
+			    
+			    //setTimeout(function () {$("#capaModal").dialog("close");}, 800);
+			}
+			else if (jsonObj.msj=='MAX'){
+				//$("#capaModal").dialog("close");
+				$('#checkAllFiles').prop("checked", false);
+				$.infoMsj(limiteArchivos[$('#lang').val()]);
+			}
+// 			else if (jsonObj.msj=='MAXSINUSER'){
+// 				$('#checkAllFiles').prop("checked", false);
+// 				$.infoMsj(limiteArchivosSinUser[$('#lang').val()]);
+// 			}
+			
+		}
+		
+		function uncheckAllFilesOk(jsonObj){
+			setTimeout(function () {$("#modalEspera").hide();}, 1000); 
+			//$('#menuCddDescarga').addClass('avisoSeleccionados').delay(800);
+			 $.actualizaTotales(jsonObj.totalFiles,jsonObj.totalMb);
+			 $('[id^=quitar_]').hide();
+			 $('[id^=anadir_]').show();
+			 //setTimeout(function () {$("#capaModal").dialog("close");}, 800);
+			// $("#iCarroTodos").removeClass('colorVerdeClaro').addClass('colorAzulClaro');//.removeClass('fa-minus-square').addClass('fa-plus-square');
+			// $("#textoCheckAll").text('Seleccionar todos');
+		}
+		
+		
+	 	$('#linkDescLA').bind('click',function(event){
+		
+	 		$('#listaArchivosForm').prop('action','listaFicheros');
+	 		$('#listaArchivosForm').prop('target','_self');
+			$('#listaArchivosForm').submit();
+	
+		});
+
+	 	$('#backToListaCata').bind('click',function(event){
+			if($('#codAgr').val()==''){
+		 		$('#detalleSerieForm').prop('action','home');
+		 		$('#detalleSerieForm').prop('target','_self');
+				$('#detalleSerieForm').submit();
+		 	}
+		 	else{
+		 		$('#detalleSerieForm').prop('action','listaCatalogo');
+		 		$('#detalleSerieForm').prop('target','_self');
+				$('#detalleSerieForm').submit();
+		 	} 		
+	
+		});
+
+		$('[id^=linkUMD_]').bind('click',function (event) {
+			event.preventDefault();
+			var cserie=$(this).attr('id').split('_')[1];
+			if($('#contentMDListaCata_'+cserie).is(':visible')){
+				$('#contentMDListaCata_'+cserie).slideUp();
+			}
+			else{
+				$.ajax({
+		            url: 'loadMD',	
+		            data:{
+		            	codSerie:cserie
+		            },
+		            success: function(htmlObj){	 
+		            	
+		            	$('#contentMDListaCata_'+cserie).slideDown();
+		            	$('#contentMDListaCata_'+cserie).show();
+		    			$('#contentMDListaCata_'+cserie).html(htmlObj);
+		            },
+		            dataType: "html"
+			 	 });
+			}
+		});
+
+		$('[id^=linkUIA_]').bind('click',function (event) {
+			event.preventDefault();
+			var cserie=$(this).attr('id').split('_')[1];
+			if($('#contentIAListaCata_'+cserie).is(':visible')){
+				$('#contentIAListaCata_'+cserie).slideUp();
+			}
+			else{
+				$.ajax({
+		            url: 'loadIA',	
+		            data:{
+		            	codSerie:cserie
+		            },
+		            success: function(htmlObj){	 
+		            	$('#contentIAListaCata_'+cserie).slideDown();
+		    			$('#contentIAListaCata_'+cserie).html(htmlObj);
+		            },
+		            dataType: "html"
+			 	 });
+			}
+		});		 	
+	 	
+		$('#descargaUMD').bind('click',function (event) {
+			
+		   	   $('#detalleSerieForm').prop('action','linkUnMD');
+			   $('#detalleSerieForm').prop('target','_blank');
+			   $('#detalleSerieForm').submit();
+			
+		}); 
+	 	
+		$('#bVisor').bind('click',function (event) {
+			   
+		   	   $('#detalleSerieForm').prop('action','buscar-mapa');
+			   $('#detalleSerieForm').prop('target','_self');
+			   $('#detalleSerieForm').submit();
+			
+		});
+		
+		$('[id^=linkDescDir_],[id^=linkDescDirMov_]').bind('click',function(event){
+			var sec=$(this).attr('id').split('_')[1];
+			$.ajax({
+	            url:'initDescargaDir',
+	            data:{secuencial:sec},
+	            success: function(respJson){
+	            	if(respJson.muestraLic=='SI'){
+	            		muestraLicDescDir(respJson.secuencialDescDir);
+	            	}
+	            	else{
+	            		descDir(respJson.secuencialDescDir,respJson.nuevaVentana);
+	            	}
+	          		
+	            },
+	            dataType: "json",
+	            error: function(xhr, ajaxOptions, thrownError){
+	           	 	setTimeout(function () {$("#capaModal").dialog("close");}, 1000);
+	           	 alert(xhr+","+ajaxOptions+","+thrownError);//$.infoMsj(ajaxErrorGral[$('#lang').val()]);
+	            }		
+	    	});
+			
+		});
+		
+		
+		$('[id^=linkDescDirS3_],[id^=linkDescDirS3Mov_]').bind('click',function(event){
+			var sec=$(this).attr('id').split('_')[1];
+			$('#secuencial').val(sec);
+			$('#detalleSerieForm').prop('action','descargaDirS3');
+			
+			$('#detalleSerieForm').prop('target','_blank');	
+			$('#detalleSerieForm').submit();
+			
+		});
+		
+		
+		function muestraLicDescDir(idSec){
+			$.ajax({
+	            url:'loadLicsDescDir',
+	            data:{secuencial:idSec},
+	            success: function(respHtml){
+	            	if(respHtml!=''){
+	               		$('#modalGral').html(respHtml);
+	               		$('#modalGral').slideDown();	
+	            	}
+	            },
+	            dataType: "html",
+	            error: function(xhr, ajaxOptions, thrownError){
+	           	 	setTimeout(function () {$("#capaModal").dialog("close");}, 1000);
+	           	 alert(xhr+","+ajaxOptions+","+thrownError);//$.infoMsj(ajaxErrorGral[$('#lang').val()]);
+	            }		
+	    	});
+		}			
+		
+		/**
+		Ponemos un nuevo parametro (nuevaVentana), para controlar si vamos a abrir en nueva ventana o no, el archivo.
+		En principio solo se abrirá en nueva ventana los HTML de ACLLI (2019-07-23)
+	*/
+	function descDir(idSec,nuevaVentana){
+//			fbq('trackCustom', 'descargaCdD', {
+//			    secuencial: idSec
+//			});
+
+		$('#secDescDirLA').val(idSec);
+		//$('#modalGral').slideUp();
+		$('#detalleSerieForm').prop('action','descargaDir');
+		
+//david añade esto para que se abra en una ventana nueva.Hay que configurarlo para que solo lo haga con los HTM de la serie ACLLI
+		if(nuevaVentana=='S'){
+			$('#detalleSerieForm').prop('target','_blank');	
+		}
+		else{
+			$('#detalleSerieForm').prop('target','_self');
+		}
+//		
+    	$('#detalleSerieForm').submit();
+	}
+				
+
+		
+		
+	$('#comboDivAdm').bind('change',function(event){
+		
+		$('#todaEspania,#todoMundo').val('N');
+		$('#capaDivAdmProv,#capaDivAdmComAut,#capaDivAdmMun,#capaH50,#capaCatastro,#capaCoordenadas').hide('');
+		
+		switch($(this).val()) {
+		    case "":
+		    	$('#comboProvSerie,#comboComSerie,#codIne,#filtroNumHoja,#referCatastral').val('');
+		        break;
+		    case "optComAut":
+		    	$('#comboProvSerie,#codIne,#filtroNumHoja,#referCatastral').val('');
+		    	$('#capaDivAdmComAut').show('');
+		        break;
+		    case "optProv":
+		    	$('#comboComSerie,#codIne,#filtroNumHoja,#referCatastral').val('');
+		    	$('#capaDivAdmProv').show('');
+		        break;
+		    case "optMunicipio":
+		    	$('#comboProvSerie,#comboComSerie,#filtroNumHoja,#referCatastral').val('');
+		    	$('#capaDivAdmMun').show('');
+		        break;
+		    case "optTodaEsp":
+		    	$('#todaEspania').val('S');
+		    	$('#comboProvSerie,#comboComSerie,#codIne,#filtroNumHoja,#referCatastral').val('');
+		        break;				        
+		    case "optTodoMundo":
+		    	$('#todoMundo').val('S');
+		    	$('#comboProvSerie,#comboComSerie,#codIne,#filtroNumHoja,#referCatastral').val('');
+		        break;		
+		    case "optH50":
+		    	$('#comboProvSerie,#comboComSerie,#codIne,#referCatastral').val('');
+		    	$('#capaH50').show('');
+		    	break;
+		    case "optCatas":
+		    	$('#comboProvSerie,#comboComSerie,#codIne,#filtroNumHoja').val('');
+		    	$('#capaCatastro').show('');
+		    	break;		    	
+		    case "optCoord":
+		    	$('#comboProvSerie,#comboComSerie,#codIne,#filtroNumHoja,#referCatastral').val('');
+		    	$('#capaCoordenadas').show('');
+		    	break;		    	
+		    default:	
+		    	$('#comboProvSerie,#comboComSerie,#codIne,#filtroNumHoja,#referCatastral').val('');
+		} 
+	});		 
+		
+	
+	
+    $("#mostrarPobSerie").autocomplete({
+        minLength : 2,
+        source: function( request, response ) {	 
+        	response( filtroMunicipios(nomenList,request.term));
+		},
+        search:function(event, ui ) {
+            //limpiamos el codigo ine ,cada vez que se busca
+            $('#codIne').val('');
+        },
+        select: function (event, ui ) {
+            $('#codIne').val(ui.item.cod);
+        }
+    });	
+	
+	$('#radCoordUtm').bind('click',function(event){
+		$('#capaCoordsGeo').hide();
+		$('#capaCoordsUTM').show('slow');
+	});
+	$('#radCoordGeo').bind('click',function(event){
+		$('#capaCoordsUTM').hide();
+		$('#capaCoordsGeo').show('slow');
+	});	
+    
+    
+	
+	$('[id^=verArchivo_],[id^=verArchivoMov_]').on('click',function (event) {
+			
+			event.preventDefault();
+		
+		   $('#sec').val($(this).attr('id').split('_')[1]);
+	   	   $('#detalleSerieForm').prop('action','detalleArchivo');
+		   $('#detalleSerieForm').prop('target','_self');
+		   $('#detalleSerieForm').submit();
+		
+	});    
+	
+	
+	$('[id^=compartirArchivo_]').on('click', function (event) {
+    	event.preventDefault();
+
+	    var sec = $(this).data('sec');
+// 	    var baseUrl = 'https://centrodedescargas.cnig.es/CentroDescargas/detalleArchivo?sec=' + sec;
+		var url = window.location.href;
+		var base = url.substring(0, url.lastIndexOf('/'));
+	    var baseUrl=base + "/detalleArchivo?sec=" + sec;
+	    
+	    $('#linkFacebook').attr('href', 'http://www.facebook.com/sharer.php?u=' + baseUrl);
+	    $('#linkTwiter').attr('href', 'http://twitter.com/share?url=' + baseUrl);
+	    $('#linkLinkedin').attr('href', 'https://www.linkedin.com/shareArticle?mini=true&url=' + encodeURIComponent(baseUrl));
+	    $('#linkCopyURl').off('click').on('click', function () {
+        	getlink(baseUrl);
+    	});
+
+	    var $capa = $('#capaRRSS');
+	    
+	    if ($(this).hasClass('colorVerdeClaro')) {
+	        $capa.fadeOut('slow');
+	        $(this).removeClass('colorVerdeClaro').addClass('colorAzulClaro');
+	        return;
+	    }
+	    
+	    $('[id^=compartirArchivo_]').each(function () {
+	    	$(this).removeClass('colorVerdeClaro').addClass('colorAzulClaro');
+		});
+	    
+	    $(this).removeClass('colorAzulClaro').addClass('colorVerdeClaro');
+
+	    $('#capaRRSS').css({
+	        position: 'absolute',
+	        zIndex: 0,
+	        display: 'none',
+	        backgroundColor: '#f6f6f6',
+	        boxShadow: '0px 4px 8px 0px rgba(0, 0, 0, 0.2)',
+	        padding: '8px 12px',
+	        top: event.pageY + 20 + 'px',
+	        left: event.pageX - $('#capaRRSS').width() + 'px'
+	    }).fadeIn('slow');
+	});
+    
+	$('#bLocCoord').bind('click',function(event){
+		 		var lon=$('#coordLon').val().replace(',','.').trim();
+				var eo=$('#comboLon').val();			
+				var lat=$('#coordLat').val().replace(',','.').trim();
+				
+				document.getElementById('lon').value=eo+lon;
+				document.getElementById('lat').value=lat;
+				
+
+				transf=new ol.proj.transform([parseFloat(eo+lon),parseFloat(lat)],EPSG_4326, EPSG_3857);
+				
+				//fbq('track', 'Search',{search_string:'VISOR'});
+				
+				searchCoords="{\"type\" : \"FeatureCollection\", \"features\" : [{";
+				
+				searchCoords=searchCoords+"\"type\":\"Feature\",\"geometry\":{\"type\": \"Point\",\"coordinates\": ["+document.getElementById('lon').value+","+document.getElementById('lat').value+"]}";
+	        	
+				searchCoords=searchCoords+"}]}";
+				
+				$('#coordenadas').val(searchCoords);
+
+		});
+		
+		$('#bCoordsUTM').bind('click',function(event){
+				var utmx=$('#coordUtmx').val().replace(',','.').trim();
+				var utmy=$('#coordUtmy').val().replace(',','.').trim();
+				var huso=$('#comboCoordsHuso').val();
+				try{
+
+					var epsgHuso='EPSG:258'+huso;
+					
+					var transfMap=new ol.proj.transform([parseFloat(utmx) ,parseFloat(utmy)], epsgHuso, EPSG_3857);
+
+					transf=new ol.proj.transform([parseFloat(utmx),parseFloat(utmy)],epsgHuso,EPSG_4326);
+
+					document.getElementById('lon').value=transf[0];
+					document.getElementById('lat').value=transf[1];
+
+					//searchCoords=transf[0]+" "+transf[1];
+					
+					//$("#capaModal").dialog("open");
+					//geomSelected=GEOM_PUNTO;
+					//fbq('track', 'Search',{search_string:'VISOR'});
+					
+					searchCoords="{\"type\" : \"FeatureCollection\", \"features\" : [{";
+					searchCoords=searchCoords+"\"type\":\"Feature\",\"geometry\":{\"type\": \"Point\",\"coordinates\": ["+document.getElementById('lon').value+","+document.getElementById('lat').value+"]}";
+					searchCoords=searchCoords+"}]}";
+					
+					$('#coordenadas').val(searchCoords);
+					
+				}
+				catch(exc){console.log(""+exc);
+				}
+			
+		});	
+	
+		$('#linkFiltros').bind('click',function(event){
+			if($('#capaListaFiltros').is(':visible')){
+				$('#capaListaFiltros').slideUp();
+				$('#spanTriangleIcon').removeClass('ui-icon-triangle-1-s').addClass('ui-icon-triangle-1-e');
+			}
+			else{
+				$('#capaListaFiltros').slideDown();
+				$('#spanTriangleIcon').removeClass('ui-icon-triangle-1-e').addClass('ui-icon-triangle-1-s');
+			}
+		});
+		
+		$('#printArchivos').bind('click',function (event) {
+
+			$('#tipoReport').val($("input:radio[name=radFormatoReport]:checked").val());
+			 
+
+			if($("input:radio[name=radFormatoReport]:checked").val()==null){
+				 alert("Seleccione un formato de impresión.");
+			 }
+			 else{
+			
+					if($('#comboTematica').val()!=''){
+						$("#nomTematica").val($("#comboTematica option:selected" ).text());
+					}
+					if($('#comboTipoArchSerie').val()!=''){
+						$("#nomFormato").val($("#comboTipoArchSerie option:selected" ).text());
+					}
+					
+					
+					$("#ambitoGeografico").val("");			
+					
+					// nuevo para pasar parametros al informe
+		
+					//para toda españa	        
+					if($('#todaEspania').val()=='S'){
+						$("#ambitoGeografico").val("Toda España");
+					}
+		
+					//para todo el mundo	        
+					if($('#todoMundo').val()=='S'){
+						$("#ambitoGeografico").val("Toda el mundo");
+					}
+		
+		
+					//para provincia
+					if($('#comboProvSerie').val()!=''){
+						$("#ambitoGeografico").val($("#comboProvSerie option:selected" ).text());
+					}
+					//para comunidad
+					if($('#comboComSerie').val()!=''){
+						$("#ambitoGeografico").val($("#comboComSerie option:selected" ).text());
+					}
+		
+					//para municipio
+		
+					if($('#codIne').val()!=''){
+						$("#ambitoGeografico").val("Municipio:"+ $('#codIne').val());
+					}
+				
+					//para ref catastral
+		
+					if($('#referCatastral').val()!=''){
+						$("#ambitoGeografico").val("Referencia Catastral:"+ $('#referCatastral').val());
+					}		
+		
+					// para numeros de hoja		
+				
+					if($('#filtroNumHoja').val()!=''){
+						$("#ambitoGeografico").val("Hoja:"+ $('#filtroNumHoja').val());
+					}	
+		
+					$('#closeModalPrint').trigger('click');
+					
+			   	   	$('#detalleSerieForm').prop('action','informeResultados');
+				   	$('#detalleSerieForm').prop('target','_blank');
+				   	$('#detalleSerieForm').submit();
+				   	
+			 }//fin else		   
+			
+		}); 
+		 	
+
+		 $('#showReportTypes').on('click',function(event){
+			 
+			 if($('#totalArchivos').val()<LIMIT_FILES_PRINT){
+				 $('#capaFormatoImpresion').show();	 
+			 }
+			 else{
+				 $.infoMsj(limiteArchivosPrint[$('#lang').val()].replace('#limitFiles#',LIMIT_FILES_PRINT.toLocaleString('de-DE')));
+			 }
+			 
+		 });
+		 
+		 $('#closeModalPrint').on('click',function(event){
+			 $("input:radio").prop("checked", false);
+			 $('#capaFormatoImpresion').hide();
+		 });
+
+	</script>
+
+					 	
+				 		</div>				
+				
+				</div>			
+			
+			</div>
+
+<div id="licencias" class=" row contenedor col-12 col-t-12 col-m-12 marginBottom10px">
+	<div class="row marginTop10px"></div>
+	<div class="col-12 paddingTop5px paddingBottom5px">
+	    <div class="col-12 floatIzq colorGreyFondo"> 
+			<div class="col-1 floatIzq floatIzq-m colorGreyFondo altoicoLayers izqicoLayer"><i class="fa fa-award fontSize20vw marginTop10px marginLeft10px" title="Licencia y reconocimiento"></i></div>
+			<div class="floatIzq floatIzq-m centroicoLayer"><h1 class="fontSize20vw">Licencia y reconocimiento</h1></div>
+			<div class="floatDer rayas">
+				<span class="blanco"></span>
+				<span class="grey"></span>
+				<span class="blanco"></span>
+				<span class="grey"></span>
+			</div>
+		</div>
+	</div>  
+
+		<div class="row">
+			<div class="col-12 padding10px">
+				
+					El <b>uso de la información de los productos y servicios de datos geográficos</b> definidos en la <a class="link" href="https://www.boe.es/boe/dias/2015/12/26/pdfs/BOE-A-2015-14129.pdf" target="_blank"> Orden FOM/2807/2015</a>, así como sus <b>derivados</b>, conlleva la aceptación por el usuario de las condiciones generales de dicha orden, concretada en una <a class="link" href="http://www.ign.es/resources/licencia/Condiciones_licenciaUso_IGN.pdf" target="_blank"> <b><u>licencia de uso </u></b></a>, compatible con <b>CC-BY 4.0</b>. Esta licencia <b>obliga a reconocer y mencionar el origen y la propiedad.</b>
+				
+				
+				
+			</div>
+		</div>	
+
+		
+
+			<div class="col-12 padding10px">
+			
+				<div class="clear col-12 col-t-12 col-m-12 paddingTop10px paddingBottom10px">Es necesario reconocer siempre la autoría usando las siguientes fórmulas:</div>
+			    <select class="form-select marginTop10px paddingTop10px" id="comboLicencias" name="licenciaSeleccionada" onchange="mostrarTextoLicenciaExtendido()" style="width:auto;">
+ 			        <option value="">Selecciona una opción</option>	 
+			        
+			            <option value="244" 
+			                    data-level="MDT50cm-cob3" 
+			                    data-descripcion="2022-2025">
+			                MDT50cm-cob3 - 2022-2025
+			            </option>
+			        
+			    </select>	
+
+			    <div id="contenedorTextoExtendido" style="display: none;">
+			        <div id="valorTexto"></div>
+			    </div>
+			    
+			</div>
+							
+		
+
+<!--             <div class="col-12 padding10px"> -->
+<!--                 <div class="clear col-12 col-t-12 col-m-12 paddingTop10px paddingBottom10px"> -->
+        
+
+<!--                 </div> -->
+<!--             </div> -->
+
+
+	</div>
+
+
+</form>
+
+<div class="paddingBottom3por"></div>
+
+		
+
+
+	<!-- footer -->
+	<footer >  
+	  <div class="col-12 ">
+	    <div class="col-5 col-t-12 col-m-12 displayInlineGrid marginTop20px">
+	      <ul >
+	        <li class="fontSize15em negrita marginBottom15px colorAMFooter">Políticas</li>
+	        <li>
+	          <div class="minWidth30px displayInlineBlock"><a href="aviso-legal" class="fontSize11em atxtBlanco" title="Aviso legal"><i class="fa fa-gavel marginRight10px" aria-hidden="true"></i>Aviso legal</a></div>
+	        </li>
+	        <li>
+	          <div class="minWidth30px displayInlineBlock"><a href="politica-datos" class="fontSize11em atxtBlanco" title="Política de datos"><i class="fa fa-award marginRight15px"></i>Política de datos</a></div>
+	        </li>
+	        <li>
+	          <div class="minWidth30px displayInlineBlock"><a href="proteccion-datos" class="fontSize11em atxtBlanco" title="Privacidad y Protección de datos"><i class="fa fa-user-shield marginRight5px" aria-hidden="true"></i> Privacidad y Protección de datos</a></div>
+	        </li>
+	        <li>
+	          <div class="minWidth30px displayInlineBlock"><a href="cookies" class="fontSize11em atxtBlanco" title="Política de cookies"><!-- <i class="fa fa-info marginLeft3px marginRight15px" aria-hidden="true"></i> -->  <img alt="Información de cookies" src="imgCdD/ico_info-solo-bl-1.svg" class="height15 marginRight16px marginTop2px">Política de cookies</a></div>
+	        </li>
+	        <li>
+	          <div class="minWidth30px displayInlineBlock"><a href="accesibilidad" class="fontSize11em atxtBlanco" title="Accesibilidad"><i class="fa fa-universal-access marginRight10px width15px"></i> Accesibilidad</a></div>
+	        </li>
+	        <li class="marginTop5px"><a href="https://www.w3.org/WAI/WCAG2AA-Conformance" target="_blank" title="Conformidad con el Nivel Doble-A, de las Directrices de Accesibilidad para el contenido Web 2.1 del W3C-WAI"><img src="img/wcag2.1AA-blue-v.png" class="height40" alt="Conformidad con el Nivel Doble-A, de las Directrices de Accesibilidad para el contenido Web 2.1 del W3C-WAI"></a></li>
+	      </ul>
+	    </div>
+	    <div class="col-4 col-t-12 col-m-12 displayInlineGrid marginTop20px">
+	      <ul >
+	          <li class="fontSize15em negrita marginBottom15px colorAMFooter">Otra información</li>
+	          <li>
+	            <div class="minWidth30px displayInlineBlock"><a href="https://www.ign.es" target="_blank" class="fontSize11em atxtBlanco" title="Acerca de nosotros"><i class="fa fa-users marginRight10px width24px" aria-hidden="true"></i>Acerca de nosotros</a></div>
+	          </li>
+	          <li>
+	            <div class="minWidth30px displayInlineBlock"><a href="mapa-web" class="fontSize11em atxtBlanco" title="Mapa web"><i class="fa fa-sitemap marginRight10px width24px" aria-hidden="true"></i>Mapa web</a></div>
+	          </li>    
+	          <li>
+	            <div class="minWidth30px displayInlineBlock"><a href="contacto" class="fontSize11em atxtBlanco" title="Contacto"><i class="fa fa-envelope marginRight10px width24px" aria-hidden="true"></i>Contacto</a></div>
+	          </li>
+	          <li>
+	            <div class="minWidth30px displayInlineBlock"><a href="https://www.idee.es/web/idee/centros-de-descarga/estatal" target="_blank" class="fontSize11em atxtBlanco" title="Centros de Descargas"><i class="fa-solid fa-cloud-arrow-down marginRight10px width24px" aria-hidden="true"></i>Centros de Descargas</a></div>
+	          </li>        
+	      </ul>
+	    </div>
+	    <div class="col-3 col-t-12 col-m-12 marginTop20px displayInlineGrid">
+	
+		    <div class="negrita marginBottom15px rsFooter">
+		        <ul class="rsFooter">
+		          <li class="fontSize15em colorAMFooter marginBottom15px">Redes Sociales</li>
+		          <li>
+		          <div class="col-12 marginBottom5px marginTop10px">
+		            
+		            <a href="contacto" class="fontSize11em atxtBlanco margin8px" title="Contacto"><i class="fa-regular fa-envelope" title="Contacto"></i></a>
+		            
+		            <a href="http://www.facebook.com/pages/Instituto-Geografico-Nacional-de-Espana-CNIG/156297191073688#!/pages/Instituto-Geografico-Nacional-de-Espana-CNIG/156297191073688?v=wall" class="fontSize11em atxtBlanco margin8px" target="_blank" title="Facebook">
+		              <i class="fa-brands fa-facebook-f" title="Facebook"></i>
+		            </a>
+		            <a href="https://twitter.com/IGNSpain" class="fontSize11em atxtBlanco margin8px" target="_blank"><i class="fa-brands fa-x-twitter" title="X"></i></a>
+		
+		            <a href="https://www.instagram.com/ignspain/" class="fontSize11em atxtBlanco margin8px" title="Instagram" target="_blank"><i class="fab fa-instagram" title="Instagram"></i></a>
+		          </div>
+		          </li>
+		          <li>
+		          <div class="col-12 marginBottom10px marginTop5px">
+		            <a href="https://www.pinterest.es/IGNSpain/" class="fontSize11em atxtBlanco margin8px" title="Pinterest" target="_blank"><i class="fab fa-pinterest-p" title="Pinterest"></i></a>
+		
+		            <a href="https://www.linkedin.com/company/instituto-geografico-nacional-cnig-spain/" class="fontSize11em atxtBlanco margin8px" title="Linkedin" target="_blank"><i class="fab fa-linkedin-in" title="Linkedin"></i></a>
+		
+		            <a href="http://www.youtube.com/user/IGNSpain" class="fontSize11em atxtBlanco margin8px" title="Youtube" target="_blank"><i class="fab fa-youtube" title="Youtube"></i></a>
+		            <!-- <a href="http://www.cnig.es/RSSCDD/listaNovedades.xml" class="fontSize11em atxtBlanco margin8px" title="RSS" target="_blank"><i class="fas fa-rss" title="RSS"></i></a> -->
+		          </div>
+		          </li>
+		          
+		        </ul>      
+		    </div>
+		    <div class="marginTop20px paddingRight5px paddingLeft10px ">
+		    	<div class="floatDer floatIzq-t floatIzq-m paddingLeft10px paddingTop10px">
+		        	<a href="https://next-generation-eu.europa.eu/index_es" target="_blank"><img src="img/financiadoUE.png" class="floatDer colorBlanco" title="Next Generation" alt="Next Generation" style="height:40px;margin-top:15px"></a>
+		    	</div>
+		    	<div class="floatDer floatIzq-t floatIzq-m paddingLeft10px paddingTop10px">
+		    		<a href="https://www.transportes.gob.es/ministerio/proyectos-singulares/prtr/plan-de-recuperacion-transformacion-y-resiliencia" target="_blank"><img src="img/prtr.png" class="floatDer" style="height:70px" title="Plan de Recuperación, Transformación y Resiliencia" alt="Plan de Recuperación, Transformación y Resiliencia" style="height:70px"></a>
+		    	</div>
+		    </div>
+	
+		</div> 
+	  </div> 		
+	  <div class="col-12 col-m-12 displayInlineBlock txtCenter fontSize09em">
+	    <p class="marginBottom0">© Organismo Autónomo Centro Nacional de Información Geográfica (CNIG)</p>
+	    <div id="dirCnigPC" class="row paddingBottom1por">
+	    	<div class="col-12">
+	    	Calle General Ibáñez de Ibero, 3. 28003 - Madrid - España.   
+	    	</div>
+	    	<div class="col-12">
+	    		NIF: ES Q2817024I  - NIPO: 798-20-071-1 - DOI: 10.7419/162.09.2020
+	    	</div>
+	    </div>
+	    <div id="dirCnigMobile" class="row paddingBottom2por">
+	    	<div class="col-12">
+	    		Calle General Ibáñez de Ibero, 3. 28003 - Madrid - España. 
+	    	</div>
+	    	<div class="col-12">
+	    		NIF: ES Q2817024I 
+	    	</div>
+	    	<div class="col-12">
+	    		NIPO: 798-20-071-1
+	    	</div>
+	    	<div class="col-12">
+	    		DOI: 10.7419/162.09.2020
+	    	</div>
+	    </div>
+	  </div>
+	  
+ 
+	</footer>
+	<!-- fin footer -->
+
+	<script>
+	
+	if(deviceType=='Mobile'){
+		$('#dirCnigPC').hide();
+	}
+	else{
+		$('#dirCnigMobile').hide();
+	}
+	
+	</script>
+
+		
+</body>
+
+<script>
+	
+	$('[id^=radStar]').each(function () {
+ 		$(this).attr('style','display:none');
+	});
+	
+	if(deviceType=='Mobile'){
+		$('#capaVerMasPC,#licencias,#linkLicenciasPC').hide();
+		$('#capaVerMasMobile,#linkLicenciasMobile').show();
+	}
+	else{
+		$('#capaVerMasMobile,#linkLicenciasMobile').hide();
+		$('#capaVerMasPC,#licencias,#linkLicenciasPC').show();
+	}
+	
+	if(sessionStorage.getItem("scrollValoraciones")){
+		
+		$('html, body').animate({
+			scrollTop: $('#cabecera').offset().top
+		}, 600);
+
+		sessionStorage.removeItem("scrollValoraciones");
+	}
+	
+	$('#bVerMas').on('click',function(event){
+	    const verMasDiv = document.getElementById('verMasSerie');
+	    const iconoVerMas = document.getElementById('iconoVerMas');
+
+	    // Alternar la visibilidad del contenido
+	    if (verMasDiv.classList.contains('displayNone')) {
+	        verMasDiv.classList.remove('displayNone');
+	        iconoVerMas.className = 'fa-solid fa-chevron-up';
+	    } else {
+	        verMasDiv.classList.add('displayNone');
+	        iconoVerMas.className = 'fa-solid fa-chevron-down';
+	    }
+	});
+	
+	$('#addSerieFav').on('click',function(event){
+		
+		 if($(this).hasClass("iconoCorazon")){
+			 $(this).removeClass('iconoCorazon');
+			 $(this).addClass('iconoCorazonRemove');
+	 		 $.addSerieFavorita($('#codSerie').val());
+	 		 $(this).prop('title','Quitar de favoritos');
+		}
+		 else{
+			 $(this).removeClass('iconoCorazonRemove');
+			 $(this).addClass('iconoCorazon');
+			 $.removeSerieFavorita($('#codSerie').val());
+			 $(this).prop('title','Añadir a favoritos');
+		 }
+		
+	});
+
+	$('#removeSerieFav').on('click',function(event){
+		
+		 if($(this).hasClass("iconoCorazonRemove")){
+			 $(this).removeClass('iconoCorazonRemove');
+			 $(this).addClass('iconoCorazon');
+			 $.removeSerieFavorita($('#codSerie').val());
+			 $(this).prop('title','Añadir a favoritos');
+			 
+		 }
+		 else{
+			 $(this).removeClass('iconoCorazon');
+			 $(this).addClass('iconoCorazonRemove');
+			 $.addSerieFavorita($('#codSerie').val());
+			 $(this).prop('title','Quitar de favoritos');
+	 		 
+		 }
+		
+	});
+	
+	$('[id^=radioStar]').on('click',function (event) {
+		var codSerie=$(this).attr('id').split('_')[1];
+		
+		$("#modalEspera").show();
+	      $.ajax({
+              url: 'actualizaVotos',
+              data:{
+            	  codSerie:codSerie,
+            	  votos:$(this).val()
+           		},
+              success: actualizaVotosOk,
+              dataType: "json",
+              error: function(xhr, ajaxOptions, thrownError){
+            	  setTimeout(function () {$("#modalEspera").hide();}, 1000);
+            	  $.infoMsj(ajaxErrorGral[$('#lang').val()]);
+              }		
+      	});
+	});
+
+	function actualizaVotosOk(jsonObj){
+		setTimeout(function () {$("#modalEspera").hide();}, 1000);
+		$(".clasificacion").prop("class","clasifSaved").prop('style','direction: rtl;unicode-bidi: bidi-override;');
+		$("[id^=radioStar]").prop("id","radioStarSaved").hide();
+		
+		var jsonDatos=JSON.parse(jsonObj.datosActualizados);
+		if(jsonDatos.msjerror==""){
+			
+			$('#totalValoracion').text(jsonDatos.totalvaloracion);
+			$('#numVotantes').text(jsonDatos.numvotantes);
+			$('#mediaVotos').text(jsonDatos.mediavotos);
+			
+			sessionStorage.setItem("scrollValoraciones","true");
+			window.location.reload();
+			
+		}
+		else{
+			$.infoMsj(jsonDatos.msjerror);
+		}
+	}
+	
+// 	$('#linkNoticias').on('click',function(event){
+// 		event.preventDefault();
+// 		$('#detalleSerieForm').prop('action','novedades');
+//  		$('#detalleSerieForm').prop('target','_self');
+// 		$('#detalleSerieForm').submit();
+// 	});
+		
+	$('#linkCopyURlSerie').on('click',function (event) {
+		
+		getlink(window.location.href);
+		
+	});		
+	
+	$('#capaStdVotos').on('click',function(event){
+		event.preventDefault();
+		$.infoMsj(avisoVotosSinUser[$('#lang').val()]);
+	});	
+
+	// muestra el texto extendido de la licencia en funcion a la opcion del combo seleccionado
+	var textosExtendidos = {
+	    
+	        '244': '<div id=\"result\"><p>Tipo 1: Cuando no se modifica o altera el producto digital original se puede expresar de una de las formas siguientes:<\/p><ul><li>MDT50cm-cob3 2022-2025 CC-BY 4.0 <a target=\"_blank\" title=\"scne.es\" href=\"https:\/\/www.scne.es\/\" target=\"_blank\">scne.es<\/a><\/li><li>MDT50cm-cob3 2022-2025 CC-BY 4.0 Instituto Geogr\u00E1fico Nacional, Direcci\u00F3n General de Catastro, Fondo Espa\u00F1ol de Garant\u00EDa Agraria, Comunidades aut\u00F3nomas, O.A. Centro Nacional de Informaci\u00F3n Geogr\u00E1fica, Direcci\u00F3n General de Bosques y Desertificaci\u00F3n, Uni\u00F3n Europea y Entidad P\u00FAblica Empresarial Aeropuertos Espa\u00F1oles y Navegaci\u00F3n A\u00E9rea<\/li><\/li><\/ul><p>Tipo 2: Cuando no se modifica o altera el producto digital original (f\u00F3rmula alternativa abreviada por razones de dise\u00F1o):<\/p><ul><li>CC-BY 4.0 <a target=\"_blank\" title=\"scne.es\" href=\"https:\/\/www.scne.es\/\" target=\"_blank\">scne.es<\/a> 2022-2025<\/li><\/ul><p>Tipo 3: Cuando se genera un nuevo producto:<\/p><ul><li>Obra derivada de MDT50cm-cob3 2022-2025 CC-BY 4.0 <a target=\"_blank\" title=\"scne.es\" href=\"https:\/\/www.scne.es\/\" target=\"_blank\">scne.es<\/a><\/li><\/ul><\/div>'
+	    
+	};
+
+	function mostrarTextoLicenciaExtendido() 
+	{
+		if(document.getElementById('comboLicencias')!=null){
+		    var combo = document.getElementById('comboLicencias');
+		    var contenedor = document.getElementById('contenedorTextoExtendido');	    
+		    var valorDiv = document.getElementById('valorTexto');	
+		    
+		    
+	
+	        var cuantos = combo.options.length;
+	        if (cuantos==2) {//solo tiene una mencion asociada
+	            combo.options[cuantos-1].selected=true;
+	            combo.style.display='none';
+	           }		        
+	       
+	         
+		    
+		    var valorSeleccionado = combo.value;
+		    
+		    if (valorSeleccionado === '') {
+		        contenedor.style.display = 'none';
+		    } else {
+		        if (textosExtendidos[valorSeleccionado]) {	             
+		            valorDiv.innerHTML = textosExtendidos[valorSeleccionado];
+		            contenedor.style.display = 'block';
+		        } else {
+		            contenedor.style.display = 'none';
+		        }
+		    }
+	    }
+	}
+	
+	$('#keySearch').on('keydown', function(e) {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            if ($(this).val().trim() !== '') {
+            	$('#bFiltroArchSerie').click();
+            }
+        }
+    });    
+	
+    const linkLicenciasMobile = document.getElementById('linkLicenciasMobile');
+    if (linkLicenciasMobile) {
+        linkLicenciasMobile.addEventListener('click', function (event) {
+            event.preventDefault();
+            var codAgr   = document.getElementById("codAgr").value;
+            var codSerie = document.getElementById("codSerie").value;
+            const url = "politica-datos?codAgr="+codAgr+"&codSerie="+codSerie;
+            window.location.href = url;
+        });
+    }
+	
+    document.addEventListener('DOMContentLoaded', function(){
+		mostrarTextoLicenciaExtendido();
+		$("#keySearch").focus();
+    });
+    
+</script>
+
+</html>

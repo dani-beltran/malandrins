@@ -1,0 +1,39 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Current Malandrins game extent",
+        "note": "Game boundary, not municipal boundary"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -0.012,
+              40.092
+            ],
+            [
+              0.012,
+              40.092
+            ],
+            [
+              0.012,
+              40.112
+            ],
+            [
+              -0.012,
+              40.112
+            ],
+            [
+              -0.012,
+              40.092
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+
+{
+  "type": "FeatureCollection",
+  "features": [
+    
+    {
+      "type": "Feature",
+      "id": "",
+      "geometry": null,
+      "properties": {
+        "Fecha": "2024-07",
+	"Resolucion": "0.25"
+      }
+    }
+  ]
+}

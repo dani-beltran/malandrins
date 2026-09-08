@@ -59,6 +59,14 @@ The map in `src/data/laPoblaMap.ts` contains **267 road features**, some of whic
 
 **Map data © OpenStreetMap contributors, ODbL 1.0.** The dataset’s original attribution is preserved and is visible in the game. See [OpenStreetMap copyright](https://www.openstreetmap.org/copyright) and [MAP_DATA.md](MAP_DATA.md) for the source and data license information.
 
+Geographic data and imagery for future scenery work are saved in the reference folders:
+
+- **[satellite-data/](references/satellite-data/README.md):** six satellite and aerial images, including regional views, historical imagery from 1996, the exact game map extent and town-center detail.
+- **[street-data/](references/street-data/README.md):** twelve ground-level photographs of streets, squares, narrow lanes and building details from Wikimedia Commons, including Carrer d’Enmig, Carrer de Baix la Vila, Carrer Tossal de la Vila, Plaça del Raval and Plaça del Portal.
+- **[topographic-data/](references/topographic-data/README.md):** official 1 m and 0.5 m LiDAR ground models, source comparisons, heightmaps and game-aligned 3D meshes. The ICV 1 m model is recommended for the base terrain because it removes raised building-like features present in the provisional 0.5 m model.
+
+Each reference guide records sources, capture dates and attribution; the overhead imagery also includes coordinates and georeferencing files. These files are for offline reference and are not loaded by the game.
+
 ## Code structure
 
 The code uses classes with explicit dependencies rather than one global game script. Static world data, narrative content and asset configuration are separated from behavior.

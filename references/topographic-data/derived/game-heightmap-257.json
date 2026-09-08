@@ -1,0 +1,51 @@
+{
+  "width": 257,
+  "height": 257,
+  "bounds_wgs84": [
+    -0.012,
+    40.092,
+    0.012,
+    40.112
+  ],
+  "sampling": "Bilinear from native ground elevation. Samples are mesh vertices, including all four exact game boundary edges; not image pixel-area centers.",
+  "row_order": "north to south",
+  "column_order": "west to east",
+  "f32": {
+    "file": "game-heightmap-257.f32",
+    "dtype": "IEEE 754 float32",
+    "endianness": "little",
+    "layout": "row-major, no header",
+    "units": "orthometric metres"
+  },
+  "png": {
+    "file": "game-heightmap-257.png",
+    "bit_depth": 16,
+    "channels": 1,
+    "decode_metres": "sample_uint16 / 65535 * 1000",
+    "min_encoded_elevation_m": 0.0,
+    "max_encoded_elevation_m": 1000.0,
+    "maximum_roundtrip_error_m": 0.007644428635330769,
+    "import_as": "linear height data; do not apply sRGB or color adjustments"
+  },
+  "game": {
+    "origin_lon_lat": [
+      -0.0012,
+      40.1017
+    ],
+    "scale": 0.7,
+    "min_x": -643.7258564959569,
+    "max_x": 786.7760468283918,
+    "min_z": -802.6172000000673,
+    "max_z": 755.8628000001762,
+    "width": 1430.5019033243489,
+    "depth": 1558.4800000002435,
+    "baseline_elevation_m": 299.13751220703125,
+    "height_formula": "(elevation_m - baseline_elevation_m) * 0.7",
+    "horizontal_spacing_x": 5.587898059860738,
+    "horizontal_spacing_z": 6.087812500000951
+  },
+  "min_elevation_m": 268.6231689453125,
+  "max_elevation_m": 523.324462890625,
+  "valid_fraction": 1.0,
+  "attribution": "Derived from MDT50cm-cob3 2023, CC BY 4.0 scne.es, IGN/CNIG"
+}

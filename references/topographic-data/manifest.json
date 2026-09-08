@@ -1,0 +1,411 @@
+{
+  "downloaded_on": "2026-09-07",
+  "place": "La Pobla Tornesa, Castellón, Spain",
+  "recommended_source": "ICV Castellón 2017 classified LiDAR ground model, 1 m; use for the game ground mesh.",
+  "status": {
+    "icv": "2017 refined ground classification; complete cropped coverage.",
+    "cnig": "2023 provisional NPC01; complete zone 31 coverage, but local above-ground classification artifacts remain."
+  },
+  "attribution": {
+    "recommended_icv": "Derived from ICV MDT Castellón / LiDAR-PNOA 2017, CC BY 4.0 scne.es",
+    "supplementary_cnig": "Derived from MDT50cm-cob3 2023, CC BY 4.0 scne.es, IGN/CNIG"
+  },
+  "license_url": "https://creativecommons.org/licenses/by/4.0/",
+  "game_bounds_wgs84": [
+    -0.012,
+    40.092,
+    0.012,
+    40.112
+  ],
+  "raw_tiles": {
+    "MDT50CM-ETRS89-H31-0616-5-3-COB3-V1.tif": {
+      "cnig_id": "12759405",
+      "metadata_url": "https://centrodedescargas.cnig.es/CentroDescargas/detalleArchivo?sec=12759405",
+      "download_url": "https://centrodedescargas.cnig.es/CentroDescargas/descargaDir",
+      "download_method": "POST",
+      "download_form": {
+        "secDescDirLA": "12759405"
+      },
+      "year": 2023,
+      "resolution_m": [
+        0.5,
+        0.5
+      ],
+      "crs": "EPSG:3043",
+      "raster_bounds_easting_northing": [
+        242460.0,
+        4443520.0,
+        246200.0,
+        4446060.0
+      ],
+      "width": 7480,
+      "height": 5080,
+      "nodata": -32767.0,
+      "valid_fraction": 1.0,
+      "min_elevation_m": 249.0800018310547,
+      "max_elevation_m": 501.489990234375,
+      "area_or_point": "Point"
+    },
+    "MDT50CM-ETRS89-H31-0616-5-4-COB3-V1.tif": {
+      "cnig_id": "12759773",
+      "metadata_url": "https://centrodedescargas.cnig.es/CentroDescargas/detalleArchivo?sec=12759773",
+      "download_url": "https://centrodedescargas.cnig.es/CentroDescargas/descargaDir",
+      "download_method": "POST",
+      "download_form": {
+        "secDescDirLA": "12759773"
+      },
+      "year": 2023,
+      "resolution_m": [
+        0.5,
+        0.5
+      ],
+      "crs": "EPSG:3043",
+      "raster_bounds_easting_northing": [
+        242380.0,
+        4441210.0,
+        246120.0,
+        4443750.0
+      ],
+      "width": 7480,
+      "height": 5080,
+      "nodata": -32767.0,
+      "valid_fraction": 1.0,
+      "min_elevation_m": 241.77999877929688,
+      "max_elevation_m": 650.0399780273438,
+      "area_or_point": "Point"
+    }
+  },
+  "files": [
+    {
+      "path": ".gitignore",
+      "bytes": 20,
+      "sha256": "e99f6ee4eb88882ea6589ecb717e10a41401763241b246b6821bc091cfe2227e"
+    },
+    {
+      "path": "compare_sources.py",
+      "bytes": 8391,
+      "sha256": "ae0511e0ab5768f10ba03971dc1d1b7077e5c86e1a4df11cf423ca2bb1abc10a"
+    },
+    {
+      "path": "derived/game-heightmap-1025.f32",
+      "bytes": 4202500,
+      "sha256": "9c691a291a1816554b717f3c0543f13d38712e60ffe85ec517e4fb57ac40bd50"
+    },
+    {
+      "path": "derived/game-heightmap-1025.json",
+      "bytes": 1567,
+      "sha256": "a136528ffa8eeca3f307deff150239ecc1fbb906bc9982d8d01fb6e7d314a920"
+    },
+    {
+      "path": "derived/game-heightmap-1025.png",
+      "bytes": 1091679,
+      "sha256": "be6ea4316cd7c97b9df5f1f996390e489ccd6d153c8a20b4a4a4d911d68fbe42"
+    },
+    {
+      "path": "derived/game-heightmap-257.f32",
+      "bytes": 264196,
+      "sha256": "eb64b7b771e39cc9e2318c71bbe2a2e61802510d9dc4770d34fac6df18356cc1"
+    },
+    {
+      "path": "derived/game-heightmap-257.json",
+      "bytes": 1559,
+      "sha256": "9a3566c8a9e3909ec251965cfa1ce7e6cc9acf48177212178c62ffc7e1734771"
+    },
+    {
+      "path": "derived/game-heightmap-257.png",
+      "bytes": 87170,
+      "sha256": "51f5d8c7f552ee1d101571ca468b9caaf2b722e4192450f4a45ed6b1ed01d4a5"
+    },
+    {
+      "path": "derived/ground-game-area-0p5m.tif",
+      "bytes": 31819142,
+      "sha256": "d99485085a835d33ad04326a2b4d8741d01c9dea172f85aa600dabafd8e7a701"
+    },
+    {
+      "path": "derived/icv-2017-heightmap-1025.f32",
+      "bytes": 4202500,
+      "sha256": "99e7ee2cc7a09f20becba76ee04a3dc8fbb7f649c0582b40935e2e70826494e1"
+    },
+    {
+      "path": "derived/icv-2017-heightmap-1025.json",
+      "bytes": 1603,
+      "sha256": "81fc6fcc140a9d4936b0b1a197570812906398da0a3f3893ff4268f43ac0c30b"
+    },
+    {
+      "path": "derived/icv-2017-heightmap-1025.png",
+      "bytes": 1025020,
+      "sha256": "2df3a58cb0dc605d33596debe678d1d735b07b66dd1c2b295c3f7d2468c70122"
+    },
+    {
+      "path": "derived/icv-2017-heightmap-257.f32",
+      "bytes": 264196,
+      "sha256": "bf5c89b3cd73d0669d9d5a82f428018968f60745b81f7020b11c3db048e6a76e"
+    },
+    {
+      "path": "derived/icv-2017-heightmap-257.json",
+      "bytes": 1595,
+      "sha256": "3251e9ffeb49ae3efc793e4915ddd49708fdb5a6f338964ee30515f70a00c211"
+    },
+    {
+      "path": "derived/icv-2017-heightmap-257.png",
+      "bytes": 85812,
+      "sha256": "a2e05444434ec2ec9ae3bfcc1c80fbb5630ebf32724026dc4f024640a8b3a661"
+    },
+    {
+      "path": "derived/source-comparison.json",
+      "bytes": 1256,
+      "sha256": "28813fed7fe66922a45933e4b23324f6efbe90f557c37537b9e9919ffb3c7539"
+    },
+    {
+      "path": "derived/source-comparison.png",
+      "bytes": 1571727,
+      "sha256": "57523b629c3b2dc8d369445390852cf976079005f5e39ad4e141eafef3df2e2c"
+    },
+    {
+      "path": "derived/terrain-game-257.glb",
+      "bytes": 3159416,
+      "sha256": "1c48d3471a4dc8090d953c6300e4660f10e407e30d307e8d710ff5cca184ce40"
+    },
+    {
+      "path": "derived/terrain-icv-2017-game-257.glb",
+      "bytes": 3159440,
+      "sha256": "63bf6a3c1a6df13b61f51df5082b4b9a0cb5dbb62a3610230b79789fed6b561c"
+    },
+    {
+      "path": "derived/terrain-icv-2017-preview.png",
+      "bytes": 1003930,
+      "sha256": "e75f7ced83330d153e3e4cb67dba5236273ab21aa7fbfc42d883517979d0c91a"
+    },
+    {
+      "path": "derived/terrain-preview.png",
+      "bytes": 1017224,
+      "sha256": "5251a6feaf104d7defa5d5c23c54f07ac9f776ba99893fa03dbb00b291eef06a"
+    },
+    {
+      "path": "download_icv_crop.py",
+      "bytes": 2410,
+      "sha256": "6c2a0a471df4e72a4cec6235428733f72f9cfedde64f3f093fd5e331445233b7"
+    },
+    {
+      "path": "game-area.geojson",
+      "bytes": 700,
+      "sha256": "0ac9d8e0d40b577c72f2fe9317219ca6daf581509255f3eb547b5963da647089"
+    },
+    {
+      "path": "prepare_terrain.py",
+      "bytes": 14451,
+      "sha256": "7d2d0c5405440f6aab3544c0d8fe7dc4c31dd83f7fab2630f9615d2f07445509"
+    },
+    {
+      "path": "raw/MDT50CM-ETRS89-H31-0616-5-3-COB3-V1.tif",
+      "bytes": 72811057,
+      "sha256": "f6fa9851b4fe9b8e8166208f65a1ca5f30dd9b84248ecd6a717f282cf01628c4"
+    },
+    {
+      "path": "raw/MDT50CM-ETRS89-H31-0616-5-4-COB3-V1.tif",
+      "bytes": 77110641,
+      "sha256": "1d2f8e0d8f34c06d6e90e09a296c4069ab9331d1f3bfdedbd1e6b22d5446d5ba"
+    },
+    {
+      "path": "raw/icv-2017-ground-game-area-1m.tif",
+      "bytes": 9605676,
+      "sha256": "cb6ba382ad5919f5ca55baed376f26d0d0410212156b2f61c3f5dea3c9c4f434"
+    },
+    {
+      "path": "requirements.txt",
+      "bytes": 91,
+      "sha256": "9e5ea7ffe3fa8a198ca67c8a53a02fde4239146fd6997bfb8069032b0d3390ef"
+    },
+    {
+      "path": "sources/Informacion_Auxiliar_MDT50cm.zip",
+      "bytes": 6288826,
+      "sha256": "229467bd1ea8f9f114c19bca0ed2f0ffb56e32096eb005eb9de800f7bc34d612"
+    },
+    {
+      "path": "sources/cnig-game-area-search.html",
+      "bytes": 66233,
+      "sha256": "8a7b9433db2464f35f8f9faff56292c6bb3c1acef749db3f60a955a221be16dd"
+    },
+    {
+      "path": "sources/cnig-product-mdt50cm.html",
+      "bytes": 118844,
+      "sha256": "ed29fcf817fa4777d6bdb5bf53053a3119875ba044fa5bde33b7e8b5396a50e3"
+    },
+    {
+      "path": "sources/cnig-release-notes.html",
+      "bytes": 72364,
+      "sha256": "4fb4b6bb9aea333ed800a6fb7155ccad8d10394b659a7e1c2e9ec7e79b52ab6b"
+    },
+    {
+      "path": "sources/cnig-tile-12758408.html",
+      "bytes": 67596,
+      "sha256": "590976e7a55ad99492c26c20f5874e7b3046c145c3f81301dff8903c43da1754"
+    },
+    {
+      "path": "sources/cnig-tile-12759405.html",
+      "bytes": 67597,
+      "sha256": "c256f4eae21e66f64b80ec92643798e5b8b7e4d151a1f411b518d102819ff5f8"
+    },
+    {
+      "path": "sources/cnig-tile-12759773.html",
+      "bytes": 67597,
+      "sha256": "7e013da3b8cb16d65e838c5686ef600e01d614dfded8ef54b61315bb6a7b8cf5"
+    },
+    {
+      "path": "sources/cnig-tile-12760250.html",
+      "bytes": 67596,
+      "sha256": "f5be9ad094e3f1c15f68180670cb51d2331d0bbc34075d956aa1b04ddad56c2d"
+    },
+    {
+      "path": "sources/icv-crop-provenance.json",
+      "bytes": 1162,
+      "sha256": "a5bc0cfcf0172f7820a7d211add66c31941057589005c8f1b5dc40c65e3641f1"
+    },
+    {
+      "path": "sources/icv-mdt-2017-metadata.xml",
+      "bytes": 52503,
+      "sha256": "3ae49f42c5a6f48caecee7770eccde6b734685659c7b1004370aadb2a3a8f042"
+    },
+    {
+      "path": "sources/icv-mdt-2017.html",
+      "bytes": 69398,
+      "sha256": "a3a86889fabe4f4ee159e416e08daff0b1c15cc1d60b9bbc12109ff00737b557"
+    },
+    {
+      "path": "sources/icv-sheet-download-link.html",
+      "bytes": 1919,
+      "sha256": "e54fb103fa3623479bbb8468d9507673437b99ede91a2cbab41fe71ec6df88c0"
+    },
+    {
+      "path": "sources/icv-sheet-index-wms.xml",
+      "bytes": 12442,
+      "sha256": "043a4d4e095863bbd9465428611ec283e291ad89f56a81c5774fb665ebcd9dec"
+    },
+    {
+      "path": "sources/pnoa-products.html",
+      "bytes": 134739,
+      "sha256": "e68190d037e5dec3c1a0b09b4b614772b3479345f328f7065725795e3f96a42c"
+    }
+  ],
+  "highest_resolution_source": "CNIG PNOA-LiDAR MDT50cm V1, 2023, 0.5 m; supplementary fine-detail reference.",
+  "recommendation_reason": "ICV documents refined ground classification and breaklines. The comparison shows large rectangular raised features in the provisional CNIG raster, up to 18 m above ICV in the northwest. These are consistent with residual roofs; this is a source-selection judgment, not surveyed accuracy validation.",
+  "icv_source": {
+    "source_url": "https://descargas.icv.gva.es/dcd/03_mde/02_mdt/2017_PCAS_0100/01_Malla/01_25830_01_Hoja_CV50_03_TIF/030201_MDT_2017PCAS0100_25830_01_Hoja_CV50_0616.tif",
+    "download_method": "HTTP range reads of original GeoTIFF; native 1 m crop only retained",
+    "source_original_filename": "030201_MDT_2017PCAS0100_25830_01_Hoja_CV50_0616.tif",
+    "source_original_bytes": 2071281546,
+    "source_original_crs": "EPSG:25830",
+    "source_original_dimensions": [
+      29160,
+      19570
+    ],
+    "source_original_transform": [
+      1.0,
+      0.0,
+      739450.0,
+      0.0,
+      -1.0,
+      4451060.0,
+      0.0,
+      0.0,
+      1.0
+    ],
+    "source_original_tags": {
+      "AREA_OR_POINT": "Point"
+    },
+    "saved_crop": "raw/icv-2017-ground-game-area-1m.tif",
+    "crop_dimensions": [
+      2126,
+      2294
+    ],
+    "valid_fraction": 1.0,
+    "crop_min_m": 268.55401611328125,
+    "crop_max_m": 523.4306640625,
+    "crop_bounds_requested": [
+      754655,
+      4442246,
+      756781,
+      4444540
+    ],
+    "crop_sha256": "cb6ba382ad5919f5ca55baed376f26d0d0410212156b2f61c3f5dea3c9c4f434",
+    "metadata_url": "https://catalogo.icv.gva.es/geonetwork/srv/api/records/spaicv030201_2017PCAS0100/formatters/xml"
+  },
+  "source_comparison": {
+    "comparison": "CNIG 2023 provisional 0.5 m minus ICV 2017 classified 1 m; both bilinearly sampled at the same 1025 x 1025 game vertices.",
+    "interpretation": "Differences can reflect terrain change, interpolation or classification; this is not an external accuracy assessment.",
+    "samples": 1050625,
+    "median_signed_difference_m": -0.039520263671875,
+    "median_absolute_difference_m": 0.120849609375,
+    "p95_absolute_difference_m": 0.923583984375,
+    "maximum_absolute_difference_m": 18.0057373046875,
+    "fraction_abs_difference_over_2m": 0.02547436049970256,
+    "fraction_abs_difference_over_5m": 0.020955145746579418,
+    "northwest_rectangular_features": {
+      "bounds_wgs84": [
+        -0.012,
+        40.108,
+        -0.007,
+        40.112
+      ],
+      "median_difference_m": 0.020751953125,
+      "p95_absolute_difference_m": 13.412692070007324,
+      "max_positive_difference_m": 18.0057373046875,
+      "min_signed_difference_m": -4.5162353515625
+    },
+    "central_town": {
+      "bounds_wgs84": [
+        -0.005,
+        40.099,
+        0.003,
+        40.105
+      ],
+      "median_difference_m": -0.066131591796875,
+      "p95_absolute_difference_m": 0.6994735598564148,
+      "max_positive_difference_m": 9.7349853515625,
+      "min_signed_difference_m": -3.309783935546875
+    }
+  },
+  "icv_game_mesh": {
+    "file": "derived/terrain-icv-2017-game-257.glb",
+    "vertices": 66049,
+    "triangles": 131072,
+    "baseline_elevation_m": 299.1851501464844,
+    "scale": 0.7,
+    "attribution": "Derived from ICV MDT Castellón / LiDAR-PNOA 2017, CC BY 4.0 scne.es"
+  },
+  "cnig_game_mesh": {
+    "vertices": 66049,
+    "triangles": 131072,
+    "y_formula": "(orthometric_elevation_m - baseline_elevation_m) * 0.7",
+    "baseline_elevation_m": 299.13751220703125,
+    "file": "derived/terrain-game-257.glb"
+  },
+  "cnig_validation": {
+    "overlap_samples": 3367200,
+    "overlap_max_absolute_difference_m": 0.0,
+    "native_game_crop_valid_fraction": 1.0,
+    "native_game_crop_min_elevation_m": 268.32000732421875,
+    "native_game_crop_max_elevation_m": 523.7100219726562,
+    "native_game_crop_shape_rows_columns": [
+      4584,
+      4247
+    ],
+    "native_game_crop_bounds_epsg25831": [
+      243220.5,
+      4442247.0,
+      245344.0,
+      4444539.0
+    ],
+    "heightmaps_valid_fraction": 1.0,
+    "origin_elevation_m": 299.13751220703125
+  },
+  "icv_validation": {
+    "native_crop_valid_fraction": 1.0,
+    "heightmaps_valid_fraction": 1.0,
+    "heightmap_sizes": [
+      1025,
+      257
+    ],
+    "origin_elevation_m": 299.1851501464844
+  }
+}

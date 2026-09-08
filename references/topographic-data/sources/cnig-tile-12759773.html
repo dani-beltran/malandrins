@@ -1,0 +1,1794 @@
+
+
+		
+<!doctype html>
+
+<html lang="ES">
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+	    <meta charset="utf-8">
+	    <meta http-equiv="X-UA-Compatible" content="chrome=1,IE=edge,IE=10">
+		<title>Centro de Descargas del CNIG (IGN)</title>
+		<meta name="Title" CONTENT="Centro de Descargas del CNIG (IGN)">
+		<meta name="google-site-verification" content="MlneDQByeAS4ugHvSUhxGS10MTY83QtiE52IrfteqhE">
+		<meta name="robots" content="ALL">
+		<meta name="dc.creator" content="Centro Nacional de Informaci&oacute;n Geogr&aacute;fica">
+		<meta name="revisit" content="1 day">
+		<META NAME="Author" CONTENT="Centro Nacional de Informaci&oacute;n Geogr&aacute;fica">
+		<META NAME="Subject" CONTENT="Centro de Descargas del CNIG">
+		<META NAME="Description" CONTENT="En el Centro de Descargas del CNIG puede descargarse gratuitamente la informaci&oacute;n geogr&aacute;fica digital producida por el IGN">
+		<META NAME="Keywords" CONTENT="CNIG, Centro Nacional de Informaci&oacute;n Geogr&aacute;fica, IGN, centro de descargas, descargas, cartograf&iacute;a digital, fotograf&iacute;a a&eacute;rea, PNOA, mapas digitales, geodesia, nomenc&aacute;tor, l&iacute;neas l&iacute;mite, v&eacute;rtices geod&eacute;sicos, mapa topogr&aacute;fico nacional, MTN25, MTN50, ortofotos, cartociudad, equipamiento geográfico de referencia nacional, EGRN, mapas de Espa&ntilde;a,Mapas para móviles, Vuelos fotogramétricos, CartoCiudad, SIOSE, CORINE Land Cover, BTN25, BTN100, BCN500, LIDAR, Modelo Digital del Terreno, MDT05, Minutas Cartograficas, Planos de población, Planos de edificios, Actas y Cuadernos de Líneas Límite, Rutas, Parques Nacionales, Caminos de Santiago">
+		<meta content="width=device-width; user-scalable=1; initial-scale = 1; minimum-scale = 1;" name="viewport"> 
+		<meta name="rating" content="General"> 
+		
+		<meta property="og:type" content="website"> 
+		<meta property="og:title" content="Centro de Descargas del CNIG (IGN)"> 
+		<meta property="og:description" content="En el Centro de Descargas del CNIG puede descargarse gratuitamente la informaci&oacute;n geogr&aacute;fica digital producida por el IGN"> 
+		<meta property="og:url" content="http://centrodedescargas.cnig.es"> 
+		<meta property="og:site_name" content="Centro de Descargas del CNIG"> 
+		<meta property="og:image" content="http://www.ign.es/web/resources/docs/IGNCnig/IGN-Difusion.jpg"> 
+		<meta property="og:locale" content="es_ES"> 
+		<meta property="og:locale:alternate" content="en_GB">                     
+		<meta property="og:locale:alternate" content="fr_FR">
+		
+		<meta data-name="twitter:card" content="summary" itemprop="resumen"> 
+		<meta data-name="twitter:site" content="@IGNSpain" itemprop="sitio"> 
+		<meta data-name="twitter:title" content="CentroDescargasCNIG" itemprop="titulo"> 
+		<meta data-name="twitter:description" content="En el Centro de Descargas del CNIG puede descargarse gratuitamente la informaci&oacute;n geogr&aacute;fica digital producida por el IGN" itemprop="description"> 
+		<meta data-name="twitter:creator" content="@IGNSpain" itemprop="sitio"> 
+		<meta data-name="twitter:image" content="http://www.ign.es/web/resources/docs/IGNCnig/IGN-Difusion.jpg" itemprop="image"> 
+		
+		<meta data-name="geo.region" content="ES-M" itemprop="region"> 
+		<meta data-name="geo.placename" content="Madrid" itemprop="location"> 
+		<meta data-name="geo.position" content="40.404460;-3.710000" itemprop="position"> 
+		<meta data-name="ICBM" content="40.404460, -3.710000" itemprop="ICBM"> 
+		
+		<meta data-name="DC.title" content=" CentroNacionalInformaciónGeográfica " itemprop="titulo">
+				
+		<link rel="external" href="http://www.cnig.es/RSSCDD/listaNovedades.xml" title="Novedades Centro Descargas" type="application/rss+xml"> 
+				
+		<link rel="shortcut icon" href="img/favicon.ico">
+		
+		<link href="css/estilos-css-cnig-2024.css" rel="stylesheet">
+		<link href="css/jquery-ui.css" rel="stylesheet">
+		
+		<link rel="stylesheet" href="css/all.css">
+		<link rel="stylesheet" href="ol5/ol.css" type="text/css">
+		
+		<script src="js/jquery-latest.js"></script>
+		
+		<script src="js/msj.js"></script>
+		<script src="js/funciones.js"></script>
+				
+		<script src="js/jquery-ui.min.js"></script>
+				
+		<script src="conf/municipios.js"></script>
+		
+		<script src="ol5/ol.js"></script>
+    			
+    	<script src="js/configVisor.js"></script>
+    			
+    	<script src="conf/configSeries.js"></script>
+
+		<script src="js/arriba.js"></script>
+		<script src="js/menunew.js"></script>
+
+    	    <!-- Estilo de la API -->
+    	    <!--    api antigua 	    <link type="text/css" rel="stylesheet" href="https://componentes.cnig.es/api-core/assets/css/apiign.ol.min.css">   -->
+			<link type="text/css" rel="stylesheet" href="https://componentes.idee.es/api-idee/assets/css/apiidee.ol.min.css">
+			          
+    	    <!-- Estilos de los plugins añadidos -->
+    	<!--     <link href="https://componentes.cnig.es/api-core/plugins/ignsearchlocator/ignsearchlocator.ol.min.css" rel="stylesheet">            -->
+<!--    api antugua 	        	    
+    	    <link href="https://componentes.cnig.es/api-core/plugins/attributions/attributions.ol.min.css" rel="stylesheet">            
+    		<link href="https://componentes.cnig.es/api-core/plugins/selectiondraw/selectiondraw.ol.min.css" rel="stylesheet">
+    		<link href="https://componentes.cnig.es/api-core/plugins/locator/locator.ol.min.css" rel="stylesheet" />
+-->
+			<link href="https://componentes.idee.es/api-idee/plugins/attributions/attributions.ol.min.css" rel="stylesheet" />
+  	  		<link href="https://componentes.idee.es/api-idee/plugins/measurebar/measurebar.ol.min.css" rel="stylesheet" />
+  	  		<link href="https://componentes.idee.es/api-idee/plugins/backimglayer/backimglayer.ol.min.css" rel="stylesheet" />
+  	  		<link href="https://componentes.idee.es/api-idee/plugins/locator/locator.ol.min.css" rel="stylesheet" />
+  	  		
+    	      <!-- Ficheros javascript de la API -->
+
+    	      
+			  <script type="text/javascript" src="https://componentes.idee.es/api-idee/vendor/browser-polyfill.js"></script>          
+			  <script type="text/javascript" src="https://componentes.idee.es/api-idee/js/apiidee.ol.min.js"></script>        
+			  <script type="text/javascript" src="https://componentes.idee.es/api-idee/js/configuration.js"></script>
+    	      
+    	      
+    	      
+    	      <!-- Ficheros  javascript de los plugins añadidos-->
+    	<!--       <script src="https://componentes.cnig.es/api-core/plugins/ignsearchlocator/ignsearchlocator.ol.min.js"></script>         -->
+    	      
+    	      
+    	    <script type="text/javascript" src="https://componentes.idee.es/api-idee/plugins/attributions/attributions.ol.min.js"></script>         
+    	 		
+    	 		    <!-- Dependencias del plugin -->
+    	    
+    	 
+  
+ 		  <script type="text/javascript" src="https://componentes.idee.es/api-idee/plugins/measurebar/measurebar.ol.min.js"></script>
+
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MHC1KPDP10"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-MHC1KPDP10');
+</script>
+
+	
+		<!-- Facebook Pixel Code -->
+ 		<script>
+		!function(f,b,e,v,n,t,s)
+		{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+		n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+		if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+		n.queue=[];t=b.createElement(e);t.async=!0;
+		t.src=v;s=b.getElementsByTagName(e)[0];
+		s.parentNode.insertBefore(t,s)}(window,document,'script',
+		'https://connect.facebook.net/en_US/fbevents.js');
+		fbq('init', '381881688811171'); 
+		fbq('track', 'PageView');
+		</script>
+		<!-- End Facebook Pixel Code -->	 	
+
+	<style>
+		/* Contenedor del menu desplegable */
+		
+		#licencias{ padding-right: 15px; }	
+		
+
+
+   	
+	    #capaRRSS2 > div > a {
+	    	display: inline-block;
+	    }
+	    
+	    #capaRRSS2 {
+		    overflow: hidden;
+		    white-space: nowrap;
+		    width: 0;
+		    transition: width 0.5s ease-in-out;
+	    }
+
+		#capaRRSS2.visible {
+			width: 200px;
+		}
+
+		#capaRRSS2 .displayInlineBlock {
+		    opacity: 0;
+		    transform: translateX(-20px);
+		    transition: opacity 0.3s ease, transform 0.3s ease;
+		    display: inline-block;
+		}
+		
+		#capaRRSS2.visible .displayInlineBlock {
+		    opacity: 1;
+		    transform: translateX(0);
+		}    
+  
+
+
+		
+		#capaVisor{
+			    height:50vh;
+			    border-bottom:1px dotted black; 
+			    background-color:#fdede1;
+		}
+		
+		#capaVisor img {
+		    max-width: 100%;      /* La imagen nunca se sale del ancho */
+		    max-height: 100%;     /* La imagen nunca se sale del alto */
+		    object-fit: contain;  /* Ajusta la imagen manteniendo proporción */
+		    display: inline-block;
+		}
+		
+		#capaVisor.img-visible {
+		    background-color: white;
+		    border-bottom:none;
+		}
+
+		@media (max-width: 768px) {
+		  
+
+		    
+		    #infor
+		    {
+		       scroll-margin-top: 50px;
+		    }
+		    
+		    #capaVisor{
+			    height:30vh;
+		    }
+		    
+
+		            
+		} /* mobiles*/
+		
+	</style>
+
+	</head>
+
+<body>
+
+	<noscript>
+		<img height="1" width="1" src="https://www.facebook.com/tr?id=381881688811171&ev=PageView&noscript=1"/>
+	</noscript>  
+
+
+	
+<script src="js/jquery-ui.min.js"></script>
+<!-- botón subir (si se posiciona este js por encima del menunew da fallos )-->
+<script src="js/arriba.js"></script>
+<!-- fin botón subir -->
+<!-- Boton hacia arriba -->
+<a  class="ir-arriba zIndex1000" title="Subir">
+  <span class="fa-stack-x2">
+    <i class="fa fa-chart fa-stack-2x"></i>
+    <i class="fa fa-chevron-up fontSize13em"></i>
+  </span>
+</a>
+<!-- fin Boton hacia arriba -->
+
+<!-- cabecera -->
+
+<header>
+
+
+<div id="header-pc">
+
+  <div class="col-12">
+  
+    <div class="col-1 floatDer paddingRight3por">
+		
+      		<a id="changeIdiomaEN" class="atxtBlanco fontSize08em cursorPointer" title="English">English</a>      		
+      	
+      	
+      		
+    </div>
+    <div class="col-3 marginTop20px">
+      <a href="https://www.ign.es" target="_blank" title="Instituto Geográfico Nacional y O. A. Centro Nacional de Información Geográfica">
+      <img src="imgCdD/escudoInstitucional.png" alt="Instituto Geográfico Nacional y O. A. Centro Nacional de Información Geográfica" class="img-fluid imgMinisterio "></a>
+    </div>
+    <div class="col-6 col-m-12 marginTop20px">
+      <div class="col-12 txtCenter"><a href="home" class="txtSupCdDCabenlace" title="Centro de Descargas">Centro de Descargas</a></div>
+      <div class="marginTop10px col-12 colorVerdeClaro   txtCenter paddingBottom10px ">Instituto Geográfico Nacional</div>
+      <div class="col-12 colorVerdeClaro   txtCenter  ">Organismo Autónomo Centro Nacional de Información Geográfica</div>
+    </div>
+  </div>
+</div>  
+<div id="header-mobile">
+  <div class="col-12">
+
+    <div class="col-12">
+     <div class="col-6 "> 
+      <a href="https://www.ign.es" target="_blank" title="Instituto Geográfico Nacional y O. A. Centro Nacional de Información Geográfica">
+      <img src="imgCdD/escudoInstitucional.png" alt="Instituto Geográfico Nacional y O. A. Centro Nacional de Información Geográfica" class="img-fluid imgMinisterio"></a>
+      </div>
+    </div>
+    <div class="col-12">
+      <div class="col-12 txtCenter">
+      		<a href="home" class="txtCenter colorBlanco fontSize18vw" title="Centro de Descargas">Centro de Descargas</a>
+      </div>
+      <div class="col-12 colorVerdeClaro txtSuperiorCabecera txtCenter paddingBottom10px">Instituto Geográfico Nacional</div>
+      <div class="col-12 colorVerdeClaro txtSuperiorCabecera txtCenter padding5px">Organismo Autónomo Centro Nacional de Información Geográfica</div>
+    </div>
+  </div>
+</div>  
+
+  
+</header>
+<!-- fin cabecera -->
+
+<form id="formMenuCdd3" name="formMenuCdd3" method="POST">
+		
+		
+			<input type="hidden" id="lang" name="lang" value="ES">
+		
+      	
+<div class="maincontain navigation colorfondomenu txtCenter">
+
+
+<!-- inicio de cabecera para visualizacion en pc -->
+<div id = "cabecera-pc">
+	<div class="col-12 col-m-12 nav-container colorfondomenu">
+	
+		<nav id="menuCDD" class="nav">
+
+				<ul class="nav-links cursorPointer" id="nav-links">
+			      	<li id="optMenuHome"><a href="home" class="tct" title="Inicio">Inicio</a></li>
+			        <li><a  title="Catálogo">Catálogo</a>
+			          <ul class="nav-submenu">
+			            <li class="txtLeft"><a href="catalogo"  title="Todo el catálogo">Todo el catálogo</a></li>
+
+			            
+						<!-- Nuevos -->
+			            <li class="txtLeft"><a href="mapa-topografico-nacional" title="Mapas Topográficos Nacionales">Mapas Topográficos Nacionales</a></li>
+			            <li class="txtLeft"><a href="mapas-provincia-comunidad-autonoma"  title="Mapas provinciales y autonómicos">Mapas provinciales y autonómicos</a></li>
+			            <li class="txtLeft"><a href="mapas-espana-mundo"  title="Mapas de España y del mundo">Mapas de España y del mundo</a></li>
+			            <li class="txtLeft"><a href="bases-topograficas-cartograficas"  title="Bases topográficas y cartográficas">Bases topográficas y cartográficas</a></li>
+						
+						<!-- Antiguos -->
+
+
+
+			            
+			            <li class="txtLeft"><a href="informacion-geografica-referencia" title="Información geográfica de referencia">Información geográfica de referencia</a></li>
+			            <li class="txtLeft"><a href="informacion-geografica-tematica" title="Información geográfica temática">Información geográfica temática</a></li>
+			            <li class="txtLeft"><a href="modelos-digitales-elevaciones" title="Modelos Digitales de Elevaciones">Modelos Digitales de Elevaciones</a></li>
+			            <li class="txtLeft"><a href="fotos-imagenes-aereas" title="Imágenes aéreas y satelitales">Imágenes aéreas y satelitales</a></li>
+			            <li class="txtLeft"><a href="documentacion-geografica-cartografia-antigua"  title="Documentación geográfica y cartografía antiguas">Documentación geográfica y cartografía antiguas</a></li>
+			            <li class="txtLeft"><a href="rutas-ocio-tiempo-libre"  title="Rutas, ocio y tiempo libre">Rutas, ocio y tiempo libre</a></li>
+			          </ul>
+			        </li>
+			        <li id="optMenuBuscar"> <a  id="bBuscarCab" title="Buscar">Buscar</a></li>
+			          
+			        <li id="menuCdd3LicenciasUso"><a href="politica-datos" title="Política de datos">Política de datos</a></li>
+			        <li><a title="Ayuda">Ayuda</a>
+				        <ul class="nav-submenu" style="display: none;">
+				            <li class="txtLeft"><a href="faqs" title="Preguntas frecuentes">Preguntas frecuentes</a></li>
+				            <li class="txtLeft"><a href="ayuda" title="Manual de ayuda">Manual de ayuda</a></li>
+				        </ul>
+				    </li>
+				    <li id="menuCdd3Novedades"><a href="novedades" title="Novedades">Novedades</a></li> 
+				   	<li id="menuEclipses"><a href="eclipses" title="Trío de eclipses">Trío de eclipses</a></li>   
+
+				        
+				</ul>
+		      <div class=" displayInlineFlex paddingRight3por" style="vertical-align:top">
+
+
+	
+	            
+	<!-- seccion para area de clientes y login -->       
+				
+	
+		<a id="linkRegistrate" class="paddingLeft10px paddingRight10px atxtBlanco " href="registrate"  title="Iniciar sesión"> <i class="fa fa-user fa-fw fontSize09em paddingBottom2px" ></i></a>
+	
+	
+	<!-- fin seccion login y area de clientes -->
+	
+	<!-- Seccion para la cesta de descargas -->
+	
+
+		<div id="capaCestaDesc" >
+			
+			
+				<a  onmouseout="document.getElementById('icoCestaSin').src='imgCdD/ico-cesta-bl-menu-lleno-h.svg';" onmouseover="document.getElementById('icoCestaSin').src='imgCdD/ico-cesta-bl-menu-lleno.svg';" style="display:none" id="menuCdd3CarroCon" href="#" target="_self" class="acolorVerdeClaro paddingRight10px " title="Descargas: ( Mb)">
+				  <img id="icoCestaSin" alt="Descargas" src="imgCdD/ico-cesta-bl-menu-lleno-h.svg" class="icoCestaMenu">
+				  <sup class="paddingRight10px">(<span id="displayCountDescarga" class="fontSize08em"></span>)</sup>
+				  </a>
+
+			<div class="paddingTop2px">
+			<a id="menuCdd3CarroSin" href="#" target="_self" class="atxtBlanco paddingRight10px " title="Descargas"> 
+			    <img  alt="Descargas" onmouseout="this.src='imgCdD/ico-cesta-bl-menu.svg';" onmouseover="this.src='imgCdD/ico-cesta-bl-menu-h.svg';" src="imgCdD/ico-cesta-bl-menu.svg" class="icoCestaMenu ">
+			 </a>
+			</div> 
+			
+		</div> 	
+	
+	
+	<!-- fin seccion de cesta de descargas -->
+	
+		<a href="contacto" class=" atxtBlanco paddingRight3px cursorPointer paddingTop2px" title="Contacto"><i class="fa fa-envelope fa-fw " title="Contacto"></i></a>
+	
+
+
+
+
+			</div>
+		</nav>
+	</div>
+	
+  </div>
+
+<!-- fin cabecera para pc -->
+
+<!-- inicio para cabecera en moviles	 -->
+
+<div id = "cabecera-mobile" >
+	<div class="col-12 nav-container" style="height:40px; vertical-align:bottom;display:flex;align-items: center;">
+	<button class="menu-toggle col-2 txtLeft-m txtLeft" id="menu-toggle">&#9776;</button>
+	   
+    <div class="col-10 txtCenter" >
+
+      <div class="floatDer floatDer-m" style="height:40px;vertical-align:bottom;display:flex;align-items: center; ">
+      	
+       	<a id="linkBuscadorMov" class="paddingRight3px atxtBlanco" href="loadBuscador"  title="Iniciar sesión"><i class="fa fa-search  fontSize09em">&nbsp;</i></a> 
+		
+			<!-- seccion para area de clientes y login -->       
+  		
+							
+	
+								<a id="linkRegistrate" class="atxtBlanco paddingRight3px cursorPointer" href="registrate"  title="Iniciar sesión"> <i class="fa fa-user fa-fw  fontSize09em" ></i></a>
+							
+	
+							<!-- fin seccion login y area de clientes -->
+							<a href="contacto" class=" atxtBlanco paddingRight3px cursorPointer" title="Contacto"><i class="fa fa-envelope fa-fw " title="Contacto"></i></a>
+							
+
+    
+							
+					      		<a id="changeIdiomaENm" class="atxtBlanco cursorPointer paddingRight5px " title="English">EN</a>      		
+					      	
+					      	
+      		
+				</div>	
+			</div>
+			
+			
+	      <div id="menumovil" class="col-6 floatIzq-m colorfondomenu " style="display:none; position:absolute; left:0px; top:40px;">
+				<ul class="cursorPointer txtLeft lineHeight30 " >
+			      	<li id="optMenuHome"><a class="atxtBlanco" href="home" title="Inicio">Inicio</a></li>
+			        <li><a class="atxtBlanco"  href="catalogo" title="Catálogo">Catálogo</a>
+			        <li> <a class="atxtBlanco" href="politica-datos" title="Política de datos">Política de datos</a></li>
+			        <li> <a class="atxtBlanco" href="faqs" title="Preguntas frecuentes">Preguntas frecuentes</a></li>
+			        <li> <a class="atxtBlanco" href="ayuda" title="Manual de ayuda">Manual de ayuda</a></li>
+				    <li> <a class="atxtBlanco" href="novedades" title="Novedades">Novedades</a></li>  
+				    <li id="menuEclipsesm"><a class="atxtBlanco" title="Trío de eclipses">Trío de eclipses</a></li>  
+
+				        
+				</ul>
+		   </div>	
+	</div>	
+	
+  </div>
+
+<!-- fin cabecera para moviles -->
+	
+</div>
+</form>
+
+	
+	<form id="formLinkMD" name="formLinkMD" method="POST">
+		<input type="hidden" id="urlMD" name="urlMD" value="">		
+	</form>
+
+		
+
+
+
+	<div id="modalMsj" class="modalCDD">
+	
+	  <!-- Modal content -->
+	  <div class="modalCDD-content">
+	  <div class="row">
+	  	<div class="col-sm-12">
+	  		<span id="closeModal" class="closeCDD" style="">&times;</span>
+	  	</div>
+	  	
+	  </div>
+	  <div class="row" style="padding-right:5%;padding-left:5%;">
+	    <div class="modalCDD-header" > 
+	      
+<!-- 	      <h2>AVISO</h2> -->
+	    </div>
+	    <div  class="modalCDD-body">
+	      <p id="txtModalMsj" style="text-align:center;"></p>
+	      
+	    </div>
+	    <div class="modalCDD-footer" style="text-align:center">
+	      <button id="bCloseMsj" type="button" class="btn btn-primary btn-block ">Cerrar</button>
+	      
+	    </div>
+	  
+	  </div>
+	  </div>
+	
+	</div>
+
+		
+
+
+
+	<div id="modalConf" class="modalCDD">
+	
+	  <!-- Modal content -->
+	  <div class="modalCDD-content">
+<!-- 	  <div class="row"> -->
+<!-- 	  	<div class="col-sm-12"> -->
+
+<!-- 	  	</div> -->
+	  	
+<!-- 	  </div> -->
+	  <div class="row" style="padding-right:5%;padding-left:5%;">
+	    <div class="modalCDD-header" > 
+	      
+<!-- 	      <h2>AVISO</h2> -->
+	    </div>
+	    <div  class="modalCDD-body">
+	      <p id="txtModalConf" style="text-align:center;"></p>
+	      
+	    </div>
+	    <div class="modalCDD-footer" style="text-align:center">
+	    
+			<input type="button" id="bAceptConfirm" class="btn" value='Si'>
+        	<input type="button" id="bCancelConfirm" class="btn" value='No'>
+	    
+	    </div>
+	  
+	  </div>
+	  </div>
+	
+	</div>
+
+		
+
+
+
+	<div id="modalEspera" class="modalCDD">
+		<div class="modalCDD-content">
+	  		<div class="row" style="padding-right:5%;padding-left:5%;">
+	    		<div  class="modalCDD-body">
+	     			<div class="col-12 txtCenter paddingBottom20px paddingTop20px">
+	            		<img id="imgWaiting" src="img/wait.gif" alt="Buscando">
+	        		</div>
+	       			<div id="txtWaiting" class="col-12 txtCenter colorVerde fontSize10em">
+	        			Procesando solicitud. Espera por favor... 
+	        		</div>
+	    		</div>
+	  		</div>
+	  </div>
+	
+	</div> 
+ 
+ 
+	
+
+
+
+	<div id="modalEsperaBuscando" class="modalCDD">
+		<!-- Modal content -->
+	  	<div class="modalCDD-content">
+	  		<div class="row" style="padding-right:5%;padding-left:5%;">
+
+	    		<div  class="modalCDD-body">
+	     			<div class="col-12 txtCenter paddingBottom20px paddingTop20px">
+	            		<img id="imgWaiting" src="img/wait.gif" alt="Buscando">
+	        		</div>
+	       			<div id="txtWaiting" class="col-12 txtCenter colorVerde fontSize10em">
+	        			Buscando entre más de 2.000.000 de recursos
+	        		</div>
+	    		</div>
+	  		</div>
+	  </div>
+	
+	</div> 
+ 
+ 
+
+
+<!-- The Modal -->
+<div id="modalBuscCab" class="modalBuscar">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <div class="modal-header col-12">
+      <span id="closeBuscCab" class="cerrar" title="Cerrar">&times;</span>
+    </div>
+    <div class="modal-body txtCenter col-12">
+      <div class="col-12 col-m-12">
+        <form id="formBuscadorCab" name="formBuscadorCab" method="POST">
+        <div class="input-group-tres buscador floatDer paddinBuscador">
+			<input id="keySearchCab" name="keySearchCab" class="form-controlBuscar main-search form-control form-text ui-autocomplete-input" maxlength="128" size="15" type="text">
+			<button id="bBuscadorCab" class="buton fontSize12em marginLeft5px" title="Buscador de productos"><i class="fa fa-search fa-lg">&nbsp;</i></button>
+			<button id="bClearSearchCab" class="buton fontSize12em marginLeft5px" title="Limpiar"><i class="fa fa-close fa-lg">&nbsp;</i></button>
+        </div>
+      	</form>
+      </div>
+      <div class="">
+            <a href="buscar-mapa" class="mapa-svg-tres cabe atxtAzVer marginLeft10px marginBottom10px" title="Buscar en mapa"><br><span class="paddingRight50px paddingTop10px">Buscar en mapa</span></a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+	<script>
+	
+	if("home"==$(location).attr('pathname').substring($(location).attr('pathname').lastIndexOf('/')+1)){
+		$('#linkBuscadorMov').hide();
+	}
+	
+// gestion de cabecera en funcion del dispositivo desde el que nos navegan.
+
+	if(deviceType=='Mobile'){
+		$('#cabecera-pc').hide();
+		$('#cabecera-mobile').show();
+		$('#header-pc').hide();
+		$('#header-mobile').show();
+		
+	}
+	else
+	{
+		$('#cabecera-pc').show();
+		$('#cabecera-mobile').hide();
+		$('#header-pc').show();
+		$('#header-mobile').hide();		
+	}
+	
+	
+// fin gestion de cabecera en funcion del dispositivo desde el que nos navegan.	
+	
+	
+		$('#changeIdiomaES,#changeIdiomaESm').on('click',function(event){
+
+			$('#lang').val('ES');
+			
+			if("resultados-busqueda"==$(location).attr('pathname').substring($(location).attr('pathname').lastIndexOf('/')+1)){
+				$('#formMenuCdd3').prop('action','home');
+				$('#formMenuCdd3').submit();
+			}
+			else if("detalleArchivo"==$(location).attr('pathname').substring($(location).attr('pathname').lastIndexOf('/')+1)){
+				var recurso = $(location).attr('pathname').substring($(location).attr('pathname').lastIndexOf('/')+1);
+				var urlConSec;
+				var secuencial = '12759773';
+				if(secuencial == 'null' || secuencial == ''){
+					urlConSec = recurso;
+				}else{
+					urlConSec = recurso + "?sec=" + secuencial;
+				}
+				$('#formMenuCdd3').prop('action',urlConSec);
+				$('#formMenuCdd3').submit();
+			}
+			else{
+				$('#formMenuCdd3').prop('action',$(location).attr('pathname').substring($(location).attr('pathname').lastIndexOf('/')+1));
+				$('#formMenuCdd3').submit();				
+			}
+
+		});
+		
+		$('#changeIdiomaEN,#changeIdiomaENm').on('click',function(event){
+
+			$('#lang').val('EN');
+			
+			if("resultados-busqueda"==$(location).attr('pathname').substring($(location).attr('pathname').lastIndexOf('/')+1)){
+				$('#formMenuCdd3').prop('action','home');
+				$('#formMenuCdd3').submit();
+			}
+			else if("detalleArchivo"==$(location).attr('pathname').substring($(location).attr('pathname').lastIndexOf('/')+1)){
+				var recurso = $(location).attr('pathname').substring($(location).attr('pathname').lastIndexOf('/')+1);
+				var urlConSec;
+				var secuencial = '12759773';
+				if(secuencial == 'null' || secuencial == ''){
+					urlConSec = recurso;
+				}else{
+					urlConSec = recurso + "?sec=" + secuencial;
+				}
+				$('#formMenuCdd3').prop('action',urlConSec);
+				$('#formMenuCdd3').submit();
+			}
+			else{
+				$('#formMenuCdd3').prop('action',$(location).attr('pathname').substring($(location).attr('pathname').lastIndexOf('/')+1));
+				$('#formMenuCdd3').submit();				
+			}
+
+		});
+		
+		if('home'==$(location).attr('pathname').substring($(location).attr('pathname').lastIndexOf('/')+1)){
+			$('#optMenuHome,#optMenuBuscar').hide();
+		}
+
+ 		$(document).on('click', 'a[href^="#capa"]', function (event) {
+ 		    event.preventDefault();
+		    $('html, body').animate({
+		    	scrollTop: $($.attr(this, 'href')).offset().top
+		    }, 500);
+
+ 		});
+		
+		$('#menuCdd3LicenciasUso').on('click',function(event){
+			$('#formMenuCdd3').prop('action','licUso');
+			$('#formMenuCdd3').submit();			
+		});		
+
+		$('#menuDana,#menuDanam').on('click',function(event){
+			$('#formMenuCdd3').prop('action','dana');
+			$('#formMenuCdd3').submit();			
+		});	
+		
+		$('#menuEclipses,#menuEclipsesm').on('click',function(event){
+			$('#formMenuCdd3').prop('action','eclipses');
+			$('#formMenuCdd3').submit();			
+		});	
+
+		$('#menuCdd3Novedades').on('click',function(event){
+			$('#formMenuCdd3').prop('action','novedades');
+			$('#formMenuCdd3').submit();			
+		});		
+
+		$('#menuCdd3CarroCon').on('click',function(event){
+			$('#formMenuCdd3').prop('action','listaFicheros');
+			$('#formMenuCdd3').submit();		
+		});
+		
+		$('#linkAreaCliente').on('click',function(event){
+			$('#formMenuCdd3').prop('action','area-cliente');
+			$('#formMenuCdd3').submit();		
+		});
+
+		
+		$('#idNotificaciones,#idNotificacionesMobile').on('click',function(event){
+			$('#formMenuCdd3').prop('action','notificaciones');
+			$('#formMenuCdd3').submit();		
+		});
+
+		
+		
+	</script>
+	
+	<script>
+	// Get the modal
+	var modalBuscar = document.getElementById("modalBuscCab");
+	
+	$('#bBuscarCab').on('click',function(event){
+		modalBuscar.style.display = "block";
+		$('#keySearchCab').val('');
+		
+		  //var arrTxtCab = new Array("Buscar por producto y topónimo. Ej. Lidar Tarifa", "Buscar producto por provincia, comunidad. Ej. Raster Aragón", "Buscar por producto y número de hoja . Ej. PNOA hoja 559", "Buscar por tipo de producto. Ej.Raster, Vectorial, Modelos digitales, fotografía aérea, Lidar, Atlas Nacional");
+		  var arrTxtCab = new Array(busquedaSugerida1[$('#lang').val()],busquedaSugerida2[$('#lang').val()],busquedaSugerida3[$('#lang').val()],busquedaSugerida4[$('#lang').val()],busquedaSugerida5[$('#lang').val()],busquedaSugerida6[$('#lang').val()],busquedaSugerida7[$('#lang').val()],busquedaSugerida8[$('#lang').val()],busquedaSugerida9[$('#lang').val()],busquedaSugerida10[$('#lang').val()]);
+		  
+		  var timeOutCab;
+		  var txtLenCab;
+		  var characterCab= 0;
+		  $('#keySearchCab').attr('placeholder', '|');
+		  var typeCab ;
+		  var iCab=Math.floor(Math.random() * arrTxtCab.length);
+		  
+		  (function typeItCab() {
+		     
+//		  	var humanize = Math.round(Math.random() * (200 - 30)) + 30;
+		  var humanizeCab = 200;
+
+
+		      timeOutCab = setTimeout(function () {
+		      	characterCab++;
+		      	txtLenCab=arrTxtCab[iCab].length;
+		  		typeCab= arrTxtCab[iCab].substring(0, characterCab);
+
+		          $('#keySearchCab').attr('placeholder', typeCab + '|');
+		          typeItCab();
+
+		          if (characterCab == txtLenCab) {
+		              $('#keySearchCab').attr('placeholder', $('#keySearchCab').attr('placeholder').slice(0, -1)) // remove the '|'
+		              //clearTimeout(timeOut);
+		              iCab=Math.floor(Math.random() * arrTxtCab.length);
+		              //iCab++;
+		              //if(iCab>3){
+		              	//iCab=0;
+		              	//clearTimeout(timeOut);
+		              //}
+		              characterCab=0;
+		          }
+
+		      }, humanizeCab);
+		  }());
+		
+	});
+	
+	$('#closeBuscCab').on('click',function(event){
+	  modalBuscar.style.display = "none";
+	  $('#keySearchCab').val('');
+	});
+	
+	// When the user clicks anywhere outside of the modal, close it
+	window.onclick = function(event) {
+	  if (event.target == modalBuscar) {
+	    modalBuscar.style.display = "none";
+	  }
+	}
+
+	$(document).ready(function(){
+		
+
+		
+		
+		 var cache = {};
+		
+       $("#keySearchCab").autocomplete({
+           minLength : 2,
+           autoFocus: false,
+           source: function( request, response ) {
+           	var term = request.term;
+               if ( term in cache ) {
+                   response( cache[ term ] );
+                   return;
+               }
+           	
+               else{	
+	            	$.ajax( {
+	                  url: "buscarContenido",
+	                  dataType: "json",
+	                  data: {
+	                	  palabraClave: term
+	                  },
+	                  success:function(data){
+	                	  cache[ term ] = $.map(JSON.parse(data.listaAutocomp), function(item) {
+	                          return {
+	                              label: item.valor,
+	                              value: item.valor,
+	                              id:item.id
+	                          }
+	                      });
+	                	  response(
+	                			  $.map(JSON.parse(data.listaAutocomp), function(item) {
+	                                  return {
+	                                      label: item.valor,
+	                                      value: item.valor,
+	                                      id:item.id
+	                                  }
+	                              })
+	                	  
+	                	  )//fin response
+	                	  
+	                  }
+	                  
+	//                   success: function( data ) {
+	//                 	  cache[ term ] = JSON.parse(data.listaAutocomp);
+	//                 	  console.log(JSON.parse(data.listaAutocomp));
+	//                 	  response(JSON.parse(data.listaAutocomp));
+	//                   }
+	                } );
+           	
+           	
+           	}//fin else
+             },
+           search:function(event, ui ) {
+           	
+           	//limpiamos el codigo ine ,cada vez que se busca
+              // $('#numHoja').val('');
+           },
+           select: function (event, ui ) {
+           	//console.log(ui.item.value+"   "+ui.item.label+"   ---"+ui.item.id);
+           }
+       });	
+
+	$("#keySearchCab").on( "keyup", function(event) {
+		
+		if($("#keySearchCab").val()==" "){//event.keyCode == 32 && 
+			$("#keySearchCab").val('');
+			return;
+		}
+	
+			if (event.keyCode == 13) {
+				event.preventDefault();
+				$('#bBuscadorCab').trigger('click');
+			}
+		
+	});
+	
+	
+		$('#bBuscadorCab').on('click',function(event){
+  			event.preventDefault();
+  			if($("#keySearchCab").val()==" "){//event.keyCode == 32 && 
+				$("#keySearchCab").val('');
+				return false;
+			}
+			if($.trim($("#keySearchCab").val()).length<2){
+					alert("Introduzca al menos tres caracteres");
+					return false;
+				}
+			else{
+	  			$("#modalEsperaBuscando").show();
+	  			$('#formBuscadorCab').attr('action','resultados-busqueda');
+				$('#formBuscadorCab').submit();
+			}				
+
+			//setTimeout(function () {$("#modalEspera").hide();}, 1000);
+  		});
+
+		
+  		$('#bClearSearchCab').on('click',function(e){
+  			e.preventDefault();
+  			$('#keySearchCab').val('');
+  		});
+		
+	});	
+	
+	
+	
+	
+		$('#menu-toggle').on('click',function(e){
+  			e.preventDefault();
+  			$('#menumovil').toggle();
+  		});
+
+	
+	
+		$(document).keydown(function(e) {
+			if ((e.keyCode || e.which) == 27) {
+				$("#modalBuscCab").hide();
+			}
+		});
+	
+		
+	
+	
+	
+</script>
+		
+<!-- migas -->
+<div class="contenedor clear">
+	<div class="col-12 col-m-12 marginTop10px marginBottom20px">  
+		<div class="displayInline">
+		<a href="home" class="acolorAzulClaro" title="Inicio"><i class="fas fa-home fontSize08em"></i></a>
+		</div>
+		<div class="displayInline fontSize08em colorAzulClaro"> / </div>
+		<div class="displayInline"><a href="catalogo" title="Catálogo Productos" class="fontSize08em acolorAzulClaro">Catálogo Productos</a></div>
+		<div class="displayInline fontSize08em colorAzulClaro"> / </div>
+		<div class="displayInline fontSize08em"><a href="modelos-digitales-elevaciones" class="acolorAzulClaro" title="Modelos Digitales de Elevaciones">Modelos Digitales de Elevaciones</a></div>
+		<div class="displayInline fontSize08em colorAzulClaro"> / </div>
+		<div class="displayInline fontSize08em"><a href="modelo-digital-terreno-mdt50cm" class="acolorAzulClaro" title="MDT50 cm - 3&ordf; cobertura">MDT50 cm - 3&ordf; cobertura</a></div>
+		<div class="displayInline fontSize08em colorAzulClaro"> / </div>    
+		<div class="displayInline fontSize08em">MDT50CM-ETRS89-H31-0616-5-4-COB3-V1.tif</div>
+	</div>
+
+<!-- fin migas -->	
+
+		<div class="row">
+
+			
+				<div class="col-12 paddingTop25px paddingBottom20px">
+				   <div class="col-12 floatIzq colorGreyFondo"> 
+				      <div class="col-1 floatIzq floatIzq-m  altoicoLayers izqicoLayer  colorGreyFondo">
+				     		<i class="fa-regular fa-file-lines fontSize20vw marginTop5px marginLeft10px"></i>
+				     		
+				      </div>
+				      <div class="floatIzq floatIzq-m  centroicoLayer col-10 colorGreyFondo">
+				      		<h1 style=" white-space: nowrap;   overflow: hidden;    text-overflow: ellipsis;"  class="fontSize20vw">MDT50CM-ETRS89-H31-0616-5-4-COB3-V1.tif</h1>
+				      </div>
+				      <div class="floatDer floatDer-m rayas col-1">
+				        <span class="blanco"></span>
+				        <span class="grey"></span>
+				        <span class="blanco"></span>
+				        <span class="grey"></span>
+				      </div>
+				    </div>	     
+				</div>
+			
+			
+			
+		</div>
+		
+		
+		
+		
+		
+
+		
+		
+		
+		
+		
+		
+		
+
+		<div class=" col-12 col-m-12 txtRight  displayInlineBlock">	
+		
+				<div class="displayInlineBlock ">
+					<div id="capaRRSS2"  class="displayInlineBlock">
+			 		 <div class="displayInlineBlock "><a id="linkFacebook" href="#" class="fontSize15emIcos acolorAzulClaro marginRight5px" target="_blank" title="Compartir por Facebook"><i class="fa-brands fa-facebook-f"></i></a></div>
+			 		 <div class="displayInlineBlock "><a id ="linkTwiter" href="#" class="fontSize15emIcos acolorAzulClaro marginRight5px" target="_blank" title="Compartir en X"><i class="fa-brands fa-x-twitter"></i></a></div>
+			 		 <div class="displayInlineBlock "><a id="linkLinkedin" href="#" class="fontSize15emIcos acolorAzulClaro marginRight5px" title="Compartir por Linkedin" target="_blank"><i class="fab fa-linkedin-in"></i></a></div> 
+					 <div class="displayInlineBlock "><a id="linkCopyURl" href="#" class="fontSize15emIcos acolorAzulClaro marginRight5px cursorPointer" title="Copiar Url"><i class="fa-solid fa-link"></i></a></div>
+	                </div>	
+					<a id="redessociales" href="#" class="acolorAzulClaro marginRight10px " title="Redes Sociales">
+					<i class="fa-solid fa-share-nodes fontSize15emIcos"></i>
+					</a>
+				</div>			
+
+	            		
+				<div id="info" class="displayInlineBlock  ">
+					<a href="#infor" class="acolorAzulClaro marginRight10px " title="Información">
+					<i class="fa-solid fa-circle-info fontSize15emIcos"></i>
+					</a>
+				</div>     			
+  			      			
+     			
+     			
+     				<div class="displayInlineBlock "><a id="bDescDir" href="#" class="acolorAzulClaro marginRight10px " title="Descargar fichero"><i class="fa fa-download fontSize15emIcos"></i></a></div>
+					
+				
+				
+     			
+     				<div id="capaAddArchivo" class="displayInlineBlock  marginTop-4px"><img id="bAddToChar" title="Añadir a la cesta" alt="Añadir a la cesta" src="imgCdD/ico-cesta-mas.svg" class="heightIconocesta cursorPointer floatDer" ></div>
+					<div id="capaRemoveArchivo" class="displayInlineBlock  marginTop-4px"><img id="bRemoveFromChar" title="Quitar de la cesta" alt="Quitar de la cesta" src="imgCdD/ico-cesta-llena-menos.svg" class="heightIconocesta cursorPointer displayNone floatDer" ></div>
+     			   
+
+				
+				
+						
+
+		</div>	
+			
+			
+			
+			
+		</div>
+	
+<div class=" clear marginBottom30px">	
+<form id="detalleArchivoForm" name="detalleArchivoForm" action="" method="POST">
+
+
+
+ 	<input type="hidden" id="secuencial" name="secuencial" value="12759773"/>
+ 	<input type="hidden" id="urlCart" name="urlCart" value=""/>
+ 	<input type="hidden" id="secDescDirLA" name="secDescDirLA" value=""/> 	
+ 	<input type="hidden" id="codSerie" name="codSerie" value="MDT01"/>
+ 	<input type="hidden" id="id_productor" name="id_productor" value=""/>
+ 	<input type="hidden" id="codNumMD" name="codNumMD" /> 	
+ 	<input type="hidden" id="avisoLimiteFiles" name="avisoLimiteFiles" value=""/> 	 
+ 	 
+	<div class="row contenedor">
+
+		<div class="col-4 col-m-12 txtCenter floatIzq paddingBottom10px">
+			<div id="capaVisor" class=""><!-- class="contentVisorArt" -->
+                
+                
+                    <div id="mapjs"></div>
+                
+			</div>
+		</div>
+		
+		<div id="infor" class="col-8 col-m-12 minheight350 floatDer paddingLeft10px">
+			<div class="col-12 margen10derizq">
+				<p><strong>Producto: </strong>MDT50 cm - 3&ordf; cobertura</p>
+				
+				
+				
+				<p><strong>Fichero: </strong><span class="breakWords">MDT50CM-ETRS89-H31-0616-5-4-COB3-V1.TIF</span></p>
+				
+				
+				
+				
+				
+				
+				
+				<p>
+					<strong>Fecha: </strong>
+					2023
+				</p>
+				
+				
+				
+				<p>
+					<strong><span id="txtEscala"></span>: </strong>
+					0,50 m
+				</p>
+				
+				<p>
+					<strong>Tamaño: </strong>
+					73.54 (Mb)
+				</p>
+				<p>
+					<strong>Formato: </strong>
+					COG
+				</p>
+				
+					<p><strong>Sistema de Referencia Geodésico: </strong>
+						
+							ETRS89 y WGS84. ETRS89 en la península, Illes Balears, Ceuta y Melilla, y REGCAN95 en Canarias. Proyección UTM en el huso correspondiente. WGS84 coordenadas geográficas longitud y latitud para toda España. Alturas ortométricas.
+
+						
+						
+						
+						
+					</p>
+					<p>
+					<strong>Unidad de descarga: </strong>
+					
+						Cortes de hoja 1:5.000 (subdivisión de cada MTN50 en 8 x 8 hojas).
+					
+					
+					
+					
+					</p>
+				
+				
+			</div>
+
+		<div class="col-12 txtRight marginTop20px buttonContainer">
+			
+			
+			
+             	<div class="displayInlineTable marginRight5px marginTop20px">
+             		<a data-bs-toggle="dropdown" href="documentos/Informacion_Auxiliar_MDT50cm.zip" target="_blank" class="dropdownBot fontSize09em buttonIconsNew" title="Contenido auxiliar">
+					    <i class="fas fa-file-download butColorIco"></i><br>Contenido auxiliar
+					</a>
+				</div>
+			 
+			
+			
+				<div class="displayInlineTable marginRight5px marginTop20px">
+					<a id="descargaUMD" href="#" class="fontSize09em buttonIconsNew" title="Más información">
+						<i class="fas fa-file-code butColorIco"></i><br>Más información
+					</a>
+				</div>
+				
+			
+<!--             <div class="displayInlineTable marginRight5px marginTop20px"> -->
+<!-- 			  <a id="licenciasMobile" href="politica-datos" class="buttonIconsNew fontSize09em"  -->
+
+
+<!-- 			  </a> -->
+<!-- 			</div> -->
+			
+			
+		 <div id="licenciasPC" class="displayInlineTable marginRight5px marginTop20px">
+          <a id="linkLicenciasPC" href="#licencias" class="buttonIconsNew fontSize09em" title="Licencia">
+          	<img alt="Licencia" onmouseout="this.src='imgCdD/ico-certificado.svg';" onmouseover="this.src='imgCdD/ico-certificado-h.svg';" src="imgCdD/ico-certificado.svg" class="icoLicenciaBtn"><br>Licencia
+          </a>
+          </div>
+         
+		 <div id="licenciasMobile" class="displayInlineTable marginRight5px marginTop20px"> 
+          <a id="linkLicenciasMobile" href="politica-datos?codAgr=MOMDT&codSerie=MDT01" class="buttonIconsNew fontSize09em" title="Licencia"  style="min-width: 105px;">
+          	<img alt="Licencia" onmouseout="this.src='imgCdD/ico-certificado.svg';" onmouseover="this.src='imgCdD/ico-certificado-h.svg';" src="imgCdD/ico-certificado.svg" class="icoLicenciaBtn"><br>Licencia
+          </a>
+        </div>
+			
+			
+		</div>
+	</div>
+</div>
+
+        
+<div id="licencias" class="row marginTop20px contenedor ">
+	<div class="col-12">
+		<div class="col-12 colorGreyFondo">
+ 
+				<div class="colorGreyFondo centroicoLayer" >
+				
+					<div style="float: left; margin-right: 50px;">
+						<i class="fa fa-award fontSize20vw marginTop10px marginLeft10px" title="Licencia y reconocimiento"></i>
+					</div>
+					
+					<h1 class="fontSize20vw paddingTop10px">Licencia y reconocimiento</h1>
+				</div>
+
+		</div>
+
+		<div class="row marginTop10px">
+			<div id="capaTextoLicencia" class="col-12 marginLeft10px marginTop20px">
+			
+				El <b>uso de la información de los productos y servicios de datos geográficos</b> definidos en la <a class="link" href="https://www.boe.es/boe/dias/2015/12/26/pdfs/BOE-A-2015-14129.pdf" target="_blank"> Orden FOM/2807/2015</a>, así como sus <b>derivados</b>, conlleva la aceptación por el usuario de las condiciones generales de dicha orden, concretada en una <a class="link" href="http://www.ign.es/resources/licencia/Condiciones_licenciaUso_IGN.pdf" target="_blank"> <b><u>licencia de uso </u></b></a>, compatible con <b>CC-BY 4.0</b>. Esta licencia <b>obliga a reconocer y mencionar el origen y la propiedad.</b>
+			
+			
+											
+			</div>
+		</div>
+		
+		  
+   
+			<div class="col-12 padding10px">
+				<div class="clear col-12 col-t-12 col-m-12 paddingTop10px paddingBottom10px">Es necesario reconocer siempre la autoría usando las siguientes fórmulas:</div>
+			
+				<div class="col-12 padding10px" style="float:left">
+				    <select class="form-select marginTop10px paddingTop10px" id="comboLicencias" name="licenciaSeleccionada" onchange="mostrarTextoLicenciaExtendido()" style="width:auto">			        
+ 				        <option value="">Selecciona una opción</option>
+				        
+				            <option value="244" 
+				                    data-level="MDT50cm-cob3" 
+				                    data-descripcion="2022-2025">
+				                MDT50cm-cob3 - 2022-2025
+				            </option>
+				        
+				    </select>	
+				</div>
+
+				<div id="contenedorTextoExtendido" style="display: none;">
+				     <div  id="valorTexto"></div>
+				</div>
+			</div>
+							
+		
+
+<!--             <div class="col-12 padding10px"> -->
+<!--                 <div class="clear col-12 col-t-12 col-m-12 paddingTop10px paddingBottom10px"> -->
+        
+
+<!--                 </div> -->
+<!--             </div> -->
+
+
+
+					
+	</div>
+</div>
+
+
+
+
+			        
+
+	<div class="margen5x100bottom"></div>
+
+
+
+	</form>
+</div>
+
+ </div>
+<div class="clear marginBottom20px"></div>	
+
+	
+
+
+	<!-- footer -->
+	<footer >  
+	  <div class="col-12 ">
+	    <div class="col-5 col-t-12 col-m-12 displayInlineGrid marginTop20px">
+	      <ul >
+	        <li class="fontSize15em negrita marginBottom15px colorAMFooter">Políticas</li>
+	        <li>
+	          <div class="minWidth30px displayInlineBlock"><a href="aviso-legal" class="fontSize11em atxtBlanco" title="Aviso legal"><i class="fa fa-gavel marginRight10px" aria-hidden="true"></i>Aviso legal</a></div>
+	        </li>
+	        <li>
+	          <div class="minWidth30px displayInlineBlock"><a href="politica-datos" class="fontSize11em atxtBlanco" title="Política de datos"><i class="fa fa-award marginRight15px"></i>Política de datos</a></div>
+	        </li>
+	        <li>
+	          <div class="minWidth30px displayInlineBlock"><a href="proteccion-datos" class="fontSize11em atxtBlanco" title="Privacidad y Protección de datos"><i class="fa fa-user-shield marginRight5px" aria-hidden="true"></i> Privacidad y Protección de datos</a></div>
+	        </li>
+	        <li>
+	          <div class="minWidth30px displayInlineBlock"><a href="cookies" class="fontSize11em atxtBlanco" title="Política de cookies"><!-- <i class="fa fa-info marginLeft3px marginRight15px" aria-hidden="true"></i> -->  <img alt="Información de cookies" src="imgCdD/ico_info-solo-bl-1.svg" class="height15 marginRight16px marginTop2px">Política de cookies</a></div>
+	        </li>
+	        <li>
+	          <div class="minWidth30px displayInlineBlock"><a href="accesibilidad" class="fontSize11em atxtBlanco" title="Accesibilidad"><i class="fa fa-universal-access marginRight10px width15px"></i> Accesibilidad</a></div>
+	        </li>
+	        <li class="marginTop5px"><a href="https://www.w3.org/WAI/WCAG2AA-Conformance" target="_blank" title="Conformidad con el Nivel Doble-A, de las Directrices de Accesibilidad para el contenido Web 2.1 del W3C-WAI"><img src="img/wcag2.1AA-blue-v.png" class="height40" alt="Conformidad con el Nivel Doble-A, de las Directrices de Accesibilidad para el contenido Web 2.1 del W3C-WAI"></a></li>
+	      </ul>
+	    </div>
+	    <div class="col-4 col-t-12 col-m-12 displayInlineGrid marginTop20px">
+	      <ul >
+	          <li class="fontSize15em negrita marginBottom15px colorAMFooter">Otra información</li>
+	          <li>
+	            <div class="minWidth30px displayInlineBlock"><a href="https://www.ign.es" target="_blank" class="fontSize11em atxtBlanco" title="Acerca de nosotros"><i class="fa fa-users marginRight10px width24px" aria-hidden="true"></i>Acerca de nosotros</a></div>
+	          </li>
+	          <li>
+	            <div class="minWidth30px displayInlineBlock"><a href="mapa-web" class="fontSize11em atxtBlanco" title="Mapa web"><i class="fa fa-sitemap marginRight10px width24px" aria-hidden="true"></i>Mapa web</a></div>
+	          </li>    
+	          <li>
+	            <div class="minWidth30px displayInlineBlock"><a href="contacto" class="fontSize11em atxtBlanco" title="Contacto"><i class="fa fa-envelope marginRight10px width24px" aria-hidden="true"></i>Contacto</a></div>
+	          </li>
+	          <li>
+	            <div class="minWidth30px displayInlineBlock"><a href="https://www.idee.es/web/idee/centros-de-descarga/estatal" target="_blank" class="fontSize11em atxtBlanco" title="Centros de Descargas"><i class="fa-solid fa-cloud-arrow-down marginRight10px width24px" aria-hidden="true"></i>Centros de Descargas</a></div>
+	          </li>        
+	      </ul>
+	    </div>
+	    <div class="col-3 col-t-12 col-m-12 marginTop20px displayInlineGrid">
+	
+		    <div class="negrita marginBottom15px rsFooter">
+		        <ul class="rsFooter">
+		          <li class="fontSize15em colorAMFooter marginBottom15px">Redes Sociales</li>
+		          <li>
+		          <div class="col-12 marginBottom5px marginTop10px">
+		            
+		            <a href="contacto" class="fontSize11em atxtBlanco margin8px" title="Contacto"><i class="fa-regular fa-envelope" title="Contacto"></i></a>
+		            
+		            <a href="http://www.facebook.com/pages/Instituto-Geografico-Nacional-de-Espana-CNIG/156297191073688#!/pages/Instituto-Geografico-Nacional-de-Espana-CNIG/156297191073688?v=wall" class="fontSize11em atxtBlanco margin8px" target="_blank" title="Facebook">
+		              <i class="fa-brands fa-facebook-f" title="Facebook"></i>
+		            </a>
+		            <a href="https://twitter.com/IGNSpain" class="fontSize11em atxtBlanco margin8px" target="_blank"><i class="fa-brands fa-x-twitter" title="X"></i></a>
+		
+		            <a href="https://www.instagram.com/ignspain/" class="fontSize11em atxtBlanco margin8px" title="Instagram" target="_blank"><i class="fab fa-instagram" title="Instagram"></i></a>
+		          </div>
+		          </li>
+		          <li>
+		          <div class="col-12 marginBottom10px marginTop5px">
+		            <a href="https://www.pinterest.es/IGNSpain/" class="fontSize11em atxtBlanco margin8px" title="Pinterest" target="_blank"><i class="fab fa-pinterest-p" title="Pinterest"></i></a>
+		
+		            <a href="https://www.linkedin.com/company/instituto-geografico-nacional-cnig-spain/" class="fontSize11em atxtBlanco margin8px" title="Linkedin" target="_blank"><i class="fab fa-linkedin-in" title="Linkedin"></i></a>
+		
+		            <a href="http://www.youtube.com/user/IGNSpain" class="fontSize11em atxtBlanco margin8px" title="Youtube" target="_blank"><i class="fab fa-youtube" title="Youtube"></i></a>
+		            <!-- <a href="http://www.cnig.es/RSSCDD/listaNovedades.xml" class="fontSize11em atxtBlanco margin8px" title="RSS" target="_blank"><i class="fas fa-rss" title="RSS"></i></a> -->
+		          </div>
+		          </li>
+		          
+		        </ul>      
+		    </div>
+		    <div class="marginTop20px paddingRight5px paddingLeft10px ">
+		    	<div class="floatDer floatIzq-t floatIzq-m paddingLeft10px paddingTop10px">
+		        	<a href="https://next-generation-eu.europa.eu/index_es" target="_blank"><img src="img/financiadoUE.png" class="floatDer colorBlanco" title="Next Generation" alt="Next Generation" style="height:40px;margin-top:15px"></a>
+		    	</div>
+		    	<div class="floatDer floatIzq-t floatIzq-m paddingLeft10px paddingTop10px">
+		    		<a href="https://www.transportes.gob.es/ministerio/proyectos-singulares/prtr/plan-de-recuperacion-transformacion-y-resiliencia" target="_blank"><img src="img/prtr.png" class="floatDer" style="height:70px" title="Plan de Recuperación, Transformación y Resiliencia" alt="Plan de Recuperación, Transformación y Resiliencia" style="height:70px"></a>
+		    	</div>
+		    </div>
+	
+		</div> 
+	  </div> 		
+	  <div class="col-12 col-m-12 displayInlineBlock txtCenter fontSize09em">
+	    <p class="marginBottom0">© Organismo Autónomo Centro Nacional de Información Geográfica (CNIG)</p>
+	    <div id="dirCnigPC" class="row paddingBottom1por">
+	    	<div class="col-12">
+	    	Calle General Ibáñez de Ibero, 3. 28003 - Madrid - España.   
+	    	</div>
+	    	<div class="col-12">
+	    		NIF: ES Q2817024I  - NIPO: 798-20-071-1 - DOI: 10.7419/162.09.2020
+	    	</div>
+	    </div>
+	    <div id="dirCnigMobile" class="row paddingBottom2por">
+	    	<div class="col-12">
+	    		Calle General Ibáñez de Ibero, 3. 28003 - Madrid - España. 
+	    	</div>
+	    	<div class="col-12">
+	    		NIF: ES Q2817024I 
+	    	</div>
+	    	<div class="col-12">
+	    		NIPO: 798-20-071-1
+	    	</div>
+	    	<div class="col-12">
+	    		DOI: 10.7419/162.09.2020
+	    	</div>
+	    </div>
+	  </div>
+	  
+ 
+	</footer>
+	<!-- fin footer -->
+
+	<script>
+	
+	if(deviceType=='Mobile'){
+		$('#dirCnigPC').hide();
+	}
+	else{
+		$('#dirCnigMobile').hide();
+	}
+	
+	</script>
+
+	
+		
+		
+	 	<div id="capaRRSS" class="displayNone">
+		 	<div class="txtLeft">
+		 		 <a id="linkFacebook" href="#" class="fontSize10em acolorAzulClaro marginRight5px" target="_blank" title="Compartir por Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+		 		 <a id="linkTwiter" href="#" class="fontSize10em acolorAzulClaro marginRight5px" target="_blank" title="Compartir en X"><i class="fa-brands fa-x-twitter"></i></a> 
+		 		 <a id="linkLinkedin" href="#" class="fontSize10em acolorAzulClaro marginRight5px" title="Compartir por Linkedin" target="_blank"><i class="fab fa-linkedin-in"></i></a> 
+				 <a id="linkCopyURl" href="#" class="fontSize10em acolorAzulClaro marginRight5px cursorPointer" title="Copiar Url"><i class="fa-solid fa-link"></i></a>
+            </div>
+		</div>		
+</body>
+	<script>
+	
+	var textosExtendidos = {
+		    '244': '<div id=\"result\"><p>Tipo 1: Cuando no se modifica o altera el producto digital original se puede expresar de una de las formas siguientes:<\/p><ul><li>MDT50cm-cob3 2022-2025 CC-BY 4.0 <a target=\"_blank\" title=\"scne.es\" href=\"https:\/\/www.scne.es\/\" target=\"_blank\">scne.es<\/a><\/li><li>MDT50cm-cob3 2022-2025 CC-BY 4.0 Instituto Geogr\u00E1fico Nacional, Direcci\u00F3n General de Catastro, Fondo Espa\u00F1ol de Garant\u00EDa Agraria, Comunidades aut\u00F3nomas, O.A. Centro Nacional de Informaci\u00F3n Geogr\u00E1fica, Direcci\u00F3n General de Bosques y Desertificaci\u00F3n, Uni\u00F3n Europea y Entidad P\u00FAblica Empresarial Aeropuertos Espa\u00F1oles y Navegaci\u00F3n A\u00E9rea<\/li><\/li><\/ul><p>Tipo 2: Cuando no se modifica o altera el producto digital original (f\u00F3rmula alternativa abreviada por razones de dise\u00F1o):<\/p><ul><li>CC-BY 4.0 <a target=\"_blank\" title=\"scne.es\" href=\"https:\/\/www.scne.es\/\" target=\"_blank\">scne.es<\/a> 2022-2025<\/li><\/ul><p>Tipo 3: Cuando se genera un nuevo producto:<\/p><ul><li>Obra derivada de MDT50cm-cob3 2022-2025 CC-BY 4.0 <a target=\"_blank\" title=\"scne.es\" href=\"https:\/\/www.scne.es\/\" target=\"_blank\">scne.es<\/a><\/li><\/ul><\/div>'
+		    
+		};
+			
+    function mostrarTextoLicenciaExtendido() 
+    {
+    	if(document.getElementById('comboLicencias')!=null){
+	        var combo = document.getElementById('comboLicencias');
+	        var contenedor = document.getElementById('contenedorTextoExtendido');        
+	        var valorDiv = document.getElementById('valorTexto');        
+	
+	        var cuantos = combo.options.length;
+	        
+	        if (cuantos==2) {//solo tiene una mencion asociada
+	            combo.options[cuantos-1].selected=true;
+	            combo.style.display='none';
+	           }
+	        var valorSeleccionado = combo!=null ? combo.value  : '';       
+	        if (contenedor != null)
+		        if (valorSeleccionado === '') {
+		            contenedor.style.display = 'none';
+		        } else {
+		            if (textosExtendidos[valorSeleccionado]) {  
+		                valorDiv.innerHTML = textosExtendidos[valorSeleccionado];
+		                contenedor.style.display = 'block';
+		            } else {
+		                contenedor.style.display = 'none';
+		            }
+		        }
+	
+        	
+    	}
+        
+    }   
+
+	mostrarTextoLicenciaExtendido();
+	
+	if(deviceType=='Mobile'){
+		$('#capaAddArchivo,#capaRemoveArchivo').hide();
+		$('#licenciasMobile').show();
+		$('#licenciasPC').hide();
+		$('#licencias').hide();
+		$('#info').show();
+	}	
+	else{
+		$('#licenciasMobile').hide();
+		$('#licenciasPC').show();
+		$('#licencias').show();
+		$('#info').hide();
+	}
+	
+	if(mapSeries.has($('#codSerie').val())){
+		if($('#lang').val()=='EN'){
+			$("#txtEscala").html(mapSeries.get($('#codSerie').val()).txtEscalaEN);	
+		}
+		else{
+			$("#txtEscala").html(mapSeries.get($('#codSerie').val()).txtEscalaES);
+		}
+	}
+	else{
+		$("#txtEscala").html(escala[$('#lang').val()]);
+	}	
+	
+	
+	var EPSG_3857='EPSG:3857';
+		var EPSG_4326='EPSG:4326';
+		
+	var viewCenter=[parseFloat(-358516),parseFloat(4383204)];		
+
+var polygonStyle=new ol.style.Style({
+	stroke: new ol.style.Stroke({
+    color: 'blue',
+    width: 1
+	}),
+  fill: new ol.style.Fill({
+    color: 'rgba(0, 0, 255, 0)'
+  }),
+text:new ol.style.Text({
+	textAlign: 'center',
+	textBaseline: 'middle',	        		    	
+	font: 'Bold 14px Lato, Open Sans, Arial, Helvetica, sans-serif',
+	//font: 'Bold 14px Arial',
+	fill: new ol.style.Fill({color: '#607d8b'}),
+	stroke: new ol.style.Stroke({color: "white", width: "1"}),
+	offsetX: 0,
+	offsetY: 0,
+	rotation: 0
+	})
+}); 
+	
+	
+    // Configuración del mapa
+/* api antigua
+    const mapjs = M.map({
+        container: 'mapjs', //id del contenedor del mapa
+        controls: [],//, 'scale*true', 'scaleline', 'rotate', 'location', 'backgroundlayers', 'getfeatureinfo'
+        //zoom: 5,
+        //maxZoom: 20,
+        //minZoom: 4,
+        center: viewCenter//[-467062.8225, 4683459.6216],
+    });
+*/
+if($('#codSerie').val()!='CAANT'){
+    var mapjs = IDEE.map({
+        container: 'mapjs', //id del contenedor del mapa
+        controls: [],//, 'scale*true', 'scaleline', 'rotate', 'location', 'backgroundlayers', 'getfeatureinfo'
+        //zoom: 5,
+        //maxZoom: 20,
+        //minZoom: 4,
+        center: viewCenter//[-467062.8225, 4683459.6216],
+    });
+}
+
+
+/*    const mpAttributions = new M.plugin.Attributions({
+        mode: 1,
+        scale: 10000
+    }); 
+
+  mapjs.addPlugin(mpAttributions);*/
+
+  
+ // var mapaOL = mapjs.getMapImpl();
+  
+  var layerPol = new ol.layer.Vector({
+		source:new ol.source.Vector({     
+		    }),
+		style:polygonStyle    
+		}); 
+  
+  
+  if($('#secuencial').val().length>0 && $('#codSerie').val()!='CAANT'){
+  	
+      $.ajax({
+          url: 'localizarCoordsSec',						
+          data:{secuencial:$('#secuencial').val()},
+          success: localizarCoordsOk,
+          dataType: "json",
+          error: function(xhr, ajaxOptions, thrownError){               	 	
+          	$.infoMsj(ajaxErrorGral[$('#lang').val()]);
+          }
+  	});
+
+  
+  }
+  
+  function fitMap(map,extent){
+	  	var view = map.getView();
+		var size = map.getSize();
+		view.fit(extent, { size: size});
+		var zoomCapa = Math.floor(view.getZoom()); // parte entera del zoom calculado
+		// Ahora hacemos el fit real usando como maxZoom la parte entera
+		view.fit(extent, { size: size, maxZoom: zoomCapa});
+  }
+
+		
+  function localizarCoordsOk(jsonObj){
+		
+		var objJson = JSON.parse(jsonObj.coordsJson);
+		
+		delLayers(layerPol);
+
+  	arrFeatureTarget=[];
+			
+		var gf= new ol.format.GeoJSON();
+
+		var fc= gf.readFeatures(objJson,{
+			featureProjection: EPSG_3857
+		});
+
+		for (var j=0;j<objJson.features.length;j++) {
+			layerPol.getSource().addFeature(fc[j]);
+		}
+		
+		fitMap(mapjs.getMapImpl(),layerPol.getSource().getExtent());
+		
+		mapjs.getMapImpl().getView().setMinZoom(mapjs.getMapImpl().getView().getZoom());
+		mapjs.getMapImpl().getView().setMaxZoom(mapjs.getMapImpl().getView().getZoom());
+		
+		layerPol.setZIndex(9000);
+		
+		mapjs.getMapImpl().addLayer(layerPol);
+		mapjs.getMapImpl().getView().on('change:center', function (evt) {
+			fitMap(mapjs.getMapImpl(),layerPol.getSource().getExtent());
+	    });
+		
+	    
+  }  
+	
+	$('#bDescDir').bind('click',function(event){
+		 $("#modalEspera").show();
+		$.ajax({
+          url:'initDescargaDir',
+          data:{secuencial:$('#secuencial').val()},
+          success: function(respJson){
+          	if(respJson.muestraLic=='SI'){
+          		muestraLicDescDir(respJson.secuencialDescDir);
+          	}
+          	else{
+          		descDir(respJson.secuencialDescDir,respJson.nuevaVentana);
+          	}
+        		
+          },
+          dataType: "json",
+          error: function(xhr, ajaxOptions, thrownError){
+        	  setTimeout(function () {$("#modalEspera").hide();}, 1000);
+         	 alert(xhr+","+ajaxOptions+","+thrownError);//$.infoMsj(ajaxErrorGral[$('#lang').val()]);
+          }		
+  	});
+		
+	});
+	
+	
+ 	$('[id^=bDescDirS3]').bind('click',function(event){
+
+ 		$('#detalleArchivoForm').prop('action','descargaDirS3');
+ 		$('#detalleArchivoForm').prop('target','_blank');	
+ 		$('#detalleArchivoForm').submit();
+		
+ 	});
+	
+	function muestraLicDescDir(idSec){
+		$.ajax({
+          url:'loadLicsDescDir',
+          data:{secuencial:idSec},
+          success: function(respHtml){
+          	if(respHtml!=''){
+             		$('#modalGral').html(respHtml);
+             		$('#modalGral').slideDown();	
+          	}
+          },
+          dataType: "html",
+          error: function(xhr, ajaxOptions, thrownError){
+        	  setTimeout(function () {$("#modalEspera").hide();}, 1000);
+         	 alert(xhr+","+ajaxOptions+","+thrownError);//$.infoMsj(ajaxErrorGral[$('#lang').val()]);
+          }		
+  	});
+	}			
+	
+	/**
+	Ponemos un nuevo parametro (nuevaVentana), para controlar si vamos a abrir en nueva ventana o no, el archivo.
+	En principio solo se abrirá en nueva ventana los HTML de ACLLI (2019-07-23)
+*/
+function descDir(idSec,nuevaVentana){
+//		fbq('trackCustom', 'descargaCdD', {
+//		    secuencial: idSec
+//		});
+	
+	$('#secDescDirLA').val(idSec);
+	//$('#modalGral').slideUp();
+	$('#detalleArchivoForm').attr('action','descargaDir');
+	
+//david añade esto para que se abra en una ventana nueva.Hay que configurarlo para que solo lo haga con los HTM de la serie ACLLI
+	if(nuevaVentana=='S'){
+		$('#detalleArchivoForm').prop('target','_blank');	
+	}
+	else{
+		$('#detalleArchivoForm').prop('target','_self');
+	}
+//	
+	$('#detalleArchivoForm').submit();
+	setTimeout(function () {$("#modalEspera").hide();}, 1000);
+}
+	
+	 $('#bAddToChar').bind('click',function(event){
+			
+			$("#modalEspera").show();
+		
+		
+	   $.ajax({
+	       url: 'checkFile',
+	       data:{secuencial:$('#secuencial').val()},
+	       success: checkOk,
+	       dataType: "json",
+	       error: function(xhr, ajaxOptions, thrownError){
+	     	  $("#modalEspera").hide();
+	     	  $.infoMsj(ajaxErrorGral[$('#lang').val()]);
+	       }		
+		});
+	});
+	
+ 
+	function checkOk(jsonObj){
+		setTimeout(function () {$("#modalEspera").hide();}, 1000); 
+		//david añade el limite de archivos en la cesta
+		if (jsonObj.msj=='OK' || jsonObj.msj=='MAXSINUSER'){
+			$('#capaCestaDesc').show();
+// 			$('#menuCddDescarga').addClass('avisoSeleccionados').delay(800);
+ 		 $.actualizaTotales(jsonObj.totalFiles,jsonObj.totalMb);
+ 		
+ 		if (jsonObj.msj=='MAXSINUSER'&& $("#avisoLimiteFiles").val()!='N'){			
+ 			$("#avisoLimiteFiles").val('N');
+ 			$.infoMsj(limiteArchivosSinUser[$('#lang').val()]);
+		 }
+ 		 
+ 		 $('#bRemoveFromChar').show();
+ 			$('#bAddToChar').hide();
+		 //$('#anadir_'+jsonObj.secuencial).hide();
+ 		 //$('#quitar_'+jsonObj.secuencial).show();
+		 }
+		else if (jsonObj.msj=='MAX'){			
+			$.infoMsj(limiteArchivos[$('#lang').val()]);
+		 }
+// 		else if (jsonObj.msj=='MAXSINUSER'){			
+// 			$.infoMsj(limiteArchivosSinUser[$('#lang').val()]);
+// 		 }
+		//fin david
+	}
+
+	
+	
+	 $('#bRemoveFromChar').bind('click',function(event){
+		 $("#modalEspera").show();
+		
+	      $.ajax({
+              url: 'uncheckFile',
+              data:{secuencial:$('#secuencial').val()},
+              success: uncheckOk,
+              dataType: "json",
+              error: function(xhr, ajaxOptions, thrownError){
+            	  $("#modalEspera").hide();
+            	  $.infoMsj(ajaxErrorGral[$('#lang').val()]);
+              }		
+      	});
+	 });
+ 	 	
+		function uncheckOk(jsonObj){
+			setTimeout(function () {$("#modalEspera").hide();}, 1000); 
+
+			 $.actualizaTotales(jsonObj.totalFiles,jsonObj.totalMb);
+			 $('#bRemoveFromChar').hide();
+			 $('#bAddToChar').show();
+
+		}
+	
+		$('[id^=linkUMD_]').bind('click',function (event) {
+			event.preventDefault();
+			var cserie=$(this).attr('id').split('_')[1];
+			if($('#contentMDListaCata_'+cserie).is(':visible')){
+				$('#contentMDListaCata_'+cserie).slideUp();
+			}
+			else{
+				$.ajax({
+		            url: 'loadMD',	
+		            data:{
+		            	codSerie:cserie
+		            },
+		            success: function(htmlObj){	 
+		            	
+		            	$('#contentMDListaCata_'+cserie).slideDown();
+		            	$('#contentMDListaCata_'+cserie).show();
+		    			$('#contentMDListaCata_'+cserie).html(htmlObj);
+		            },
+		            dataType: "html"
+			 	 });
+			}
+		});
+
+		$('[id^=linkUIA_]').bind('click',function (event) {
+			event.preventDefault();
+			var cserie=$(this).attr('id').split('_')[1];
+			if($('#contentIAListaCata_'+cserie).is(':visible')){
+				$('#contentIAListaCata_'+cserie).slideUp();
+			}
+			else{
+				$.ajax({
+		            url: 'loadIA',	
+		            data:{
+		            	codSerie:cserie
+		            },
+		            success: function(htmlObj){	 
+		            	$('#contentIAListaCata_'+cserie).slideDown();
+		    			$('#contentIAListaCata_'+cserie).html(htmlObj);
+		            },
+		            dataType: "html"
+			 	 });
+			}
+		});		 	
+	 	
+		$('#descargaUMD').bind('click',function (event) {
+		   	   $('#detalleArchivoForm').prop('action','linkUnMD');
+			   $('#detalleArchivoForm').prop('target','_blank');
+			   $('#detalleArchivoForm').submit();
+			   return false;
+			
+		}); 
+				
+		$('#compartirRRSS').on('click',function(event){
+			event.preventDefault();
+			if($("#capaRRSS").is(":visible")){
+				  $('#capaRRSS').fadeOut('slow');
+			  }
+			   else{
+				   $('#capaRRSS').attr('style','position:absolute;z-index:99999;display: block;background-color: #f6f6f6;box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.2);padding: 8px 12px;left: ' +
+						 (50+event.pageX - $('#capaRRSS').width()) + 'px;top:'+ (event.pageY + 20 ) + 'px');	
+				   $('#capaRRSS').fadeIn('slow');
+			   }			
+			
+		});	
+		
+		var baseUrl = 'https://centrodedescargas.cnig.es/CentroDescargas/detalleArticulo?sec=' + $('#secuencial').val();
+		
+		// Facebook
+		$('#linkFacebook').on('click', function (event) {
+		    $(this).attr('href', 'http://www.facebook.com/sharer.php?u=' + baseUrl);
+		});
+		
+		// Twitter
+		$('#linkTwiter').on('click', function (event) {
+		    $(this).attr('href', 'http://twitter.com/share?url=' + baseUrl);
+		});
+		
+		// LinkedIn
+		$('#linkLinkedin').on('click', function (event) {
+		    var encodedUrl = encodeURIComponent(baseUrl);
+		    $(this).attr('href', 'https://www.linkedin.com/shareArticle?mini=true&url=' + encodedUrl);
+		});
+		
+		$('#linkCopyURl').on('click',function(event){
+			event.preventDefault();
+			var urlToCopy=window.location.href.split('?')[0].split('#')[0]+"?sec="+$('#secuencial').val();
+			getlink(urlToCopy);
+		});		
+		
+		$(document).ready(function () {
+			$('#redessociales').click(function (e) {
+				e.preventDefault();
+			    $('#capaRRSS2').toggleClass('visible');
+			});
+		});
+
+
+
+	</script>
+</html>

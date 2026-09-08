@@ -1,0 +1,52 @@
+{
+  "width": 1025,
+  "height": 1025,
+  "bounds_wgs84": [
+    -0.012,
+    40.092,
+    0.012,
+    40.112
+  ],
+  "sampling": "Bilinear from ICV 2017 native 1 m ground model. Samples are mesh vertices including exact game boundary edges.",
+  "row_order": "north to south",
+  "column_order": "west to east",
+  "f32": {
+    "file": "icv-2017-heightmap-1025.f32",
+    "dtype": "IEEE 754 float32",
+    "endianness": "little",
+    "layout": "row-major, no header",
+    "units": "orthometric metres"
+  },
+  "png": {
+    "file": "icv-2017-heightmap-1025.png",
+    "bit_depth": 16,
+    "channels": 1,
+    "decode_metres": "sample_uint16 / 65535 * 1000",
+    "min_encoded_elevation_m": 0.0,
+    "max_encoded_elevation_m": 1000.0,
+    "maximum_roundtrip_error_m": 0.007659146084904478,
+    "import_as": "linear height data; do not apply sRGB or color adjustments"
+  },
+  "game": {
+    "origin_lon_lat": [
+      -0.0012,
+      40.1017
+    ],
+    "scale": 0.7,
+    "min_x": -643.7258564959569,
+    "max_x": 786.7760468283918,
+    "min_z": -802.6172000000673,
+    "max_z": 755.8628000001762,
+    "width": 1430.5019033243489,
+    "depth": 1558.4800000002435,
+    "baseline_elevation_m": 299.1851501464844,
+    "height_formula": "(elevation_m - baseline_elevation_m) * 0.7",
+    "horizontal_spacing_x": 1.3969745149651844,
+    "horizontal_spacing_z": 1.5219531250002378
+  },
+  "min_elevation_m": 268.59442138671875,
+  "max_elevation_m": 523.386474609375,
+  "valid_fraction": 1.0,
+  "attribution": "Derived from ICV MDT Castellón / LiDAR-PNOA 2017, CC BY 4.0 scne.es",
+  "source": "raw/icv-2017-ground-game-area-1m.tif"
+}
