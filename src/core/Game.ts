@@ -13,7 +13,7 @@ import { Vehicle } from '../entities/Vehicle';
 import { Npc } from '../entities/Npc';
 import { ENTITY_SCALE } from '../entities/dimensions';
 import { characters } from '../data/characters';
-import { I18n } from '../systems/I18n';
+import { I18n, languageFromPath, updateLanguagePath } from '../systems/I18n';
 import { MissionSystem } from '../systems/MissionSystem';
 import { SaveStore, freshSave, type SaveData } from '../systems/SaveStore';
 import { AudioSystem } from '../systems/AudioSystem';
@@ -33,7 +33,7 @@ export class Game {
   readonly audio = new AudioSystem();
   readonly save: SaveData = this.store.load();
   readonly missions = new MissionSystem(this.save);
-  readonly i18n = new I18n(this.save.language);
+  readonly i18n: I18n;
   readonly graphics: GameRenderer;
   private models!: ModelFactory;
   private world!: WorldBuilder;
@@ -67,6 +67,8 @@ export class Game {
     canvas: HTMLCanvasElement,
     private root: HTMLElement,
   ) {
+    this.save.language = languageFromPath(location.pathname) ?? this.save.language;
+    this.i18n = new I18n(this.save.language);
     this.graphics = new GameRenderer(canvas);
   }
   async initialize(): Promise<void> {
@@ -238,6 +240,7 @@ export class Game {
       case 'language':
         if (value === 'en' || value === 'ca') {
           this.save.language = value;
+          updateLanguagePath(value);
           this.i18n.set(value);
           this.largeMap = null;
           this.persist();

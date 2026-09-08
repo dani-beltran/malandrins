@@ -23,7 +23,7 @@ The exporter uses an isolated Playwright browser, Three.js’s GLTF exporter and
 
 ## Put custom files in public/assets
 
-Vite serves `public/` files directly. A file at `public/assets/portraits/marcos.webp` is requested as `assets/portraits/marcos.webp`. Use relative URLs as below; they work when the production build is hosted under a subdirectory.
+Vite serves `public/` files directly. A file at `public/assets/portraits/marcos.webp` is requested as `assets/portraits/marcos.webp`. Use relative URLs as below; the page's base URL keeps them working on localized routes. When hosting under a subdirectory, set that base when building (for example, `npm run build -- --base=/malandrins/`).
 
 Edit **`src/assets/config.ts`**. For example:
 
@@ -120,7 +120,7 @@ For a seamless loop, export without leading/trailing silence, avoid MP3 encoder 
 2. Create a dictionary typed as `Record<TranslationKey, string>` so every UI key must be translated.
 3. Extend `Localized` with that code and translate every character role, small-talk line and mission line in `src/data/characters.ts`.
 4. Register the dictionary in `I18n.t()` and the language selector in `GameUI.languages()`.
-5. Update the save validator in `SaveStore.load()` and the language action in `Game.action()` to accept the new code.
+5. Update the save validator in `SaveStore.load()`, the language action in `Game.action()`, and `languageFromPath()` in `I18n.ts` to accept the new code.
 6. Extend the localization tests. Preserve `{name}`, `{count}`, `{amount}`, `{distance}` and similar substitution tokens exactly.
 
 English and Catalan already implement all current text keys. UI language changes apply immediately, including during an open conversation. Proper names and real street signs are intentionally not translated.

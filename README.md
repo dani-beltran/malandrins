@@ -13,12 +13,16 @@ npm run dev
 
 Open **http://127.0.0.1:5173/** and choose **Enter the town**. Click inside the game when returning from another window. The game pauses when the tab loses focus.
 
+Open `/ca` for Catalan or `/en` for English (trailing slashes also work). The URL language takes priority over the saved preference. Without a supported language in the first path segment, the game uses the saved language, or English for a new player. Switching languages on a localized URL updates that path without reloading the game.
+
 ```sh
 npm run build    # Type-check and produce the standalone dist/ folder
 npm run preview  # Serve the production build at http://127.0.0.1:4173/
 ```
 
 Serve `dist/` with any static HTTP host. Opening `index.html` directly with `file://` will not work. The runtime uses locally bundled dependencies and generated assets; it does not request external map tiles, fonts, music, or images. The OpenStreetMap credit is an ordinary external link.
+
+Configure the host to serve `index.html` for game routes such as `/ca` and `/en`, while serving asset files normally. Vite's development and preview servers already provide this fallback. For hosting under a subdirectory, build with `npm run build -- --base=/malandrins/` and serve the game at `/malandrins/`; localized URLs then become `/malandrins/ca` and `/malandrins/en`.
 
 ## What is playable
 
