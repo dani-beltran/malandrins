@@ -22,6 +22,42 @@ This regenerates and **overwrites** the five `.blend` files and their GLBs. Save
 
 These are visual approximations from the available images, not measured architectural surveys. The church facade and belfry, prison masonry and barred windows, town-hall glazing, red-trimmed public hall and traversable covered passage are modeled individually.
 
+## Plaça del Portal well
+
+`well.blend` is the editable source for `public/assets/scenery/well.glb`, based on
+[`11-well-and-street-junction-2024.jpg`](../../references/street-data/11-well-and-street-junction-2024.jpg)
+and the reverse view in photo 05. It includes individual red sandstone blocks,
+heavy coping around a hollow shaft, side steps, an iron arch and fleur-de-lis,
+an open pulley wheel, and alternating chain links. Geometry and solid colours
+are original; photographs are visual references only. Dimensions and concealed
+details are estimates.
+
+```sh
+/Applications/Blender.app/Contents/MacOS/Blender --background --factory-startup --python scripts/scenery/build-well.py
+```
+
+This only overwrites the well source, GLB, `well.json` statistics and
+`artifacts/scenery/blender-well.png`. Save manual edits separately before running
+it. The source retains named, individually editable parts and a preview camera;
+the export is joined by material to limit draw calls. When exporting manual edits,
+select the model meshes and export GLB with Y up, applied transforms, normals and
+materials; exclude the preview camera and light.
+
+The origin is **ground centre**, unlike the facade origins of the buildings.
+The export uses Y up, with the iron arch in the local XY plane. Height is 2.73 game
+units, rim radius about 0.78, and the shallow foundation extends to Y=-0.16 to bed
+into the street. The side steps extend toward local +X. Dimensions already include
+the geographic scale; do not scale the model again.
+
+Placement and the collision outline are in `src/data/scenery/portal-well.json`.
+`SceneryLayout.ts` includes it with the other landmarks, so rebuilding the aerial
+layout preserves the well. The approximate position is 0.000722° W, 40.100494° N,
+beside the Enmig / Molí de Foc / Portal junction; photo camera coordinates are
+unverified. The footprint encloses the base and side steps and is shared with the
+minimap. `node scripts/scenery/inspect-well.mjs` captures close and junction views
+from the running game and checks walking clearance. The temporary review camera
+is confined to the inspection browser.
+
 ## Stone bridges
 
 The five `bridge-stone-{8,16,32,64,128}.blend` sources and matching GLBs use the

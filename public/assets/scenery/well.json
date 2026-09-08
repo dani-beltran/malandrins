@@ -1,0 +1,9 @@
+{
+  "file": "well.glb",
+  "source": "art/scenery/well.blend",
+  "triangles": 9564,
+  "materials": 22,
+  "height": 2.73,
+  "rimRadius": 0.781,
+  "reference": "references/street-data/11-well-and-street-junction-2024.jpg"
+}

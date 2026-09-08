@@ -7,6 +7,10 @@ The scenery is based on the modern references. The story retains its original se
 3. `src/data/scenery/road-profiles.json` records the narrower street widths, sidewalks and surfaces inferred from the ground-level references. Original OSM line geometry and the geographic projection remain intact.
 4. The generated `town-layout.json` drives both visible buildings and collision. `TownScenery.ts` adds facade details, irregular pitched roofs, garden boundaries, trees, street furniture and landmarks. Minimap outlines use the same rebuilt footprints.
 5. `build-landmarks.py` runs in Blender and exports five original GLBs plus editable `.blend` sources. See `art/scenery/README.md`.
+6. `build-well.py` independently authors the Portal well. Its placement in
+   `src/data/scenery/portal-well.json` is combined with the generated layout at
+   runtime, so rebuilding roof blocks preserves this street landmark. Run
+   `node scripts/scenery/inspect-well.mjs` against the local game to review it.
 
 ## Regenerate layout
 

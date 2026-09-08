@@ -1,5 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { readFileSync } from 'node:fs';
+import * as THREE from 'three';
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import {
   sceneryLayout as layout,
   layoutPoints,
@@ -62,7 +64,36 @@ describe('reconstructed town geometry', () => {
       expect(b.height).toBeGreaterThan(2);
     }
   });
-  it('ships all five Blender models as valid, bounded low-poly GLBs', () => {
+  it('makes the Portal well solid while leaving room to walk around the junction', () => {
+    const well = layout.landmarks.find((b) => b.id === 'well')!;
+    const [x, z] = well.position;
+    expect(collision.blocked({ x, z }, 0.35)).toBe(true);
+    for (let i = 0; i < 24; i++) {
+      const angle = (i * Math.PI * 2) / 24;
+      const start = { x: x + Math.cos(angle) * 2.1, z: z + Math.sin(angle) * 2.1 };
+      expect(collision.blocked(start, 0.35), `well approach ${i}`).toBe(false);
+      const end = collision.move(start, x - start.x, z - start.z, 0.35);
+      expect(distance(end, { x, z })).toBeGreaterThan(1);
+    }
+  });
+  it('exports the well with an open shaft, raised coping and correct upright scale', async () => {
+    expect(readFileSync('art/scenery/well.blend').length).toBeGreaterThan(1000);
+    const bytes = readFileSync('public/assets/scenery/well.glb');
+    const model = await new GLTFLoader().parseAsync(
+      bytes.buffer.slice(bytes.byteOffset, bytes.byteOffset + bytes.byteLength) as ArrayBuffer,
+      '',
+    );
+    model.scene.updateMatrixWorld(true);
+    const bounds = new THREE.Box3().setFromObject(model.scene);
+    expect(bounds.min.y).toBeCloseTo(-0.16, 2);
+    expect(bounds.max.y).toBeCloseTo(2.73, 2);
+    // Look down beside the pulley: only the recessed shaft floor may close the opening.
+    const ray = new THREE.Raycaster(new THREE.Vector3(0, 3, 0.25), new THREE.Vector3(0, -1, 0));
+    expect(ray.intersectObject(model.scene, true)[0].point.y).toBeCloseTo(0.105, 3);
+    ray.set(new THREE.Vector3(0.25, 3, 0.58), new THREE.Vector3(0, -1, 0));
+    expect(ray.intersectObject(model.scene, true)[0].point.y).toBeGreaterThan(0.8);
+  });
+  it('ships every Blender landmark as a valid, bounded low-poly GLB', () => {
     for (const b of layout.landmarks) {
       const bytes = readFileSync(`public/assets/scenery/${b.id}.glb`);
       expect(bytes.readUInt32LE(0)).toBe(0x46546c67);

@@ -18,6 +18,7 @@ export class AssetLibrary {
         'townhall',
         'publichall',
         'passage',
+        'well',
         ...[8, 16, 32, 64, 128].map((n) => `bridge-stone-${n}`),
       ].map(async (key) => {
         const model = (
