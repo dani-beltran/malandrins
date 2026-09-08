@@ -1,0 +1,19 @@
+{
+  "carrer d'Enmig": { "width": 4.3, "sidewalk": 0.7, "surface": "paving" },
+  "Carrer de Baix la Vila": { "width": 3.7, "sidewalk": 0.6, "surface": "paving" },
+  "Carrer de Baix les Cases": { "width": 2.0, "sidewalk": 0.12, "surface": "paving" },
+  "Carrer de Dalt la Vila": { "width": 2.8, "sidewalk": 0.35, "surface": "paving" },
+  "Carreró de les Barreretes": { "width": 2.0, "sidewalk": 0.12, "surface": "paving" },
+  "carreró de l'Església": { "width": 1.9, "sidewalk": 0.12, "surface": "paving" },
+  "Carrer Tossal de la Vila": { "width": 4.1, "sidewalk": 0.65, "surface": "paving" },
+  "Carrer Cabanes": { "width": 5.2, "sidewalk": 0.8, "surface": "asphalt" },
+  "Plaça del Raval": { "width": 7.0, "sidewalk": 0.7, "surface": "asphalt" },
+  "Plaça del Portal": { "width": 4.5, "sidewalk": 0.7, "surface": "asphalt" },
+  "Plaça de l'Ajuntament": { "width": 3.0, "sidewalk": 0.3, "surface": "paving" },
+  "Plaça de l'Hospital": { "width": 3.9, "sidewalk": 0.6, "surface": "paving" },
+  "Carrer del Molí de Foc": { "width": 7.0, "sidewalk": 1.0, "surface": "asphalt" },
+  "Carrer de les Eres": { "width": 4.9, "sidewalk": 0.65, "surface": "asphalt" },
+  "Carrer de Benicàssim": { "width": 4.1, "sidewalk": 0.6, "surface": "asphalt" },
+  "Carrer de Vilafamés": { "width": 5.7, "sidewalk": 0.85, "surface": "asphalt" },
+  "Carrer del Calvari": { "width": 4.2, "sidewalk": 0.7, "surface": "asphalt" }
+}

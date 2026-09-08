@@ -1,10 +1,13 @@
 import { LA_POBLA_MAP, type MapDataset } from '../data/laPoblaMap';
 import { closestOnSegment, distance, type Point } from '../core/math';
+import roadProfiles from '../data/scenery/road-profiles.json' with { type: 'json' };
 export interface Road {
   name: string;
   type: string;
   points: Point[];
   width: number;
+  sidewalk: number;
+  surface: string;
 }
 export interface BuildingFootprint {
   name: string;
@@ -31,7 +34,9 @@ export class MapAdapter {
             name: road.n,
             type: road.t,
             points: line.map((c) => this.project(c)),
-            width: this.roadWidth(road.t),
+            width: this.profile(road.n)?.width ?? this.roadWidth(road.t),
+            sidewalk: this.profile(road.n)?.sidewalk ?? 0.8,
+            surface: this.profile(road.n)?.surface ?? 'asphalt',
           });
     }
     this.buildings = source.buildings.map((b) => ({
@@ -69,6 +74,11 @@ export class MapAdapter {
     if (['footway', 'steps', 'path', 'cycleway'].includes(type)) return 2.7;
     if (type === 'track') return 4.4;
     return 6.6;
+  }
+  private profile(name: string): { width: number; sidewalk: number; surface: string } | undefined {
+    return (roadProfiles as Record<string, { width: number; sidewalk: number; surface: string }>)[
+      name
+    ];
   }
   nearestRoad(
     p: Point,

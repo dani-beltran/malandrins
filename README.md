@@ -24,7 +24,7 @@ Serve `dist/` with any static HTTP host. Opening `index.html` directly with `fil
 
 - Third-person walking, running, camera rotation and arcade driving with reverse, steering, handbrake, horn, entry and exit.
 - A continuous WebGL town based on the La Pobla Tornesa map in `src/data/laPoblaMap.ts`, with the complete road network, building footprints, waterways and land-use areas.
-- Terracotta roofs, pixel facade textures, olive trees, hills, road markings, street lamps and local signs. The geometry is deliberately low-poly, with nearest-neighbor sampling, a 640-pixel render target, restrained color quantization and dithering. A clearer 1280-pixel mode is available.
+- Reconstructed joined street blocks, individual low-poly façades, irregular tiled roofs, planted orchards, gardens and distinct church, prison, town hall, public hall and covered-passage models. Clear 1280-pixel rendering and natural daylight are the default; a 640-pixel retro mode remains available.
 - Five story conversations: Marcos → Castor → Laila → Marina → Marcos. Help the town prepare its festival, receive rewards and continue exploring after the story ends.
 - Twenty-five named NPCs: Marcos, Castor, Aitor, Oriol, Piopol, Jesus, Cogollo, Vilero, Laila, Mihai, Borja, Irene, Edu, Paul, Marina, Lucas, Dorin, Susana, Daniel, Nando, Roberto, El Alcalde, Merxe, Juanito and Eva. Everyone has a conversation and a placeholder portrait shown **to the left** of their text.
 - Eight collectible cassette tapes, a minimap, a larger map with contact names, objective indicators and nearby interaction prompts. Map guide lines point toward the target; they are not turn-by-turn routing.
@@ -57,17 +57,17 @@ The map in `src/data/laPoblaMap.ts` contains **267 road features**, some of whic
 
 `MapAdapter` projects longitude/latitude into a local X/Z coordinate system, with latitude corrected longitude scaling, north along negative Z, origin `[-0.0012, 40.1017]` and a uniform gameplay scale of `0.7`. Road and landmark relationships are preserved. The ground uses the **ICV MDT Castellón / LiDAR-PNOA 2017** heightmap in `references/topographic-data/derived/icv-2017-heightmap-257.f32`: 257 × 257 samples across the exact map bounds, with elevation converted by `(metres - 299.1851501464844) × 0.7`. The same triangle interpolation drives ground geometry, road and land-use surfaces, walking, vehicle height and slope, scenery placement and camera clearance. Buildings have level roofs and foundations extending to the slope. Terrain is divided into 64 indexed chunks; the boundary extends into fog outside the playable area as an unsurveyed backdrop.
 
-Road widths, building heights, facades and vegetation are artistic approximations. Because the source has very sparse buildings, `WorldBuilder` adds deterministic houses beside the roads. These are fictional infill, not surveyed addresses. The terrain survey postdates the 1998 setting. Movement retains arcade handling and X/Z building collision; there is no gravity, jumping or slope-dependent traction. The map depicts **La Pobla Tornesa, Castelló**.
+The rebuilt scenery replaces roadside infill with 634 joined building sections derived from manually traced PNOA aerial block envelopes, plus five individually modeled Blender landmarks. Street View guides facade proportions, colors, materials and street details. Road widths, parcel divisions, building heights, hidden facades and vegetation are approximations, not surveyed addresses. Original road line geometry and the 0.7 projection are retained. The overhead imagery and Street View depict the modern town; scenery does not attempt a 1998 reconstruction. See [the scenery authoring guide](scripts/scenery/README.md) and [editable Blender sources](art/scenery/README.md). The terrain survey postdates the 1998 setting. Movement retains arcade handling and X/Z building collision; there is no gravity, jumping or slope-dependent traction. The map depicts **La Pobla Tornesa, Castelló**.
 
 **Map data © OpenStreetMap contributors, ODbL 1.0.** The dataset’s original attribution is preserved and is visible in the game. See [OpenStreetMap copyright](https://www.openstreetmap.org/copyright) and [MAP_DATA.md](MAP_DATA.md) for the source and data license information.
 
-Geographic data and imagery for future scenery work are saved in the reference folders:
+Geographic data and imagery used for scenery work are saved in the reference folders:
 
 - **[satellite-data/](references/satellite-data/README.md):** six satellite and aerial images, including regional views, historical imagery from 1996, the exact game map extent and town-center detail.
 - **[street-data/](references/street-data/README.md):** twelve ground-level photographs of streets, squares, narrow lanes and building details from Wikimedia Commons, including Carrer d’Enmig, Carrer de Baix la Vila, Carrer Tossal de la Vila, Plaça del Raval and Plaça del Portal.
 - **[topographic-data/](references/topographic-data/README.md):** official 1 m and 0.5 m LiDAR ground models, source comparisons, heightmaps and game-aligned 3D meshes. The ICV 1 m model is recommended for the base terrain because it removes raised building-like features present in the provisional 0.5 m model.
 
-Each reference guide records sources, capture dates and attribution; the overhead imagery also includes coordinates and georeferencing files. Only the ICV 257-grid Float32 heightmap (264 KB) and its metadata are bundled for runtime terrain. The other reference files remain offline. **Terrain derived from ICV MDT Castellón / LiDAR-PNOA 2017, CC BY 4.0 scne.es**, cropped, resampled and meshed; source and license links appear on the title screen and full map, with details in [MAP_DATA.md](MAP_DATA.md).
+Each reference guide records sources, capture dates and attribution; the overhead imagery also includes coordinates and georeferencing files. The ICV 257-grid Float32 heightmap (264 KB), its metadata and a resized/softened PNOA land-cover texture are bundled for runtime terrain. A compact derived town layout and five original landmark GLBs are also bundled. The original reference images remain offline; Google screenshots are not runtime assets. **Terrain derived from ICV MDT Castellón / LiDAR-PNOA 2017, CC BY 4.0 scne.es**, cropped, resampled and meshed; source and license links appear on the title screen and full map, with details in [MAP_DATA.md](MAP_DATA.md).
 
 ## Code structure
 
@@ -80,7 +80,7 @@ The code uses classes with explicit dependencies rather than one global game scr
 | `src/core/Input.ts`           | Held keys, one-shot presses, mouse camera input and focus cleanup                         |
 | `src/world/MapAdapter.ts`     | Geographic projection, road normalization and nearest-road queries                        |
 | `src/world/Terrain.ts`        | Bundled elevation data, exact triangle sampling, terrain chunks and draped surfaces       |
-| `src/world/WorldBuilder.ts`   | Source geography, procedural scenery and static mesh batching                             |
+| `src/world/WorldBuilder.ts`   | Terrain, roads, reconstructed scenery and spatial mesh batching                           |
 | `src/world/CollisionWorld.ts` | Spatially indexed polygon collision and subdivided movement                               |
 | `src/entities/`               | Player, NPC and vehicle classes                                                           |
 | `src/systems/`                | Dialogue/story progression, localization, defensive saves and audio                       |
@@ -88,9 +88,9 @@ The code uses classes with explicit dependencies rather than one global game scr
 | `src/assets/`                 | Asset loading, model creation, textures and original score definitions                    |
 | `src/data/`                   | Source map, bilingual UI text, characters and story content                               |
 
-The rendering and collision representations are separate. Static meshes are merged by material to reduce draw calls. Fast movement is subdivided so vehicles cannot jump through thin walls. Time steps are capped after delays. Player movement is normalized diagonally. Keyboard state is cleared on focus loss and screen transitions. Dialogue awards a favour only after its last line, and tape rewards are idempotent. Saved data is validated; unavailable storage does not stop the game.
+The rendering and collision representations are separate. Static meshes are merged by texture and spatial region, with per-vertex facade colors, to reduce draw calls while allowing distant blocks to be culled. Fast movement is subdivided so vehicles cannot jump through thin walls. Time steps are capped after delays. Player movement is normalized diagonally. Keyboard state is cleared on focus loss and screen transitions. Dialogue awards a favour only after its last line, and tape rewards are idempotent. Saved data is validated; unavailable storage does not stop the game.
 
-In development, `window.malandrins.inspect()` returns a read-only snapshot of game state and world counts. It is omitted from production builds. It is used by browser tests without adding teleport or cheat controls to the game.
+In development, `window.malandrins.inspect()` returns a read-only snapshot of game state and world counts. It is omitted from production builds. Development-only `?reference=01` through `?reference=24` views reproduce saved Street View camera positions and directions for scenery inspection, with estimated eye height and field of view. The normal game retains no teleport or cheat controls.
 
 ## Custom art, music and additional languages
 

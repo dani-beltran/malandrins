@@ -124,3 +124,7 @@ For a seamless loop, export without leading/trailing silence, avoid MP3 encoder 
 6. Extend the localization tests. Preserve `{name}`, `{count}`, `{amount}`, `{distance}` and similar substitution tokens exactly.
 
 English and Catalan already implement all current text keys. UI language changes apply immediately, including during an open conversation. Proper names and real street signs are intentionally not translated.
+
+## Reconstructed town scenery
+
+Five low-poly landmark GLBs now load from `public/assets/scenery/`. Their editable Blender sources and export conventions are documented in [art/scenery/README.md](art/scenery/README.md). Joined building blocks, original facade atlases, street widths and ground reference data use the separate authoring workflow in [scripts/scenery/README.md](scripts/scenery/README.md). These assets are loaded automatically and do not require overrides in `assetConfig`.

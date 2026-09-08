@@ -6,3 +6,4 @@ playwright-report
 package-lock.json
 src/data/laPoblaMap.ts
 public/assets
+src/data/scenery/town-layout.json

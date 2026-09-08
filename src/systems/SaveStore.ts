@@ -20,7 +20,7 @@ export const freshSave = (): SaveData => ({
   tapes: [],
   position: null,
   language: 'en',
-  quality: 'retro',
+  quality: 'clear',
   audio: true,
   volume: 0.45,
   started: false,
@@ -47,7 +47,7 @@ export class SaveStore {
             ? s.position
             : null,
         language: s.language === 'ca' ? 'ca' : 'en',
-        quality: s.quality === 'clear' ? 'clear' : 'retro',
+        quality: s.quality === 'retro' ? 'retro' : defaults.quality,
         audio: typeof s.audio === 'boolean' ? s.audio : true,
         volume:
           typeof s.volume === 'number' && Number.isFinite(s.volume)

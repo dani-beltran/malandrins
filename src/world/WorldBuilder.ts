@@ -3,6 +3,7 @@ import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
 import { MapAdapter, type Road } from './MapAdapter';
 import { CollisionWorld } from './CollisionWorld';
 import { Terrain } from './Terrain';
+import { TownScenery } from './TownScenery';
 import { ModelFactory } from '../assets/ModelFactory';
 import { distance, seededRandom, rectangle, type Point } from '../core/math';
 export class WorldBuilder {
@@ -20,7 +21,7 @@ export class WorldBuilder {
   }
   build(): THREE.Group {
     this.ground();
-    for (const area of this.map.areas)
+    for (const area of this.map.areas.filter((a) => ['pitch', 'swimming_pool'].includes(a.type)))
       this.surface(
         area.points,
         area.type === 'forest'
@@ -36,22 +37,11 @@ export class WorldBuilder {
       );
     for (const water of this.map.water) this.ribbon(water, 4.5, 0x88a19b, 0.025);
     for (const road of this.map.roads) this.road(road);
-    for (const b of this.map.buildings) {
-      const height = b.type === 'industrial' ? 8 : b.type === 'ruins' ? 2 : 7 + this.random() * 5;
-      const ground = this.terrain.footprintRange(b.points);
-      this.polygon(
-        b.points,
-        b.name.startsWith('Ajuntament') ? 0xdbcaac : 0xc6b89b,
-        ground.min - 0.3,
-        height + ground.max - ground.min + 0.3,
-      );
-      this.polygon(b.points, 0xa8674e, ground.max + height + 0.1, 0.4);
-      this.collision.add(b.points);
-      this.buildingOutlines.push(b.points);
-    }
-    this.infill();
+    const town = new TownScenery(this.map, this.terrain, this.models, this.collision);
+    this.group.add(town.build());
+    this.buildingOutlines.push(...town.outlines);
     this.landscape();
-    this.landmarks();
+    this.festival();
     this.batchStatic();
     return this.group;
   }
@@ -67,8 +57,21 @@ export class WorldBuilder {
             Math.min(32, width - 1 - col),
             Math.min(32, height - 1 - row),
           ),
-          this.models.assets.material(0x8d9975),
+          this.models.assets.material(0xffffff, 'landcover'),
         );
+        const uv = mesh.geometry.getAttribute('uv'),
+          position = mesh.geometry.getAttribute('position');
+        const mercator = (lat: number) => Math.log(Math.tan(Math.PI / 4 + (lat * Math.PI) / 360));
+        const [, south, , north] = this.map.source.bounds;
+        for (let i = 0; i < uv.count; i++) {
+          const p = { x: position.getX(i), z: position.getZ(i) };
+          const [, latitude] = this.map.unproject(p);
+          uv.setXY(
+            i,
+            (p.x - this.map.bounds.minX) / (this.map.bounds.maxX - this.map.bounds.minX),
+            (mercator(latitude) - mercator(south)) / (mercator(north) - mercator(south)),
+          );
+        }
         mesh.userData.terrain = true;
         mesh.receiveShadow = true;
         this.group.add(mesh);
@@ -114,24 +117,16 @@ export class WorldBuilder {
     this.group.add(mesh);
   }
   private surface(points: Point[], color: number, y: number, texture?: string): void {
+    const geometry = this.terrain.drapeGeometry(points, y);
+    const uv = geometry.getAttribute('uv');
+    const repeat = texture === 'paving' ? 6.5 : texture === 'sidewalk' ? 5 : 1;
+    if (repeat !== 1)
+      for (let i = 0; i < uv.count; i++) uv.setXY(i, uv.getX(i) * repeat, uv.getY(i) * repeat);
     const mesh = new THREE.Mesh(
-      this.terrain.drapeGeometry(points, y),
+      geometry,
       this.models.assets.material(texture ? 0xffffff : color, texture),
     );
     mesh.receiveShadow = true;
-    this.group.add(mesh);
-  }
-  private polygon(points: Point[], color: number, y: number, height = 0): void {
-    if (points.length < 3) return;
-    const shape = new THREE.Shape(points.map((p) => new THREE.Vector2(p.x, -p.z)));
-    const geometry = height
-      ? new THREE.ExtrudeGeometry(shape, { depth: height, bevelEnabled: false })
-      : new THREE.ShapeGeometry(shape);
-    geometry.rotateX(-Math.PI / 2);
-    const mesh = new THREE.Mesh(geometry, this.models.assets.material(color));
-    mesh.position.y = y;
-    mesh.receiveShadow = true;
-    mesh.castShadow = height > 0;
     this.group.add(mesh);
   }
   private ribbon(points: Point[], width: number, color: number, y: number, texture?: string): void {
@@ -167,15 +162,16 @@ export class WorldBuilder {
   }
   private road(road: Road): void {
     const trail = ['track', 'path', 'footway', 'steps', 'cycleway'].includes(road.type);
-    if (!trail) this.ribbon(road.points, road.width + 2.6, 0xc1baa2, 0.055);
+    if (!trail)
+      this.ribbon(road.points, road.width + road.sidewalk * 2, 0xd2c6b3, 0.055, 'sidewalk');
     this.ribbon(
       road.points,
       road.width,
       trail ? 0xb0a38a : 0x656f6c,
-      0.085,
-      trail ? undefined : 'asphalt',
+      trail ? 0.074 : 0.085,
+      trail && road.surface !== 'paving' ? undefined : road.surface,
     );
-    if (road.width >= 9)
+    if (road.width >= 9 && road.surface === 'asphalt')
       for (let i = 1; i < road.points.length; i++) {
         const a = road.points[i - 1],
           b = road.points[i],
@@ -196,98 +192,6 @@ export class WorldBuilder {
         }
       }
   }
-  private infill(): void {
-    const palette = [0xddc7a5, 0xc4bba4, 0xe2d7b9, 0xbea98d, 0xd5ae8b, 0xaebba9, 0xd9c7b0];
-    for (const road of this.map.roads) {
-      if (!['residential', 'tertiary', 'living_street'].includes(road.type)) continue;
-      for (let i = 1; i < road.points.length; i++) {
-        const a = road.points[i - 1],
-          b = road.points[i],
-          len = distance(a, b),
-          dx = (b.x - a.x) / len,
-          dz = (b.z - a.z) / len;
-        for (let d = 6; d < len - 3; d += 11 + this.random() * 5)
-          for (const side of [-1, 1]) {
-            const w = 8 + this.random() * 5,
-              depth = 7 + this.random() * 5,
-              offset = road.width / 2 + depth / 2 + 2.2;
-            const x = a.x + dx * d - dz * offset * side,
-              z = a.z + dz * d + dx * offset * side;
-            if (x < -230 || x > 210 || z < -245 || z > 190) continue;
-            const p = { x, z },
-              angle = -Math.atan2(dz, dx),
-              poly = rectangle(x, z, w, depth, angle);
-            if (this.reserved.some((r) => distance(r, p) < Math.hypot(w, depth) / 2 + 6)) continue;
-            if (this.collision.blocked(p, Math.hypot(w, depth) / 2 + 0.8)) continue;
-            if (
-              poly.some((c) => {
-                const r = this.map.nearestRoad(c);
-                return r.distance < r.road.width / 2 + 1.4;
-              })
-            )
-              continue;
-            const h = 5.8 + Math.floor(this.random() * 3) * 2.7,
-              color = palette[Math.floor(this.random() * palette.length)];
-            const house = new THREE.Group();
-            const ground = this.terrain.footprintRange(poly);
-            house.position.set(x, ground.max, z);
-            house.rotation.y = angle;
-            const foundationHeight = ground.max - ground.min + 0.4;
-            house.add(
-              this.models.box(
-                w,
-                foundationHeight,
-                depth,
-                0x9c9785,
-                0,
-                0.12 - foundationHeight / 2,
-                0,
-              ),
-            );
-            house.add(this.models.box(w, h, depth, color, 0, h / 2 + 0.12, 0, 'facade'));
-            const verts = new Float32Array([
-              -w / 2 - 0.3,
-              0,
-              -depth / 2 - 0.3,
-              w / 2 + 0.3,
-              0,
-              -depth / 2 - 0.3,
-              -w / 2 - 0.3,
-              0,
-              depth / 2 + 0.3,
-              w / 2 + 0.3,
-              0,
-              depth / 2 + 0.3,
-              -w / 2 - 0.3,
-              1.9,
-              0,
-              w / 2 + 0.3,
-              1.9,
-              0,
-            ]);
-            const geo = new THREE.BufferGeometry();
-            geo.setAttribute('position', new THREE.BufferAttribute(verts, 3));
-            geo.setIndex([0, 4, 5, 0, 5, 1, 4, 2, 3, 4, 3, 5, 0, 2, 4, 1, 5, 3]);
-            geo.computeVertexNormals();
-            geo.setAttribute(
-              'uv',
-              new THREE.BufferAttribute(new Float32Array([0, 0, 1, 0, 0, 0, 1, 0, 0, 1, 1, 1]), 2),
-            );
-            const roof = new THREE.Mesh(geo, this.models.assets.material(0xffffff, 'roof'));
-            roof.position.y = h + 0.12;
-            roof.castShadow = true;
-            house.add(roof);
-            if (this.random() > 0.55)
-              house.add(this.models.box(0.7, 1.8, 0.8, 0xc0ad91, w * 0.27, h + 1.2, -depth * 0.2));
-            if (this.random() > 0.7)
-              house.add(this.models.box(w * 0.75, 0.13, 1.2, 0x577875, 0, 2.3, depth / 2 + 0.4));
-            this.group.add(house);
-            this.collision.add(poly);
-            this.buildingOutlines.push(poly);
-          }
-      }
-    }
-  }
   private landscape(): void {
     for (let i = 0; i < 700; i++) {
       const x = (this.random() - 0.5) * 1500,
@@ -300,7 +204,7 @@ export class WorldBuilder {
         this.reserved.some((r) => distance(r, p) < 10)
       )
         continue;
-      if (Math.abs(x) < 140 && Math.abs(z) < 160 && this.random() > 0.15) continue;
+      if (x > -150 && x < 260 && z > -280 && z < 300) continue;
       const tree = this.models.tree(0.65 + this.random() * 0.7);
       tree.position.set(x, this.terrain.heightAt(x, z), z);
       this.group.add(tree);
@@ -330,44 +234,7 @@ export class WorldBuilder {
         }
       }
   }
-  private landmarks(): void {
-    for (const [name, coord] of [
-      ['BAR RAVAL', [-0.00125, 40.10268]],
-      ['CASA DE LA CULTURA', [-0.00071, 40.10066]],
-      ['SUPER POBLA', [-0.00075, 40.10205]],
-    ] as const) {
-      const p = this.map.project(coord),
-        r = this.map.nearestRoad(p),
-        side = {
-          x: r.point.x + Math.cos(r.angle) * (r.road.width / 2 + 1.2),
-          z: r.point.z - Math.sin(r.angle) * (r.road.width / 2 + 1.2),
-        };
-      const ground = this.terrain.heightAt(side.x, side.z);
-      const post = this.models.box(0.13, 3.3, 0.13, 0x34443f, side.x, ground + 1.65, side.z);
-      this.group.add(post);
-      const c = document.createElement('canvas');
-      c.width = 256;
-      c.height = 48;
-      const ctx = c.getContext('2d')!;
-      ctx.fillStyle = '#203c36';
-      ctx.fillRect(0, 0, 256, 48);
-      ctx.strokeStyle = '#d9ceab';
-      ctx.strokeRect(3, 3, 250, 42);
-      ctx.font = 'bold 21px monospace';
-      ctx.textAlign = 'center';
-      ctx.fillStyle = '#e9dfbc';
-      ctx.fillText(name, 128, 31);
-      const tex = new THREE.CanvasTexture(c);
-      tex.magFilter = THREE.NearestFilter;
-      tex.colorSpace = THREE.SRGBColorSpace;
-      const sign = new THREE.Mesh(
-        new THREE.BoxGeometry(5, 0.9, 0.13),
-        new THREE.MeshLambertMaterial({ map: tex }),
-      );
-      sign.position.set(side.x, ground + 3.15, side.z);
-      sign.rotation.y = r.angle;
-      this.group.add(sign);
-    }
+  private festival(): void {
     // Fictional festival bunting, separate from the source geography.
     const center = this.reserved[0];
     for (let i = 0; i < 10; i++) {
@@ -387,7 +254,10 @@ export class WorldBuilder {
   private batchStatic(): void {
     this.group.updateMatrixWorld(true);
     const terrain = this.group.children.filter((o) => o.userData.terrain);
-    const batches = new Map<THREE.Material, THREE.BufferGeometry[]>(),
+    const batches = new Map<
+        string,
+        { material: THREE.Material; geometries: THREE.BufferGeometry[]; castShadow: boolean }
+      >(),
       originals: THREE.BufferGeometry[] = [];
     this.group.traverse((o) => {
       if (!(o instanceof THREE.Mesh) || Array.isArray(o.material) || o.userData.terrain) return;
@@ -406,18 +276,31 @@ export class WorldBuilder {
             2,
           ),
         );
-      if (!batches.has(o.material)) batches.set(o.material, []);
-      batches.get(o.material)!.push(geometry);
+      geometry.computeBoundingBox();
+      const center = geometry.boundingBox!.getCenter(new THREE.Vector3());
+      const source = o.material as THREE.MeshLambertMaterial;
+      const material = this.models.assets.batchMaterial(source);
+      const colors = new Float32Array(geometry.getAttribute('position').count * 3);
+      for (let i = 0; i < colors.length; i += 3) {
+        colors[i] = source.color.r;
+        colors[i + 1] = source.color.g;
+        colors[i + 2] = source.color.b;
+      }
+      geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+      const key = `${material.uuid}:${Math.floor(center.x / 96)}:${Math.floor(center.z / 96)}:${o.castShadow}`;
+      if (!batches.has(key))
+        batches.set(key, { material, geometries: [], castShadow: o.castShadow });
+      batches.get(key)!.geometries.push(geometry);
       originals.push(o.geometry);
     });
     this.group.clear();
     this.group.add(...terrain);
     for (const geo of originals) geo.dispose();
-    for (const [material, geometries] of batches) {
+    for (const { material, geometries, castShadow } of batches.values()) {
       const merged = mergeGeometries(geometries);
       if (merged) {
         const mesh = new THREE.Mesh(merged, material);
-        mesh.castShadow = true;
+        mesh.castShadow = castShadow;
         mesh.receiveShadow = true;
         this.group.add(mesh);
       }

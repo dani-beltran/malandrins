@@ -7,6 +7,7 @@ import { ModelFactory } from '../assets/ModelFactory';
 import { MapAdapter } from '../world/MapAdapter';
 import { WorldBuilder } from '../world/WorldBuilder';
 import { Terrain } from '../world/Terrain';
+import { townLayout } from '../world/TownScenery';
 import { Player } from '../entities/Player';
 import { Vehicle } from '../entities/Vehicle';
 import { Npc } from '../entities/Npc';
@@ -58,6 +59,9 @@ export class Game {
   private raycaster = new THREE.Raycaster();
   private spawn!: Point;
   private abort = new AbortController();
+  private referenceCamera = import.meta.env.DEV
+    ? townLayout.cameras.find((c) => c.id === new URLSearchParams(location.search).get('reference'))
+    : undefined;
   constructor(
     canvas: HTMLCanvasElement,
     private root: HTMLElement,
@@ -127,8 +131,16 @@ export class Game {
     this.ui = new GameUI(this.root, this.i18n, this.missions, (action, value) =>
       this.action(action, value),
     );
+    if (this.referenceCamera) {
+      this.root.hidden = true;
+      this.player.object.visible = false;
+      this.npcs.forEach((n) => (n.object.visible = false));
+      this.vehicles.forEach((v) => (v.object.visible = false));
+      this.tapes.forEach((t) => (t.object.visible = false));
+      this.graphics.setQuality('clear');
+    }
     this.minimap = new Minimap(this.ui.minimapCanvas, this.map, this.world.buildingOutlines);
-    this.graphics.setQuality(this.save.quality);
+    this.graphics.setQuality(this.referenceCamera ? 'clear' : this.save.quality);
     this.audio.enabled = this.save.audio;
     this.audio.volume = this.save.volume;
     document.addEventListener(
@@ -489,7 +501,23 @@ export class Game {
       this.updateUI();
       this.uiTime = 0;
     }
-    this.graphics.followLight(this.player.position);
+    if (this.referenceCamera) {
+      const c = this.referenceCamera,
+        [x, z] = c.position;
+      const settings = new URLSearchParams(location.search);
+      const eye = Math.max(0.7, Math.min(5, Number(settings.get('eye') ?? 1.85)));
+      const yaw = (c.heading * Math.PI) / 180,
+        pitch = (c.pitch * Math.PI) / 180;
+      this.graphics.camera.position.set(x, this.terrain.heightAt(x, z) + eye, z);
+      this.graphics.camera.fov = Math.max(30, Math.min(125, Number(settings.get('fov') ?? 108)));
+      this.graphics.camera.updateProjectionMatrix();
+      this.graphics.camera.lookAt(
+        x + Math.sin(yaw) * Math.cos(pitch),
+        this.graphics.camera.position.y + Math.sin(pitch),
+        z - Math.cos(yaw) * Math.cos(pitch),
+      );
+      this.graphics.followLight(this.graphics.camera.position);
+    } else this.graphics.followLight(this.player.position);
     this.graphics.render();
     this.input.endFrame();
     this.frame = requestAnimationFrame((t) => this.tick(t));
@@ -519,8 +547,8 @@ export class Game {
       this.cameraYaw += diff * (1 - Math.exp(-dt * 2));
     }
     this.cameraTarget.lerp(this.player.position, 1 - Math.exp(-dt * 10));
-    const d = this.car ? 14 + Math.abs(this.car.speed) * 0.12 : 12.5,
-      h = this.car ? 8.5 : 8;
+    const d = this.car ? 10 + Math.abs(this.car.speed) * 0.1 : 6.5,
+      h = this.car ? 5.3 : 3.8;
     const target = this.cameraTarget.clone().add(new THREE.Vector3(0, 1.9, 0));
     this.cameraPosition.set(
       this.cameraTarget.x + Math.sin(this.cameraYaw) * d,
@@ -540,6 +568,10 @@ export class Game {
     this.graphics.camera.lookAt(target);
   }
   private updateMarker(): void {
+    if (this.referenceCamera) {
+      this.activeMarker.visible = false;
+      return;
+    }
     const npc = this.npcs.find((n) => n.definition.id === this.missions.contactId);
     this.activeMarker.visible = !!npc;
     if (!npc) {
@@ -647,6 +679,17 @@ export class Game {
       })),
       stage: this.save.stage,
       buildings: this.world.buildingOutlines.length,
+      scenery: {
+        buildings: townLayout.buildings.length,
+        landmarks: townLayout.landmarks.map((b) => b.id),
+        referenceView: this.referenceCamera?.id ?? null,
+        blockedNpcs: this.npcs
+          .filter((n) => this.world.collision.blocked(n.position, 0.6))
+          .map((n) => n.definition.id),
+        blockedCars: this.vehicles
+          .filter((v) => this.world.collision.blocked(v.position, 2.2))
+          .map((v) => v.id),
+      },
       drawCalls: this.graphics.renderer.info.render.calls,
       triangles: this.graphics.renderer.info.render.triangles,
       saveAvailable: this.store.available,
