@@ -2,7 +2,8 @@ import * as THREE from 'three';
 import metadata from '../../references/topographic-data/derived/icv-2017-heightmap-257.json';
 import heightmapUrl from '../../references/topographic-data/derived/icv-2017-heightmap-257.f32?url';
 import { clamp, type Point } from '../core/math';
-import { MapAdapter } from './MapAdapter';
+import { MapAdapter, type Road } from './MapAdapter';
+import { gradeRoads } from './RoadGrading';
 
 export interface TerrainMetadata {
   width: number;
@@ -28,6 +29,7 @@ export class Terrain {
   constructor(
     readonly metadata: TerrainMetadata,
     buffer: ArrayBuffer,
+    roads: readonly Road[] = [],
   ) {
     const { width, height, game } = metadata;
     if (width < 2 || height < 2 || buffer.byteLength !== width * height * 4)
@@ -36,13 +38,16 @@ export class Terrain {
     this.spacingZ = (game.max_z - game.min_z) / (height - 1);
     const data = new DataView(buffer);
     this.heights = new Float32Array(width * height);
-    let min = Infinity,
-      max = -Infinity;
     for (let i = 0; i < this.heights.length; i++) {
       const elevation = data.getFloat32(i * 4, true);
       if (!Number.isFinite(elevation)) throw new Error('Invalid terrain elevation.');
       const y = (elevation - game.baseline_elevation_m) * game.scale;
       this.heights[i] = y;
+    }
+    gradeRoads(this, roads);
+    let min = Infinity,
+      max = -Infinity;
+    for (const y of this.heights) {
       min = Math.min(min, y);
       max = Math.max(max, y);
     }
@@ -63,7 +68,7 @@ export class Terrain {
       throw new Error('Terrain heightmap does not match the game map projection.');
     const response = await fetch(heightmapUrl);
     if (!response.ok) throw new Error(`Terrain heightmap could not load (${response.status}).`);
-    return new Terrain(metadata, await response.arrayBuffer());
+    return new Terrain(metadata, await response.arrayBuffer(), map.roads);
   }
 
   heightAt(x: number, z: number): number {

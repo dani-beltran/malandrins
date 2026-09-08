@@ -22,7 +22,7 @@ Retain the data’s attribution and license notices when distributing the projec
 - [Creative Commons Attribution 4.0](https://creativecommons.org/licenses/by/4.0/)
 - [Local provenance and preparation guide](references/topographic-data/README.md)
 
-The source was cropped to the map boundary, resampled to a 257 × 257 vertex grid and converted into a game mesh with uniform 0.7 scaling and a 299.1851501464844 m baseline. The game bundles the unmodified derived Float32 samples and JSON metadata directly from `references/topographic-data/derived/icv-2017-heightmap-257.*`. Runtime triangle interpolation also places roads and objects on the ground. The extended backdrop beyond the playable boundary is artistic, not surveyed terrain. The 2017 survey is not a reconstruction of 1998 ground conditions.
+The source was cropped to the map boundary, resampled to a 257 × 257 vertex grid and converted into a game mesh with uniform 0.7 scaling and a 299.1851501464844 m baseline. The game bundles the unmodified derived Float32 samples and JSON metadata directly from `references/topographic-data/derived/icv-2017-heightmap-257.*`. At load time, the game smooths elevation profiles along paved roads and levels their width, including sidewalks, with blended junctions and shoulders. These local grading adjustments are artistic; the bundled survey files remain unchanged. Runtime triangle interpolation places roads and objects on the adjusted ground. The extended backdrop beyond the playable boundary is artistic, not surveyed terrain. The 2017 survey is not a reconstruction of 1998 ground conditions.
 
 ## Aerial-derived town scenery
 
