@@ -22,8 +22,8 @@ export class Player {
   get object(): THREE.Group {
     return this.model.group;
   }
-  teleport(p: Point): void {
-    this.position.set(p.x, this.terrain.heightAt(p.x, p.z) + 0.12, p.z);
+  teleport(p: Point & { y?: number }): void {
+    this.position.set(p.x, this.terrain.heightAt(p.x, p.z, p.y) + 0.12, p.z);
     this.object.position.copy(this.position);
   }
   update(dt: number, input: Input, collision: CollisionWorld, cameraYaw: number): void {
@@ -41,7 +41,7 @@ export class Player {
     this.moving = length > 0;
     this.position.x = next.x;
     this.position.z = next.z;
-    this.position.y = this.terrain.heightAt(next.x, next.z) + 0.12;
+    this.position.y = this.terrain.heightAt(next.x, next.z, this.position.y) + 0.12;
     this.object.position.copy(this.position);
     if (length) {
       this.object.rotation.y = Math.atan2(dx, dz);

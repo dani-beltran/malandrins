@@ -3,12 +3,14 @@ import { circleIntersectsPolygon, type Point } from '../core/math';
 export class CollisionWorld {
   private cells = new Map<string, Point[][]>();
   readonly polygons: Point[][] = [];
+  private elevations = new Map<Point[], { min: number; max: number }>();
   constructor(
     private bounds: { minX: number; maxX: number; minZ: number; maxZ: number },
     private cellSize = 24,
   ) {}
-  add(polygon: Point[]): void {
+  add(polygon: Point[], min = -Infinity, max = Infinity): void {
     this.polygons.push(polygon);
+    this.elevations.set(polygon, { min, max });
     const xs = polygon.map((p) => p.x),
       zs = polygon.map((p) => p.z);
     for (
@@ -26,7 +28,7 @@ export class CollisionWorld {
         this.cells.get(key)!.push(polygon);
       }
   }
-  blocked(p: Point, radius: number): boolean {
+  blocked(p: Point & { y?: number }, radius: number): boolean {
     const b = this.bounds;
     if (
       p.x - radius < b.minX ||
@@ -47,15 +49,23 @@ export class CollisionWorld {
         z++
       )
         for (const poly of this.cells.get(`${x},${z}`) ?? []) candidates.add(poly);
-    return [...candidates].some((poly) => circleIntersectsPolygon(p, radius, poly));
+    return [...candidates].some((poly) => {
+      const range = this.elevations.get(poly)!;
+      return (
+        (p.y === undefined || (p.y >= range.min && p.y < range.max)) &&
+        circleIntersectsPolygon(p, radius, poly)
+      );
+    });
   }
-  move(p: Point, dx: number, dz: number, radius: number): Point {
+  move(p: Point & { y?: number }, dx: number, dz: number, radius: number): Point {
     // Substeps prevent fast cars tunneling through narrow buildings.
     const steps = Math.max(1, Math.ceil(Math.hypot(dx, dz) / Math.max(radius * 0.65, 0.3)));
     const result = { ...p };
     for (let i = 0; i < steps; i++) {
-      if (!this.blocked({ x: result.x + dx / steps, z: result.z }, radius)) result.x += dx / steps;
-      if (!this.blocked({ x: result.x, z: result.z + dz / steps }, radius)) result.z += dz / steps;
+      if (!this.blocked({ x: result.x + dx / steps, z: result.z, y: p.y }, radius))
+        result.x += dx / steps;
+      if (!this.blocked({ x: result.x, z: result.z + dz / steps, y: p.y }, radius))
+        result.z += dz / steps;
     }
     return result;
   }

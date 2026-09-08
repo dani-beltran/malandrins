@@ -5,6 +5,7 @@ import { clamp, type Point } from '../core/math';
 import { MapAdapter, type Road } from './MapAdapter';
 import { gradeTerrain } from './TerrainGrading';
 import type { BridgePlan } from './BridgeLayout';
+import type { TunnelSurface } from './TunnelSurface';
 
 export interface TerrainMetadata {
   width: number;
@@ -98,7 +99,37 @@ export class Terrain {
     row = 0,
     columns = this.metadata.width - 1,
     rows = this.metadata.height - 1,
+    excavation?: TunnelSurface,
   ): THREE.BufferGeometry {
+    if (excavation) {
+      const { game } = this.metadata;
+      const pieces: number[] = [],
+        uvs: number[] = [];
+      for (let r = row; r < row + rows; r++)
+        for (let c = col; c < col + columns; c++) {
+          const x = game.min_x + c * this.spacingX,
+            z = game.min_z + r * this.spacingZ;
+          const bounds = { minX: x, maxX: x + this.spacingX, minZ: z, maxZ: z + this.spacingZ };
+          const n = excavation.affects(bounds) ? excavation.subdivisions : 1;
+          for (let j = 0; j < n; j++)
+            for (let i = 0; i < n; i++) {
+              for (const [dx, dz] of [
+                [0, 0],
+                [0, 1],
+                [1, 0],
+                [1, 0],
+                [0, 1],
+                [1, 1],
+              ]) {
+                const px = x + ((i + dx) * this.spacingX) / n,
+                  pz = z + ((j + dz) * this.spacingZ) / n;
+                pieces.push(px, excavation.heightAt(px, pz), pz);
+                uvs.push(px / 8, pz / 8);
+              }
+            }
+        }
+      return this.geometry(pieces, uvs);
+    }
     const positions: number[] = [],
       uvs: number[] = [],
       indices: number[] = [];

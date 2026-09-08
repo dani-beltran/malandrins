@@ -76,7 +76,7 @@ function cross(a: Point, b: Point): number {
 const sub = (a: Point, b: Point): Point => ({ x: a.x - b.x, z: a.z - b.z });
 
 /** Inclusive endpoints detect a crossing even when OSM splits both ways at the water. */
-function intersection(a: Point, b: Point, c: Point, d: Point): number | undefined {
+export function intersection(a: Point, b: Point, c: Point, d: Point): number | undefined {
   const u = sub(b, a),
     v = sub(d, c),
     q = sub(c, a),
@@ -89,12 +89,14 @@ function intersection(a: Point, b: Point, c: Point, d: Point): number | undefine
 
 /** Clip the road centre against a finite river strip expanded by the full deck width.
  * River end caps and bank margin are included, so oblique deck corners clear the water. */
-function waterInterval(
+export function corridorInterval(
   a: Point,
   b: Point,
   c: Point,
   d: Point,
   halfWidth: number,
+  corridorWidth = RIVER_WIDTH,
+  margin = BANK_MARGIN,
 ): [number, number] | undefined {
   const len = distance(a, b),
     wl = distance(c, d);
@@ -108,8 +110,8 @@ function waterInterval(
     [{ x: -direction.z, z: direction.x }, 0, 0],
   ] as const) {
     const padding =
-      RIVER_WIDTH / 2 +
-      BANK_MARGIN +
+      corridorWidth / 2 +
+      margin +
       halfWidth * Math.abs(axis.x * roadNormal.x + axis.z * roadNormal.z);
     const p = (a.x - c.x) * axis.x + (a.z - c.z) * axis.z;
     const delta = (b.x - a.x) * axis.x + (b.z - a.z) * axis.z;
@@ -127,7 +129,7 @@ function waterInterval(
 }
 
 /** Join compatible degree-two fragments; never join separate parallel carriageways. */
-function routes(roads: readonly Road[]): Road[] {
+export function roadRoutes(roads: readonly Road[]): Road[] {
   const endpoints = new Set(
     roads
       .flatMap((r) => [r.points[0], r.points.at(-1)!])
@@ -195,16 +197,18 @@ function routes(roads: readonly Road[]): Road[] {
 
 /** A lane can end at an interior node of a wider road. Follow that existing
  * connection for the approaches instead of ending an elevated deck at the node. */
-function extendRoute(
+export function extendRoute(
   road: Road,
   roads: readonly Road[],
+  extension = 65,
+  extendDeadEnds = true,
 ): { road: Road; originalStart: number; originalEnd: number } {
   let points = [...road.points],
     originalStart = 0;
   const originalLength = pathDistances(points).at(-1)!;
   for (const atStart of [true, false]) {
     let added = 0;
-    while (added < 65) {
+    while (added < extension) {
       const p = points[atStart ? 0 : points.length - 1],
         inside = points[atStart ? 1 : points.length - 2];
       const options: Point[][] = [];
@@ -218,10 +222,11 @@ function extendRoute(
         (ps) => distance(ps[0], inside) > 0.05 && !points.some((q) => distance(q, ps[0]) < 0.05),
       );
       if (!candidates.length) {
+        if (!extendDeadEnds) break;
         // A mapped dead end may stop immediately at a bank. Reserve a straight
         // landing beyond it; BridgeScenery renders that short approach as well.
         const len = distance(p, inside),
-          remaining = 65 - added;
+          remaining = extension - added;
         const q = {
           x: p.x + ((p.x - inside.x) * remaining) / len,
           z: p.z + ((p.z - inside.z) * remaining) / len,
@@ -236,7 +241,7 @@ function extendRoute(
       candidates.sort((a, b) => score(b) - score(a));
       const next = candidates[0][0];
       const len = distance(p, next),
-        remaining = 65 - added;
+        remaining = extension - added;
       const q =
         len <= remaining
           ? next
@@ -256,7 +261,7 @@ function extendRoute(
 export function detectBridges(roads: readonly Road[], water: readonly Point[][]): BridgePlan[] {
   const result: BridgePlan[] = [];
   const segments = water.flatMap((ps) => ps.slice(1).map((p, i) => [ps[i], p] as const));
-  for (const source of routes(roads)) {
+  for (const source of roadRoutes(roads)) {
     const { road, originalStart, originalEnd } = extendRoute(source, roads);
     const ds = pathDistances(road.points),
       width = roadDeckWidth(road),
@@ -272,7 +277,7 @@ export function detectBridges(roads: readonly Road[], water: readonly Point[][])
           const h = ds[i - 1] + hit * len;
           if (h >= originalStart - 1e-5 && h <= originalEnd + 1e-5) hits.push(h);
         }
-        const interval = waterInterval(a, b, c, d, width / 2);
+        const interval = corridorInterval(a, b, c, d, width / 2);
         if (interval) intervals.push(interval.map((t) => ds[i - 1] + t * len) as [number, number]);
       }
     }

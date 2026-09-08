@@ -67,6 +67,9 @@ export class Game {
   private bridgeView = import.meta.env.DEV
     ? new URLSearchParams(location.search).get('bridge')
     : null;
+  private tunnelView = import.meta.env.DEV
+    ? new URLSearchParams(location.search).get('tunnel')
+    : null;
   constructor(
     canvas: HTMLCanvasElement,
     private root: HTMLElement,
@@ -144,7 +147,7 @@ export class Game {
     this.ui = new GameUI(this.root, this.i18n, this.missions, (action, value) =>
       this.action(action, value),
     );
-    if (this.referenceCamera || this.bridgeView) {
+    if (this.referenceCamera || this.bridgeView || this.tunnelView) {
       this.root.hidden = true;
       this.player.object.visible = false;
       this.npcs.forEach((n) => (n.object.visible = false));
@@ -153,7 +156,9 @@ export class Game {
       this.graphics.setQuality('clear');
     }
     this.minimap = new Minimap(this.ui.minimapCanvas, this.map, this.world.buildingOutlines);
-    this.graphics.setQuality(this.referenceCamera || this.bridgeView ? 'clear' : this.save.quality);
+    this.graphics.setQuality(
+      this.referenceCamera || this.bridgeView || this.tunnelView ? 'clear' : this.save.quality,
+    );
     this.audio.enabled = this.save.audio;
     this.audio.volume = this.save.volume;
     document.addEventListener(
@@ -371,7 +376,11 @@ export class Game {
   }
   private persist(): void {
     if (!this.player) return;
-    this.save.position = { x: this.player.position.x, z: this.player.position.z };
+    this.save.position = {
+      x: this.player.position.x,
+      y: this.player.position.y,
+      z: this.player.position.z,
+    };
     const success = this.store.save(this.save);
     if (!success && this.ui) this.ui.toast(this.i18n.t('saveUnavailable'));
   }
@@ -410,7 +419,11 @@ export class Game {
       return;
     }
     const vehicle = this.vehicles
-      .filter((v) => distance(this.player.position, v.position) < 5.7)
+      .filter(
+        (v) =>
+          this.player.position.distanceTo(v.position) < 5.7 &&
+          Math.abs(this.player.position.y - v.position.y) < 1.2,
+      )
       .sort(
         (a, b) =>
           distance(a.position, this.player.position) - distance(b.position, this.player.position),
@@ -439,7 +452,11 @@ export class Game {
     const tape = this.tapes.find(
       (t) => !this.save.tapes.includes(t.id) && distance(t.position, this.player.position) < 2.5,
     );
-    const vehicle = this.vehicles.find((v) => distance(v.position, this.player.position) < 5.7);
+    const vehicle = this.vehicles.find(
+      (v) =>
+        this.player.position.distanceTo(v.position) < 5.7 &&
+        Math.abs(this.player.position.y - v.position.y) < 1.2,
+    );
     // A nearby character must not permanently block collecting a tape beside them.
     if (tape) {
       this.ui.showPrompt('E', this.i18n.t('collect'));
@@ -515,7 +532,26 @@ export class Game {
       this.updateUI();
       this.uiTime = 0;
     }
-    if (this.bridgeView) {
+    if (this.tunnelView) {
+      const tunnels = this.world.travel.underpasses.tunnels;
+      const t =
+        tunnels.find((t) => t.id === this.tunnelView) ??
+        tunnels[Number(this.tunnelView)] ??
+        tunnels[0];
+      if (t) {
+        const eye = bridgePoint(t, Math.max(t.approachStart, t.start - 12), -1);
+        const target = bridgePoint(t, t.start + Math.min(5, (t.end - t.start) / 2));
+        this.graphics.camera.position.set(
+          eye.x,
+          this.world.travel.underpasses.heightAt(eye.x, eye.z) + 2,
+          eye.z,
+        );
+        this.graphics.camera.fov = 65;
+        this.graphics.camera.updateProjectionMatrix();
+        this.graphics.camera.lookAt(target.x, t.floorHeight + 1.2, target.z);
+        this.graphics.followLight(new THREE.Vector3(target.x, t.floorHeight, target.z));
+      }
+    } else if (this.bridgeView) {
       const b =
         this.world.travel.bridges.find((b) => b.id === this.bridgeView) ??
         this.world.travel.bridges[Number(this.bridgeView)] ??
@@ -597,11 +633,21 @@ export class Game {
       this.cameraPosition.copy(target).addScaledVector(dir, Math.max(2.2, hit.distance - 0.7));
     this.graphics.camera.position.lerp(this.cameraPosition, 1 - Math.exp(-dt * 10));
     const camera = this.graphics.camera.position;
-    camera.y = Math.max(camera.y, this.world.travel.heightAt(camera.x, camera.z) + 1.5);
+    camera.y = Math.max(
+      camera.y,
+      this.world.travel.heightAt(camera.x, camera.z, this.player.position.y) + 1.5,
+    );
+    const tunnel = this.world.travel.underpasses.at(camera);
+    if (
+      tunnel &&
+      this.player.position.y < tunnel.floorHeight + 1 &&
+      this.world.travel.underpasses.upperAt(camera)
+    )
+      camera.y = Math.min(camera.y, tunnel.floorHeight + 2.2);
     this.graphics.camera.lookAt(target);
   }
   private updateMarker(): void {
-    if (this.referenceCamera || this.bridgeView) {
+    if (this.referenceCamera || this.bridgeView || this.tunnelView) {
       this.activeMarker.visible = false;
       return;
     }
@@ -680,7 +726,11 @@ export class Game {
         grid: [this.terrain.metadata.width, this.terrain.metadata.height],
         minHeight: this.terrain.minHeight,
         maxHeight: this.terrain.maxHeight,
-        playerGround: this.world.travel.heightAt(this.player.position.x, this.player.position.z),
+        playerGround: this.world.travel.heightAt(
+          this.player.position.x,
+          this.player.position.z,
+          this.player.position.y,
+        ),
         playerTerrain: this.terrain.heightAt(this.player.position.x, this.player.position.z),
       },
       camera: {
@@ -704,6 +754,26 @@ export class Game {
         endHeight: b.endHeight,
         maxRoadHeight: b.maxRoadHeight,
         masonryDepth: b.masonryDepth,
+      })),
+      tunnels: this.world.travel.underpasses.tunnels.map((t) => ({
+        id: t.id,
+        road: t.road.name,
+        width: t.width,
+        floorHeight: t.floorHeight,
+        start: bridgePoint(t, t.start),
+        end: bridgePoint(t, t.end),
+        approachStart: bridgePoint(t, t.approachStart),
+        approachEnd: bridgePoint(t, t.approachEnd),
+        center: bridgePoint(t, (t.start + t.end) / 2),
+        route: [
+          t.approachStart,
+          t.start,
+          ...t.distances.filter((s) => s > t.approachStart && s < t.approachEnd),
+          t.end,
+          t.approachEnd,
+        ]
+          .sort((a, b) => a - b)
+          .map((s) => bridgePoint(t, s)),
       })),
       cameraYaw: this.cameraYaw,
       vehicle: this.car ? { id: this.car.id, speed: this.car.speed } : null,

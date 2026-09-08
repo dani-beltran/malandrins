@@ -2,9 +2,12 @@ import { clamp, closestOnSegment, distance, pointInPolygon, type Point } from '.
 import { Terrain } from './Terrain';
 import { bridgePoint, locateOnBridge, type BridgePlan } from './BridgeLayout';
 import bridgeOverrides from '../data/scenery/bridge-overrides.json';
+import { TunnelSurface } from './TunnelSurface';
+import { isHighway, type TunnelPlan } from './TunnelLayout';
+import type { Road } from './MapAdapter';
 
 export interface HeightSurface {
-  heightAt(x: number, z: number): number;
+  heightAt(x: number, z: number, previousY?: number): number;
 }
 export interface Bridge extends BridgePlan {
   deckHeight: number;
@@ -25,6 +28,7 @@ const smooth = (t: number) => {
  * Road triangles and wheel/foot queries use identical diagonals and vertex heights. */
 export class TravelSurface implements HeightSurface {
   readonly bridges: Bridge[];
+  readonly underpasses: TunnelSurface;
   readonly metadata;
   readonly spacingX: number;
   readonly spacingZ: number;
@@ -36,7 +40,9 @@ export class TravelSurface implements HeightSurface {
   constructor(
     readonly terrain: Terrain,
     plans: readonly BridgePlan[],
+    tunnels: readonly TunnelPlan[] = [],
   ) {
+    this.underpasses = new TunnelSurface(terrain, tunnels);
     const subdivisions = 6;
     this.metadata = {
       ...terrain.metadata,
@@ -204,7 +210,13 @@ export class TravelSurface implements HeightSurface {
     return y;
   }
 
-  heightAt(x: number, z: number): number {
+  heightAt(x: number, z: number, previousY?: number): number {
+    const upper = this.bridgeHeightAt(x, z);
+    if (!this.underpasses.affects({ minX: x, maxX: x, minZ: z, maxZ: z })) return upper;
+    return this.underpasses.travelHeight(x, z, upper, previousY);
+  }
+
+  private bridgeHeightAt(x: number, z: number): number {
     const p = { x, z };
     const polygons =
       this.footprints.get(`${Math.floor(x / this.cellSize)},${Math.floor(z / this.cellSize)}`) ??
@@ -240,9 +252,19 @@ export class TravelSurface implements HeightSurface {
       : se + (sw - se) * (1 - u) + (ne - se) * (1 - v);
   }
 
-  drapeGeometry(points: Point[], offset = 0) {
+  drapeGeometry(points: Point[], offset = 0, road?: Road) {
     const xs = points.map((p) => p.x),
       zs = points.map((p) => p.z);
+    if (
+      (!road || !isHighway(road)) &&
+      this.underpasses.affects({
+        minX: Math.min(...xs),
+        maxX: Math.max(...xs),
+        minZ: Math.min(...zs),
+        maxZ: Math.max(...zs),
+      })
+    )
+      return this.terrain.drapeGeometry(points, offset, this.underpasses);
     for (
       let x = Math.floor(Math.min(...xs) / this.cellSize);
       x <= Math.floor(Math.max(...xs) / this.cellSize);
@@ -266,7 +288,11 @@ export class TravelSurface implements HeightSurface {
   }
 
   /** Car exits must land on the same accessible level, inside the bridge's edges. */
-  canExit(from: Point, to: Point, radius: number): boolean {
+  canExit(from: Point & { y?: number }, to: Point, radius: number): boolean {
+    if (this.underpasses.at(from, 4) || this.underpasses.at(to, 4))
+      return (
+        Math.abs(this.heightAt(from.x, from.z, from.y) - this.heightAt(to.x, to.z, from.y)) < 1.2
+      );
     const bridge = this.bridgeAt(from);
     if (!bridge && !this.bridgeAt(to)) return true;
     if (bridge) {

@@ -6,7 +6,7 @@ export interface SaveData {
   stage: number;
   met: string[];
   tapes: number[];
-  position: Point | null;
+  position: (Point & { y?: number }) | null;
   language: Language;
   quality: Quality;
   audio: boolean;
@@ -44,7 +44,11 @@ export class SaveStore {
           : [],
         position:
           s.position && Number.isFinite(s.position.x) && Number.isFinite(s.position.z)
-            ? s.position
+            ? {
+                x: s.position.x,
+                z: s.position.z,
+                ...(Number.isFinite(s.position.y) ? { y: s.position.y } : {}),
+              }
             : null,
         language: s.language === 'ca' ? 'ca' : 'en',
         quality: s.quality === 'retro' ? 'retro' : defaults.quality,

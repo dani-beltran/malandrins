@@ -9,6 +9,7 @@ import { distance, seededRandom, rectangle, type Point } from '../core/math';
 import { TravelSurface } from './TravelSurface';
 import { BridgeScenery } from './BridgeScenery';
 import { RIVER_WIDTH, WATER_OFFSET } from './BridgeLayout';
+import { TunnelScenery } from './TunnelScenery';
 export class WorldBuilder {
   readonly group = new THREE.Group();
   readonly collision: CollisionWorld;
@@ -22,7 +23,8 @@ export class WorldBuilder {
     private reserved: Point[],
   ) {
     this.collision = new CollisionWorld(map.bounds);
-    this.travel = new TravelSurface(terrain, map.bridges);
+    this.travel = new TravelSurface(terrain, map.bridges, map.tunnels);
+    this.travel.underpasses.addCollisions(this.collision);
   }
   build(): THREE.Group {
     this.ground();
@@ -43,6 +45,7 @@ export class WorldBuilder {
     for (const water of this.map.water) this.ribbon(water, RIVER_WIDTH, 0x88a19b, WATER_OFFSET);
     for (const road of this.map.roads) this.road(road);
     this.group.add(new BridgeScenery(this.travel, this.models, this.map).build());
+    this.group.add(new TunnelScenery(this.travel.underpasses, this.models).build());
     const town = new TownScenery(this.map, this.terrain, this.models, this.collision);
     this.group.add(town.build());
     this.buildingOutlines.push(...town.outlines);
@@ -62,6 +65,14 @@ export class WorldBuilder {
             row,
             Math.min(32, width - 1 - col),
             Math.min(32, height - 1 - row),
+            this.travel.underpasses.affects({
+              minX: this.terrain.metadata.game.min_x + col * this.terrain.spacingX,
+              maxX: this.terrain.metadata.game.min_x + (col + 32) * this.terrain.spacingX,
+              minZ: this.terrain.metadata.game.min_z + row * this.terrain.spacingZ,
+              maxZ: this.terrain.metadata.game.min_z + (row + 32) * this.terrain.spacingZ,
+            })
+              ? this.travel.underpasses
+              : undefined,
           ),
           this.models.assets.material(0xffffff, 'landcover'),
         );
@@ -128,8 +139,11 @@ export class WorldBuilder {
     y: number,
     texture?: string,
     travel = false,
+    road?: Road,
   ): void {
-    const geometry = (travel ? this.travel : this.terrain).drapeGeometry(points, y);
+    const geometry = travel
+      ? this.travel.drapeGeometry(points, y, road)
+      : this.terrain.drapeGeometry(points, y);
     const uv = geometry.getAttribute('uv');
     const repeat = texture === 'paving' ? 6.5 : texture === 'sidewalk' ? 5 : 1;
     if (repeat !== 1)
@@ -148,6 +162,7 @@ export class WorldBuilder {
     y: number,
     texture?: string,
     travel = false,
+    road?: Road,
   ): void {
     for (let i = 1; i < points.length; i++) {
       const a = points[i - 1],
@@ -167,6 +182,7 @@ export class WorldBuilder {
         y,
         texture,
         travel,
+        road,
       );
     }
     for (const p of points)
@@ -179,12 +195,21 @@ export class WorldBuilder {
         y + 0.002,
         texture,
         travel,
+        road,
       );
   }
   private road(road: Road): void {
     const trail = ['track', 'path', 'footway', 'steps', 'cycleway'].includes(road.type);
     if (!trail)
-      this.ribbon(road.points, road.width + road.sidewalk * 2, 0xd2c6b3, 0.055, 'sidewalk', true);
+      this.ribbon(
+        road.points,
+        road.width + road.sidewalk * 2,
+        0xd2c6b3,
+        0.055,
+        'sidewalk',
+        true,
+        road,
+      );
     this.ribbon(
       road.points,
       road.width,
@@ -192,6 +217,7 @@ export class WorldBuilder {
       trail ? 0.074 : 0.085,
       trail && road.surface !== 'paving' ? undefined : road.surface,
       true,
+      road,
     );
     if (road.width >= 9 && road.surface === 'asphalt')
       for (let i = 1; i < road.points.length; i++) {
@@ -212,6 +238,7 @@ export class WorldBuilder {
             0.116,
             undefined,
             true,
+            road,
           );
         }
       }
@@ -226,6 +253,7 @@ export class WorldBuilder {
         near.distance < near.road.width / 2 + 4 ||
         this.collision.blocked(p, 4) ||
         this.travel.bridgeAt(p) ||
+        this.travel.underpasses.at(p, 6) ||
         this.reserved.some((r) => distance(r, p) < 10)
       )
         continue;
@@ -250,6 +278,7 @@ export class WorldBuilder {
           Math.abs(p.z) > 300 ||
           this.collision.blocked(p, 1) ||
           this.travel.bridgeAt(p) ||
+          this.travel.underpasses.at(p, 6) ||
           this.reserved.some((r) => distance(r, p) < 5)
         )
           continue;

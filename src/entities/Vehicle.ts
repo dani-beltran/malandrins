@@ -22,14 +22,18 @@ export class Vehicle {
     this.initial = { position: { ...p }, heading };
     this.object = factory.car(color);
     this.object.scale.multiplyScalar(ENTITY_SCALE);
-    this.object.position.set(p.x, 0, p.z);
+    this.object.position.set(p.x, this.terrain.heightAt(p.x, p.z) + 0.12, p.z);
     this.ground();
   }
   reset(): void {
     this.speed = 0;
     this.occupied = false;
     this.heading = this.initial.heading;
-    this.object.position.set(this.initial.position.x, 0, this.initial.position.z);
+    this.object.position.set(
+      this.initial.position.x,
+      this.terrain.heightAt(this.initial.position.x, this.initial.position.z) + 0.12,
+      this.initial.position.z,
+    );
     this.ground();
   }
   get position(): THREE.Vector3 {
@@ -60,6 +64,7 @@ export class Vehicle {
       this.terrain.heightAt(
         this.position.x + cos * side + sin * along,
         this.position.z - sin * side + cos * along,
+        this.position.y,
       );
     const halfWidth = 0.95 * ENTITY_SCALE,
       halfLength = 1.35 * ENTITY_SCALE;
@@ -75,7 +80,7 @@ export class Vehicle {
       'YXZ',
     );
   }
-  exitPosition(collision: CollisionWorld): Point | null {
+  exitPosition(collision: CollisionWorld): (Point & { y: number }) | null {
     for (const [side, along] of [
       [-1, 0],
       [1, 0],
@@ -83,6 +88,7 @@ export class Vehicle {
       [0, 1],
     ]) {
       const p = {
+        y: this.position.y,
         x:
           this.position.x +
           Math.cos(this.heading) * side * 2.8 * ENTITY_SCALE +

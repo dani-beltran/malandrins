@@ -92,3 +92,25 @@ heights, sloping banks, shared mesh heights, all map deck centre lines,
 walking/driving, exits, exported arch openings and vertical model fitting.
 `tests/bridges.e2e.ts` verifies in-game walking, saved positions and the
 camera on a real crossing.
+
+## Highway tunnels
+
+`TunnelLayout` detects paths, tracks and cycleways crossing motorways, trunk roads
+and their links. Connected path fragments and adjacent carriageways share a
+passage; parallel paths and dead ends do not create tunnels. Approaches follow
+mapped road connections when a path ends shortly beyond a crossing.
+
+`TunnelSurface` excavates a fine terrain grid beneath the existing highway.
+`TunnelScenery` builds concrete portals, retaining walls, roofs, clearance plates
+and guardrails using `references/street-data/13-highway-tunnel.jpg` as the visual
+reference. Shapes and dimensions are inferred. The lower path and upper highway
+remain separate travel levels, including wall collisions, car exits and saves.
+Older saves without an elevation still load normally.
+
+With the local game running, `node scripts/scenery/inspect-tunnels.mjs` captures
+all tunnel entrances and diagnostics in `artifacts/tunnels`. Pass tunnel IDs to
+select specific crossings. The development-only `?tunnel=0` or `?tunnel=<id>` view
+hides the HUD and faces the entrance. `window.malandrins.inspect().tunnels` lists
+the crossings and their routes. `tests/tunnels.test.ts` covers crossing detection,
+terrain geometry, both travel levels, walking, driving, wall collisions and exits;
+`tests/tunnels.e2e.ts` checks walking, the camera and restoring a save underground.
