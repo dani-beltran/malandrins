@@ -1,7 +1,7 @@
 """Original masonry bridges inspired by references/street-data/14-bridge-coll-de-la-mola.jpg.
 Run Blender --background --factory-startup --python scripts/scenery/build-bridges.py
 Editable sources include preview barriers; GLBs contain the reusable arch/deck shells.
-Runtime adds terrain-fitted barriers and approaches. No image pixels are used as textures.
+Runtime adds terrain-fitted approaches without barriers. No image pixels are used as textures.
 """
 import bpy
 import math

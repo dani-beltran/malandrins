@@ -42,7 +42,7 @@ export class WorldBuilder {
       );
     for (const water of this.map.water) this.ribbon(water, RIVER_WIDTH, 0x88a19b, WATER_OFFSET);
     for (const road of this.map.roads) this.road(road);
-    this.group.add(new BridgeScenery(this.travel, this.models, this.collision, this.map).build());
+    this.group.add(new BridgeScenery(this.travel, this.models, this.map).build());
     const town = new TownScenery(this.map, this.terrain, this.models, this.collision);
     this.group.add(town.build());
     this.buildingOutlines.push(...town.outlines);

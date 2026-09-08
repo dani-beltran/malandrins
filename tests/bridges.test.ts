@@ -190,7 +190,7 @@ describe('shared bridge travel surface', () => {
       name: 'unequal banks',
       height: (x: number) => 1 + x * 0.04 - Math.max(0, 1 - Math.abs(x) / 4) * 0.8,
     },
-  ])('walks and drives both ways on $name, blocks edges, and checks exits', ({ height }) => {
+  ])('walks and drives both ways on $name and checks exits', ({ height }) => {
     const { travel } = fixture(survey(height));
     const assets = new AssetLibrary();
     vi.spyOn(assets, 'customModel').mockImplementation((key) =>
@@ -198,9 +198,7 @@ describe('shared bridge travel surface', () => {
     );
     const models = new ModelFactory(assets),
       collision = new CollisionWorld({ minX: -100, maxX: 100, minZ: -100, maxZ: 100 });
-    new BridgeScenery(travel, models, collision, { roads: [road] } as MapAdapter).build();
-    expect(collision.blocked({ x: 0, z: 0 }, 1.54)).toBe(false);
-    expect(collision.blocked({ x: 0, z: 3.5 }, 0.3)).toBe(true);
+    new BridgeScenery(travel, models, { roads: [road] } as MapAdapter).build();
     expect(travel.canExit({ x: 0, z: 0 }, { x: 0, z: 6 }, 0.4)).toBe(false);
     const input = {
       axis: (_negative: string[], positive: string[]) => (positive.includes('KeyW') ? 1 : 0),
@@ -249,8 +247,7 @@ describe('shared bridge travel surface', () => {
     const travel = new TravelSurface(terrain, map.bridges);
     const assets = new AssetLibrary();
     vi.spyOn(assets, 'customModel').mockImplementation(() => new THREE.Group());
-    const collision = new CollisionWorld(map.bounds);
-    new BridgeScenery(travel, new ModelFactory(assets), collision, map).build();
+    new BridgeScenery(travel, new ModelFactory(assets), map).build();
     expect(travel.bridges.length).toBeGreaterThan(40);
     expect(new Set(travel.bridges.map((b) => b.id)).size).toBe(travel.bridges.length);
     for (const b of travel.bridges) {
@@ -262,7 +259,6 @@ describe('shared bridge travel surface', () => {
       // the channel inside another crossing's approach.
       const isolated = new TravelSurface(terrain, [b]);
       for (const s of travel.sections(b, b.approachStart, b.approachEnd, 1)) {
-        const p = bridgePoint(b, s);
         if (s <= b.start || s >= b.end)
           for (const side of [-b.width / 2, 0, b.width / 2]) {
             const edge = bridgePoint(b, s, side);
@@ -274,16 +270,6 @@ describe('shared bridge travel surface', () => {
               5,
             );
           }
-        if (
-          p.x < map.bounds.minX + 2 ||
-          p.x > map.bounds.maxX - 2 ||
-          p.z < map.bounds.minZ + 2 ||
-          p.z > map.bounds.maxZ - 2
-        )
-          continue;
-        expect(collision.blocked(p, 0.336), `${b.id} walking at ${s}`).toBe(false);
-        if (b.road.width >= 4.4)
-          expect(collision.blocked(p, 1.54), `${b.id} driving at ${s}`).toBe(false);
       }
     }
   });
@@ -316,12 +302,9 @@ describe('Blender bridge assets', () => {
       const { travel } = fixture();
       const assets = new AssetLibrary();
       vi.spyOn(assets, 'customModel').mockReturnValue(model.scene);
-      const scenery = new BridgeScenery(
-        travel,
-        new ModelFactory(assets),
-        new CollisionWorld({ minX: -100, maxX: 100, minZ: -100, maxZ: 100 }),
-        { roads: [road] } as MapAdapter,
-      ).build();
+      const scenery = new BridgeScenery(travel, new ModelFactory(assets), {
+        roads: [road],
+      } as MapAdapter).build();
       const masonry = new THREE.Group();
       for (const mesh of [...scenery.children])
         if (mesh.name.endsWith(':masonry')) {
@@ -332,9 +315,9 @@ describe('Blender bridge assets', () => {
       const fittedBounds = new THREE.Box3().setFromObject(masonry);
       expect(fittedBounds.min.y).toBeCloseTo(-0.25, 5);
       expect(fittedBounds.max.y).toBeCloseTo(0, 5);
-      // Fitting leaves the original Blender asset and normal-height railings intact.
+      // Fitting preserves the source asset and leaves the deck clear of barriers.
       expect(new THREE.Box3().setFromObject(model.scene).min.y).toBeLessThan(-8);
-      expect(new THREE.Box3().setFromObject(scenery).max.y).toBeGreaterThan(1);
+      expect(new THREE.Box3().setFromObject(scenery).max.y).toBeCloseTo(0.035, 5);
     }
   });
 });

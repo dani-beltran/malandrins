@@ -54,7 +54,7 @@ heading. `TerrainGrading` smooths river profiles while retaining the channel
 shape, then fades road and path grading out near water and bridge decks,
 including adjacent road shoulders. `TravelSurface` supplies the
 same triangulated heights to road meshes, characters, cars, saved spawns and car
-exits. Railings leave connected side roads and shared bridge decks open.
+exits. Bridge decks and approaches have no railings or edge collision barriers.
 Bank elevations define a sloping deck profile, capped by those existing road
 heights. Only depressions inside the span are filled; approaches retain their
 terrain elevation, and existing higher terrain is preserved. Masonry fits below
@@ -77,8 +77,8 @@ positions, widths, bank endpoints and elevations, approach endpoints, the deck
 centre elevation, maximum bank road height and fitted masonry depth.
 
 Optional entries in `src/data/scenery/bridge-overrides.json` are keyed by those
-IDs. `approachLength` sets the length of the ground-following landing and
-railings (at least 14 units, limited by the available route), and `modelSpan`
+IDs. `approachLength` sets the length of the ground-following landing
+(at least 14 units, limited by the available route), and `modelSpan`
 selects 8, 16, 32, 64 or 128. Unspecified crossings use automatic defaults.
 Crossing IDs describe their type and computed location; revisit overrides if the
 map geometry or road width profiles change.

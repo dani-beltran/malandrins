@@ -2,18 +2,16 @@ import * as THREE from 'three';
 import { ModelFactory } from '../assets/ModelFactory';
 import { bridgePoint, locateOnBridge } from './BridgeLayout';
 import { TravelSurface, type Bridge } from './TravelSurface';
-import { CollisionWorld } from './CollisionWorld';
-import { closestOnSegment, distance, rectangle, type Point } from '../core/math';
+import { closestOnSegment, distance, type Point } from '../core/math';
 import type { MapAdapter } from './MapAdapter';
 
-/** Blender arch shells supply the masonry. Decks, approaches and barriers share the
+/** Blender arch shells supply the masonry. Decks and approaches share the
  * same travel surface as the player; the river remains on the survey below. */
 export class BridgeScenery {
   readonly group = new THREE.Group();
   constructor(
     private surface: TravelSurface,
     private models: ModelFactory,
-    private collision: CollisionWorld,
     private map: MapAdapter,
   ) {}
 
@@ -21,7 +19,7 @@ export class BridgeScenery {
     for (const bridge of this.surface.bridges) {
       this.deck(bridge);
       this.arch(bridge);
-      this.edges(bridge);
+      this.approachFoundations(bridge);
     }
     return this.group;
   }
@@ -55,7 +53,7 @@ export class BridgeScenery {
     model.traverse((o) => {
       if (!(o instanceof THREE.Mesh)) return;
       // Bake export transforms and fit beneath the existing road. Compress around
-      // the authored deck top (Y=0); barriers retain their normal human height.
+      // the authored deck top (Y=0).
       const source = o.geometry.clone().applyMatrix4(o.matrixWorld);
       const geometry = sliceShell(
         source,
@@ -90,15 +88,15 @@ export class BridgeScenery {
     return bridgePoint(b, d, side * (b.width / 2 - 0.12));
   }
 
-  private edges(b: Bridge): void {
+  private approachFoundations(b: Bridge): void {
     const sections = this.surface.sections(b, b.approachStart, b.approachEnd, 1);
     for (const side of [-1, 1]) {
       for (let i = 1; i < sections.length; i++) {
+        if (sections[i] > b.start && sections[i - 1] < b.end) continue;
         const a = this.edgePoint(b, sections[i - 1], side),
           c = this.edgePoint(b, sections[i], side);
         const mid = { x: (a.x + c.x) / 2, z: (a.z + c.z) / 2 };
         // Leave side-road junctions open at their existing road elevation.
-        const onDeck = sections[i] > b.start && sections[i - 1] < b.end;
         if (
           this.surface.bridges.some((other) => {
             if (other === b) return false;
@@ -114,21 +112,8 @@ export class BridgeScenery {
         if (this.sideRoadAt(b, mid)) continue;
         const ya = this.surface.heightAt(a.x, a.z),
           yc = this.surface.heightAt(c.x, c.z);
-        const len = distance(a, c),
-          angle = Math.atan2(c.x - a.x, c.z - a.z);
-        this.collision.add(rectangle(mid.x, mid.z, 0.18, len + 0.12, angle));
-        for (const h of [0.45, 0.86]) this.beam(a, ya + h, c, yc + h, 0.025, 0x51534a);
-        this.beam(a, ya + 0.12, c, yc + 0.12, 0.15, 0xa89b7f);
         // Small foundation cheeks meet the bank along the approaches.
-        if (!onDeck) this.retainingFace(a, c, ya, yc);
-      }
-      const posts = this.surface.sections(b, b.approachStart, b.approachEnd, 3);
-      for (const d of posts) {
-        const p = this.edgePoint(b, d, side);
-        if (this.sideRoadAt(b, p)) continue;
-        const y = this.surface.heightAt(p.x, p.z);
-        this.group.add(this.models.box(0.065, 1.05, 0.065, 0x55574e, p.x, y + 0.6, p.z));
-        this.group.add(this.models.box(0.073, 0.2, 0.073, 0x9b4f44, p.x, y + 1.1, p.z));
+        this.retainingFace(a, c, ya, yc);
       }
     }
   }
@@ -145,19 +130,6 @@ export class BridgeScenery {
           return true;
     }
     return false;
-  }
-
-  private beam(a: Point, ya: number, b: Point, yb: number, thickness: number, color: number): void {
-    const start = new THREE.Vector3(a.x, ya, a.z),
-      end = new THREE.Vector3(b.x, yb, b.z);
-    const mesh = new THREE.Mesh(
-      new THREE.BoxGeometry(thickness, thickness, start.distanceTo(end)),
-      this.models.assets.material(color),
-    );
-    mesh.position.copy(start).add(end).multiplyScalar(0.5);
-    mesh.quaternion.setFromUnitVectors(new THREE.Vector3(0, 0, 1), end.sub(start).normalize());
-    mesh.castShadow = true;
-    this.group.add(mesh);
   }
 
   private retainingFace(a: Point, b: Point, ya: number, yb: number): void {

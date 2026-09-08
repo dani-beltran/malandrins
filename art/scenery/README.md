@@ -44,15 +44,15 @@ length is the number in the filename, width is 5 game units, and deck thickness 
 0.45. Dimensions already use game units: do not multiply them by 0.7 again. Keep
 the deck at local Y=0 when editing. The named deck, pier, vault and facing objects
 remain individually editable. Preview posts and wires are included in the source
-but excluded from the GLB; the game generates them along the fitted deck and approaches.
+but excluded from the GLB; the game leaves decks and approaches without barriers.
 
 Span variants have 1, 2, 3, 5 and 9 open arches. At load time the game selects a
 nearby span size, fits its width and length, and bends its subdivided shell along
 the road. Existing bank elevations set the deck profile: approaches keep their
 original road height. The masonry is lowered with the deck and vertically
 compressed around local Y=0 to fit the available space, with a small buried
-foundation. Shallow crossings therefore have shallow structures. Railings retain
-their normal height. Materials use solid colours compatible with the existing
+foundation. Shallow crossings therefore have shallow structures.
+Materials use solid colours compatible with the existing
 scenery loader. The deck shares a travel surface with player feet and vehicle
 wheels; the survey and water keep their original elevations. Blender is not
 required to play the game.
