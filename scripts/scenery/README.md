@@ -50,8 +50,9 @@ At runtime, `BridgeLayout` detects road/river crossings, merges touching spans
 on connected road fragments, and includes the river strip, full deck width and
 bank margin. Approaches follow existing connections at junctions. Where a mapped
 lane ends too close to a bank, a short straight landing is rendered along its
-heading. `RoadGrading` protects the supporting terrain vertices beneath water and
-bridge decks, including adjacent road shoulders. `TravelSurface` supplies the
+heading. `TerrainGrading` smooths river profiles while retaining the channel
+shape, then fades road and path grading out near water and bridge decks,
+including adjacent road shoulders. `TravelSurface` supplies the
 same triangulated heights to road meshes, characters, cars, saved spawns and car
 exits. Railings leave connected side roads and shared bridge decks open.
 Bank elevations define a sloping deck profile, capped by those existing road

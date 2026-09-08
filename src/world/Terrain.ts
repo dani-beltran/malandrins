@@ -3,7 +3,7 @@ import metadata from '../../references/topographic-data/derived/icv-2017-heightm
 import heightmapUrl from '../../references/topographic-data/derived/icv-2017-heightmap-257.f32?url';
 import { clamp, type Point } from '../core/math';
 import { MapAdapter, type Road } from './MapAdapter';
-import { gradeRoads } from './RoadGrading';
+import { gradeTerrain } from './TerrainGrading';
 import type { BridgePlan } from './BridgeLayout';
 
 export interface TerrainMetadata {
@@ -47,7 +47,7 @@ export class Terrain {
       const y = (elevation - game.baseline_elevation_m) * game.scale;
       this.heights[i] = y;
     }
-    gradeRoads(this, roads, water, bridges);
+    gradeTerrain(this, roads, water, bridges);
     let min = Infinity,
       max = -Infinity;
     for (const y of this.heights) {

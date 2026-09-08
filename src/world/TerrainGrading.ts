@@ -7,8 +7,16 @@ interface ProfilePoint extends Point {
   y: number;
 }
 
-/** Grade the shared height grid once, before meshes, scenery or entities sample it. */
-export function gradeRoads(
+interface Corridor {
+  points: readonly Point[];
+  halfWidth: number;
+  shoulder: number;
+  sigma: number;
+  preserveBanks?: boolean;
+}
+
+/** Grade the shared grid before meshes, scenery or entities sample it. */
+export function gradeTerrain(
   terrain: Terrain,
   roads: readonly Road[],
   water: readonly Point[][] = [],
@@ -16,14 +24,25 @@ export function gradeRoads(
 ): void {
   const { width, height, game } = terrain.metadata;
   const { spacingX, spacingZ, heights } = terrain;
-  const targets = new Float64Array(heights.length);
-  const weights = new Float64Array(heights.length);
-  const influence = new Float64Array(heights.length);
-  // Include the vertices supporting pavement triangles, even on sub-cell-width lanes.
+  const spacing = Math.max(spacingX, spacingZ);
   const margin = Math.hypot(spacingX, spacingZ);
-  const shoulder = Math.max(8, Math.max(spacingX, spacingZ) * 2);
-  const protectedVertices = new Uint8Array(heights.length);
-  const protect = (a: Point, b: Point, radius: number) => {
+  const bank = Math.max(12, spacing * 3);
+  // Shape the river first so road profiles meet its softened banks. Roads must
+  // never average their elevation into the channel beneath a crossing.
+  gradeCorridors(
+    terrain,
+    water.map((points) => ({
+      points,
+      halfWidth: RIVER_WIDTH / 2,
+      shoulder: bank,
+      sigma: Math.max(8, spacing * 2),
+      preserveBanks: true,
+    })),
+  );
+  const protection = new Float64Array(heights.length);
+  const transition = Math.max(8, spacing * 1.5);
+  const protect = (a: Point, b: Point, core: number) => {
+    const radius = core + transition;
     const c0 = Math.max(0, Math.floor((Math.min(a.x, b.x) - radius - game.min_x) / spacingX));
     const c1 = Math.min(
       width - 1,
@@ -37,12 +56,13 @@ export function gradeRoads(
     for (let row = r0; row <= r1; row++)
       for (let col = c0; col <= c1; col++) {
         const p = { x: game.min_x + col * spacingX, z: game.min_z + row * spacingZ };
-        if (distance(p, closestOnSegment(p, a, b)) <= radius)
-          protectedVertices[row * width + col] = 1;
+        const d = distance(p, closestOnSegment(p, a, b));
+        const index = row * width + col;
+        protection[index] = Math.max(protection[index], falloff((d - core) / transition));
       }
   };
-  // Protect every vertex of triangles supporting water, including grading shoulders
-  // from adjacent roads. Merely skipping the crossing's centre would still fill it.
+  // Protect every supporting water/deck vertex, then ease road grading back in
+  // outside it. A binary mask would leave a sharp ledge at the protected edge.
   for (const ps of water)
     for (let i = 1; i < ps.length; i++) protect(ps[i - 1], ps[i], RIVER_WIDTH / 2 + margin);
   for (const bridge of bridges) {
@@ -59,13 +79,42 @@ export function gradeRoads(
       );
   }
 
-  for (const road of roads) {
-    const trail = ['track', 'path', 'footway', 'cycleway'].includes(road.type);
-    if (road.type === 'steps' || (trail && road.surface !== 'paving')) continue;
-    const profile = smoothProfile(terrain, road);
-    const core = road.width / 2 + (trail ? 0 : road.sidewalk) + margin;
+  gradeCorridors(
+    terrain,
+    roads
+      .filter((road) => road.type !== 'steps')
+      .map((road) => {
+        const trail = ['track', 'path', 'footway', 'cycleway'].includes(road.type);
+        return {
+          points: road.points,
+          halfWidth: road.width / 2 + (trail ? 0 : road.sidewalk),
+          shoulder: Math.max(trail ? 10 : 18, spacing * (trail ? 2 : 4)),
+          sigma: Math.max(trail ? 6 : 10, road.width * 1.5),
+        };
+      }),
+    protection,
+  );
+}
+
+function gradeCorridors(
+  terrain: Terrain,
+  corridors: readonly Corridor[],
+  protection?: Float64Array,
+): void {
+  if (!corridors.length) return;
+  const { width, height, game } = terrain.metadata;
+  const { spacingX, spacingZ, heights } = terrain;
+  const targets = new Float64Array(heights.length);
+  const weights = new Float64Array(heights.length);
+  const influence = new Float64Array(heights.length);
+  // Include every vertex supporting the surface, even on sub-cell-width paths.
+  const margin = Math.hypot(spacingX, spacingZ);
+  for (const corridor of corridors) {
+    const profile = smoothProfile(terrain, corridor.points, corridor.sigma);
+    const core = corridor.halfWidth + margin;
+    const { shoulder } = corridor;
     const radius = core + shoulder;
-    // One contribution per road prevents densely segmented bends from dominating junctions.
+    // One contribution per corridor prevents densely segmented bends from dominating junctions.
     const nearest = new Map<number, { distance: number; y: number }>();
     for (let i = 1; i < profile.length; i++) {
       const a = profile[i - 1],
@@ -92,26 +141,36 @@ export function gradeRoads(
           const d = Math.hypot(x - a.x - dx * t, z - a.z - dz * t);
           const index = row * width + col;
           if (d >= radius || d >= (nearest.get(index)?.distance ?? Infinity)) continue;
-          nearest.set(index, { distance: d, y: a.y + (b.y - a.y) * t });
+          let y = a.y + (b.y - a.y) * t;
+          // Shift the river's existing cross section with the smoothed profile.
+          // Flattening it like a road would widen the bed and lower bridge banks.
+          if (corridor.preserveBanks)
+            y += heights[index] - terrain.heightAt(a.x + dx * t, a.z + dz * t);
+          nearest.set(index, { distance: d, y });
         }
     }
     for (const [index, sample] of nearest) {
-      const t = clamp((sample.distance - core) / shoulder, 0, 1);
-      const blend = 1 - t * t * (3 - 2 * t);
+      const blend = falloff((sample.distance - core) / shoulder);
       const weight = blend / (1 + (sample.distance / core) ** 2);
       targets[index] += sample.y * weight;
       weights[index] += weight;
       influence[index] = Math.max(influence[index], blend);
     }
   }
-  // All profiles sample the untouched survey. Intersections blend independently of road order.
+  // Each pass samples an unchanged grid; junctions do not depend on feature order.
   for (let i = 0; i < heights.length; i++)
-    if (!protectedVertices[i] && weights[i] > 0)
-      heights[i] += (targets[i] / weights[i] - heights[i]) * influence[i];
+    if (weights[i] > 0)
+      heights[i] +=
+        (targets[i] / weights[i] - heights[i]) * influence[i] * (1 - (protection?.[i] ?? 0));
 }
 
-function smoothProfile(terrain: Terrain, road: Road): ProfilePoint[] {
-  const points = road.points.filter((p, i) => i === 0 || distance(p, road.points[i - 1]) > 1e-4);
+function falloff(t: number): number {
+  t = clamp(t, 0, 1);
+  return 1 - t * t * (3 - 2 * t);
+}
+
+function smoothProfile(terrain: Terrain, line: readonly Point[], sigma: number): ProfilePoint[] {
+  const points = line.filter((p, i) => i === 0 || distance(p, line[i - 1]) > 1e-4);
   if (points.length < 2) return [];
   const distances = [0];
   for (let i = 1; i < points.length; i++)
@@ -135,7 +194,6 @@ function smoothProfile(terrain: Terrain, road: Road): ProfilePoint[] {
       z = a.z + (b.z - a.z) * t;
     samples.push({ x, z, y: terrain.heightAt(x, z) });
   }
-  const sigma = Math.max(6, road.width);
   const window = Math.ceil((sigma * 3) / step);
   return samples.map((p, i) => {
     let w = 0,

@@ -181,6 +181,16 @@ export class TravelSurface implements HeightSurface {
       // cannot bleed a raised deck onto the road before or after the river.
       const inset = Math.hypot(this.spacingX, this.spacingZ);
       if (q.distance > core + 2 || q.along <= b.start + inset || q.along >= b.end - inset) continue;
+      // At sharp bends the closest route segment can change inside a grid cell.
+      // Keep the whole supporting cell inside the span before lifting a vertex,
+      // otherwise deck interpolation can raise a neighbouring road approach.
+      let touchesApproach = false;
+      for (const dx of [-this.spacingX, 0, this.spacingX])
+        for (const dz of [-this.spacingZ, 0, this.spacingZ]) {
+          const neighbour = locateOnBridge(b, { x: x + dx, z: z + dz });
+          if (neighbour.along <= b.start || neighbour.along >= b.end) touchesApproach = true;
+        }
+      if (touchesApproach) continue;
       const longitudinal =
         smooth((q.along - b.start - inset) / inset) * smooth((b.end - inset - q.along) / inset);
       const lateral = 1 - smooth((q.distance - core) / 2);

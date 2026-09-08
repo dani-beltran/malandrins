@@ -135,7 +135,7 @@ describe('survey terrain and surface geometry', () => {
   });
 });
 
-describe('road grading', () => {
+describe('river, road and path grading', () => {
   const grid: TerrainMetadata = {
     width: 81,
     height: 81,
@@ -225,15 +225,81 @@ describe('road grading', () => {
     overlay.dispose();
   });
 
-  it('leaves unpaved trails and steps alone and handles repeated or missing road points', () => {
+  it.each(['track', 'path', 'footway', 'cycleway'])(
+    'softens unpaved %s bumps and cross slopes while retaining the climb',
+    (type) => {
+      const trail = { ...road, type, width: 2.7, sidewalk: 0, surface: 'dirt' };
+      const source = survey((x, z) => 0.12 * x + 0.3 * (z - 80) + 5 * Math.sin((x * Math.PI) / 4));
+      const graded = new Terrain(grid, source, [trail]);
+      for (let x = 45; x <= 115; x += 2) {
+        expect(graded.heightAt(x, 80)).toBeCloseTo(0.12 * x, 1);
+        expect(graded.heightAt(x, 79)).toBeCloseTo(graded.heightAt(x, 81), 5);
+      }
+      expect(graded.heightAt(80, 40)).toBe(new Terrain(grid, source).heightAt(80, 40));
+    },
+  );
+
+  it('softens riverbeds and banks without flattening the valley or losing the channel', () => {
+    const source = survey(
+      (x, z) =>
+        0.12 * x +
+        0.3 * (z - 80) -
+        4 * Math.exp(-(((z - 80) / 8) ** 2)) +
+        5 * Math.sin((x * Math.PI) / 4),
+    );
+    const raw = new Terrain(grid, source),
+      graded = new Terrain(grid, source, [], [road.points]);
+    for (let x = 45; x <= 115; x += 2) {
+      expect(graded.heightAt(x, 80)).toBeCloseTo(0.12 * x - 4, 1);
+      expect(graded.heightAt(x, 82) - graded.heightAt(x, 78)).toBeCloseTo(1.2, 5);
+      expect(graded.heightAt(x, 80)).toBeLessThan(graded.heightAt(x, 90));
+    }
+    for (let x = 0; x <= 160; x += 2)
+      for (const z of [0, 40, 120, 160]) expect(graded.heightAt(x, z)).toBe(raw.heightAt(x, z));
+    expect(new Terrain(grid, source, [], [road.points]).heights).toEqual(graded.heights);
+  });
+
+  it('blends road shoulders gradually back into the hillside', () => {
+    const source = survey((_x, z) => 0.3 * (z - 80));
+    const graded = new Terrain(grid, source, [road]),
+      raw = new Terrain(grid, source);
+    // The old eight-unit shoulder already returned to raw terrain here.
+    expect(graded.heightAt(80, 96)).toBeLessThan(raw.heightAt(80, 96) - 0.5);
+    expect(graded.heightAt(80, 106)).toBe(raw.heightAt(80, 106));
+    const changes = Array.from(
+      { length: 18 },
+      (_, i) => graded.heightAt(80, 80 + (i + 1) * 2) - graded.heightAt(80, 80 + i * 2),
+    );
+    expect(Math.max(...changes)).toBeLessThan(1.3);
+  });
+
+  it('eases road grading away from river edges without leaving a sharp ledge', () => {
+    const water = [
+      [
+        { x: 80, z: 20 },
+        { x: 80, z: 140 },
+      ],
+    ];
+    const source = survey((_x, z) => 0.3 * (z - 80));
+    const river = new Terrain(grid, source, [], water),
+      graded = new Terrain(grid, source, [road], water);
+    // Just outside the protected channel the road correction starts gently.
+    expect(Math.abs(graded.heightAt(86, 84) - river.heightAt(86, 84))).toBeLessThan(0.15);
+    expect(Math.abs(graded.heightAt(96, 84) - river.heightAt(96, 84))).toBeGreaterThan(1);
+    expect(graded.heightAt(80, 84)).toBe(river.heightAt(80, 84));
+  });
+
+  it('keeps steps unchanged and handles repeated or missing corridor points', () => {
     const source = survey((x, z) => Math.sin(x) + z);
-    const skipped = ['track', 'path', 'footway', 'cycleway', 'steps'].map((type) => ({
+    const skipped = ['steps'].map((type) => ({
       ...road,
       type,
     }));
     skipped.push({ ...road, points: [] }, { ...road, points: [road.points[0], road.points[0]] });
     const raw = new Terrain(grid, source);
-    expect(new Terrain(grid, source, skipped).heights).toEqual(raw.heights);
+    expect(
+      new Terrain(grid, source, skipped, [[], [road.points[0], road.points[0]]]).heights,
+    ).toEqual(raw.heights);
     expect(
       new Terrain(grid, source, [{ ...road, points: [road.points[0], ...road.points] }]).heights,
     ).toEqual(new Terrain(grid, source, [road]).heights);
@@ -246,12 +312,10 @@ describe('road grading', () => {
     );
     const map = new MapAdapter(),
       graded = await Terrain.load(map);
-    const roughness = (terrain: Terrain) => {
+    const roughness = (terrain: Terrain, corridors: Pick<Road, 'points' | 'width'>[]) => {
       let bumps = 0,
         tilt = 0;
-      for (const road of map.roads.filter(
-        (r) => !['track', 'path', 'footway', 'cycleway', 'steps'].includes(r.type),
-      ))
+      for (const road of corridors)
         for (let i = 1; i < road.points.length; i++) {
           const a = road.points[i - 1],
             b = road.points[i];
@@ -275,14 +339,23 @@ describe('road grading', () => {
         }
       return { bumps, tilt };
     };
-    const before = roughness(real),
-      after = roughness(graded);
-    expect(after.bumps).toBeLessThan(before.bumps * 0.7);
-    expect(after.tilt).toBeLessThan(before.tilt * 0.7);
+    const trails = ['track', 'path', 'footway', 'cycleway'];
+    for (const [name, corridors] of [
+      ['roads', map.roads.filter((r) => ![...trails, 'steps'].includes(r.type))],
+      ['paths', map.roads.filter((r) => trails.includes(r.type))],
+      ['rivers', map.water.map((points) => ({ points, width: 4.5 }))],
+    ] as const) {
+      const before = roughness(real, corridors),
+        after = roughness(graded, corridors);
+      expect(after.bumps, name).toBeLessThan(before.bumps * 0.7);
+      if (name !== 'rivers') expect(after.tilt, name).toBeLessThan(before.tilt * 0.7);
+    }
     expect(graded.maxHeight - graded.minHeight).toBeGreaterThan(175);
     expect(graded.minHeight).toBe(Math.min(...graded.heights));
     expect(graded.maxHeight).toBe(Math.max(...graded.heights));
-    expect(graded.heightAt(-450, 130)).toBe(real.heightAt(-450, 130));
+    // Keep large areas of the survey untouched outside rivers and travel corridors.
+    const unchanged = graded.heights.filter((y, i) => y === real.heights[i]).length;
+    expect(unchanged).toBeGreaterThan(graded.heights.length * 0.4);
   });
 });
 

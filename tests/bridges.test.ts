@@ -122,14 +122,17 @@ describe('bridge detection and preserved river terrain', () => {
       expect(plan.distances.at(-1)! - plan.end).toBeGreaterThan(15);
     }
   });
-  it('protects water and deck terrain from all nearby grading shoulders', () => {
-    const source = survey((x, z) => 0.05 * z + 5 * Math.sin(x / 5));
+  it('protects softened water channels from all nearby grading shoulders', () => {
+    const source = survey(
+      (x, z) => 0.05 * z + 5 * Math.sin(x / 5) + 3 * Math.sin((z * Math.PI) / 4),
+    );
     const { terrain } = fixture(source),
-      raw = new Terrain(grid, source);
+      river = new Terrain(grid, source, [], water);
+    expect(river.heightAt(0, 2)).not.toBeCloseTo(new Terrain(grid, source).heightAt(0, 2), 1);
     for (let z = -50; z < 50; z += 0.7)
       for (const x of [-2.25, 0, 2.25])
-        expect(terrain.heightAt(x, z)).toBeCloseTo(raw.heightAt(x, z), 6);
-    expect(terrain.heightAt(-40, 0)).not.toBeCloseTo(raw.heightAt(-40, 0), 1);
+        expect(terrain.heightAt(x, z)).toBeCloseTo(river.heightAt(x, z), 6);
+    expect(terrain.heightAt(-40, 0)).not.toBeCloseTo(river.heightAt(-40, 0), 1);
   });
 });
 
