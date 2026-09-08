@@ -26,11 +26,11 @@ export class GameRenderer {
     this.renderer.shadowMap.enabled = true;
     this.renderer.shadowMap.type = THREE.PCFShadowMap;
     this.renderer.outputColorSpace = THREE.SRGBColorSpace;
-    this.scene.background = new THREE.Color(0x9fc6e5);
-    this.scene.fog = new THREE.Fog(0xb5cddd, 400, 1550);
-    this.scene.add(new THREE.HemisphereLight(0xe2efff, 0xa59d81, 2.2));
-    this.sun = new THREE.DirectionalLight(0xfff0d6, 2.65);
-    this.sun.position.set(160, 220, 95);
+    this.scene.background = new THREE.Color(0xc8c0a8);
+    this.scene.fog = new THREE.Fog(0xc8c0a8, 230, 1050);
+    this.scene.add(new THREE.HemisphereLight(0xffe1b9, 0x627361, 2.4));
+    this.sun = new THREE.DirectionalLight(0xffdfad, 3.3);
+    this.sun.position.set(-130, 220, 150);
     this.sun.castShadow = true;
     this.sun.shadow.mapSize.set(2048, 2048);
     Object.assign(this.sun.shadow.camera, {
@@ -56,7 +56,7 @@ export class GameRenderer {
         void main(){vec3 col=pow(texture2D(tScene,vUv).rgb,vec3(1./2.2));
         vec2 p=mod(floor(vUv*resolution),4.);float d=mod(p.x*2.+p.y*3.,4.)/4.-.375;
         col=mix(col,floor(clamp(col+d/42.,0.,1.)*31.)/31.,retro*.65);
-        float vignette=1.-retro*.14*pow(length((vUv-.5)*1.2),1.5);col*=vignette;
+        float vignette=1.-.23*pow(length((vUv-.5)*1.2),1.5);col*=vignette;
         gl_FragColor=vec4(col,1.);}`,
     });
     this.postScene.add(new THREE.Mesh(new THREE.PlaneGeometry(2, 2), this.shader));
@@ -81,7 +81,7 @@ export class GameRenderer {
     this.shader.uniforms.retro.value = this.quality === 'retro' ? 1 : 0;
   }
   followLight(p: THREE.Vector3): void {
-    this.sun.position.set(p.x + 160, p.y + 220, p.z + 95);
+    this.sun.position.set(p.x - 130, p.y + 220, p.z + 150);
     this.sun.target.position.copy(p);
   }
   render(): void {
